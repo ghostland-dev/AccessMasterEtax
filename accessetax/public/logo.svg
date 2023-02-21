@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--Generator: Xara Designer (www.xara.com), SVG filter version: 6.6.0.6-->
+<svg fill="none" fill-rule="evenodd" stroke="black" stroke-width="0.501" stroke-linejoin="bevel" stroke-miterlimit="10" font-family="Times New Roman" font-size="16" style="font-variant-ligatures:none" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" overflow="visible" width="351.324pt" height="143.822pt" viewBox="159.33 -935.47 351.324 143.822">
+ <defs>
+  <linearGradient id="LinearGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="131.7" y2="-264.565" gradientTransform="matrix(-0.723114 -0.690735 0.690735 -0.723114 119.964 -76.941)">
+   <stop offset="0" stop-color="#ffffff"/>
+   <stop offset="1" stop-color="#000000"/>
+  </linearGradient>
+  <style type="text/css">@import url('https://themes.googleusercontent.com/fonts/css?family=Comfortaa:700');
+@import url('https://themes.googleusercontent.com/fonts/css?family=Open Sans:400,600');</style>
+ </defs>
+ <g id="Layer 1" transform="scale(1 -1)">
+  <g id="Group" stroke="none">
+   <mask id="TranspMask">
+    <rect x="-10%" y="-10%" width="120%" height="120%" fill="url(#LinearGradient)" stroke="none"/>
+   </mask>
+   <ellipse rx="71.922" ry="71.922" transform="translate(231.241 863.559) rotate(136.312)" fill="#ebf0fc" stroke-width="1.243" stroke-linejoin="miter" mask="url(#TranspMask)"/>
+   <text xml:space="preserve" transform="translate(323.686 878.924) scale(1 -1)" kerning="auto" stroke-width="0.947" stroke-linejoin="round" stroke-linecap="round" font-family="Comfortaa" font-weight="bold"><tspan x="0" y="0" font-size="40.595" fill="#b4c348">Access</tspan><tspan x="145.828" y="0" font-size="37.877" fill="#b4c348"> </tspan><tspan x="0" y="41.251" font-size="36.052" fill="#485566">E-TAXE</tspan></text>
+   <g id="Group_1" fill-rule="nonzero" stroke-linejoin="miter" stroke-width="1.243" fill="#b4c348">
+    <path d="M 211.351,918.334 C 203.172,918.334 196.433,911.593 196.433,903.415 C 196.433,895.236 203.172,888.497 211.351,888.497 C 216.013,888.497 220.15,890.73 222.889,894.11 L 225.239,890.4 L 217.547,878.552 L 186.487,878.552 C 183.747,878.552 181.514,876.318 181.514,873.579 L 181.514,823.851 C 181.514,821.111 183.747,818.879 186.487,818.879 L 275.997,818.879 C 278.735,818.879 280.969,821.111 280.969,823.851 L 280.969,873.579 C 280.969,876.318 278.735,878.552 275.997,878.552 L 240.507,878.552 L 234.233,868.606 L 266.517,868.606 C 267.255,866.488 268.906,864.837 271.024,864.1 L 271.024,833.331 C 268.906,832.592 267.255,830.941 266.517,828.824 L 195.966,828.824 C 195.228,830.941 193.577,832.592 191.46,833.331 L 191.46,864.1 C 193.577,864.837 195.228,866.488 195.966,868.606 L 211.097,868.606 L 204.649,858.661 L 216.324,858.661 L 239.517,894.207 C 242.255,890.77 246.431,888.497 251.133,888.497 C 259.311,888.497 266.051,895.236 266.051,903.415 C 266.051,911.593 259.311,918.334 251.133,918.334 C 244.974,918.334 239.652,914.506 237.38,909.145 L 231.183,899.588 L 225.297,908.911 L 225.181,908.854 C 222.986,914.37 217.605,918.334 211.351,918.334 Z M 211.351,908.388 C 214.148,908.388 216.324,906.213 216.324,903.415 C 216.324,900.618 214.148,898.443 211.351,898.443 C 208.554,898.443 206.378,900.618 206.378,903.415 C 206.378,906.213 208.554,908.388 211.351,908.388 Z M 251.133,908.388 C 253.93,908.388 256.106,906.213 256.106,903.415 C 256.106,900.618 253.93,898.443 251.133,898.443 C 248.336,898.443 246.16,900.618 246.16,903.415 C 246.16,906.213 248.336,908.388 251.133,908.388 Z M 231.416,863.613 L 224.948,853.688 C 223.024,850.502 220.209,848.754 216.324,848.715 C 216.324,840.479 223.006,833.797 231.242,833.797 C 239.478,833.797 246.16,840.479 246.16,848.715 C 246.16,856.893 239.575,863.516 231.416,863.613 Z M 206.378,853.688 C 203.638,853.688 201.405,851.454 201.405,848.715 C 201.405,845.975 203.638,843.742 206.378,843.742 C 209.117,843.742 211.351,845.975 211.351,848.715 C 211.351,851.454 209.117,853.688 206.378,853.688 Z M 256.106,853.688 C 253.366,853.688 251.133,851.454 251.133,848.715 C 251.133,845.975 253.366,843.742 256.106,843.742 C 258.844,843.742 261.078,845.975 261.078,848.715 C 261.078,851.454 258.844,853.688 256.106,853.688 Z" marker-start="none" marker-end="none"/>
+   </g>
+   <path d="M 228.657,833.967 C 234.607,841.567 239.837,850.57 241.212,859.813 C 241.261,860.142 241.298,860.472 241.328,860.791 C 246.063,856.693 247.993,849.912 245.649,843.709 C 243.001,836.697 235.773,832.746 228.657,833.967 Z" fill="#485566" stroke-width="2.059" stroke-linejoin="miter" marker-start="none" marker-end="none"/>
+   <ellipse rx="5.898" ry="5.898" transform="translate(206.204 849.366) rotate(140.773)" fill="#485566" stroke-width="2.059" stroke-linejoin="miter"/>
+   <ellipse rx="5.898" ry="5.898" transform="translate(256.646 848.713) rotate(140.773)" fill="#485566" stroke-width="2.059" stroke-linejoin="miter"/>
+   <ellipse rx="15.371" ry="15.371" transform="translate(231.277 849.116) rotate(132.896)" fill="#485566" stroke-width="1.779" stroke-linejoin="miter"/>
+  </g>
+ </g>
+</svg>
