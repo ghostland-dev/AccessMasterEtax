@@ -72,6 +72,18 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
+// Profils
+Route::middleware(['auth'])->group(function(){
+    Route::get('/app/v1/etape/visiteur',[ProfileController::class, 'visitor'])->name('profile.visitor');
+    Route::get('/app/v1/etape/adminisrateur',[ProfileController::class, 'admin'])->name('profile.admin');
+    Route::get('/app/v1/etape/commercial',[ProfileController::class, 'seller'])->name('profile.seller');
+    Route::get('/app/v1/etape/client',[ProfileController::class, 'customer'])->name('profile.customer');
+});
+
+
+
+
+
 // Suppliers routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/fournisseurs',            [SupplierController::class, 'index'])->name('suppliers');
@@ -414,3 +426,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/app/v1/data/dirigeant/{dirigeant}',     [ResponsibleController::class, 'update'])->name('responsible.update');
     Route::delete('/app/v1/data/dirigeant/{dirigeant}',  [ResponsibleController::class, 'destroy'])->name('responsible.destroy');
 });
+
+
+// End of the routes for the Web Side
