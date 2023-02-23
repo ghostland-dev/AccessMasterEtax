@@ -22,6 +22,8 @@ class GazMeter extends Model
         'profile',
         'tarif',
         'consumption',
+        'study_id',
+        'supplier_id',
         
         
     ];
