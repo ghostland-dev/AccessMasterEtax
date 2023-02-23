@@ -85,5 +85,6 @@ class RegisterController extends Controller
             'profile' => $data['profile']->store('avatars', 'public'),
             'password' => Hash::make($data['password']),
         ]);
+
     }
 }

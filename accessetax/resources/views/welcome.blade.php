@@ -24,9 +24,8 @@
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                {{-- <a class="navbar-brand" href="#page-top">Access E-Tax</a> --}}
-                <img src="/logo.svg" class="logo-navbar">
+            <div class="container-fluid px-4 px-lg-5">
+                <img src="/logo.svg" class="logo-navbar-landing">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -43,7 +42,7 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Un sourire coût moins cher que l'énergies
+                        <h1 class="text-white font-weight-bold">Un sourire coûte moins cher que l'énergie
                         </h1>
                         <hr class="divider" />
                     </div>
