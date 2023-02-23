@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!--Generator: Xara Designer (www.xara.com), SVG filter version: 6.6.0.6-->
-<svg fill="none" fill-rule="evenodd" stroke="black" stroke-width="0.501" stroke-linejoin="bevel" stroke-miterlimit="10" font-family="Times New Roman" font-size="16" style="font-variant-ligatures:none" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" overflow="visible" width="351.324pt" height="143.822pt" viewBox="159.33 -935.47 351.324 143.822">
+<svg fill="none" fill-rule="evenodd" stroke="white" stroke-width="0.501" stroke-linejoin="bevel" stroke-miterlimit="10" font-family="Times New Roman" font-size="16" style="font-variant-ligatures:none" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" overflow="visible" width="351.324pt" height="143.822pt" viewBox="159.33 -935.47 351.324 143.822">
  <defs>
   <linearGradient id="LinearGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="131.7" y2="-264.565" gradientTransform="matrix(-0.723114 -0.690735 0.690735 -0.723114 119.964 -76.941)">
    <stop offset="0" stop-color="#ffffff"/>
-   <stop offset="1" stop-color="#000000"/>
+   <stop offset="1" stop-color="white"/>
   </linearGradient>
   <style type="text/css">@import url('https://themes.googleusercontent.com/fonts/css?family=Comfortaa:700');
 @import url('https://themes.googleusercontent.com/fonts/css?family=Open Sans:400,600');</style>

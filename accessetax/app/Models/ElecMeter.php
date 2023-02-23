@@ -34,6 +34,7 @@ class ElecMeter extends Model
         'YCR',
         'councilOffice',
         'study_id',
+        'supplier_id',
 
         
     ];
