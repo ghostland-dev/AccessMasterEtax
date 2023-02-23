@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class AcivityCode extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+
+    protected $fillable = [
+
+        'codeNaf',
+        'codeNace',
+        'descriptionNaf',
+        'descriptionNace',
+    ];
 }
