@@ -17,13 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarButtonsExample">
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                @auth()
-                <li class="nav-item">
-                    <button class="btn btn-primary me-3 uk-icon-" uk-icon="icon: menu" type="button" uk-toggle="target: #offcanvas-nav"></button>
-                </li>
-
-                @endauth
-
+              
                 <li class="nav-item">
                     <a class="nav-link" href="#">Accueil</a>
                 </li>
@@ -82,7 +76,7 @@
                                 <p class="dropdown-item" href="#">{{ Auth::user()->email }}</p>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Mon compte</a>
+                                <a class="dropdown-item" href="{{ URL('/app/v1/profil\/'). Auth::user()->role}}">Mon compte</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Paramètres</a>
@@ -94,10 +88,7 @@
                                 <a class="dropdown-item" href="#">Suivi</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"> {{ __('Déconnexion') }}</a>
-
-
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Déconnexion') }}</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
