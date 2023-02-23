@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Profiles;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,15 +70,15 @@ class ProfileController extends Controller
      */
     public function customer()
     {
-        if(Auth::user()->role == 'client'){
+        // if(Auth::user()->role == 'client'){
             // retdirect to admin page
        return view('auth.profils.client');
 
-       }else{
-            // retdirect to admin page
-       return view('auth.profils.visiteur');
+    //    }else{
+    //         // retdirect to admin page
+    //    return view('auth.profils.visiteur');
 
-       }
+    //    }
     }
 
     

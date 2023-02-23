@@ -17,10 +17,19 @@
         <div class="collapse navbar-collapse" id="navbarButtonsExample">
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @auth()
+                <li class="nav-item">
+                    <button class="btn btn-primary me-3 uk-icon-" uk-icon="icon: menu" type="button" uk-toggle="target: #offcanvas-nav"></button>
+                </li>
+
+                @endauth
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Accueil</a>
                 </li>
+
             </ul>
+
             <!-- Left links -->
 
             <div class="d-flex align-items-center">
@@ -38,6 +47,9 @@
                 </a>
                 @endif
                 @else
+
+
+              @include('layouts.partials.sidebar')
 
                 <!-- Right elements -->
                 <div class="d-flex align-items-center">
@@ -63,9 +75,12 @@
                     <!-- Avatar -->
                     <div class="dropdown">
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                            <img src="{{ Storage::url(Auth::user()->profile) }}" class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <p class="dropdown-item" href="#">{{ Auth::user()->email }}</p>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="#">Mon compte</a>
                             </li>

@@ -49,10 +49,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'userName'  => ['required', 'string', 'max:50','unique:users'],
+            'firstName' => ['required', 'string', 'max:50'],
+            'lastName'  => ['required', 'string', 'max:50'],
+            'tel'       => ['required', 'string', 'max:15','unique:users'],
+            'fix'       => ['required', 'string', 'max:15'],
+            'job'       => ['required', 'string', 'max:50'],
+            'siren'     => ['required', 'string', 'max:15'],
+            'profile'   => ['required', 'mimes:jpeg,bmp,png,svg'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'  => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -64,9 +72,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         return User::create([
-            'name' => $data['name'],
+            'userName' => $data['userName'],
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'tel' => $data['tel'],
+            'fix' => $data['fix'],
+            'job' => $data['job'],
+            'siren' => $data['siren'],
             'email' => $data['email'],
+            'profile' => $data['profile']->store('avatars', 'public'),
             'password' => Hash::make($data['password']),
         ]);
     }
