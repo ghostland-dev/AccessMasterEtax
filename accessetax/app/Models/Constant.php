@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Constant extends Model
 {
     use HasFactory;
+
+
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+
+    protected $fillable = [
+
+        'TCGNreduced',
+        'TCGNfull',
+        'CSPE',
+        'Year',
+    ];
 }
