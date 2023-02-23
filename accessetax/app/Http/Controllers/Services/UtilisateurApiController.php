@@ -19,7 +19,7 @@ class UtilisateurApiController extends Controller
         // Get all the users
         $Utilisateurs = User::all();
         // Return a collection of $Utilisateurs with pagination
-        return response()->json($Utilisateurs)->paginate(15) ;
+        return response()->json($Utilisateurs);
         
     }
 
