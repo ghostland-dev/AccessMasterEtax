@@ -8,18 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     use HasFactory;
-
-        /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-
-        'logo',
-        'supplierName',
-        'energieType',
-        'active',
-      
-    ];
 }
