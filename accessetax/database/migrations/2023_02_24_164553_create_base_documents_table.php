@@ -15,6 +15,19 @@ return new class extends Migration
     {
         Schema::create('base_documents', function (Blueprint $table) {
             $table->id();
+            $table->string('cgv_access_anergies')->nullable()->default(null);
+            $table->string('rib_entreprise')->nullable()->default(null);
+            $table->string('kabis')->nullable()->default(null);
+            $table->string('bilan_comptable_1')->nullable()->default(null);
+            $table->string('bilan_comptable_2')->nullable()->default(null);
+            $table->string('annexe_1')->nullable()->default(null);
+            $table->string('annexe_2')->nullable()->default(null);
+            $table->string('courrier_type')->nullable()->default(null);
+            $table->string('confirmation_douanaire')->nullable()->default(null);
+            $table->string('fichier_entreprise')->nullable()->default(null);
+            $table->string('valeur_ajoutee')->nullable()->default(null);
+
+            $table->foreignId('base_folder_id')->constrained('base_folders')->onDelete('cascade');
             $table->timestamps();
         });
     }

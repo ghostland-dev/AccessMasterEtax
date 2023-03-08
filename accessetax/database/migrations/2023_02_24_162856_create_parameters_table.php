@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('parameters', function (Blueprint $table) {
             $table->id();
+            $table->string('tcgn');
+            $table->string('cspe');
             $table->timestamps();
         });
     }

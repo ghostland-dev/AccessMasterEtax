@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('refund_boards', function (Blueprint $table) {
             $table->id();
+            $table->string('titre')->nullable()->default(null);
+            $table->float('consummation_mkw')->nullable()->default(150);
+            $table->float('remuneration')->nullable()->default(30);
             $table->timestamps();
         });
     }

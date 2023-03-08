@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CodeNaf extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'code_naf',
+        'libelle_naf',
+        'eligible'
+    ];
 }

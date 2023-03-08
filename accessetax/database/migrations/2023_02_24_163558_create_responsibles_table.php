@@ -15,6 +15,22 @@ return new class extends Migration
     {
         Schema::create('responsibles', function (Blueprint $table) {
             $table->id();
+            
+            $table->enum('choices', ['Madame', 'Montieur'])->nullable()->default(['Madame', 'Montieur']);
+            $table->string('nom_famille');
+            $table->string('prenom');
+            $table->string('fonction');
+            $table->string('email');
+            $table->string('telephone');
+            $table->string('mobile');
+            $table->string('fax');
+            $table->string('adresse');
+            $table->string('code_postal');
+            $table->string('ville');
+            $table->string('pays');
+            $table->string('date_naissance');
+
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ActivityCode extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'code',
+        'description',
+        'is_active',
+    ];
 }

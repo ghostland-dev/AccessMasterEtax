@@ -15,6 +15,19 @@ return new class extends Migration
     {
         Schema::create('gaz_bills', function (Blueprint $table) {
             $table->id();
+            $table->string('nom_facture', 100)->nullable();
+            $table->string('fournisseur', 100)->nullable();
+            $table->string('type', 100)->nullable();
+            $table->string('numero_facture', 100)->nullable();
+            $table->string('numero_contrat', 100)->nullable();
+            $table->string('numero_compteur', 100)->nullable();
+            $table->string('numero_client', 100)->nullable();
+            $table->string('numero_site', 100)->nullable();
+            $table->string('numero_etude', 100)->nullable();
+            $table->string('consommation', 100)->nullable();
+            $table->string('annee', 100)->nullable();
+
+            $table->foreign('gaz_contract_id')->references('gaz_contract_id')->on('gaz_contracts')->onDelete('cascade');
             $table->timestamps();
         });
     }

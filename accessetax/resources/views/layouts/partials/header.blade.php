@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarButtonsExample">
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Accueil</a>
                 </li>
@@ -69,7 +69,8 @@
                     <!-- Avatar -->
                     <div class="dropdown">
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ Storage::url(Auth::user()->profile) }}" class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" />
+                            {{-- <img src="{{ Auth::user()->profile? (Storage::url(Auth::user()->profile)):   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU'  }}" class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" /> --}}
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU" class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
@@ -100,8 +101,6 @@
                 <!-- Right elements -->
 
                 @endguest
-
-
 
             </div>
         </div>

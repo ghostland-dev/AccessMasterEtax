@@ -15,6 +15,22 @@ return new class extends Migration
     {
         Schema::create('gen_folders', function (Blueprint $table) {
             $table->id();
+            $table->string('numero_dossier')->nullable()->default(Str::random($length = 10))->unique();
+            $table->enum('statut_dossier', ['en attente','en cours', 'traité', 'prêt à envoyé','envoyé','confirmé','rélgé','complet','finalisé'])->nullable()->default(['en attente']);
+            $table->string('nom_dossier')->nullable()->default(null);
+            $table->string('attestation_non_rembourse')->nullable()->default(null);
+            $table->string('pouvoir_jdmp')->nullable()->default(null);
+            $table->string('contrat_de_prestation')->nullable()->default(null);
+            $table->string('demande_rembourse')->nullable()->default(null);
+            $table->string('courrier_cerfa')->nullable()->default(null);
+            $table->string('jdmp_cerfa_14317_07')->nullable()->default(null);
+            $table->string('jdmp_cerfa_14318_08')->nullable()->default(null);
+            $table->string('jdmp_cerfa_14700_03')->nullable()->default(null);
+            $table->string('jdmp_cerfa_14319')->nullable()->default(null);
+            $table->string('jdmp_pouvoir_ae')->nullable()->default(null);
+            $table->string('proposition_service')->nullable()->default(null);
+
+            $table->foreignId('base_folder_id')->constrained('base_folders')->onDelete('cascade');
             $table->timestamps();
         });
     }

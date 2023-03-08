@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('code_nafs', function (Blueprint $table) {
             $table->id();
+            $table->string('code_naf');
+            $table->string('libelle_naf');
+            $table->string('eligible');
             $table->timestamps();
         });
     }

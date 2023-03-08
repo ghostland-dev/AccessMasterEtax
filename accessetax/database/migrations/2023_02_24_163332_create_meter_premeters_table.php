@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('meter_premeters', function (Blueprint $table) {
             $table->id();
+            $table->int('compteur_c5');
+            $table->int('compteur_c4');
+            $table->int('compteur_hta');
+            $table->int('compteur_t2');
+            $table->int('compteur_t3');
+            $table->int('compteur_t4');
             $table->timestamps();
         });
     }
