@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('alertes', function (Blueprint $table) {
             $table->id();
+            $table->string('nom_alerte')->nullable()->default("nouv alerte");
+            $table->string('description_alerte')->nullable()->default(null);
+            $table->enum('type_alerte', ['information', 'urgent','important','indipensable','alerte','rappel'])->nullable()->default(['information']);
+            $table->string('statut_alerte')->nullable()->default(null);
+
+
+            $table->foreignId('study_id')->constrained('studies')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('activity_codes', function (Blueprint $table) {
             $table->id();
+            $table->string('code_naf');
+            $table->string('code_nace');
+            $table->string('libelle_naf');
+            $table->string('libelle_nace');
             $table->timestamps();
         });
     }

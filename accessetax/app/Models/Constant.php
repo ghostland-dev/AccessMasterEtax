@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Constant extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'tcgn_plein',
+        'tcgn_reduit',
+        'cspe',
+    ];
 }

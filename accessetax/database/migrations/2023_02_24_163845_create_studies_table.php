@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('studies', function (Blueprint $table) {
             $table->id();
+            $table->string('nom_etude');
+            $table->string('nom_client');
+            $table->string('nom_contact');
+            $table->string('nom_responsable');
+            $table->dateTime('date_debut')->nullable()->default(new DateTime());
+            $table->dateTime('date_fin')->nullable()->default(new DateTime()); 
             $table->timestamps();
         });
     }

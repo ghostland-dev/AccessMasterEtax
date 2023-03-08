@@ -15,8 +15,21 @@ return new class extends Migration
     {
         Schema::create('elec_meters', function (Blueprint $table) {
             $table->id();
+            $table->string('nom_compteur');
+            $table->string('PDL');
+            $table->float('puissance')->nullable()->default(123.45);
+
+            $table->string('numero_client');
+            $table->string('numero_site');
+            $table->string('numero_etude');
+            $table->string('numero_contrat');
+            $table->string('fournisseur');
+            $table->enum('profile', ['C1','C2','C3','C4','C5'])->nullable();
+            $table->string('consommation');
+            $table->string('annee');
+
             $table->timestamps();
-        });
+        });  
     }
 
     /**

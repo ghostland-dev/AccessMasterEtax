@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('council_offices', function (Blueprint $table) {
             $table->id();
+            $table->string('council_office_name');
+            $table->string('council_office_address');
+            $table->string('nic_code');
             $table->timestamps();
         });
     }

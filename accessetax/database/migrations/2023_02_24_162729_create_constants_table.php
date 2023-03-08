@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('constants', function (Blueprint $table) {
             $table->id();
+
+            $table->float('tcgn_plein')->nullable()->default(0);
+            $table->float('tcgn_reduit')->nullable()->default(0);
+            $table->float('cspe')->nullable()->default(0);
+    
             $table->timestamps();
         });
     }
