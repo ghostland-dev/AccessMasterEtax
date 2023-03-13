@@ -22,13 +22,16 @@ return new class extends Migration
             $table->float('veleur_ajoutee')->nullable()->default(123.45);
             $table->float('car')->nullable()->default(123.45);
             $table->string('unite', 10)->nullable()->default('kw/€');
-            $table->date('date_verification')->nullable()->default(new DateTime());
+            $table->datetime('date_verification')->nullable()->default(null);
             $table->boolean('elegibilite_activite')->nullable()->default(false);
             $table->boolean('eliegibilite_elec_intense')->nullable()->default(false);
-            $table->timestamps();
+ 
+             $table->foreignId('study_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade')->nullable();
 
-            $table->index('study_id');
-            $table->foreign('study_id')->references('id')->on('studies')->onDelete('cascade');
+              $table->timestamps();
         });
     }
 

@@ -15,12 +15,20 @@ return new class extends Migration
     {
         Schema::create('meter_premeters', function (Blueprint $table) {
             $table->id();
-            $table->int('compteur_c5');
-            $table->int('compteur_c4');
-            $table->int('compteur_hta');
-            $table->int('compteur_t2');
-            $table->int('compteur_t3');
-            $table->int('compteur_t4');
+            $table->integer('compteur_c5');
+            $table->integer('compteur_c4');
+            $table->integer('compteur_hta');
+            $table->integer('compteur_t2');
+            $table->integer('compteur_t3');
+            $table->integer('compteur_t4');
+
+            $table->foreignId('company_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade')->nullable();
+
+
+
             $table->timestamps();
         });
     }

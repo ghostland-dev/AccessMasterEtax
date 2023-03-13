@@ -25,7 +25,13 @@ return new class extends Migration
             $table->float('achat_chatleur')->nullable()->default(0);
             $table->float('achat_autres_prod')->nullable()->default(0);
             $table->boolean('eligibilite')->nullable()->default(false);
-            $table->timestamps();
+            
+             $table->foreignId('study_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade')->nullable();
+
+              $table->timestamps();
         });
     }
 
