@@ -1,0 +1,11 @@
+.logo-navbar{
+       height: 40px;
+    margin: auto 2em;
+    filter: drop-shadow(0 0 8px white);
+}
+.logo-navbar-landing{
+   
+    height: 3.5em;
+    filter: drop-shadow(0 0 8px white);
+}
+ 
