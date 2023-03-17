@@ -17,7 +17,18 @@ class ElecMeterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom_compteur' => $this->faker->word,
+            'PDL' => $this->faker->word,
+            'puissance' => $this->faker->randomDigitNotNull,
+            'numero_client' => $this->faker->word,
+            'numero_site' => $this->faker->word,
+            'numero_etude' => $this->faker->word,
+            'numero_contrat'  => $this->faker->word,
+            'fournisseur' => $this->faker->word,
+            'profile' => 1,
+            'consommation' => $this->faker->randomDigitNotNull,
+            'annee' => $this->faker->randomDigitNotNull,
+            'site_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

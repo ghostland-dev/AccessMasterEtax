@@ -17,7 +17,16 @@ class EligibilityCSPEFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'valuer_ajoutee' => $this->faker->randomDigitNotNull,
+            'car_gaz' => $this->faker->randomDigitNotNull,
+            'car_elec' => $this->faker->randomDigitNotNull,
+            'car_autre' => $this->faker->randomDigitNotNull,
+            'valeur_production' => $this->faker->randomDigitNotNull,
+            'achat_prod_gaz' => $this->faker->randomDigitNotNull,
+            'achat_prod_petrol' => $this->faker->randomDigitNotNull,
+            'achat_chatleur' => $this->faker->randomDigitNotNull,
+            'achat_autres_prod' => $this->faker->randomDigitNotNull,
+            'eligibilite' => $this->faker->randomDigitNotNull,
         ];
     }
 }

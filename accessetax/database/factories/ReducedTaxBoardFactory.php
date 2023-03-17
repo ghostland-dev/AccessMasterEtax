@@ -17,7 +17,9 @@ class ReducedTaxBoardFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'titre' => $this->faker->word,
+            'consommation_mkw' => $this->faker->randomDigitNotNull,
+            'remuneration' => $this->faker->randomDigitNotNull,
         ];
     }
 }

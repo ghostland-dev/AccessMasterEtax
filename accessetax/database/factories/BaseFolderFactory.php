@@ -17,7 +17,11 @@ class BaseFolderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'numero_dossier' => $this->faker->word,
+            'statut_dossier' => 1,
+            'nom_dossier' => $this->faker->word,
+            'nom_client' => $this->faker->word,
+            'study_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

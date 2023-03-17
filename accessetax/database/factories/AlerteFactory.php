@@ -17,7 +17,11 @@ class AlerteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom_alerte' => $this->faker->word,
+            'description_alerte' => $this->faker->text(50),
+            'type_alerte' => 1,
+            'statut_alerte' => $this->faker->word,
+            'study_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

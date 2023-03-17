@@ -17,7 +17,13 @@ class GazContractFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom_contrat' => $this->faker->word,
+            'fournisseur' => $this->faker->word,
+            'fichier' => $this->faker->imageUrl,
+            'date_debut'  => $this->faker->date('Y-m-d', 'now')  ,
+            'date_fin' =>   $this->faker->date('Y-m-d', 'now'),
+            'date_signature' => $this->faker->date('Y-m-d', 'now'),
+            'gaz_meter_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

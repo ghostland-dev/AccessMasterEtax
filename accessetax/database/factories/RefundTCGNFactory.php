@@ -17,7 +17,17 @@ class RefundTCGNFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'valuer_ajoutee' => $this->faker->randomFloat(2, 0, 100),
+            'car_gaz' => $this->faker->randomFloat(2, 0, 100),
+            'car_elec' => $this->faker->randomFloat(2, 0, 100),
+            'car_autre' => $this->faker->randomFloat(2, 0, 100),
+            'valeur_production' => $this->faker->randomFloat(2, 0, 100),
+            'achat_prod_gaz' => $this->faker->randomFloat(2, 0, 100),
+            'achat_prod_petrol' => $this->faker->randomFloat(2, 0, 100),
+            'achat_chatleur' => $this->faker->randomFloat(2, 0, 100),
+            'achat_autres_prod' => $this->faker->randomFloat(2, 0, 100),
+            'eligibilite' => $this->faker->randomFloat(2, 0, 100),
+            'study_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

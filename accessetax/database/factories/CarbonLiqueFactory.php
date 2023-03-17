@@ -17,7 +17,10 @@ class CarbonLiqueFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom'=> $this->faker->word,
+            'code_2' => $this->faker->company,
+            'code_1' => $this->faker->word,
+            'eligible' => true, 
         ];
     }
 }

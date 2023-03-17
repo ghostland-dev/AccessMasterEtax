@@ -17,7 +17,8 @@ class ParameterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'tcgn'=> $this->faker->randomDigitNotNull,
+           'cspe' => $this->faker->randomDigitNotNull,
         ];
     }
 }

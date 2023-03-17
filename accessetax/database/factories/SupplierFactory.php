@@ -17,7 +17,18 @@ class SupplierFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'logo' => $this->faker->imageUrl(),
+            'nom_fournisseur' => $this->faker->word(),
+            'contact' => $this->faker->word(),
+            'email' => $this->faker->safeEmail(),
+            'tel' => $this->faker->phoneNumber(),
+            'fournisseur_electrcite' =>  true,
+            'fournisseur_gaz' => true,
+            'address' => $this->faker->address(),
+            'city' => $this->faker->city,
+            'country' => $this->faker->country(),
+            'zip_code' => $this->faker->postCode(),
+            'siret' => $this->faker->randomDigitNotNull(),
         ];
     }
 }
