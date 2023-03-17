@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+ 
 
 class ClientController extends Controller
 {
@@ -14,11 +16,11 @@ class ClientController extends Controller
     public function index()
     {
 
-        $clients =  Users::where('type','client')->get();
+        $clients =  User::where('role','client')->get();
 
-        dd($clients)
+    
 
-        return view('pages.Clients.index')
+        return view('pages.Clients.index',compact('clients'));
     }
 
     /**

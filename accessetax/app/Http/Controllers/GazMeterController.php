@@ -14,7 +14,9 @@ class GazMeterController extends Controller
      */
     public function index()
     {
-        //
+          $compteursGazs = GazMeter::all();
+
+        return view('pages.Compteurs.Gaz.index', compact('compteursGazs'));
     }
 
     /**

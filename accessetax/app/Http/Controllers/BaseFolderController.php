@@ -14,7 +14,8 @@ class BaseFolderController extends Controller
      */
     public function index()
     {
-        //
+        $DossierBases = BaseFolder::all();
+        return view('pages.DossierBases.index', compact('DossierBases'));
     }
 
     /**

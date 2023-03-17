@@ -14,7 +14,9 @@ class ElecMeterController extends Controller
      */
     public function index()
     {
-        //
+        $compteursElecs = ElecMeter::all();
+
+        return view('pages.Compteurs.Elec.index',compact('compteursElecs'));
     }
 
     /**

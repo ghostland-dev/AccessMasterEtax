@@ -26,7 +26,7 @@ class UtilisateurController extends Controller
      */
     public function create()
     {
-        return view('utilisateurs.create', compact('Utilisateur'));
+        return view('pages.utilisateurs.create');
         //
     }
 
@@ -129,6 +129,7 @@ class UtilisateurController extends Controller
      */
     public function destroy($id)
     {
+      
         // Get the user
         $Utilisateur = User::findOrFail($id);
         // Delete the user

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ActivityCode;
 
 class ActivityCodeController extends Controller
 {
@@ -13,7 +14,9 @@ class ActivityCodeController extends Controller
      */
     public function index()
     {
-        //
+        $codeActivites = ActivityCode::all();
+
+        return view('pages.Configurations.CodeActivites.index',compact('codeActivites'));
     }
 
     /**
