@@ -55,7 +55,7 @@
     </div>
   
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">Créer</button>
   </form>
 
 @endsection
