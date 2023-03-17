@@ -26,3 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/v1/data/utilisateurs/{user}',     [UtilisateurApiController::class, 'update'])->name('users.update');
     Route::delete('/v1/data/utilisateurs/{user}',  [UtilisateurApiController::class, 'destroy'])->name('users.destroy');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/v1/data/',            [UtilisateurApiController::class, 'index'])->name('users');
+    Route::post('/v1/data/',           [UtilisateurApiController::class, 'store'])->name('users.store');
+     Route::get('/v1/data/',            [UtilisateurApiController::class, 'index'])->name('users');
+    Route::post('/v1/data/',           [UtilisateurApiController::class, 'store'])->name('users.store');
+   
+});
