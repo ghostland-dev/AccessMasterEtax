@@ -2,17 +2,17 @@
 
 @section('content')
     <div class=" py-8 bg-dark-light">
-        <div class="container pt-3 card ">
+        <div class="container px-6 pt-3 card ">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">{{ __('Test d\'Eligibilité CSPE') }}</div>
+                    <div class="card mt-3">
+                        <h5 class="card-header bg-success text-center text-white">{{ __('Test d\'Eligibilité CSPE') }}</h5>
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('ValidationCSPE') }}">
                                 @csrf
 
-                                <div class="form-group row">
+                                <div class="form-group my-2 row">
                                     <label for="codeNaf"
                                         class="col-md-4 col-form-label text-md-right">{{ __('Code NAF') }}</label>
 
@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group my-2 row">
                                     <label for="valeurAjouter"
                                         class="col-md-4 col-form-label text-md-right">{{ __('Valeur Ajouter') }}</label>
 
@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group my-2 row">
                                     <label for="CAR"
                                         class="col-md-4 col-form-label text-md-right">{{ __('CAR') }}</label>
 
@@ -42,16 +42,16 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row mb-0">
+                                <div class="form-group my-2 row ">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Tester') }}
+                                        <button type="submit" class="btn btn-success">
+                                            {{ __('lancez le teste d\'éligibilité ') }}
                                         </button>
                                     </div>
                                 </div>
                             </form>
 
-                            <div class="results mt-5">
+                            <div class="results mt-5 card bg-light-indigo text-primary p-2 text-center">
                                 @if (isset($CodeNafmessage))
                                     {!! $CodeNafmessage !!}
                                 @endif
@@ -67,40 +67,40 @@
                     <ul class="gap-2 p-2">
                         @if (isset($CodeNafmessage))
                             <li
-                                class="{{ $MotnantCSPETauxReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                class='{{ $MotnantCSPETauxReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
                                 <strong>Montant CSPE Reduit :</strong> <span id="Validation01">
-                                    {{ $MotnantCSPETauxReduit ? ": $MotnantCSPETauxReduit €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                                    {{ $MotnantCSPETauxReduit ? " $MotnantCSPETauxReduit €" : 'Désolé, Vous votre taux ne peux pas être nullable ' }}</span>
                             </li>
                             <li
-                                class="{{ $CSPEtauxPlein > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                class='{{ $CSPEtauxPlein > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
                                 <strong>Montant CSPE plein :</strong> <span id="Validation01">
-                                    {{ $CSPEtauxPlein ? ": $CSPEtauxPlein  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                                    {{ $CSPEtauxPlein ? " $CSPEtauxPlein  €" : 'Désolé, Vous votre taux ne peux pas être nullable  ' }}</span>
                             </li>
                             <li
-                                class="{{ $EligibiliteReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                class='{{ $EligibiliteReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
                                 <strong>Eligibilité taux réduit :</strong> <span id="Validation01">
-                                    {{ $EligibiliteReduit ? ": $EligibiliteReduit  %" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                                    {{ $EligibiliteReduit ? " $EligibiliteReduit  %" : "Désolé, Vous n\"avez pas réussi le teste de type d\"activité " }}</span>
                             </li>
                             <li
-                                class="{{ $RatioElectroIntense > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                class='{{ $RatioElectroIntense > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
                                 <strong>Ratio Electro-intensité :</strong> <span id="Validation01">
-                                    {{ $RatioElectroIntense ? ": $RatioElectroIntense  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                                    {{ $RatioElectroIntense ? " $RatioElectroIntense  €" : "Désolé, Vous n\"avez pas réussi le teste de type d\"activité " }}</span>
                             </li>
                             <li
-                                class="{{ $SoumisRisqueFuitCO2 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
-                                <strong>Etape 1 (Code Nace):</strong> <span id="Validation01">
-                                    {{ $SoumisRisqueFuitCO2 ? ": 'Oui, vous êtes soumis à cette constante' " : 'Non, vous n\'êtes pas soumis à cette constante' }}</span>
+                                class='{{ $SoumisRisqueFuitCO2 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
+                                <strong>Soumis à risque de fuite Carbone :</strong> <span id="Validation01">
+                                    {{ $SoumisRisqueFuitCO2 ? ': Oui, vous êtes soumis au risque fuite carbon' : " Non, vous n\"êtes pas soumis au risque carbon" }}</span>
                             </li>
                             <li
-                                class="{{ $NouveaTauxReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
-                                <strong>Ratio Electro-intensité :</strong> <span id="Validation01">
-                                    {{ $NouveaTauxReduit ? ": $NouveaTauxReduit  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                                class='{{ $NouveaTauxReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
+                                <strong>Nouveux taux réduit :</strong> <span id="Validation01">
+                                    {{ $NouveaTauxReduit ? " $NouveaTauxReduit  €" : 'Désolé, Vous votre taux ne peux pas être nullable  ' }}</span>
                             </li>
 
                             <li
-                                class="{{ $RemboursementClient > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                class='{{ $RemboursementClient > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}'>
                                 <strong>Ratio Electro-intensité :</strong> <span id="Validation01">
-                                    {{ $RemboursementClient ? ": $RemboursementClient  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                                    {{ $RemboursementClient ? " $RemboursementClient  €" : 'Désolé, Vous votre taux ne peux pas être nullable' }}</span>
                             </li>
 
                             <li class="bg-light-dark text-success p-4 my-2">
@@ -110,7 +110,8 @@
                                 <strong>Nouveau taux réduit : <h6 class="text-dark" id="estimationEconomie ">
                                         {{ $NouveaTauxReduit }} € </h6></strong>
                                 <hr>
-                                <strong> Frais de la préstation : <h4 class="text-dark" id="estimationEconomie ">
+                                <strong> Frais de la préstation pour Access Energies : <h4 class="text-dark"
+                                        id="estimationEconomie ">
                                         {{ $RemboursementClient * 0.2 }} € </h4></strong>
                                 <hr>
                             </li>
