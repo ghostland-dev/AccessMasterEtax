@@ -5,3 +5,10 @@ $body-bg: #f8fafc;
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+form {
+    background-color: #fbfbfb;
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: #80808021 0 0 6px 3px;
+}
