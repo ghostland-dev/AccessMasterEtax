@@ -32,7 +32,8 @@ use App\Http\Controllers\RefundTCGNController;
 use App\Http\Controllers\ResponsibleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StudyController;
- 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\pipeline\StepsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::get('/tables', function () {
+//     $tables = DB::select('SHOW TABLES');
+//     dd($tables);
+//     return view('tables', ['tables' => $tables]);
+// });
+
 // Users routes
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/utilisateurs',            [UtilisateurController::class, 'index'])->name('users');
     Route::get('/app/v1/data/utilisateurs/creer',     [UtilisateurController::class, 'create'])->name('user.create');
@@ -61,6 +69,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/utilisateurs/{user}/editer',[UtilisateurController::class, 'edit'])->name('user.edit');
     Route::put('/app/v1/data/utilisateurs/{user}',     [UtilisateurController::class, 'update'])->name('user.update');
     Route::delete('/app/v1/data/utilisateurs/{user}',  [UtilisateurController::class, 'destroy'])->name('user.destroy');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/app/v1/data/clients',            [ClientController::class, 'index'])->name('clients');
+    Route::get('/app/v1/data/clients/creer',     [ClientController::class, 'create'])->name('client.create');
+    Route::post('/app/v1/data/clients',           [ClientController::class, 'store'])->name('client.store');
+    Route::get('/app/v1/data/clients/{user}',     [ClientController::class, 'show'])->name('client.show');
+    Route::get('/app/v1/data/clients/{user}/editer',[ClientController::class, 'edit'])->name('client.edit');
+    Route::put('/app/v1/data/clients/{user}',     [ClientController::class, 'update'])->name('client.update');
+    Route::delete('/app/v1/data/clients/{user}',  [ClientController::class, 'destroy'])->name('client.destroy');
 });
 
 // Profils
@@ -72,17 +90,25 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
-// Profils
-Route::middleware(['auth'])->group(function(){
-    Route::get('/app/v1/etape/visiteur',[ProfileController::class, 'visitor'])->name('profile.visitor');
-    Route::get('/app/v1/etape/adminisrateur',[ProfileController::class, 'admin'])->name('profile.admin');
-    Route::get('/app/v1/etape/commercial',[ProfileController::class, 'seller'])->name('profile.seller');
-    Route::get('/app/v1/etape/client',[ProfileController::class, 'customer'])->name('profile.customer');
+
+ Route::get('/app/v1/pipline/etape/Simulateur-TICGN',             [StepsController::class, 'SimulateurTICGN'])->name('SimulateurTICGN');
+ Route::post('/app/v1/pipline/etape/validation-TICGN',            [StepsController::class, 'CheckTICGN'])->name('ValidationTICGN');
+ Route::get('/app/v1/pipline/etape/Simulateur-CSPE',              [StepsController::class, 'SimulateurCSPE'])->name('SimulateurCSPE');
+ Route::post('/app/v1/pipline/etape/validation-CSPE',            [StepsController::class, 'CheckCSPE'])->name('ValidationCSPE');
+
+// Pipeline
+Route::middleware(['auth'])->group(function () {
+    Route::get('/app/v1/pipline/etape/bienvenue',                   [StepsController::class, 'bienvenue'])->name('etape1');
+    Route::get('/app/v1/pipline/etape/elegibilite-client',          [StepsController::class, 'eligibilityClient'])->name('etape2');
+    Route::get('/app/v1/pipline/etape/envoie-contrat',              [StepsController::class, 'contractSend'])->name('etape3');
+    Route::get('/app/v1/pipline/etape/confirmation-contrat',        [StepsController::class, 'contractAccepted'])->name('etape4');
+    Route::get('/app/v1/pipline/etape/montage-dossier',             [StepsController::class, 'folderBuilding'])->name('etape5');
+    Route::get('/app/v1/pipline/etape/envoie-aux-authorites',       [StepsController::class, 'folderSentCouncil'])->name('etape6');
+    Route::get('/app/v1/pipline/etape/confirmation-authorites',     [StepsController::class, 'CouncilConfirmation'])->name('etape7');
+    Route::get('/app/v1/pipline/etape/confirmation-authorites',     [StepsController::class, 'CustomerRefund'])->name('etape8');
+    Route::get('/app/v1/pipline/etape/facturation-de-client',       [StepsController::class, 'ServiceInvoice'])->name('etape9');
+    Route::get('/app/v1/pipline/etape/changement-taux-reduit',      [StepsController::class, 'folderStatus'])->name('etape10');
 });
-
-
-
-
 
 // Suppliers routes
 Route::middleware(['auth'])->group(function () {
@@ -199,13 +225,13 @@ Route::middleware(['auth'])->group(function () {
 
 //  Elec Meters routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app/v1/data/contrat-elecs',            [ElecMeterController::class, 'index'])->name('contractElecs');
-    Route::get('/app/v1/data/contrat-elec/creer',     [ElecMeterController::class, 'create'])->name('contractElec.create');
-    Route::post('/app/v1/data/contrat-elec',           [ElecMeterController::class, 'store'])->name('contractElec.store');
-    Route::get('/app/v1/data/contrat-elec/{contratElec}', [ElecMeterController::class, 'show'])->name('contractElec.show');
-    Route::get('/app/v1/data/contrat-elec/{contratElec}/editer',[ElecMeterController::class, 'edit'])->name('contractElec.edit');
-    Route::put('/app/v1/data/contrat-elec/{contratElec}',     [ElecMeterController::class, 'update'])->name('contractElec.update');
-    Route::delete('/app/v1/data/contrat-elec/{contratElec}',  [ElecMeterController::class, 'destroy'])->name('contractElec.destroy');
+    Route::get('/app/v1/data/compteur-elecs',            [ElecMeterController::class, 'index'])->name('elecMeters');
+    Route::get('/app/v1/data/compteur-elec/creer',     [ElecMeterController::class, 'create'])->name('elecMeter.create');
+    Route::post('/app/v1/data/compteur-elec',           [ElecMeterController::class, 'store'])->name('elecMeter.store');
+    Route::get('/app/v1/data/compteur-elec/{compteurElec}', [ElecMeterController::class, 'show'])->name('elecMeter.show');
+    Route::get('/app/v1/data/compteur-elec/{compteurElec}/editer',[ElecMeterController::class, 'edit'])->name('elecMeter.edit');
+    Route::put('/app/v1/data/compteur-elec/{compteurElec}',     [ElecMeterController::class, 'update'])->name('elecMeter.update');
+    Route::delete('/app/v1/data/compteur-elec/{compteurElec}',  [ElecMeterController::class, 'destroy'])->name('elecMeter.destroy');
 });
 
 
@@ -237,13 +263,13 @@ Route::middleware(['auth'])->group(function () {
 
 //  Gaz Meters routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app/v1/data/contrat-gazs',            [GazMeterController::class, 'index'])->name('contractGazs');
-    Route::get('/app/v1/data/contrat-gaz/creer',     [GazMeterController::class, 'create'])->name('contractGaz.create');
-    Route::post('/app/v1/data/contrat-gaz',           [GazMeterController::class, 'store'])->name('contractGaz.store');
-    Route::get('/app/v1/data/contrat-gaz/{contratGaz}', [GazMeterController::class, 'show'])->name('contractGaz.show');
-    Route::get('/app/v1/data/contrat-gaz/{contratGaz}/editer',[GazMeterController::class, 'edit'])->name('contractGaz.edit');
-    Route::put('/app/v1/data/contrat-gaz/{contratGaz}',     [GazMeterController::class, 'update'])->name('contractGaz.update');
-    Route::delete('/app/v1/data/contrat-gaz/{contratGaz}',  [GazMeterController::class, 'destroy'])->name('contractGaz.destroy');
+    Route::get('/app/v1/data/compteur-gazs',            [GazMeterController::class, 'index'])->name('gazMeters');
+    Route::get('/app/v1/data/compteur-gaz/creer',     [GazMeterController::class, 'create'])->name('gazMeter.create');
+    Route::post('/app/v1/data/compteur-gaz',           [GazMeterController::class, 'store'])->name('gazMeter.store');
+    Route::get('/app/v1/data/compteur-gaz/{compteur}', [GazMeterController::class, 'show'])->name('gazMeter.show');
+    Route::get('/app/v1/data/compteur-gaz/{compteur}/editer',[GazMeterController::class, 'edit'])->name('gazMeter.edit');
+    Route::put('/app/v1/data/compteur-gaz/{compteur}',     [GazMeterController::class, 'update'])->name('gazMeter.update');
+    Route::delete('/app/v1/data/compteur-gaz/{compteur}',  [GazMeterController::class, 'destroy'])->name('gazMeter.destroy');
 });
 
 
@@ -262,13 +288,13 @@ Route::middleware(['auth'])->group(function () {
 
 //  Gaz Bills routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app/v1/data/compteur-gazs',            [GazMeterController::class, 'index'])->name('meterGazs');
-    Route::get('/app/v1/data/compteur-gaz/creer',     [GazMeterController::class, 'create'])->name('meterGaz.create');
-    Route::post('/app/v1/data/compteur-gaz',           [GazMeterController::class, 'store'])->name('meterGaz.store');
-    Route::get('/app/v1/data/compteur-gaz/{compteurGaz}', [GazMeterController::class, 'show'])->name('meterGaz.show');
-    Route::get('/app/v1/data/compteur-gaz/{compteurGaz}/editer',[GazMeterController::class, 'edit'])->name('meterGaz.edit');
-    Route::put('/app/v1/data/compteur-gaz/{compteurGaz}',     [GazMeterController::class, 'update'])->name('meterGaz.update');
-    Route::delete('/app/v1/data/compteur-gaz/{compteurGaz}',  [GazMeterController::class, 'destroy'])->name('meterGaz.destroy');
+    Route::get('/app/v1/data/facture-gazs',            [GazBillsController::class, 'index'])->name('billGazs');
+    Route::get('/app/v1/data/facture-gaz/creer',     [GazBillsController::class, 'create'])->name('billGaz.create');
+    Route::post('/app/v1/data/facture-gaz',           [GazBillsController::class, 'store'])->name('billGaz.store');
+    Route::get('/app/v1/data/facture-gaz/{factureGaz}', [GazBillsController::class, 'show'])->name('billGaz.show');
+    Route::get('/app/v1/data/facture-gaz/{factureGaz}/editer',[GazBillsController::class, 'edit'])->name('billGaz.edit');
+    Route::put('/app/v1/data/facture-gaz/{factureGaz}',     [GazBillsController::class, 'update'])->name('billGaz.update');
+    Route::delete('/app/v1/data/facture-gaz/{factureGaz}',  [GazBillsController::class, 'destroy'])->name('billGaz.destroy');
 });
 
 //  Eligibility CSPE routes
