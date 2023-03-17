@@ -11548,3 +11548,7 @@ form {
     border-radius: 1em;
     box-shadow: #80808021 0 0 6px 3px;
 }
+
+* {
+    color: #5c5c5c;
+}

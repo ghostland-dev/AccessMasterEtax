@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Study extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
        'nom_etude',
@@ -16,6 +17,7 @@ class Study extends Model
        'nom_responsable',
        'date_debut',
        'date_fin',
+       'site_id',
 
     ];
 }
