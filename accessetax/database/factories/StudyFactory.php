@@ -17,7 +17,12 @@ class StudyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom_etude' => $this->faker->word,
+            'nom_client' => $this->faker->word,
+            'nom_contact' => $this->faker->word,
+            'nom_responsable' => $this->faker->name ,
+            'date_debut' => $this->faker->date,
+            'date_fin' => $this->faker->date,
         ];
     }
 }

@@ -16,8 +16,19 @@ class ElecBillFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
+        return [ 
+            'nom_facture' => $this->faker->word,
+            'fournisseur' => $this->faker->word,
+            'type' => $this->faker->word,
+            'numero_facture' => $this->faker->word,
+            'numero_contrat' => $this->faker->word,
+            'numero_compteur' => $this->faker->word,
+            'numero_client' => $this->faker->word,
+            'numero_site' => $this->faker->word,
+            'numero_etude' => $this->faker->word,
+            'consommation' => $this->faker->randomFloat(2, 0, 9999999999),
+            'annee' => $this->faker->randomDigitNotNull,
+            'elec_contract_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

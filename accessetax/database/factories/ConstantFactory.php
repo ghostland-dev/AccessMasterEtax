@@ -17,7 +17,9 @@ class ConstantFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'tcgn_plein' => $this->faker->randomFloat(2, 0, 100),
+            'tcgn_reduit' => $this->faker->randomFloat(2, 0, 100),
+            'cspe' => $this->faker->randomFloat(2, 0, 100),
         ];
     }
 }

@@ -17,7 +17,13 @@ class MeterPremeterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'compteur_c5' => $this->faker->randomDigitNotNull,
+            'compteur_c4' => $this->faker->randomDigitNotNull,
+            'compteur_hta' => $this->faker->randomDigitNotNull,
+            'compteur_t2' => $this->faker->randomDigitNotNull,
+            'compteur_t3' => $this->faker->randomDigitNotNull,
+            'compteur_t4' => $this->faker->randomDigitNotNull,
+            'company_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

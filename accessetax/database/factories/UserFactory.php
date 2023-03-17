@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'tel'       => fake()->phoneNumber(),
             'fix'       => fake()->phoneNumber(),
             'job'       => fake()->jobTitle(),
-            'role'      => fake()->randomElement(['visiteur','adminisrateur','commercial','client']),
+            'role'      => fake()->randomElement(['client','adminisrateur','commercial','visiteur']),
             'siren'     => fake()->randomNumber(),
             'profile'   => fake()->imageUrl(),
             'email'     => fake()->unique()->safeEmail(),

@@ -17,7 +17,20 @@ class ResponsibleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'civilite' => null,
+            'nom_famille' => $this->faker->word,
+            'prenom' => $this->faker->firstName,
+            'fonction' => $this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail,
+            'mobile' => $this->faker->phoneNumber,
+            'fax' => $this->faker->phoneNumber,
+            'adresse' => $this->faker->address,
+            'code_postal' => $this->faker->postcode,
+            'ville' => $this->faker->city,
+            'pays' => $this->faker->country,
+            'date_naissance' => $this->faker->date,
+            'company_id' => $this->faker->randomDigitNotNull,
+            
         ];
     }
 }
