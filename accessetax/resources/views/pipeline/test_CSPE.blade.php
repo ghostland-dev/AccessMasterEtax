@@ -1,99 +1,139 @@
 @extends('layouts.app')
+
 @section('content')
-  <div class="container my-5">
-        <h1>Test de remboursement CSPE</h1>
-        <form>
-            <div id="clients">
-                <div class="form-group">
-                    <label for="client1_valeur">Valeur ajoutée du client 1 :</label>
-                    <input type="number" class="form-control client-input" id="client1_valeur" placeholder="Valeur ajoutée" required>
+    <div class=" py-8 bg-dark-light">
+        <div class="container pt-3 card ">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">{{ __('Test d\'Eligibilité CSPE') }}</div>
+
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('ValidationCSPE') }}">
+                                @csrf
+
+                                <div class="form-group row">
+                                    <label for="codeNaf"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Code NAF') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="codeNaf" type="text" class="form-control" name="codeNaf"
+                                            value="{{ old('codeNaf') }}" required autocomplete="codeNaf" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="valeurAjouter"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Valeur Ajouter') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="valeurAjouter" type="text" class="form-control" name="valeurAjouter"
+                                            value="{{ old('valeurAjouter') }}" required autocomplete="valeurAjouter">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="CAR"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('CAR') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="CAR" type="text" class="form-control" name="CAR"
+                                            value="{{ old('CAR') }}" required autocomplete="CAR">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Tester') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="results mt-5">
+                                @if (isset($CodeNafmessage))
+                                    {!! $CodeNafmessage !!}
+                                @endif
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="client1_car">Consommation annuelle de référence (CAR) du client 1 :</label>
-                    <input type="number" class="form-control client-input" id="client1_car" placeholder="Consommation annuelle de référence (CAR)" required>
+                <div class="col-md-6">
+                    <h4 class="bg-success text-center p-2 rounded-2  text-bg-muted m-3 wow">Tester d'éligibilité aux taux
+                        CSPE
+                    </h4>
+                    <ul class="gap-2 p-2">
+                        @if (isset($CodeNafmessage))
+                            <li
+                                class="{{ $MotnantCSPETauxReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Montant CSPE Reduit :</strong> <span id="Validation01">
+                                    {{ $MotnantCSPETauxReduit ? ": $MotnantCSPETauxReduit €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                            </li>
+                            <li
+                                class="{{ $CSPEtauxPlein > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Montant CSPE plein :</strong> <span id="Validation01">
+                                    {{ $CSPEtauxPlein ? ": $CSPEtauxPlein  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                            </li>
+                            <li
+                                class="{{ $EligibiliteReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Eligibilité taux réduit :</strong> <span id="Validation01">
+                                    {{ $EligibiliteReduit ? ": $EligibiliteReduit  %" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                            </li>
+                            <li
+                                class="{{ $RatioElectroIntense > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Ratio Electro-intensité :</strong> <span id="Validation01">
+                                    {{ $RatioElectroIntense ? ": $RatioElectroIntense  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                            </li>
+                            <li
+                                class="{{ $SoumisRisqueFuitCO2 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Etape 1 (Code Nace):</strong> <span id="Validation01">
+                                    {{ $SoumisRisqueFuitCO2 ? ": 'Oui, vous êtes soumis à cette constante' " : 'Non, vous n\'êtes pas soumis à cette constante' }}</span>
+                            </li>
+                            <li
+                                class="{{ $NouveaTauxReduit > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Ratio Electro-intensité :</strong> <span id="Validation01">
+                                    {{ $NouveaTauxReduit ? ": $NouveaTauxReduit  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                            </li>
+
+                            <li
+                                class="{{ $RemboursementClient > 0 ? 'bg-light-success text-success p-2 my-2 rounded ' : 'bg-light-danger text-danger p-2 my-2 rounded ' }}">
+                                <strong>Ratio Electro-intensité :</strong> <span id="Validation01">
+                                    {{ $RemboursementClient ? ": $RemboursementClient  €" : 'Désolé, Vous n\'avez pas réussi le teste de type d\'activité ' }}</span>
+                            </li>
+
+                            <li class="bg-light-dark text-success p-4 my-2">
+                                <strong> le client sera remboursé de : <h6 class="text-dark" id="estimationEconomie ">
+                                        {{ $RemboursementClient }} € </h6></strong>
+                                <hr>
+                                <strong>Nouveau taux réduit : <h6 class="text-dark" id="estimationEconomie ">
+                                        {{ $NouveaTauxReduit }} € </h6></strong>
+                                <hr>
+                                <strong> Frais de la préstation : <h4 class="text-dark" id="estimationEconomie ">
+                                        {{ $RemboursementClient * 0.2 }} € </h4></strong>
+                                <hr>
+                            </li>
+                        @elseif (!isset($CodeNafmessage))
+                            <li class="bg-light-warning text-warning p-4 my-2">
+
+                                <strong>Rappel:</strong> <span id="estimationEconomie">
+                                    {{ __('Veuillez remplissez la formulaire pour faire afficher les résulats  ') }}
+                                </span>
+
+                            </li>
+                        @else
+                            <li class="bg-light-danger text-danger p-4 my-2">
+
+                                <strong>Estimation de remboursement:</strong> <span id="estimationEconomie">
+                                    {{ __('Désolé, nous ne remplessez pas les créteres pour bénéficier des taux de remboursement TICGN  ') }}
+                                </span>
+
+                            </li>
+                        @endif
+                    </ul>
                 </div>
             </div>
-            <div class="m-2">
-                <button type="button" class="btn btn-primary" id="ajouter_client">Ajouter un client</button>
-                <button type="submit" class="btn btn-success">Tester</button>
-            </div>
-        </form>
-        <div id="resultat" class="mt-5"></div>
+        </div>
     </div>
-
-    <script>
-    const form = document.querySelector('form');
-    const resultat = document.querySelector('#resultat');
-
-    form.addEventListener('submit', function(e)
-    		{
-    				e.preventDefault();
-    				const clients =[];
-
-    				// récupérer les données de chaque client
-    				const inputs = document.querySelectorAll('.client-input');
-    				for (let i = 0; i < inputs.length; i += 2) {
-    						const valeurAjoutee = parseInt(inputs[i].value);
-    						const car = parseInt(inputs[i + 1].value);
-    						clients.push(
-    								{valeurAjoutee, car
-    								}
-    						);
-    				}
-
-    				// tester chaque client et afficher le résultat
-    				let messages = '';
-    				for (let i = 0; i < clients.length; i++) {
-    						const intensiteElectrique = clients[i].car * 0.0225 / clients[i].valeurAjoutee * 100;
-    						if (intensiteElectrique > 0.55) {
-    								messages += '<p> Client ' + (i + 1) + ': éligible au remboursement CSPE.\n </p><hr>';
-    						} else if (intensiteElectrique < 0.45) {
-    								messages += '<p> Client ' + (i + 1) + ': non éligible au remboursement CSPE.\n</p><hr>';
-    						} else {
-    								messages += '<p> Client ' + (i + 1) + ': pourrait être éligible au remboursement CSPE, mais une étude plus poussée est nécessaire.\n </p><hr>';
-    						}
-    				}
-
-    				resultat.innerHTML = messages;
-    		}
-    );
-
-    // ajouter un nouveau champ pour chaque client
-    const ajouterClient = document.querySelector('#ajouter_client');
-    const clients = document.querySelector('#clients');
-    let nbClients = 1;
-
-    ajouterClient.addEventListener('click', function()
-    		{
-    				const input1 = document.createElement('input');
-    				input1.type = 'number';
-    				input1.className = 'form-control client-input my-2';
-    				input1.placeholder = 'Valeur ajoutée';
-    				input1.required = true;
-    				clients.appendChild(input1);
-
-    				const input2 = document.createElement('input');
-    				input2.type = 'number';
-    				input2.className = 'form-control client-input';
-    				input2.placeholder = 'Consommation annuelle de référence (CAR)';
-    				input2.required = true;
-    				clients.appendChild(input2);
-
-    				nbClients++;
-    		}
-    );
-
-    // enlever le dernier champ s'il est vide
-    setInterval(function()
-    		{
-    				const inputs = document.querySelectorAll('.client-input');
-    				if (inputs.length % 2 === 1 && inputs[inputs.length - 1].value === '') {
-    						inputs[inputs.length - 1].remove();
-    						inputs[inputs.length - 2].remove();
-    						nbClients--;
-    				}
-    		}, 100
-    );
-    </script>
-
 @endsection
