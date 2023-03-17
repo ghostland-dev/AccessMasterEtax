@@ -16,9 +16,9 @@
              <div class="unlimited-access hide-menu bg-light-success position-relative mb-7 mt-1 rounded">
                  <div class="d-flex">
                      <div class="unlimited-access-title me-3">
-                         <h6 class="fw-semibold fs-4 mb-4 text-success w-85">Remboursés </h6>
-                         <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank"
-                             class="btn btn-success fs-2 fw-semibold lh-sm"> {{ '0.0' }} €</a>
+                         <p class="fw-semibold fs-4 mb-4 text-success w-85"> Pochette </p>
+                         <a href="#" target="_blank" class="btn btn-success fs-2 fw-semibold lh-sm w-100">
+                             {{ '0.0' }} €</a>
                      </div>
                      <div class="unlimited-access-img m-1">
                          <img src="{{ asset('images/backgrounds/rocket.png') }}" alt="budget" class="img-fluid">
