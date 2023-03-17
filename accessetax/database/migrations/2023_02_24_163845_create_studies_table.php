@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('nom_client');
             $table->string('nom_contact');
             $table->string('nom_responsable');
-            $table->dateTime('date_debut')->nullable()->default(new DateTime());
-            $table->dateTime('date_fin')->nullable()->default(new DateTime()); 
+            $table->dateTime('date_debut')->nullable()->default(null);
+            $table->dateTime('date_fin')->nullable()->default(null); 
             $table->timestamps();
         });
     }

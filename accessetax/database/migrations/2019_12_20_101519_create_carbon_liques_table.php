@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('carbon_liques', function (Blueprint $table) {
             $table->id();
             $table->string('nom')->nullable()->default(null);
-            $table->string('code_2')->nullable()->default(rondom(5))->unique();
+            $table->string('code_2')->nullable()->defualt('FR554');
             $table->string('code_1')->nullable()->default(null);
             $table->boolean('eligible')->nullable()->default(true);
             $table->timestamps();
