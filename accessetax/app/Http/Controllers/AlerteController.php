@@ -14,7 +14,9 @@ class AlerteController extends Controller
      */
     public function index()
     {
-        //
+        $alertes = Alerte::all();
+
+        return view('pages.Configurations.Alertes.index',compact('alertes'));
     }
 
     /**

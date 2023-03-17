@@ -14,7 +14,10 @@ class StudyController extends Controller
      */
     public function index()
     {
-        //
+        $etudes = Study::all();
+ 
+        return view('pages.Etudes.index', compact('etudes'));
+        
     }
 
     /**

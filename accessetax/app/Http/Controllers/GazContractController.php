@@ -14,7 +14,9 @@ class GazContractController extends Controller
      */
     public function index()
     {
-        //
+          $contratGazs =  GazContract::all();
+
+        return view('pages.Contrats.Gaz.index', compact('contratGazs'));
     }
 
     /**

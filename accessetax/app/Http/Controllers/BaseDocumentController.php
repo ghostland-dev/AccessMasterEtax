@@ -14,7 +14,8 @@ class BaseDocumentController extends Controller
      */
     public function index()
     {
-        //
+        $baseDocuments = BaseDocument::all();
+        return view('pages.Dossier.Base.index',compact('baseDocuments'));
     }
 
     /**
