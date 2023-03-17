@@ -1,15 +1,15 @@
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!-- Container wrapper -->
     <div class="container-fluid">
         <!-- Navbar brand -->
         <a class="navbar-brand me-2" href="{{ __('/') }}">
-            <img src="{{ asset('logo.svg') }}"   alt="E-tax Logo " laoding="lazy" class="logo-navbar h-3" />
+            <img src="{{ asset('logo.svg') }}" alt="E-tax Logo " laoding="lazy" class="logo-navbar h-3" />
         </a>
 
         <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
 
@@ -19,8 +19,68 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
+                    <a class="nav-link" href="{{ route('home') }}">Accueil</a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Etudes
+                    </a>
+
+                    <ul class="dropdown-menu p-3">
+                        <li><a class="dropdown-item" href="{{ route('clients') }}"> <i class="fas fa-user"></i>
+                                Clients</a></li>
+                        <li><a class="dropdown-item" href="{{ route('baseFolers') }}"><i class="fas fa-folder"></i>
+                                Dossiers</a></li>
+                        <li><a class="dropdown-item" href="{{ route('studies') }}"><i class="fas fa-book"></i>
+                                Etudes</a></li>
+                    </ul>
+
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Sites
+                    </a>
+
+                    <ul class="dropdown-menu p-3">
+
+                        <li><a class="dropdown-item" href="{{ route('sites') }}"><i class="fas fa-map"></i> Sites</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('contractElecs') }}"><i class="fas fa-file"></i>
+                                Contrats d'éléctrecité</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contractGazs') }}"><i class="fas fa-file"></i>
+                                Contrats de gaz</a></li>
+                        <li><a class="dropdown-item" href="{{ route('elecMeters') }}"><i class="fas fa-file"></i>
+                                Compteurs d'éléctrecité</a></li>
+                        <li><a class="dropdown-item" href="{{ route('gazMeters') }}"><i class="fas fa-file"></i>
+                                Compteurs de gaz</a></li>
+
+                    </ul>
+
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Simulateurs
+                    </a>
+
+                    <ul class="dropdown-menu p-3">
+
+                        <li><a class="dropdown-item" href="{{ route('SimulateurCSPE') }}"><i class="fas fa-book"></i>
+                                Tests Eligibilité CSPE </a></li>
+                        <li><a class="dropdown-item" href="{{ route('SimulateurTICGN') }}"><i class="fas fa-book"></i>
+                                Tests Eligibilité TCGN </a></li>
+                    </ul>
+
+
+
+                </li>
+
 
             </ul>
 
@@ -30,7 +90,7 @@
 
                 @guest
                 @if (Route::has('login'))
-                <a href="{{ route('login') }}" class="btn btn-link px-3 me-2">
+                <a href="{{ route('login') }}" class="btn btn-outline-success m-1">
                     Connexion
                 </a>
                 @endif
@@ -43,41 +103,52 @@
                 @else
 
 
-              @include('layouts.partials.sidebar')
+                @include('layouts.partials.sidebar')
 
                 <!-- Right elements -->
                 <div class="d-flex align-items-center">
 
                     <!-- Notifications -->
                     <div class="dropdown">
-                        <a class="link-secondary me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <a class="link-secondary me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-bell"></i>
-                            <span class="badge rounded-pill badge-notification bg-danger">{{ __(33) }}</span>
+                            <span class="badge rounded-pill badge-notification bg-danger">{{ count($modelData) }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Alerte 01</a>
+                            @foreach($modelData as $data)
+                            <li class="bg-light shadow ">
+
+                                <div class="dropdown-item">
+                                    <h5 class="  ">{{ $data->nom_alerte }} </h5>
+                                    <p class=" ">{{ $data->description_alerte }} </p>
+                                </div>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Alerte 02</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Alerte 03</a>
-                            </li>
+                            <!-- display the data -->
+                            @endforeach
+
+
                         </ul>
                     </div>
                     <!-- Avatar -->
                     <div class="dropdown">
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            {{-- <img src="{{ Auth::user()->profile? (Storage::url(Auth::user()->profile)):   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU'  }}" class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" /> --}}
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU" class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" />
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                            id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
+                            aria-expanded="false">
+                            {{-- <img src="{{ Auth::user()->profile? (Storage::url(Auth::user()->profile)):   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU'  }}"
+                            class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" /> --}}
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU"
+                                class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" />
                         </a>
+
+
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <p class="dropdown-item" href="#">{{ Auth::user()->email }}</p>
+                                <p class="dropdown-item" href="#"> {{ Auth::user()->email }}</p>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ URL('/app/v1/profil\/'). Auth::user()->role}}">Mon compte</a>
+                                <a class="dropdown-item" href="{{ URL('/app/v1/profil\/'). Auth::user()->role}}">Mon
+                                    compte</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Paramètres</a>
@@ -89,7 +160,9 @@
                                 <a class="dropdown-item" href="#">Suivi</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Déconnexion') }}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Déconnexion') }}</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
