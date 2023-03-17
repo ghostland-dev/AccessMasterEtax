@@ -17,10 +17,16 @@ return new class extends Migration
             $table->id();
             $table->string('nom_contrat');
             $table->string('fournisseur');
-            $table->date('date_debut')->nullable()->default(new DateTime());
-            $table->date('date_fin')->nullable()->default(new DateTime());
-            $table->date('date_signature')->nullable()->default(new DateTime());
-            $table->foreign('elec_meter_id')->references('elec_meter_id')->on('elec_meters')->onDelete('cascade');
+            $table->string('fichier');
+            $table->date('date_debut')->nullable()->default(null);
+            $table->date('date_fin')->nullable()->default(null);
+            $table->date('date_signature')->nullable()->default(null);
+           
+            $table->foreignId('elec_meter_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
 
             $table->timestamps();
         });

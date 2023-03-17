@@ -37,8 +37,11 @@ return new class extends Migration
             $table->string('date_immatriculation');
             $table->string('date_immatriculation_rcs');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('users')->on('users')->onDelete('cascade');
+ 
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

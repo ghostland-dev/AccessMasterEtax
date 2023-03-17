@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nom_compteur');
             $table->string('PDL');
             $table->float('puissance')->nullable()->default(123.45);
-
             $table->string('numero_client');
             $table->string('numero_site');
             $table->string('numero_etude');
@@ -28,8 +27,13 @@ return new class extends Migration
             $table->string('consommation');
             $table->string('annee');
 
+             $table->foreignId('site_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
-        });  
+        });
     }
 
     /**

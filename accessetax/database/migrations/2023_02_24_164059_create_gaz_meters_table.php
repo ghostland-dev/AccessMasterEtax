@@ -26,6 +26,12 @@ return new class extends Migration
             $table->enum('tarif', ['P19','P18','P17','P16','P15','P14','P13','P12','P11'])->nullable();
             $table->float('consommation_mentsauelle')->nullable()->default(1);
             $table->float('consommation_annuelle')->nullable()->default(1);
+           
+            $table->foreignId('site_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

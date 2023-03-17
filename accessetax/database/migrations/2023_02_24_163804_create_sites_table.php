@@ -27,6 +27,12 @@ return new class extends Migration
             $table->float('consommation_electrcite')->nullable()->default(1);
             $table->float('consommation_gaz')->nullable()->default(1);
             $table->string('type', 100)->nullable()->default('site énérgiévore');
+
+            $table->foreignId('company_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

@@ -27,7 +27,11 @@ return new class extends Migration
             $table->string('consommation', 100)->nullable();
             $table->string('annee', 100)->nullable();
 
-            $table->foreign('elec_contract_id')->references('elec_contract_id')->on('elec_contracts')->onDelete('cascade');
+            $table->foreignId('elec_contract_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

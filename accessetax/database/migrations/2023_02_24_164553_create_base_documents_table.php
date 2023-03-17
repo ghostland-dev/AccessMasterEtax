@@ -27,7 +27,11 @@ return new class extends Migration
             $table->string('fichier_entreprise')->nullable()->default(null);
             $table->string('valeur_ajoutee')->nullable()->default(null);
 
-            $table->foreignId('base_folder_id')->constrained('base_folders')->onDelete('cascade');
+           
+            $table->foreignId('base_folder_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
