@@ -25,7 +25,7 @@
         @include('layouts.partials.sidebar')
     @endauth
 
-    <div class="" style="min-height: 90vh ">
+    <div class="fullheight">
         @yield('content')
     </div>
     @include('layouts.partials.footer')

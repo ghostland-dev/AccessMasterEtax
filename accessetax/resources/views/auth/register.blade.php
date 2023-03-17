@@ -37,8 +37,9 @@
 
                                         <div class="col-md-12">
                                             <input id="profile" type="file"
-                                                class="form-control @error('profile') is-invalid @enderror" name="profile"
-                                                value="{{ old('profile') }}" required autocomplete="profile" autofocus>
+                                                class="form-control ti ti-file @error('profile') is-invalid @enderror"
+                                                name="profile" value="{{ old('profile') }}" required autocomplete="profile"
+                                                autofocus>
 
                                             @error('profile')
                                                 <span class="invalid-feedback" role="alert">
@@ -203,7 +204,7 @@
                                     <div class="input-register  col-md-5">
                                         <label for="password-confirm"
                                             class="form-label">{{ __('Confirmer
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            le mot de passe') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        le mot de passe') }}</label>
 
                                         <div class="col-md-12">
                                             <input id="password-confirm" type="password" class="form-control"
@@ -219,11 +220,11 @@
 
                                     <div class="input-register col-md-10  mt-2 ">
                                         <div class="col-md-12 d-flex  justify-content-center">
-                                            <a href="{{ route('login') }}" class="w-30 mx-4 btn btn-warning ">
+                                            <a href="{{ route('login') }}" class="w-50 mx-4 btn btn-dark ">
                                                 {{ __("J'ai déjà un compte ") }}
                                             </a>
-                                            <button type="submit" class="w-30  mx-4 btn btn-primary">
-                                                {{ __('Soumettre') }}
+                                            <button type="submit" class="w-50  mx-4 btn btn-success">
+                                                {{ __('S\'inscrire ') }}
                                             </button>
 
                                         </div>
