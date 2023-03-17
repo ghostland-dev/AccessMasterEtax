@@ -4,21 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Contact extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'nom',
         'prenom',
         'email',
-        'telephone',
+        'fonction',
+        'mobile',
+        'fix',
         'adresse',
         'code_postal',
         'ville',
         'pays',
         'type',
-        'student_id',
+        'company_id',
     ];
 }

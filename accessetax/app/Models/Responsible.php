@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Responsible extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-    $fillable =[
-       'choices',
+    protected $fillable =[
+       'civilite',
        'nom_famille',
        'prenom',
        'fonction',
        'email',
-       'telephone',
        'mobile',
        'fax',
        'adresse',
@@ -25,5 +25,5 @@ class Responsible extends Model
        'date_naissance',
        'company_id',
 
-    ]
+    ];
 }

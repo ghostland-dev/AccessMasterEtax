@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Site extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-    $fillable = [
+    protected $fillable = [
         'nom',
         'siret',
         'adresse',
@@ -22,5 +23,6 @@ class Site extends Model
         'consommation_electrcite',
         'consommation_gaz',
         'type',
-    ]
+        'company_id',
+    ];
 }
