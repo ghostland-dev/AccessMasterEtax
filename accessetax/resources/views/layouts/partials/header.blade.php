@@ -89,89 +89,90 @@
             <div class="d-flex align-items-center">
 
                 @guest
-                @if (Route::has('login'))
-                <a href="{{ route('login') }}" class="btn btn-outline-success m-1">
-                    Connexion
-                </a>
-                @endif
+                    @if (Route::has('login'))
+                        <a href="{{ route('login') }}" class="btn btn-outline-success m-1">
+                            Connexion
+                        </a>
+                    @endif
 
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="btn btn-primary me-3">
-                    Inscription gratuit
-                </a>
-                @endif
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="btn btn-success me-3">
+                            Inscription gratuit
+                        </a>
+                    @endif
                 @else
+                    @include('layouts.partials.sidebar')
+
+                    <!-- Right elements -->
+                    <div class="d-flex align-items-center">
+
+                        <!-- Notifications -->
+                        <div class="dropdown">
+                            <a class="link-secondary me-3 dropdown-toggle hidden-arrow" href="#"
+                                id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span
+                                    class="badge rounded-pill badge-notification bg-danger">{{ count($modelData) }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach ($modelData as $data)
+                                    <li class="bg-light shadow ">
+
+                                        <div class="dropdown-item">
+                                            <h5 class="  ">{{ $data->nom_alerte }} </h5>
+                                            <p class=" ">{{ $data->description_alerte }} </p>
+                                        </div>
+                                    </li>
+                                    <!-- display the data -->
+                                @endforeach
 
 
-                @include('layouts.partials.sidebar')
-
-                <!-- Right elements -->
-                <div class="d-flex align-items-center">
-
-                    <!-- Notifications -->
-                    <div class="dropdown">
-                        <a class="link-secondary me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge rounded-pill badge-notification bg-danger">{{ count($modelData) }}</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            @foreach($modelData as $data)
-                            <li class="bg-light shadow ">
-
-                                <div class="dropdown-item">
-                                    <h5 class="  ">{{ $data->nom_alerte }} </h5>
-                                    <p class=" ">{{ $data->description_alerte }} </p>
-                                </div>
-                            </li>
-                            <!-- display the data -->
-                            @endforeach
-
-
-                        </ul>
-                    </div>
-                    <!-- Avatar -->
-                    <div class="dropdown">
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-                            id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
-                            aria-expanded="false">
-                            {{-- <img src="{{ Auth::user()->profile? (Storage::url(Auth::user()->profile)):   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU'  }}"
+                            </ul>
+                        </div>
+                        <!-- Avatar -->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                                id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
+                                aria-expanded="false">
+                                {{-- <img src="{{ Auth::user()->profile? (Storage::url(Auth::user()->profile)):   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU'  }}"
                             class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" /> --}}
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU"
-                                class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" />
-                        </a>
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU"
+                                    class="rounded-circle logo-navbar " height="25" alt="utilisateur"
+                                    loading="lazy" />
+                            </a>
 
 
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                            <li>
-                                <p class="dropdown-item" href="#"> {{ Auth::user()->email }}</p>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ URL('/app/v1/profil\/'). Auth::user()->role}}">Mon
-                                    compte</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Paramètres</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Dossiers</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Suivi</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Déconnexion') }}</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                <li>
+                                    <p class="dropdown-item" href="#"> {{ Auth::user()->email }}</p>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ URL('/app/v1/profil\/') . Auth::user()->role }}">Mon
+                                        compte</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Paramètres</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Dossiers</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Suivi</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Déconnexion') }}</a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <!-- Right elements -->
+                    <!-- Right elements -->
 
                 @endguest
 

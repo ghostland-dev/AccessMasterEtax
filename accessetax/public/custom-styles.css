@@ -12,7 +12,17 @@
 .input-register.col-md-5 {
     margin: 1em;
 }
-
+.fullheight{
+    height:100vh !important;
+}
+.centred{
+        display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
 /* .navbar {
     background-color: #ecf2ffc7 !important;
     position: fixed;
