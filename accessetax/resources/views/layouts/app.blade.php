@@ -7,45 +7,28 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'E-Tax') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/css/uikit.min.css" />
-
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit-icons.min.js"></script>
-
-    <!-- Font Awesome -->
+    <title>{{ config('app.name', 'Access E-Tax') }}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="{{ asset('css/styles.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('custom-styles.css') }}" rel="stylesheet" />
 
-    <link href="{{  asset('styles.css') }}" rel="stylesheet" />
-
-      <!-- UIkit CSS -->
-     
-
-    <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
 <body>
-    <div id="app">
+    @guest()
         @include('layouts.partials.header')
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    @endguest
+    @auth
+        @include('layouts.partials.sidebar')
+    @endauth
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-    <script type="text/javascript" src="{{  asset('scripts.js') }}"></script>
+    <div class="" style="min-height: 90vh ">
+        @yield('content')
+    </div>
+    @include('layouts.partials.footer')
 </body>
 
 </html>
