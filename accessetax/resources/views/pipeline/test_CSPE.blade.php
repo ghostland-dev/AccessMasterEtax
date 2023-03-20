@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-dark fullheight centred ">
+    <div class=" fullheight centred ">
         <div class="container px-6 pt-3 card ">
             <div class="row justify-content-center">
                 <div class="col-md-6">

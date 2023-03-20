@@ -42,6 +42,94 @@
                      <i class="text-success ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu text-success">Gestion</span>
                  </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('users') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Utilisateurs</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('taxReds') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Taux Réduits</span>
+                     </a>
+                 </li>
+
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('refundBoards') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Tableau de remboursement</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('companies') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Entreprises</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('sites') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Sites</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('refundCspes') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Remboursements CSPES</span>
+                     </a>
+                 </li>
+
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('refundTcgns') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Remboursements TCGIN</span>
+                     </a>
+                 </li>
+
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('elecMeters') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Compteur Electrcité</span>
+                     </a>
+                 </li>
+
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('gazMeters') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Compteurs Gaz</span>
+                     </a>
+                 </li>
+
+
+
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{ route('contractGazs') }}" aria-expanded="false">
                          <span>
@@ -52,33 +140,58 @@
                  </li>
 
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="{{ route('contractGazs') }}" aria-expanded="true"
-                         href="#collapseExample" data-bs-toggle="collapse" aria-controls="collapseExample">
+                     <a class="sidebar-link" href="{{ route('contractElecs') }}" aria-expanded="false">
                          <span>
                              <i class="text-success ti ti-article"></i>
                          </span>
-                         <span class="hide-menu">Compteurs</span>
+                         <span class="hide-menu">Contacts Electrcité</span>
                      </a>
-                     <ul class="collapse" id="collapseExample">
-                         <li class="sidebar-item">
-                             <a class="sidebar-link bg-light-warning" href="{{ route('contractGazs') }}"
-                                 aria-expanded="false">
-                                 <span>
-                                     <i class="text-success ti ti-flame"></i>
-                                 </span>
-                                 <span class="hide-menu text-warning"> Contacts Gaz</span>
-                             </a>
-                         </li>
-                         <li class="sidebar-item">
-                             <a class="sidebar-link bg-light-primary" href="{{ route('contractGazs') }}"
-                                 aria-expanded="false">
-                                 <span>
-                                     <i class="text-success ti ti-plug"></i>
-                                 </span>
-                                 <span class="hide-menu text-primary">Contacts électrcité</span>
-                             </a>
-                         </li>
-                     </ul>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('genFolds') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Dossier Générées</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('baseFolers') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Dossier Bases</span>
+                     </a>
+                 </li>
+
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('studies') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Etudes</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('billGazs') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Factures Gaz</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{ route('billsElecs') }}" aria-expanded="false">
+                         <span>
+                             <i class="text-success ti ti-article"></i>
+                         </span>
+                         <span class="hide-menu">Factures Electrcité</span>
+                     </a>
                  </li>
 
                  <li class="sidebar-item">
@@ -89,7 +202,7 @@
                          <span class="hide-menu">Alerts</span>
                      </a>
                  </li>
-                 <li class="sidebar-item">
+                 {{-- <li class="sidebar-item">
                      <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
                          <span>
                              <i class="text-success ti ti-cards"></i>
@@ -152,7 +265,9 @@
                          </span>
                          <span class="hide-menu">Sample Page</span>
                      </a>
-                 </li>
+                 </li> --}}
+
+
              </ul>
 
          </nav>
