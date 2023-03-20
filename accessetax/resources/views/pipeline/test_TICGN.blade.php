@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="bg-dark fullheight centred">
+    <div class="fullheight centred">
         <div class="container px-6 pt-3 card ">
             <div class="row justify-content-center">
 
@@ -13,18 +13,18 @@
                             @method('POST')
                             <div class="form-group ">
                                 <label for="valeurAjouterEuro">Valeur Ajoutée</label>
-                                <input type="number" step="0.001" placeholder="0.00" name="valeurAjouterEuro"
-                                    id="valeurAjouterEuro" class="form-control" required>
+                                <input type="text" name="valeurAjouterEuro" id="valeurAjouterEuro" class="form-control"
+                                    placeholder="votre Code NAF ... " required>
                             </div>
                             <div class="form-group ">
                                 <label for="consumAnGazKwh">Consommation de gaz</label>
-                                <input type="number" step="0.001" placeholder="0.00" name="consumAnGazKwh"
-                                    id="consumAnGazKwh" class="form-control" required>
+                                <input type="number" name="consumAnGazKwh" id="consumAnGazKwh" class="form-control"
+                                    placeholder=" la valeur ajoutée ..." required>
                             </div>
                             <div class="form-group ">
                                 <label for="consumAnElecKwh">Consommation d'électricité</label>
-                                <input type="number" step="0.001" placeholder="0.00" name="consumAnElecKwh"
-                                    id="consumAnElecKwh" class="form-control" required>
+                                <input type="number" name="consumAnElecKwh" id="consumAnElecKwh" class="form-control"
+                                    placeholder="Consummation annulle de referance ( €/Mkw ) " required>
                             </div>
                             <div class="form-group ">
                                 <label for="valeurProduction">Valeur de production</label>
@@ -70,8 +70,8 @@
                             </div>
                             <div class="form-group ">
                                 <label for="NaceCode">Code Nace</label>
-                                <input type="text" placeholder="0.00" name="NaceCode" id="NaceCode"
-                                    class="form-control" required>
+                                <input type="text" placeholder="0.00" name="NaceCode" id="NaceCode" class="form-control"
+                                    required>
                             </div>
                             <div class="form-group my-3 ">
                                 <button type="submit" class=" w-100 btn btn-success p-3"> lancez le teste d'éligibilité
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="card mt-3">
+                    <div class=" mt-3">
 
                         <h4 class="bg-success text-center p-2 rounded-2  text-bg-muted m-3 wow">Tester d'éligibilité aux
                             taux

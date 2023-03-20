@@ -88,7 +88,7 @@
                                     <div class="card-body">
                                         <div class="row alig n-items-start">
                                             <div class="col-8">
-                                                <h5 class="card-title mb-9 fw-semibold"> Bénifices Meentuelles </h5>
+                                                <h5 class="card-title mb-9 fw-semibold"> Bénifices Menstuelles </h5>
                                                 <h4 class="fw-semibold mb-3">6,820€</h4>
                                                 <div class="d-flex align-items-center pb-1">
                                                     <span
@@ -131,7 +131,7 @@
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
                                         <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of
-                                            $385.90</div>
+                                            €385.90</div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
                                         <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
@@ -140,8 +140,8 @@
                                                 class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                                                href="javascript:void(0)"
+                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">Nouveau element
+                                            enregistré <a href="javascript:void(0)"
                                                 class="text-primary d-block fw-normal">#ML-3467</a>
                                         </div>
                                     </li>
@@ -152,7 +152,7 @@
                                                 class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to
+                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of €64.95 to
                                             Michael</div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
@@ -162,8 +162,8 @@
                                                 class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                                                href="javascript:void(0)"
+                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">Nouveau element
+                                            enregistré <a href="javascript:void(0)"
                                                 class="text-primary d-block fw-normal">#ML-3467</a>
                                         </div>
                                     </li>
@@ -201,13 +201,13 @@
                                                     <h6 class="fw-semibold mb-0">Id</h6>
                                                 </th>
                                                 <th class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0">Assigned</h6>
+                                                    <h6 class="fw-semibold mb-0">Assigné à </h6>
                                                 </th>
                                                 <th class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0">Name</h6>
+                                                    <h6 class="fw-semibold mb-0">Nom Client</h6>
                                                 </th>
                                                 <th class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0">Priority</h6>
+                                                    <h6 class="fw-semibold mb-0">Priorité</h6>
                                                 </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Budget</h6>
@@ -228,11 +228,11 @@
                                                 </td>
                                                 <td class="border-bottom-0">
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                                        <span class="badge bg-primary rounded-3 fw-semibold">Basse</span>
                                                     </div>
                                                 </td>
                                                 <td class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
+                                                    <h6 class="fw-semibold mb-0 fs-4">€3.9</h6>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -248,12 +248,11 @@
                                                 </td>
                                                 <td class="border-bottom-0">
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <span
-                                                            class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
+                                                        <span class="badge bg-secondary rounded-3 fw-semibold">Moyen</span>
                                                     </div>
                                                 </td>
                                                 <td class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
+                                                    <h6 class="fw-semibold mb-0 fs-4">€24.5k</h6>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -269,11 +268,11 @@
                                                 </td>
                                                 <td class="border-bottom-0">
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <span class="badge bg-danger rounded-3 fw-semibold">High</span>
+                                                        <span class="badge bg-danger rounded-3 fw-semibold">Elevé</span>
                                                     </div>
                                                 </td>
                                                 <td class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
+                                                    <h6 class="fw-semibold mb-0 fs-4">€12.8k</h6>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -294,7 +293,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
+                                                    <h6 class="fw-semibold mb-0 fs-4">€2.4k</h6>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -304,7 +303,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-sm-6 col-xl-3">
                         <div class="card overflow-hidden rounded-2">
                             <div class="position-relative">
@@ -318,8 +317,8 @@
                             <div class="card-body pt-3 p-4">
                                 <h6 class="fw-semibold fs-4">Boat Headphone</h6>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="fw-semibold fs-4 mb-0">$50 <span
-                                            class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
+                                    <h6 class="fw-semibold fs-4 mb-0">€50 <span
+                                            class="ms-2 fw-normal text-muted fs-3"><del>€65</del></span></h6>
                                     <ul class="list-unstyled d-flex align-items-center mb-0">
                                         <li><a class="me-1" href="javascript:void(0)"><i
                                                     class="ti ti-star text-warning"></i></a></li>
@@ -349,8 +348,8 @@
                             <div class="card-body pt-3 p-4">
                                 <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="fw-semibold fs-4 mb-0">$650 <span
-                                            class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
+                                    <h6 class="fw-semibold fs-4 mb-0">€650 <span
+                                            class="ms-2 fw-normal text-muted fs-3"><del>€900</del></span></h6>
                                     <ul class="list-unstyled d-flex align-items-center mb-0">
                                         <li><a class="me-1" href="javascript:void(0)"><i
                                                     class="ti ti-star text-warning"></i></a></li>
@@ -380,8 +379,8 @@
                             <div class="card-body pt-3 p-4">
                                 <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="fw-semibold fs-4 mb-0">$150 <span
-                                            class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
+                                    <h6 class="fw-semibold fs-4 mb-0">€150 <span
+                                            class="ms-2 fw-normal text-muted fs-3"><del>€200</del></span></h6>
                                     <ul class="list-unstyled d-flex align-items-center mb-0">
                                         <li><a class="me-1" href="javascript:void(0)"><i
                                                     class="ti ti-star text-warning"></i></a></li>
@@ -411,8 +410,8 @@
                             <div class="card-body pt-3 p-4">
                                 <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="fw-semibold fs-4 mb-0">$285 <span
-                                            class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
+                                    <h6 class="fw-semibold fs-4 mb-0">€285 <span
+                                            class="ms-2 fw-normal text-muted fs-3"><del>€345</del></span></h6>
                                     <ul class="list-unstyled d-flex align-items-center mb-0">
                                         <li><a class="me-1" href="javascript:void(0)"><i
                                                     class="ti ti-star text-warning"></i></a></li>
@@ -429,11 +428,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="py-6 px-6 text-center">
-                    <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank"
-                            class="pe-1 text-primary text-decoration-underline">AdminMart.com</a></p>
-                </div>
+                </div> --}}
+
             </div>
         </div>
     </div>
