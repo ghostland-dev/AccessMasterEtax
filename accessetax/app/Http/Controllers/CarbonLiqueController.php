@@ -15,7 +15,9 @@ class CarbonLiqueController extends Controller
      */
     public function index()
     {
-        //
+        $fuitesCarbons = CarbonLique::all();
+
+        return response( view('pages.FuitesCarbons.index', compact('fuitesCarbons'))->with('status',"liste des fuites carbons."));
     }
 
     /**
@@ -25,7 +27,7 @@ class CarbonLiqueController extends Controller
      */
     public function create()
     {
-        //
+        return response( view('pages.FuitesCarbons.create')->with('status',"ajouter une valeur de fuites carbons."));
     }
 
     /**
@@ -36,7 +38,16 @@ class CarbonLiqueController extends Controller
      */
     public function store(StoreCarbonLiqueRequest $request)
     {
-        //
+          $fuitesCarbon = new CarbonLique();
+          
+          $fuitesCarbon->nom = $request->nom;
+          $fuitesCarbon->code = $request->code;
+          $fuitesCarbon->eligible = $request->eligible;
+ 
+          $fuitesCarbon->save();
+
+
+        return response( view('pages.FuitesCarbons.show', compact('fuitesCarbon'))->with('status',"les fuites carbons ont été ajouté avec succès."));
     }
 
     /**
@@ -47,7 +58,8 @@ class CarbonLiqueController extends Controller
      */
     public function show(CarbonLique $carbonLique)
     {
-        //
+        $fuitesCarbon =   CarbonLique::findOrFail($carbonLique);
+        return response( view('pages.FuitesCarbons.show', compact('fuitesCarbon'))->with('status',"les fuites carbons ont été ajouté avec succès."));
     }
 
     /**
@@ -58,7 +70,8 @@ class CarbonLiqueController extends Controller
      */
     public function edit(CarbonLique $carbonLique)
     {
-        //
+        $fuitesCarbon =   CarbonLique::findOrFail($carbonLique);
+        return response( view('pages.FuitesCarbons.edit', compact('fuitesCarbon'))->with('status',"Valeur est prêt à être modifié."));
     }
 
     /**
@@ -70,7 +83,16 @@ class CarbonLiqueController extends Controller
      */
     public function update(UpdateCarbonLiqueRequest $request, CarbonLique $carbonLique)
     {
-        //
+          $fuitesCarbon =  CarbonLique::findOrFail($carbonLique);
+          
+          $fuitesCarbon->nom = $request->nom;
+          $fuitesCarbon->code = $request->code;
+          $fuitesCarbon->eligible = $request->eligible;
+ 
+          $fuitesCarbon->save();
+
+
+        return response( view('pages.FuitesCarbons.show', compact('fuitesCarbon'))->with('status',"la fuite carbon a été modifié avec succès."));
     }
 
     /**
@@ -81,6 +103,6 @@ class CarbonLiqueController extends Controller
      */
     public function destroy(CarbonLique $carbonLique)
     {
-        //
+        return response( view('pages.FuitesCarbons.index')->with('status',"la fuite carbon a été supprimé avec succès."));
     }
 }

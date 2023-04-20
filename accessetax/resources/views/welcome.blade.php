@@ -32,10 +32,10 @@
             <header>
                 <div class="row justify-content-between">
                     <div class="col-2">
-                        <img src="img/logo.svg" alt="logo" class="logo">
+                        <img src="{{ asset('img/logo.svg') }}" alt="logo" class="logo">
                     </div>
                     <div class="col-6 align-self-center text-right">
-                        <a href="{{ route('register') }}" class="text-white lead">Je veux faire des éconmies </a>
+                        <a href="{{ route('etape1') }}" class="text-white lead">Je veux faire des éconmies </a>
                     </div>
                 </div>
             </header>
@@ -51,7 +51,7 @@
                 <br> pour vous faire rembourser des taux énérgitiques, nous vous evitons les procedures pénibles <br> et
                 lentes, et vous avez un suivi direct de votre dossier.
             </p>
-            <a href="{{ route('register') }}" data-aos="fade" data-aos-easing="linear" data-aos-duration="1000"
+            <a href="{{ route('etape1') }}" data-aos="fade" data-aos-easing="linear" data-aos-duration="1000"
                 data-aos-once="true" class="btn my-4 font-weight-bold atlas-cta cta-green">Commencer</a>
         </div>
     </div>

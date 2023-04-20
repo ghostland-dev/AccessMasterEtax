@@ -1,5 +1,5 @@
  <!-- Sidebar Start -->
- <aside class="left-sidebar">
+ <aside class="left-sidebar ">
      <!-- Sidebar scroll-->
      <div>
          <div class="brand-logo d-flex align-items-center justify-content-center">
@@ -31,7 +31,8 @@
                      <span class="hide-menu text-success">Accueil</span>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="{{ route('home') }}" aria-expanded="false">
+                     <a class="sidebar-link" href="{{ URL('/app/v1/profil\/') . Auth::user()->role }}"
+                         aria-expanded="false">
                          <span>
                              <i class="text-success ti ti-layout-dashboard text-success"></i>
                          </span>
@@ -44,7 +45,7 @@
                  </li>
 
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="{{ route('users') }}" aria-expanded="false">
+                     <a class="sidebar-link" href="{{ route('utilisateurs') }}" aria-expanded="false">
                          <span>
                              <i class="text-success ti ti-article"></i>
                          </span>

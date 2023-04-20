@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('nom_facture', 100)->nullable();
             $table->string('fournisseur', 100)->nullable();
+            $table->string('fichier', 100)->nullable()->default('text');
             $table->string('type', 100)->nullable();
+            $table->date('date_debut')->nullable()->default(null);
+            $table->date('date_fin')->nullable()->default(null);
             $table->string('numero_facture', 100)->nullable();
             $table->string('numero_contrat', 100)->nullable();
             $table->string('numero_compteur', 100)->nullable();
@@ -26,6 +29,7 @@ return new class extends Migration
             $table->string('numero_etude', 100)->nullable();
             $table->string('consommation', 100)->nullable();
             $table->string('annee', 100)->nullable();
+             
 
             $table->foreignId('gaz_contract_id')
             ->constrained()

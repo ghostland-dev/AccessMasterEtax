@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('reduced_tax_boards', function (Blueprint $table) {
             $table->id();
+            $table->string('titre', 100)->nullable()->default('text');
+            $table->float('consommation_mkw', 100)->nullable()->default(0);
+            $table->float('remuneration', 100)->nullable()->default(0);
             $table->timestamps();
         });
     }

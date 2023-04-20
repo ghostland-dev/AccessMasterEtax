@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CodeNaf;
 
 class CodeNafController extends Controller
 {
@@ -13,7 +14,22 @@ class CodeNafController extends Controller
      */
     public function index()
     {
-        //
+        $codenafs = CodeNaf::all();
+
+        return response()->json($codenafs);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function liste()
+    {
+        $codenafs = CodeNaf::all();
+
+        return response( view("pages.CodeNafs.index" ,compact('codenafs'))->with('status',"liste des codes NAFs."));
     }
 
     /**
@@ -23,7 +39,7 @@ class CodeNafController extends Controller
      */
     public function create()
     {
-        //
+         return response( view("pages.CodeNafs.create")->with('status', "liste des codes NAFs."));
     }
 
     /**
@@ -34,7 +50,12 @@ class CodeNafController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $codenaf = new CodeNaf();
+        $codenaf->code_naf =  $request->code_naf;
+        $codenaf->libelle_naf =   $request->libelle_naf;
+        $codenaf->eligible =   $request->eligible;
+        $codenaf->save();
+         return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"liste des codes NAFs."));
     }
 
     /**
@@ -45,7 +66,8 @@ class CodeNafController extends Controller
      */
     public function show($id)
     {
-        //
+          $codenaf = CodeNaf::findOrFail($id);
+          return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"liste des codes NAFs."));
     }
 
     /**
@@ -56,7 +78,8 @@ class CodeNafController extends Controller
      */
     public function edit($id)
     {
-        //
+         $codenaf = CodeNaf::findOrFail($id);
+          return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"Codes NAF est prêt à être modifié."));
     }
 
     /**
@@ -68,7 +91,12 @@ class CodeNafController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $codenaf = new CodeNaf();
+        $codenaf->code_naf =  $request->code_naf;
+        $codenaf->libelle_naf =   $request->libelle_naf;
+        $codenaf->eligible =   $request->eligible;
+        $codenaf->save();
+         return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"liste des codes NAFs."));
     }
 
     /**
@@ -79,6 +107,8 @@ class CodeNafController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $codenaf = CodeNaf::findOrFail($id);
+        $codenaf->delete();
+          return response( view("pages.CodeNafs.index" ,compact('codenaf'))->with('status',"Codes NAF a été supprimé avec succès ."));
     }
 }

@@ -17,8 +17,8 @@ class CodeNafFactory extends Factory
     public function definition()
     {
         return [
-            'code_naf' => $this->faker->word,
-            'libelle_naf' => $this->faker->word,
+            'code_naf' => str($this->faker->randomNumber(5, true)),
+            'libelle_naf' =>  $this->faker->sentence(),
             'eligible' => true,
         ];
     }

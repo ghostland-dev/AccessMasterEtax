@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Site extends Model
-{
+class Site extends Model {
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -25,4 +24,8 @@ class Site extends Model
         'type',
         'company_id',
     ];
+
+    public function etudes() {
+        return $this->hasMany( Study::class );
+    }
 }

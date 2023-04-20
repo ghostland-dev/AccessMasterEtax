@@ -22,6 +22,39 @@
                     <a class="nav-link" href="{{ route('home') }}">Accueil</a>
                 </li>
 
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        etapes
+                    </a>
+
+                    <ul class="dropdown-menu p-3">
+                        <li><a class="dropdown-item" href="{{ route('etape1') }}"> <i class="fas fa-user"></i>
+                                Bienvenue</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape2') }}"> <i class="fas fa-user"></i> Test
+                                d'élégibilité </a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape3') }}"> <i class="fas fa-user"></i> Signature
+                                de contrat </a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape4') }}"> <i class="fas fa-user"></i> Renvoie
+                                des documents signé </a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape5') }}"> <i class="fas fa-user"></i>
+                                Constitution de dossier</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape6') }}"> <i class="fas fa-user"></i> Dossier
+                                transmis aux douanes</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape7') }}"> <i class="fas fa-user"></i> Accusé de
+                                Reception douanières</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape8') }}"> <i class="fas fa-user"></i>
+                                Remboursement de client</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape9') }}"> <i class="fas fa-user"></i> Envoyer
+                                de facture Voltaria</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape10') }}"> <i class="fas fa-user"></i>
+                                Changement des taux reduits auprès de fournisseur</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etape10') }}"> <i class="fas fa-user"></i>
+                                Finalisation de proposition d'autres services</a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -39,6 +72,8 @@
 
                 </li>
 
+
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -50,36 +85,33 @@
                         <li><a class="dropdown-item" href="{{ route('sites') }}"><i class="fas fa-map"></i> Sites</a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('contractElecs') }}"><i class="fas fa-file"></i>
-                                Contrats d'éléctrecité</a></li>
-                        <li><a class="dropdown-item" href="{{ route('contractGazs') }}"><i class="fas fa-file"></i>
-                                Contrats de gaz</a></li>
-                        <li><a class="dropdown-item" href="{{ route('elecMeters') }}"><i class="fas fa-file"></i>
-                                Compteurs d'éléctrecité</a></li>
-                        <li><a class="dropdown-item" href="{{ route('gazMeters') }}"><i class="fas fa-file"></i>
-                                Compteurs de gaz</a></li>
-
-                    </ul>
-
+                                Contrats d'éléctrecité</a></li> Contrats de gaz</a>
                 </li>
+                <li><a class="dropdown-item" href="{{ route('elecMeters') }}"><i class="fas fa-file"></i> Compteurs
+                        d'éléctrecité</a></li>
+                <li><a class="dropdown-item" href="{{ route('gazMeters') }}"><i class="fas fa-file"></i> Compteurs de
+                        gaz</a></li>
+
+            </ul>
+
+            </li>
 
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Simulateurs
-                    </a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"> Simulateurs </a>
+                <ul class="dropdown-menu p-3">
 
-                    <ul class="dropdown-menu p-3">
+                    <li><a class="dropdown-item" href="{{ route('SimulateurCSPE') }}"><i class="fas fa-book"></i>
+                            Tests Eligibilité CSPE </a></li>
+                    <li><a class="dropdown-item" href="{{ route('SimulateurTICGN') }}"><i class="fas fa-book"></i>
+                            Tests Eligibilité TCGN </a></li>
 
-                        <li><a class="dropdown-item" href="{{ route('SimulateurCSPE') }}"><i class="fas fa-book"></i>
-                                Tests Eligibilité CSPE </a></li>
-                        <li><a class="dropdown-item" href="{{ route('SimulateurTICGN') }}"><i class="fas fa-book"></i>
-                                Tests Eligibilité TCGN </a></li>
-                    </ul>
+                </ul>
 
 
 
-                </li>
+            </li>
 
 
             </ul>
@@ -109,7 +141,8 @@
                         <!-- Notifications -->
                         <div class="dropdown">
                             <a class="link-secondary me-3 dropdown-toggle hidden-arrow" href="#"
-                                id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                aria-expanded="false">
                                 <i class="fas fa-bell"></i>
                                 <span
                                     class="badge rounded-pill badge-notification bg-danger">{{ count($modelData) }}</span>
@@ -147,7 +180,8 @@
                                     <p class="dropdown-item" href="#"> {{ Auth::user()->email }}</p>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ URL('/app/v1/profil\/') . Auth::user()->role }}">Mon
+                                    <a class="dropdown-item"
+                                        href="{{ URL('/app/v1/profil\/') . Auth::user()->role }}">Mon
                                         compte</a>
                                 </li>
                                 <li>
@@ -183,3 +217,6 @@
     <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+ <section id="loading">
+    <div id="loading-content"></div>
+  </section>

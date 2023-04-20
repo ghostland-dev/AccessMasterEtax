@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.connected')
 
-@section('content')
+@section('subcontent')
     <div class="container-fluid">
         <div class="row justify-content-center">
 

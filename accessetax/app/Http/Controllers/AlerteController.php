@@ -12,11 +12,12 @@ class AlerteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $alertes = Alerte::all();
 
-        return view('pages.Configurations.Alertes.index',compact('alertes'));
+        $alertes = Alerte::all();
+        return response(view('pages.Alertes.index', compact('alertes'))->with('status', 'listes des alerte disponibles'));
     }
 
     /**
@@ -24,9 +25,10 @@ class AlerteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
+        return response(view('pages.Alertes.create')->with('status', 'Commencez à créer un alerte.'));
     }
 
     /**
@@ -35,9 +37,13 @@ class AlerteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+
+        $alerte = Alerte::create($request->all());
+
+        return response(view('pages.Alertes.create', compact('alerte'))->with('status', 'vous pouvez commencer à créer votre alerte'));
     }
 
     /**
@@ -46,9 +52,12 @@ class AlerteController extends Controller
      * @param  \App\Models\Alerte  $alerte
      * @return \Illuminate\Http\Response
      */
+
     public function show(Alerte $alerte)
     {
-        //
+
+        $alerte = Alerte::findOrFail($alerte);
+        return response(view('pages.Alertes.show', compact('alerte'))->with('status', 'nous avons trouvé cet alerte dans nos enregistrements.'));
     }
 
     /**
@@ -57,9 +66,11 @@ class AlerteController extends Controller
      * @param  \App\Models\Alerte  $alerte
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Alerte $alerte)
     {
-        //
+        $alerte = Alerte::findOrFail($alerte);
+        return response(view('pages.Alertes.edit', compact('alerte'))->with('status', "l'alerte est prêt à être modifié."));
     }
 
     /**
@@ -69,9 +80,19 @@ class AlerteController extends Controller
      * @param  \App\Models\Alerte  $alerte
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Alerte $alerte)
     {
-        //
+        $alerte = Alerte::findOrFail($alerte);
+
+        $alerte->nom_alerte = $request->nom_alerte;
+        $alerte->description_alerte = $request->description_alerte;
+        $alerte->study_id = $request->study_id;
+        $alerte->type_alerte = $request->type_alerte;
+
+        $alerte->save();
+
+        return response(view('pages.Alertes.edit', compact('alerte'))->with('status', "l'alerte est prêt à être modifié."));
     }
 
     /**
@@ -80,8 +101,17 @@ class AlerteController extends Controller
      * @param  \App\Models\Alerte  $alerte
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alerte $alerte)
+
+    public function destroy($id)
     {
-        //
+
+        $notif = Alerte::findOrFail($id);
+
+        $notif->delete();
+        // Redirect to the users.index view and display message
+        return  response(view('pages.Alertes.index')->with(
+            'status',
+            'Alerte a été supprimé avec succès.'
+        ));
     }
 }

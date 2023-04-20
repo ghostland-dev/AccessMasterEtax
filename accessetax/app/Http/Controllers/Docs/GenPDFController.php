@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Docs;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use \Barryvdh\DomPDF\Facade\pdf;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +20,9 @@ class GenPDFController extends Controller {
     */
 
     public  function   generatePDFcontract( Request $request, $siren = '000 000 000' ) {
-        // Create a new Carbon instance
-
-        // Set the locale to French
-
-        // Create a new Carbon instance
+        $options = new Options();
+        $options->set( 'isRemoteEnabled', true );
+        $options->set( 'isHtml5ParserEnabled', true );
         $date = new Carbon;
         $date->setLocale( config( 'app.locale' ) );
 
@@ -43,22 +43,19 @@ class GenPDFController extends Controller {
 
         $resp = $response->json()  ;
 
-        $user = Auth::user() ?? ( [ 'name' => 'ismail' ] ) ;
+        $user = Auth::user() ?? new User( [
+            'firstName'=> 'Abbie',
+            'lastName'=> 'Konopelski'
+        ] ) ;
         $company =  $resp ??  [ 'name' => 'ismail' ] ;
 
-        $pdf = new Dompdf();
-        $pdf->loadHtml( view( 'emailTemplates.contrat', compact( 'user', 'company', 'dateContrat' ) ) );
+        $contrat = new Dompdf( $options );
+        $contrat->loadHtml( view( 'emailTemplates.contrat', compact( 'user', 'company', 'dateContrat' ) ) );
 
-        $pdf->setPaper( 'A4', 'portrait' );
+        $contrat->setPaper( 'A4', 'portrait' );
 
-        $pdf->render();
-        $pdf->stream( date( 'Y-m-d ' ).'-contrat_prestation_Voltaria_numero.pdf', [ 'Attachment' => false ] );
-
-        // $response = Response( $pdf->output() );
-        // $response->header( 'Content-Type', 'application/pdf' );
-        // $response->header( 'Content-Disposition', 'inline; filename= date( "Y-m-d ")."-contrat_prestation_Voltaria_numero.pdf"' );
-
-        // return $response;
+        $contrat->render();
+        $contrat->stream( date( 'Y-m-d ' ).'-contrat_prestation_Voltaria_numero.pdf', [ 'Attachment' => false ] );
 
     }
 
@@ -68,19 +65,46 @@ class GenPDFController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function create() {
-        //
-    }
+    public function generatePDFpouvoir( Request $request, $siren = '000 000 000' ) {
 
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+        $options = new Options();
+        $options->set( 'isRemoteEnabled', true );
+        $options->set( 'isHtml5ParserEnabled', true );
 
-    public function store( Request $request ) {
-        //
+        $date = new Carbon;
+        $date->setLocale( config( 'app.locale' ) );
+
+        $datePouvoir = $date->isoFormat( 'D MMMM YYYY' );
+
+        $url = 'https://api.pappers.fr/v2/recherche';
+        $apiToken = '97a405f1664a83329a7d89ebf51dc227b90633c4ba4a2575';
+
+        $response = Http::withoutVerifying()
+        ->get( $url, [
+            'precision' => 'standard',
+            'bases' => 'entreprises,dirigeants,beneficiaires,publications,documents',
+            'page' => 1,
+            'par_page' => 2,
+            'siren' => $siren,
+            'api_token' => $apiToken
+        ] );
+
+        $resp = $response->json()  ;
+
+        $user = Auth::user() ?? new User( [
+            'firstName'=> 'Abbie',
+            'lastName'=> 'Konopelski'
+        ] ) ;
+        $company =  $resp ??  [ 'name' => 'ismail' ] ;
+
+        $pouvoir = new Dompdf( $options );
+        $pouvoir->loadHtml( view( 'emailTemplates.pouvoir', compact( 'user', 'company', 'datePouvoir' ) ) );
+
+        $pouvoir->setPaper( 'A4', 'portrait' );
+
+        $pouvoir->render();
+        $pouvoir->stream( date( 'Y-m-d' ).'-pouvoir_Voltaria.pdf', [ 'Attachment' => false ] );
+
     }
 
     /**
@@ -90,8 +114,16 @@ class GenPDFController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function show( $id ) {
-        //
+    public function courrierType() {
+
+        $CourierTyPE = new Dompdf();
+        $CourierTyPE->loadHtml( view( 'emailTemplates.CourrierType', compact('') ) );
+
+        $CourierTyPE->setPaper( 'A4', 'portrait' );
+
+        $CourierTyPE->render();
+        $CourierTyPE->stream( date( 'Y-m-d' ).'-courrier-type.pdf', [ 'Attachment' => false ] );
+
     }
 
     /**

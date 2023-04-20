@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GazBills;
+use App\Models\GazBill;
 use Illuminate\Http\Request;
 
 class GazBillsController extends Controller
@@ -12,9 +12,12 @@ class GazBillsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+
+        $FacturesGaz = GazBill::all();
+        return response(view('pages.Factures.Gaz.index', compact('FacturesGaz'))->with('status', "liste des facture de de gaz a été retouvé."));
     }
 
     /**
@@ -22,9 +25,11 @@ class GazBillsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
+
+        return response(view('pages.Factures.Gaz.create')->with('status', "."));
     }
 
     /**
@@ -33,6 +38,7 @@ class GazBillsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -44,6 +50,7 @@ class GazBillsController extends Controller
      * @param  \App\Models\GazBills  $gazBills
      * @return \Illuminate\Http\Response
      */
+
     public function show(GazBills $gazBills)
     {
         //
@@ -55,6 +62,7 @@ class GazBillsController extends Controller
      * @param  \App\Models\GazBills  $gazBills
      * @return \Illuminate\Http\Response
      */
+
     public function edit(GazBills $gazBills)
     {
         //
@@ -67,6 +75,7 @@ class GazBillsController extends Controller
      * @param  \App\Models\GazBills  $gazBills
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, GazBills $gazBills)
     {
         //
@@ -78,6 +87,7 @@ class GazBillsController extends Controller
      * @param  \App\Models\GazBills  $gazBills
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(GazBills $gazBills)
     {
         //

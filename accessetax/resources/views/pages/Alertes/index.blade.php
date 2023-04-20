@@ -21,12 +21,42 @@
                                 <div class="card">
                                     <div class="card-body">
                                         @if (session('status'))
-                                            <div class="alert alert-success" role="alert">
-                                                {{ session('status') }}
+                                            <div class="alert bg-light-success text-success text-center" role="alert">
+                                                <i class="fa fa-trash"></i> {{ session('status') }}
                                             </div>
                                         @endif
-                                        <h5 class="card-title fw-semibold mb-4">une page simple</h5>
-                                        <p class="mb-0">Cesi est une page simple </p>
+                                        <div class="row">
+                                            @foreach ($modelData as $alerte)
+                                                <div class="card p-3  " role="alert  " aria-live="assertive"
+                                                    aria-atomic="true">
+                                                    <div class="container">
+
+                                                        <i class="ti ti-bell-ringing"></i>
+                                                        <div class="toast-header  ">
+
+
+                                                        </div>
+                                                        <div class="toast-body">
+                                                            {{ $alerte->description_alerte }}
+                                                        </div>
+                                                    </div>
+                                                    <form action="{{ route('alerte.destroy', $alerte->id) }}"
+                                                        method="POST">
+
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-success my-2"><i
+                                                                class="fa fa-close"></i></button>
+
+                                                    </form>
+                                                </div>
+
+                                                {{-- @if ($alerte->id == 5)
+                                    @break --}}
+                                                {{-- @endif --}}
+                                            @endforeach
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -35,5 +65,4 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

@@ -18,8 +18,7 @@ class CarbonLiqueFactory extends Factory
     {
         return [
             'nom'=> $this->faker->word,
-            'code_2' => $this->faker->company,
-            'code_1' => $this->faker->word,
+            'code' => $this->faker->randomDigitNotNull,
             'eligible' => true, 
         ];
     }

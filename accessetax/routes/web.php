@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\profiles\ProfileController;
 use App\Http\Controllers\ActivityCodeController;
@@ -33,7 +34,13 @@ use App\Http\Controllers\ResponsibleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StudyController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Pappers\PappersController;
+use App\Http\Controllers\Docs\GenPDFController;
 use App\Http\Controllers\pipeline\StepsController;
+use App\Models\ActivityCode;
+use App\Models\CodeNaf;
+use App\Models\CarbonLique;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,30 +52,33 @@ use App\Http\Controllers\pipeline\StepsController;
 |
 */
 
+
+Auth::routes();
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
+Route::get('/app/v1/data/pappers/{siren?}', [PappersController::class, 'getPappersData'])->name('pappers');
+Route::get('/app/v1/data/generate/{siren?}',[GenPDFController::class, "generatePDFcontract"])->name('contract');
+Route::get('/app/v1/data/pouvoir/{siren?}', [GenPDFController::class, "generatePDFpouvoir"])->name('pouvoir');
+Route::get('/app/v1/data/courrier',         [GenPDFController::class, "courrierType"])->name('courrier');
+ 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/tables', function () {
-//     $tables = DB::select('SHOW TABLES');
-//     dd($tables);
-//     return view('tables', ['tables' => $tables]);
-// });
 
 // Users routes
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app/v1/data/utilisateurs',            [UtilisateurController::class, 'index'])->name('users');
-    Route::get('/app/v1/data/utilisateurs/creer',     [UtilisateurController::class, 'create'])->name('user.create');
-    Route::post('/app/v1/data/utilisateurs',           [UtilisateurController::class, 'store'])->name('user.store');
-    Route::get('/app/v1/data/utilisateurs/{user}',     [UtilisateurController::class, 'show'])->name('user.show');
-    Route::get('/app/v1/data/utilisateurs/{user}/editer',[UtilisateurController::class, 'edit'])->name('user.edit');
-    Route::put('/app/v1/data/utilisateurs/{user}',     [UtilisateurController::class, 'update'])->name('user.update');
-    Route::delete('/app/v1/data/utilisateurs/{user}',  [UtilisateurController::class, 'destroy'])->name('user.destroy');
+    Route::get('/app/v1/data/utilisateurs',            [UtilisateurController::class, 'index'])->name('utilisateurs');
+    Route::get('/app/v1/data/utilisateurs/creer',     [UtilisateurController::class, 'create'])->name('utilisateur.create');
+    Route::post('/app/v1/data/utilisateurs/creer',           [UtilisateurController::class, 'store'])->name('utilisateur.store');
+    Route::get('/app/v1/data/utilisateurs/{utilisateur}/details',     [UtilisateurController::class, 'show'])->name('utilisateur.show');
+    Route::get('/app/v1/data/utilisateurs/{utilisateur}/editer',[UtilisateurController::class, 'edit'])->name('utilisateur.edit');
+    Route::put('/app/v1/data/utilisateurs/{utilisateur}/modifier',     [UtilisateurController::class, 'update'])->name('utilisateur.update');
+    Route::delete('/app/v1/data/utilisateurs/{utilisateur}/delete',  [UtilisateurController::class, 'destroy'])->name('utilisateur.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -90,21 +100,22 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
-
+ Route::get('/app/v1/pipline/etape/recap-details',                [StepsController::class, 'recapDetails'])->name('recapDetails');
  Route::get('/app/v1/pipline/etape/Simulateur-TICGN',             [StepsController::class, 'SimulateurTICGN'])->name('SimulateurTICGN');
  Route::post('/app/v1/pipline/etape/validation-TICGN',            [StepsController::class, 'CheckTICGN'])->name('ValidationTICGN');
  Route::get('/app/v1/pipline/etape/Simulateur-CSPE',              [StepsController::class, 'SimulateurCSPE'])->name('SimulateurCSPE');
- Route::post('/app/v1/pipline/etape/validation-CSPE',            [StepsController::class, 'CheckCSPE'])->name('ValidationCSPE');
+ Route::post('/app/v1/pipline/etape/validation-CSPE',             [StepsController::class, 'CheckCSPE'])->name('ValidationCSPE');
+Route::post('/app/v1/pipline/etape/resultats',                    [StepsController::class, 'resultsCSPETICGN'])->name('resultsCSPETICGN');
 
 // Pipeline
-Route::middleware(['auth'])->group(function () {
+Route::middleware([])->group(function () {
     Route::get('/app/v1/pipline/etape/bienvenue',                   [StepsController::class, 'bienvenue'])->name('etape1');
     Route::get('/app/v1/pipline/etape/elegibilite-client',          [StepsController::class, 'eligibilityClient'])->name('etape2');
     Route::get('/app/v1/pipline/etape/envoie-contrat',              [StepsController::class, 'contractSend'])->name('etape3');
     Route::get('/app/v1/pipline/etape/confirmation-contrat',        [StepsController::class, 'contractAccepted'])->name('etape4');
     Route::get('/app/v1/pipline/etape/montage-dossier',             [StepsController::class, 'folderBuilding'])->name('etape5');
     Route::get('/app/v1/pipline/etape/envoie-aux-authorites',       [StepsController::class, 'folderSentCouncil'])->name('etape6');
-    Route::get('/app/v1/pipline/etape/confirmation-authorites',     [StepsController::class, 'CouncilConfirmation'])->name('etape7');
+    Route::get('/app/v1/pipline/etape/confirmation-authoritess',     [StepsController::class, 'CouncilConfirmation'])->name('etape7');
     Route::get('/app/v1/pipline/etape/confirmation-authorites',     [StepsController::class, 'CustomerRefund'])->name('etape8');
     Route::get('/app/v1/pipline/etape/facturation-de-client',       [StepsController::class, 'ServiceInvoice'])->name('etape9');
     Route::get('/app/v1/pipline/etape/changement-taux-reduit',      [StepsController::class, 'folderStatus'])->name('etape10');
@@ -112,13 +123,13 @@ Route::middleware(['auth'])->group(function () {
 
 // Suppliers routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app/v1/data/fournisseurs',            [SupplierController::class, 'index'])->name('suppliers');
-    Route::get('/app/v1/data/fournisseur/creer',     [SupplierController::class, 'create'])->name('supplier.create');
-    Route::post('/app/v1/data/fournisseur',           [SupplierController::class, 'store'])->name('supplier.store');
-    Route::get('/app/v1/data/fournisseur/{supplier}',     [SupplierController::class, 'show'])->name('supplier.show');
-    Route::get('/app/v1/data/fournisseur/{supplier}/editer',[SupplierController::class, 'edit'])->name('supplier.edit');
-    Route::put('/app/v1/data/fournisseur/{supplier}',     [SupplierController::class, 'update'])->name('supplier.update');
-    Route::delete('/app/v1/data/fournisseur/{supplier}',  [SupplierController::class, 'destroy'])->name('supplier.destroy');
+    Route::get('/app/v1/data/fournisseurs',                   [SupplierController::class, 'index'])->name('suppliers');
+    Route::get('/app/v1/data/fournisseur/creer',              [SupplierController::class, 'create'])->name('supplier.create');
+    Route::post('/app/v1/data/fournisseur',                   [SupplierController::class, 'store'])->name('supplier.store');
+    Route::get('/app/v1/data/fournisseur/{supplier}',         [SupplierController::class, 'show'])->name('supplier.show');
+    Route::get('/app/v1/data/fournisseur/{supplier}/editer',  [SupplierController::class, 'edit'])->name('supplier.edit');
+    Route::put('/app/v1/data/fournisseur/{supplier}',         [SupplierController::class, 'update'])->name('supplier.update');
+    Route::delete('/app/v1/data/fournisseur/{supplier}',      [SupplierController::class, 'destroy'])->name('supplier.destroy');
 });
 
 // Activity Codes routes
@@ -137,10 +148,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/alertes',            [AlerteController::class, 'index'])->name('alertes');
     Route::get('/app/v1/data/alertes/creer',     [AlerteController::class, 'create'])->name('alerte.create');
     Route::post('/app/v1/data/alertes',           [AlerteController::class, 'store'])->name('alerte.store');
-    Route::get('/app/v1/data/alertes/{alert}',     [AlerteController::class, 'show'])->name('alerte.show');
-    Route::get('/app/v1/data/alertes/{alert}/editer',[AlerteController::class, 'edit'])->name('alerte.edit');
-    Route::put('/app/v1/data/alertes/{alert}',     [AlerteController::class, 'update'])->name('alerte.update');
-    Route::delete('/app/v1/data/alertes/{alert}',  [AlerteController::class, 'destroy'])->name('alerte.destroy');
+    Route::get('/app/v1/data/alertes/{id}/details',     [AlerteController::class, 'show'])->name('alerte.show');
+    Route::get('/app/v1/data/alertes/{id}/editer',[AlerteController::class, 'edit'])->name('alerte.edit');
+    Route::put('/app/v1/data/alertes/{id}/update',     [AlerteController::class, 'update'])->name('alerte.update');
+    Route::delete('/app/v1/data/alertes/{id}/delete',  [AlerteController::class, 'destroy'])->name('alerte.destroy');
 });
 
 // Base Documents  routes
@@ -150,7 +161,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/app/v1/data/document-base',           [BaseDocumentController::class, 'store'])->name('baseDoc.store');
     Route::get('/app/v1/data/document-base/{document}',     [BaseDocumentController::class, 'show'])->name('baseDoc.show');
     Route::get('/app/v1/data/document-base/{document}/editer',[BaseDocumentController::class, 'edit'])->name('baseDoc.edit');
-    Route::put('/app/v1/data/document-base/{document}',     [BaseDocumentController::class, 'update'])->name('baseDoc.update');
+    Route::put('/app/v1/data/document-base/{document}/update',     [BaseDocumentController::class, 'update'])->name('baseDoc.update');
     Route::delete('/app/v1/data/document-base/{document}',  [BaseDocumentController::class, 'destroy'])->name('baseDoc.destroy');
 });
 

@@ -19,6 +19,9 @@ class GazBillFactory extends Factory
         return [
           'nom_facture' => $this->faker->word,
           'fournisseur' => $this->faker->word,
+          'fichier' => $this->faker->imageUrl,
+          'date_debut'=> $this->faker->date($format = 'Y-m-d', $max = 'now'),
+          'date_fin'=> $this->faker->date($format = 'Y-m-d', $max = 'now'),
           'type' => $this->faker->word,
           'numero_facture' => $this->faker->word,
           'numero_contrat'  => $this->faker->word,

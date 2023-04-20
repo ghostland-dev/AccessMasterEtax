@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
-class ElecBill extends Model
-{
+class ElecBill extends Model {
     use HasFactory, Notifiable;
 
     protected $fillable = [
         'nom_facture',
+        'fichier',
+        'date_debut',
+        'date_fin',
         'fournisseur',
         'type',
         'numero_facture',
@@ -24,4 +27,8 @@ class ElecBill extends Model
         'annee',
         'elec_contract_id',
     ];
+
+    public function elecContract(): BelongsTo {
+        return $this->belongsTo( ElecContract::class, 'elec_contract_id' );
+    }
 }
