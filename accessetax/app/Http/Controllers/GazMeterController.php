@@ -14,9 +14,8 @@ class GazMeterController extends Controller
      */
     public function index()
     {
-          $compteursGazs = GazMeter::all();
-
-        return view('pages.Compteurs.Gaz.index', compact('compteursGazs'));
+        $compteursGazs = GazMeter::all();
+        return response(view('pages.Compteurs.Gaz.index', compact('compteursGazs'))->with('status', "liste des compteurs de gaz."));
     }
 
     /**
@@ -26,7 +25,7 @@ class GazMeterController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('pages.Compteurs.Gaz.create')->with('status', "vous pouvez créer un nouveau compteur de gaz."));
     }
 
     /**
@@ -37,7 +36,9 @@ class GazMeterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $compteurGaz = GazMeter::create($request->all());
+        return response(view('pages.Compteurs.Gaz.show', compact('compteurGaz'))->with('status', "Nouveau compteur de gaz a été ajouté avec succès."));
     }
 
     /**
@@ -48,7 +49,8 @@ class GazMeterController extends Controller
      */
     public function show(GazMeter $gazMeter)
     {
-        //
+        $compteurGaz = GazMeter::findOrFail($gazMeter);
+        return response(view('pages.Compteurs.Gaz.show', compact('compteurGaz'))->with('status', "Voici les details de ce compteur de gaz."));
     }
 
     /**
@@ -59,7 +61,8 @@ class GazMeterController extends Controller
      */
     public function edit(GazMeter $gazMeter)
     {
-        //
+        $compteurGaz = GazMeter::findOrFail($gazMeter);
+        return response(view('pages.Compteurs.Gaz.edit', compact('compteurGaz'))->with('status', "Vous pouvez commencer la modification de compteur de gaz."));
     }
 
     /**
@@ -71,7 +74,25 @@ class GazMeterController extends Controller
      */
     public function update(Request $request, GazMeter $gazMeter)
     {
-        //
+        $compteurGaz = GazMeter::findOrFail($gazMeter);
+
+        $compteurGaz->PCE = $request->PCE;
+        $compteurGaz->consommation_annuelle = $request->consommation_annuelle;
+        $compteurGaz->consommation_mentsauelle = $request->consommation_mentsauelle;
+        $compteurGaz->nom_client = $request->nom_client;
+        $compteurGaz->nom_contact = $request->nom_contact;
+        $compteurGaz->nom_etude = $request->nom_etude;
+        $compteurGaz->nom_responsable = $request->nom_responsable;
+        $compteurGaz->nom_site = $request->nom_site;
+        $compteurGaz->profil = $request->profil;
+        $compteurGaz->siret = $request->siret;
+        $compteurGaz->site_id = $request->site_id;
+        $compteurGaz->tarif = $request->tarif;
+
+        $compteurGaz->save();
+
+
+        return response(view('pages.Compteurs.Gaz.show', compact('compteurGaz'))->with('status', "Ce compteur de gaz a été modifié avec succès."));
     }
 
     /**
@@ -82,6 +103,8 @@ class GazMeterController extends Controller
      */
     public function destroy(GazMeter $gazMeter)
     {
-        //
+        $compteurGaz = GazMeter::findOrFail($gazMeter);
+
+        return response(view('pages.Compteurs.Gaz.index')->with('status', "le compteur de gaz a été supprimé avec succès."));
     }
 }

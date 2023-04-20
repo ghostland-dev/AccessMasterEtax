@@ -14,7 +14,9 @@ class ReducedTaxBoardController extends Controller
      */
     public function index()
     {
-        //
+        $TauxReduits = ReducedTaxBoard::all();
+
+        return response(view('pages.TauxReduits.index', compact('TauxReduits'))->with('status', "tableau des taux réduits a été retrouvé."));
     }
 
     /**
@@ -24,7 +26,7 @@ class ReducedTaxBoardController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('pages.TauxReduits.create')->with('status', "vous pouvez à présent, ajouter une nouvelle valeur."));
     }
 
     /**
@@ -35,7 +37,8 @@ class ReducedTaxBoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $TauxReduit = ReducedTaxBoard::create($request->all());
+        return response(view('pages.TauxReduits.show', compact('TauxReduit'))->with('status', "la nouvelle valeur a été ajouté avec succès."));
     }
 
     /**
@@ -46,7 +49,8 @@ class ReducedTaxBoardController extends Controller
      */
     public function show(ReducedTaxBoard $reducedTaxBoard)
     {
-        //
+        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+        return response(view('pages.TauxReduits.show', compact('TauxReduit'))->with('status', "vous pouvez désormais visialiser les détails de ce tableau."));
     }
 
     /**
@@ -57,7 +61,8 @@ class ReducedTaxBoardController extends Controller
      */
     public function edit(ReducedTaxBoard $reducedTaxBoard)
     {
-        //
+        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+        return response(view('pages.TauxReduits.edit', compact('TauxReduit'))->with('status', "vous pouvez commencer l'edition de ce tableau."));
     }
 
     /**
@@ -69,7 +74,14 @@ class ReducedTaxBoardController extends Controller
      */
     public function update(Request $request, ReducedTaxBoard $reducedTaxBoard)
     {
-        //
+        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+
+        $TauxReduit->consommation_mkw = $request->consommation_mkw;
+        $TauxReduit->remuneration = $request->remuneration;
+        $TauxReduit->titre = $request->titre;
+
+        $TauxReduit->save();
+        return response(view('pages.TauxReduits.show', compact('TauxReduit'))->with('status', "ce tableau a été modifié avec succès."));
     }
 
     /**
@@ -80,6 +92,9 @@ class ReducedTaxBoardController extends Controller
      */
     public function destroy(ReducedTaxBoard $reducedTaxBoard)
     {
-        //
+        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+
+        $TauxReduit->delete();
+        return response(view('pages.TauxReduits.index', compact('TauxReduit'))->with('status', "ce tableau a été supprimé avec succès."));
     }
 }

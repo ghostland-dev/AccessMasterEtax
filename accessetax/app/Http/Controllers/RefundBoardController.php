@@ -14,7 +14,9 @@ class RefundBoardController extends Controller
      */
     public function index()
     {
-        //
+        $tableauRemboursements = RefundBoard::all();
+
+        response(view('pages.Remboursements.tableau.index', compact('tableauRemboursements'))->with('status', "liste des tableaux de remboursement a été retoruvé."));
     }
 
     /**
@@ -24,7 +26,7 @@ class RefundBoardController extends Controller
      */
     public function create()
     {
-        //
+        response(view('pages.Remboursements.tableau.create')->with('status', "vous pouvez commencer à créer un nouveau tableau."));
     }
 
     /**
@@ -35,7 +37,8 @@ class RefundBoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tableauRemboursement = RefundBoard::create($request->all());
+        response(view('pages.Remboursements.tableau.show', compact('tableauRemboursement'))->with('status', "le tableau a été créé avec succès."));
     }
 
     /**
@@ -46,7 +49,8 @@ class RefundBoardController extends Controller
      */
     public function show(RefundBoard $refundBoard)
     {
-        //
+        $tableauRemboursement = RefundBoard::findOrFail($refundBoard);
+        response(view('pages.Remboursements.tableau.show', compact('tableauRemboursement'))->with('status', "Voici les détails de ce tableau."));
     }
 
     /**
@@ -57,7 +61,8 @@ class RefundBoardController extends Controller
      */
     public function edit(RefundBoard $refundBoard)
     {
-        //
+        $tableauRemboursement = RefundBoard::findOrFail($refundBoard);
+        response(view('pages.Remboursements.tableau.edit', compact('tableauRemboursement'))->with('status', "vous pouvez commencer la modification de ce tableau."));
     }
 
     /**
@@ -69,7 +74,13 @@ class RefundBoardController extends Controller
      */
     public function update(Request $request, RefundBoard $refundBoard)
     {
-        //
+        $tableauRemboursement = RefundBoard::findOrFail($refundBoard);
+
+        $tableauRemboursement->consommation_mkw =  $request->consommation_mkw;
+        $tableauRemboursement->remuneration =  $request->remuneration;
+
+        $tableauRemboursement->save();
+        response(view('pages.Remboursements.tableau.show', compact('tableauRemboursement'))->with('status', "le tableau a été modifié avec succès."));
     }
 
     /**
@@ -80,6 +91,9 @@ class RefundBoardController extends Controller
      */
     public function destroy(RefundBoard $refundBoard)
     {
-        //
+        $tableauRemboursement = RefundBoard::findOrFail($refundBoard);
+
+        $tableauRemboursement->delete();
+        response(view('pages.Remboursements.tableau.index')->with('status', "le tableau a été supprimé avec succès."));
     }
 }

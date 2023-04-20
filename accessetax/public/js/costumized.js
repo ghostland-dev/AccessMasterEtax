@@ -41,9 +41,9 @@ showLoading()
 $(document).ready(function () {
 
     $("#nafGen").on('click', function () {
-        alert('shit')
 
-        if ($('#SIREN').val().length >= 7 && $('#SIREN').val().length <= 10 ) {
+
+        if ($('#SIREN').val().length >= 7 && $('#SIREN').val().length <= 10) {
             let requestOptions = {
                 method: 'GET',
                 redirect: 'follow'
@@ -60,6 +60,7 @@ $(document).ready(function () {
                 if ($("#codeNaf").val().length > 3) {
                     $(".codeNaf").show()
                 }
+                return true
             }).catch(function (error) {
                 alert('Désolé, le numéro SIREN que vous avez fourni est inccorect ou invalide, veuillez réessayez avec un siren valide !')
             });
@@ -156,7 +157,7 @@ for (var i = 0; i < fileInputs.length; i++) {
 
 
 const input = document.querySelector('#codeNaf') ?? null;
- 
+
 
 // const url = 'http://127.0.0.1:8000/api/v1/data/code_naf';
 // const url = '/api/v1/data/code_naf';
@@ -169,17 +170,17 @@ if (input) {
 
         console.log(parseInt(value))
 
-        if ((value > 4)  && (value < 40) && (lengths === 6) ) {
+        if ((value > 4) && (value < 40) && (lengths === 6)) {
 
-         showOtherFields();
+            showOtherFields();
 
-          } else {
-          hideOtherFields();
+        } else {
+            hideOtherFields();
 
-          alert('Désolé vous n\'est pas eligible')
+            alert('Désolé vous n\'est pas eligible')
 
         }
-                    
+
     });
 
 
@@ -221,10 +222,10 @@ if (input) {
         dropdown.classList.remove('show');
     }
     function showOtherFields() {
-     
-            document.querySelector('#otherFields').style.display = 'block';
-            document.querySelector('#nextButton').style.display = 'block';
-    
+
+        document.querySelector('#otherFields').style.display = 'block';
+        document.querySelector('#nextButton').style.display = 'block';
+
     }
     function hideOtherFields() {
         document.querySelector('#otherFields').style.display = 'none';
@@ -243,7 +244,7 @@ if (input) {
                 const activeStep = this.closest('.form-step');
                 activeStep.style.display = 'none';
                 activeStep.nextElementSibling.style.display = 'block';
-               
+
             });
         });
 
@@ -253,7 +254,7 @@ if (input) {
                 const activeStep = this.closest('.form-step');
                 activeStep.style.display = 'none';
                 activeStep.previousElementSibling.style.display = 'block';
-                
+
             });
         });
     });

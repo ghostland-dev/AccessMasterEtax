@@ -103,6 +103,10 @@ class RefundTCGNController extends Controller
      */
     public function destroy(RefundTCGN $refundTCGN)
     {
-        //
+        $remboursementTCGN = RefundTCGN::findOrFail($refundTCGN);
+
+        $remboursementTCGN->delete();
+
+        return response(view('pages.Remboursements.CSPE.index')->with('status', "Cet enregistrement a été supprimé avec succès."));
     }
 }
