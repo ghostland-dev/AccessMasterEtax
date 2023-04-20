@@ -16,7 +16,7 @@ class ElecMeterController extends Controller
     {
         $compteursElecs = ElecMeter::all();
 
-        return view('pages.Compteurs.Elec.index',compact('compteursElecs'));
+        return response(view('pages.Compteurs.Elec.index', compact('compteursElecs'))->with('status', "liste des compteurs d'éléctrcité"));
     }
 
     /**
@@ -26,7 +26,7 @@ class ElecMeterController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('pages.Compteurs.Elec.create')->with('status', "Ajouter un nouveau compteur et assigné le à un site."));
     }
 
     /**
@@ -37,7 +37,8 @@ class ElecMeterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $compteurElec = ElecMeter::create($request->all());
+        return response(view('pages.Compteurs.Elec.show', compact('compteurElec'))->with('status', "le compteur a été créé et assigné le à un site avec succès."));
     }
 
     /**
@@ -48,7 +49,8 @@ class ElecMeterController extends Controller
      */
     public function show(ElecMeter $elecMeter)
     {
-        //
+        $compteurElec = ElecMeter::findOrFail($elecMeter);
+        return response(view('pages.Compteurs.Elec.show', compact('compteurElec'))->with('status', "Voici les détails de ce compteur d'electrcité."));
     }
 
     /**
@@ -59,7 +61,8 @@ class ElecMeterController extends Controller
      */
     public function edit(ElecMeter $elecMeter)
     {
-        //
+        $compteurElec = ElecMeter::findOrFail($elecMeter);
+        return response(view('pages.Compteurs.Elec.edit', compact('compteurElec'))->with('status', "vous pouvez commencer désormais à modifier ce compteur."));
     }
 
     /**
@@ -71,7 +74,25 @@ class ElecMeterController extends Controller
      */
     public function update(Request $request, ElecMeter $elecMeter)
     {
-        //
+        $compteurElec = ElecMeter::findOrFail($elecMeter);
+
+        $compteurElec->annee = $request->annee;
+        $compteurElec->consommation = $request->consommation;
+        $compteurElec->fournisseur = $request->fournisseur;
+        $compteurElec->nom_compteur = $request->nom_compteur;
+        $compteurElec->numero_client = $request->numero_client;
+        $compteurElec->numero_contrat = $request->numero_contrat;
+        $compteurElec->numero_etude = $request->numero_etude;
+        $compteurElec->nom_site = $request->nom_site;
+        $compteurElec->PDL = $request->PDL;
+        $compteurElec->profile = $request->profile;
+        $compteurElec->puissance = $request->puissance;
+        $compteurElec->site_id = $request->site_id;
+
+
+        $compteurElec->save();
+
+        return response(view('pages.Compteurs.Elec.show', compact('compteurElec'))->with('status', "vous pouvez commencer désormais à modifier ce compteur."));
     }
 
     /**
@@ -82,6 +103,8 @@ class ElecMeterController extends Controller
      */
     public function destroy(ElecMeter $elecMeter)
     {
-        //
+        $compteurElec = ElecMeter::findOrFail($elecMeter);
+
+        return response(view('pages.Compteurs.Elec.index')->with('status', "le compteur a été supprimé avec succès."));
     }
 }

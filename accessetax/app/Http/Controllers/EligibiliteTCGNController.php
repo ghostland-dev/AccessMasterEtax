@@ -6,85 +6,89 @@ use App\Models\EligibiliteTCGN;
 use Illuminate\Http\Request;
 use App\Models\ActivityCode;
 
-class EligibiliteTCGNController extends Controller {
+class EligibiliteTCGNController extends Controller
+{
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function index() {
+    public function index()
+    {
 
-        $codeNaces = ActivityCode::all();
+        $codeNaces = EligibiliteTCGN::all();
 
-        dd( $codeNaces );
         //
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function create() {
-
+    public function create()
+    {
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
-    public function CheckTICGN( Request $request ) {
-
-        
+    public function CheckTICGN(Request $request)
+    {
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
+     * @return \Illuminate\Http\Response
+     */
 
-    public function show( EligibiliteTCGN $eligibiliteTCGN ) {
+    public function show(EligibiliteTCGN $eligibiliteTCGN)
+    {
         //
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
+     * @return \Illuminate\Http\Response
+     */
 
-    public function edit( EligibiliteTCGN $eligibiliteTCGN ) {
+    public function edit(EligibiliteTCGN $eligibiliteTCGN)
+    {
         //
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
+     * @return \Illuminate\Http\Response
+     */
 
-    public function update( Request $request, EligibiliteTCGN $eligibiliteTCGN ) {
+    public function update(Request $request, EligibiliteTCGN $eligibiliteTCGN)
+    {
         //
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\EligibiliteTCGN  $eligibiliteTCGN
+     * @return \Illuminate\Http\Response
+     */
 
-    public function destroy( EligibiliteTCGN $eligibiliteTCGN ) {
+    public function destroy(EligibiliteTCGN $eligibiliteTCGN)
+    {
         //
     }
 }
