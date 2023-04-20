@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class UtilisateurController extends Controller {
     /**
@@ -18,8 +19,26 @@ class UtilisateurController extends Controller {
         $clients = User::where( 'role', 'client' )->get();
         $commerciaux = User::where( 'role', 'commercial' )->get();
         $administrateurs = User::where( 'role', 'adminisrateur' )->get();
+        $roles = [ 'visiteur', 'client', 'commercial', 'adminisrateur' ];
 
-        return view( 'pages.utilisateurs.index', compact( 'administrateurs', 'clients', 'commerciaux', 'visiteurs' ) );
+        // $response = Http::withoutVerifying()->get( 'https://api.pappers.fr/v2/recherche', [
+        //     'precision' => 'standard',
+        //     'bases' => 'entreprises,dirigeants,beneficiaires,publications,documents',
+        //     'page' => 1,
+        //     'par_page' => 2,
+        //     'siren' => '851987198',
+        //     'api_token' => env( 'PAPPERS_API_KEY' ),
+        // ] );
+
+        // if ( $response->ok() ) {
+        //     $mainData = json_encode( $response->json() );
+        // } else {
+        //     $mainData = $response->status() ;
+        // }
+
+        return response( view( 'pages.utilisateurs.index', compact( 'administrateurs', 'clients', 'commerciaux', 'visiteurs', 'roles' ) )->with( 'status',
+        'listes des utilisateurs dans la base de données' ) ) ;
+        ;
     }
 
     /**
@@ -29,7 +48,8 @@ class UtilisateurController extends Controller {
     */
 
     public function create() {
-        return view( 'pages.utilisateurs.create' );
+        return response( view( 'pages.utilisateurs.create' )->with( 'status',
+        'C\'est partie vous pouvez commencer à à créer un nouveau utilisateur. ' ) );;
         //
     }
 
@@ -53,15 +73,17 @@ class UtilisateurController extends Controller {
         $Utilisateur->job       = $request->job;
         $Utilisateur->role      = $request->role;
         $Utilisateur->siren     = $request->siren;
-        $Utilisateur->profile   = $request->profile;
+        if ( isset( $request->profile ) ) {
+            $Utilisateur->profile   = $request->profile->store( 'avatars', 'public' );
+        }
         $Utilisateur->email     = $request->email;
         $Utilisateur->password  = $request->password;
         // Save the user
         $Utilisateur->save();
         // Redirect to the users.index view and display message
-        return redirect()->route( 'utilisateurs.index' )
-        ->with( 'success',
-        'Utilisateur'. $Utilisateur->userName.' a été ajouté avec succès.' );
+        return response( redirect()->route( 'utilisateurs' )->with( 'status',
+        'Utilisateur'. $Utilisateur->userName.' a été ajouté avec succès.' ) )
+        ;
     }
 
     /**
@@ -75,7 +97,8 @@ class UtilisateurController extends Controller {
         // Get the user
         $Utilisateur = User::findOrFail( $id );
         // Return the view and pass in the var we previously created
-        return view( 'utilisateurs.show', compact( 'Utilisateur' ) );
+        return response( view( 'pages.utilisateurs.show', compact( 'Utilisateur' ) )->with( 'status',
+        'Utilisateur '. $Utilisateur->userName.' a été trouvée ' ) );
     }
 
     /**
@@ -87,10 +110,11 @@ class UtilisateurController extends Controller {
 
     public function edit( $id ) {
         // Get the user
-        $Utilisateur = User::findOrFail( $id );
 
+        $Utilisateur = User::findOrFail( $id );
         // Return the view and pass in the var we previously created
-        return view( 'utilisateurs.edit', compact( 'Utilisateur' ) );
+        return response( view( 'pages.utilisateurs.edit', compact( 'Utilisateur' ) )->with( 'status',
+        'Vous pouvez commencer à modefier.' ) );
     }
 
     /**
@@ -112,16 +136,17 @@ class UtilisateurController extends Controller {
         $Utilisateur->job       = $request->job;
         $Utilisateur->role      = $request->role;
         $Utilisateur->siren     = $request->siren;
-        $Utilisateur->profile   = $request->profile->store( 'avatars', 'public' );
+        if ( isset( $request->profile ) ) {
+            $Utilisateur->profile   = $request->profile->store( 'avatars', 'public' );
+        }
         $Utilisateur->email     = $request->email;
         $Utilisateur->password  = Hash::make( $request->password );
 
         // Save the user
         $Utilisateur->save();
         // Redirect to the users.index view and display message
-        return redirect()->route( 'utilisateurs.index' )
-        ->with( 'success',
-        'Utilisateur'. $Utilisateur->userName.' a été modifié avec succès.' );
+        return response( redirect()->route( 'utilisateurs' )->with( 'status',
+        'Utilisateur '. $Utilisateur->userName.' a été modifié avec succès.' ) );
     }
 
     /**
@@ -138,9 +163,8 @@ class UtilisateurController extends Controller {
         // Delete the user
         $Utilisateur->delete();
         // Redirect to the users.index view and display message
-        return redirect()->route( 'utilisateurs.index' )
-        ->with( 'success',
-        'Utilisateur'. $Utilisateur->userName.' a été supprimé avec succès.' );
+        return response( redirect()->route( 'utilisateurs' )->with( 'status',
+        'l\'utilisateur   a été supprimé avec succès.' ) );
 
     }
 }

@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.conntected')
 
-@section('content')
+@section('subcontent')
     <div class="container-fluid">
         <div class="row justify-content-center">
 
             <div class="col-md-12">
-                <div class="card">
+                <div class=" ">
                     <div class="card-header">{{ __('Tableau de bord de visiteur') }}</div>
 
                     <div class="card-body">

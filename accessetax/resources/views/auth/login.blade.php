@@ -10,10 +10,7 @@
                     <div class="col-md-8 col-lg-6 col-xxl-4">
                         <div class="card p-3">
                             <div class="card-body">
-                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('logo.svg') }}" width="180" alt="">
-                                </a>
-                                <p class="text-center">Solution financiere digital</p>
+
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="mb-3">
@@ -55,7 +52,7 @@
                                     <button type="submit" class="btn btn-success w-100 py-8 fs-4 mb-4 rounded-2">Se
                                         connecter </button>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-bold"> vous êtes nous ?</p>
+                                        <p class="fs-4 mb-0 fw-bold"> Vous êtes nous ?</p>
                                         <a href="{{ route('register') }}" class="text-success fw-bold ms-2">Créer un
                                             compte</a>
                                     </div>

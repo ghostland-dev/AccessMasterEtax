@@ -13,7 +13,6 @@ class CarbonLique extends Model
     protected $fillable = [
         'nom',
         'code_2',
-        'code_1',
         'eligible',
     ];
 }

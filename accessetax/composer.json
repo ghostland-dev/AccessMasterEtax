@@ -6,12 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "barryvdh/laravel-dompdf": "^2.0",
         "beyondcode/laravel-websockets": "^1.14",
-        "guzzlehttp/guzzle": "^7.2",
+        "creagia/laravel-sign-pad": "^1.1",
+        "doctrine/dbal": "^3.6",
+        "dompdf/dompdf": "^2.0",
+        "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
+        "nesbot/carbon": "^2.66",
         "rackbeat/laravel-ui-avatars": "^1.1"
     },
     "require-dev": {

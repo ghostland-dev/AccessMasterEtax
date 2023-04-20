@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nom_facture', 100)->nullable();
             $table->string('fournisseur', 100)->nullable();
+            $table->string('fichier', 100)->nullable()->default('text');
+            $table->date('date_debut')->nullable()->default(null);
+            $table->date('date_fin')->nullable()->default(null);
             $table->string('type', 100)->nullable();
             $table->string('numero_facture', 100)->nullable();
             $table->string('numero_contrat', 100)->nullable();

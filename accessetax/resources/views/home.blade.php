@@ -25,27 +25,10 @@
                                                 {{ session('status') }}
                                             </div>
                                         @endif
-                                        @foreach ($modelData as $alerte)
-                                            <div class="card p-3" role="alert  " aria-live="assertive" aria-atomic="true">
-                                                <i class="ti ti-bell-ringing"></i>
-                                                <div class="toast-header  ">
-
-                                                    <strong class="me-auto">{{ $alerte->type_alerte }}</strong>
-                                                    <small>{{ $alerte->created_at }}</small>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="toast-body">
-                                                    {{ $alerte->description_alerte }}
-                                                </div>
-                                            </div>
-
-                                            @if ($alerte->id == 5)
-                                            @break
-                                        @endif
-                                    @endforeach
-                                    <h5 class="card-title fw-semibold mb-4">une page simple</h5>
-                                    <p class="mb-0">Cesi est une page simple </p>
+                                        <a href="{{ route('etape3') }}">Simulation</a>
+                                        <h5 class="card-title fw-semibold mb-4">une page simple</h5>
+                                        <p class="mb-0">Cesi est une page simple </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -53,6 +36,4 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-
+    @endsection
