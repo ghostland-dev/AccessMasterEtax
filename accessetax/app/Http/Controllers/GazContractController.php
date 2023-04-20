@@ -14,9 +14,8 @@ class GazContractController extends Controller
      */
     public function index()
     {
-          $contratGazs =  GazContract::all();
-
-        return view('pages.Contrats.Gaz.index', compact('contratGazs'));
+        $contratGazs =  GazContract::all();
+        return response(view('pages.Contrats.Gaz.index', compact('contratGazs'))->with('status', "liste des contrat de gaz."));
     }
 
     /**
@@ -26,7 +25,8 @@ class GazContractController extends Controller
      */
     public function create()
     {
-        //
+
+        return response(view('pages.Contrats.Gaz.create')->with('status', "vous pouvez ajouter un contrat de gaz."));
     }
 
     /**
@@ -37,7 +37,8 @@ class GazContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contratGaz =  GazContract::create($request->all());
+        return response(view('pages.Contrats.Gaz.show', compact('contratGaz'))->with('status', "le contrat de gaz a été créé avec succès."));
     }
 
     /**
@@ -48,7 +49,8 @@ class GazContractController extends Controller
      */
     public function show(GazContract $gazContract)
     {
-        //
+        $contratGaz =  GazContract::findOrFail($gazContract);
+        return response(view('pages.Contrats.Gaz.show', compact('contratGaz'))->with('status', "le contrat de gaz a été retoruvé."));
     }
 
     /**
@@ -59,7 +61,8 @@ class GazContractController extends Controller
      */
     public function edit(GazContract $gazContract)
     {
-        //
+        $contratGaz =  GazContract::findOrFail($gazContract);
+        return response(view('pages.Contrats.Gaz.edit', compact('contratGaz'))->with('status', "le contrat de gaz est prêt à être modifié."));
     }
 
     /**
@@ -71,7 +74,18 @@ class GazContractController extends Controller
      */
     public function update(Request $request, GazContract $gazContract)
     {
-        //
+        $contratGaz =  GazContract::findOrFail($gazContract);
+
+        $contratGaz->date_debut = $request->date_debut;
+        $contratGaz->date_fin = $request->date_fin;
+        $contratGaz->date_signature = $request->date_signature;
+        $contratGaz->fichier = $request->fichier;
+        $contratGaz->fournisseur = $request->fournisseur;
+        $contratGaz->gaz_meter_id = $request->gaz_meter_id;
+        $contratGaz->nom_contrat = $request->nom_contrat;
+
+        $contratGaz->save();
+        return response(view('pages.Contrats.Gaz.show', compact('contratGaz'))->with('status', "le contrat de gaz a été modifié avec succès."));
     }
 
     /**
@@ -82,6 +96,10 @@ class GazContractController extends Controller
      */
     public function destroy(GazContract $gazContract)
     {
-        //
+        $contratGaz =  GazContract::findOrFail($gazContract);
+
+        $contratGaz->delete();
+
+        return response(view('pages.Contrats.Gaz.index')->with('status', "le contrat de gaz a été modifié avec succès."));
     }
 }

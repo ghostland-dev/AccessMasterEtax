@@ -16,8 +16,7 @@ class ElecContractController extends Controller
     {
         $contratElecs =  ElecContract::all();
 
-        return view('pages.Contrats.Elec.index', compact('contratElecs'));
-        
+        return response(view('pages.Contrats.Elec.index', compact('contratElecs')));
     }
 
     /**

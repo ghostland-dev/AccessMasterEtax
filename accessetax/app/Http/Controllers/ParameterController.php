@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parameter;
 use Illuminate\Http\Request;
+
 
 class ParameterController extends Controller
 {
@@ -13,7 +15,9 @@ class ParameterController extends Controller
      */
     public function index()
     {
-        //
+        $paramatres = Parameter::all();
+
+        return response(view('pages.Configurations.Parametres.index', compact('parametres'))->with('status', "liste des parametres de l'application."));
     }
 
     /**
@@ -23,7 +27,7 @@ class ParameterController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('pages.Configurations.Parametres.create', compact('parametres'))->with('status', "vous pouvez créer désormais un nouvea paramtres."));
     }
 
     /**
@@ -34,7 +38,8 @@ class ParameterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parametre = Parameter::create($request->all());
+        return response(view('pages.Configurations.Parametres.show', compact('parametre'))->with('status', "votre pramatre a été crée avec succès."));
     }
 
     /**
@@ -45,7 +50,8 @@ class ParameterController extends Controller
      */
     public function show($id)
     {
-        //
+        $parametre = Parameter::findOrFail($id);
+        return response(view('pages.Configurations.Parametres.show', compact('parametre'))->with('status', "votre pramatre a été retrouvé."));
     }
 
     /**
@@ -56,7 +62,8 @@ class ParameterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $parametre = Parameter::findOrFail($id);
+        return response(view('pages.Configurations.Parametres.edit', compact('parametre'))->with('status', "le pramatre est prêt à être modifié."));
     }
 
     /**
@@ -68,7 +75,13 @@ class ParameterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $parametre = Parameter::findOrFail($id);
+
+        $parametre->cspe = $request->cspe;
+        $parametre->tcgn = $request->tcgn;
+
+        $parametre->save();
+        return response(view('pages.Configurations.Parametres.show', compact('parametre'))->with('status', "le pramatre a été modifié avec succès."));
     }
 
     /**
@@ -79,6 +92,9 @@ class ParameterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parametre = Parameter::findOrFail($id);
+        $parametre->delete();
+
+        return response(view('pages.Configurations.Parametres.index')->with('status', "le pramatre a été supprimé avec succès."));
     }
 }

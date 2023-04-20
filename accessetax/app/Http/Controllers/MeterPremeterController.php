@@ -14,7 +14,8 @@ class MeterPremeterController extends Controller
      */
     public function index()
     {
-        //
+        $Piremetrecompteurs = MeterPremeter::all();
+        return response(view('pages.Perimetres.index', compact('Piremetrecompteurs'))->with('status', "liste des perimetres."));
     }
 
     /**
@@ -24,7 +25,7 @@ class MeterPremeterController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('pages.Perimetres.create')->with('status', "vous pouvez commencer la création  d'un piremetre."));
     }
 
     /**
@@ -35,7 +36,8 @@ class MeterPremeterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Piremetrecompteur = MeterPremeter::create($request->all());
+        return response(view('pages.Perimetres.show', compact('Piremetrecompteur'))->with('status', "le piremetre a été crée avec succès."));
     }
 
     /**
@@ -46,7 +48,8 @@ class MeterPremeterController extends Controller
      */
     public function show(MeterPremeter $meterPremeter)
     {
-        //
+        $Piremetrecompteur = MeterPremeter::findOrFail($meterPremeter);
+        return response(view('pages.Perimetres.show', compact('Piremetrecompteur'))->with('status', "le piremetre a été retrouvé dans nos enregistrements."));
     }
 
     /**
@@ -57,7 +60,8 @@ class MeterPremeterController extends Controller
      */
     public function edit(MeterPremeter $meterPremeter)
     {
-        //
+        $Piremetrecompteur = MeterPremeter::findOrFail($meterPremeter);
+        return response(view('pages.Perimetres.edit', compact('Piremetrecompteur'))->with('status', "le piremetre est prêt à être modifié."));
     }
 
     /**
@@ -69,7 +73,18 @@ class MeterPremeterController extends Controller
      */
     public function update(Request $request, MeterPremeter $meterPremeter)
     {
-        //
+        $Piremetrecompteur = MeterPremeter::findOrFail($meterPremeter);
+
+        $Piremetrecompteur->compteur_c4  = $request->compteur_c4;
+        $Piremetrecompteur->compteur_c5  = $request->compteur_c5;
+        $Piremetrecompteur->compteur_hta = $request->compteur_hta;
+        $Piremetrecompteur->compteur_t2  = $request->compteur_c2;
+        $Piremetrecompteur->compteur_t3  = $request->compteur_c3;
+        $Piremetrecompteur->compteur_t4  = $request->compteur_c4;
+        $Piremetrecompteur->company_id   = $request->company_id;
+
+        $Piremetrecompteur->save();
+        return response(view('pages.Perimetres.show', compact('Piremetrecompteur'))->with('status', "le piremetre a été modifié avec succès."));
     }
 
     /**
@@ -80,6 +95,9 @@ class MeterPremeterController extends Controller
      */
     public function destroy(MeterPremeter $meterPremeter)
     {
-        //
+        $Piremetrecompteur = MeterPremeter::findOrFail($meterPremeter);
+        $Piremetrecompteur->delet();
+
+        return response(view('pages.Perimetres.index')->with('status', "le piremetre a été supprimé avec succès."));
     }
 }
