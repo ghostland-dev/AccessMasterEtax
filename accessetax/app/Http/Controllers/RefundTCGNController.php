@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RefundTCGN;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RefundTCGNController extends Controller
 {
@@ -14,7 +15,9 @@ class RefundTCGNController extends Controller
      */
     public function index()
     {
-        //
+        $remboursementTCGNs = RefundTCGN::all();
+
+        return response(view('pages.Remboursements.TICGN.index')->with('status', "voici la liste des remboursements TICGN pour ce client"));
     }
 
     /**
@@ -24,7 +27,8 @@ class RefundTCGNController extends Controller
      */
     public function create()
     {
-        //
+
+        return response(view('pages.Remboursements.TICGN.create')->with('status', "vous pouvez commencer à ajouter un remboursement de type TICGN."));
     }
 
     /**
@@ -35,7 +39,9 @@ class RefundTCGNController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $remboursementTCGN = RefundTCGN::create($request->all());
+        return response(view('pages.Remboursements.CSPE.show', compact('remboursementTCGN'))->with('status', "le tableau de remboursement a été ajouté avec succès"));
     }
 
     /**
@@ -46,7 +52,8 @@ class RefundTCGNController extends Controller
      */
     public function show(RefundTCGN $refundTCGN)
     {
-        //
+        $remboursementTCGN = RefundTCGN::findOrFail($refundTCGN);
+        return response(view('pages.Remboursements.CSPE.show', compact('remboursementTCGN'))->with('status', "le tableau de remboursement a été ajouté avec succès"));
     }
 
     /**
@@ -57,7 +64,8 @@ class RefundTCGNController extends Controller
      */
     public function edit(RefundTCGN $refundTCGN)
     {
-        //
+        $remboursementTCGN = RefundTCGN::findOrFail($refundTCGN);
+        return response(view('pages.Remboursements.CSPE.edit', compact('remboursementTCGN'))->with('status', "vous pouvez commencer les modifications de ce tableau de remboursement"));
     }
 
     /**
@@ -69,7 +77,22 @@ class RefundTCGNController extends Controller
      */
     public function update(Request $request, RefundTCGN $refundTCGN)
     {
-        //
+        $remboursementTCGN = RefundTCGN::findOrFail($refundTCGN);
+
+        $remboursementTCGN->achat_autres_prod = $request->achat_autres_prod;
+        $remboursementTCGN->achat_chatleur = $request->achat_chatleur;
+        $remboursementTCGN->achat_prod_gaz = $request->achat_prod_gaz;
+        $remboursementTCGN->achat_prod_petrol = $request->achat_prod_petrol;
+        $remboursementTCGN->car_elec = $request->car_elec;
+        $remboursementTCGN->car_gaz = $request->car_gaz;
+        $remboursementTCGN->eligibilite = $request->eligibilite;
+        $remboursementTCGN->valuer_ajoutee = $request->valuer_ajoutee;
+        $remboursementTCGN->valeur_production = $request->valeur_production;
+        $remboursementTCGN->study_id = $request->study_id;
+
+        $remboursementTCGN->save;
+
+        return response(view('pages.Remboursements.CSPE.show', compact('remboursementTCGN'))->with('status', "les modifications ont été prise en compte pour ce tableau"));
     }
 
     /**
