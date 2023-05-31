@@ -15,8 +15,8 @@ class ConstantController extends Controller
     public function index()
     {
 
-         $constants = Constant::all();
-         return response( view("pages.Configurations.Constants.index" , compact('constants'))->with('status',"liste des constants."));
+        $constants = Constant::all();
+        return response(view("pages.Configurations.Constants.index", compact('constants'))->with('status', "liste des constants."));
     }
 
     /**
@@ -26,7 +26,7 @@ class ConstantController extends Controller
      */
     public function create()
     {
-        return response( view("pages.Configurations.Constants.create" , compact('constants'))->with('status',"liste des constants."));
+        return response(view("pages.Configurations.Constants.create")->with('status', "liste des constants."));
     }
 
     /**
@@ -38,17 +38,16 @@ class ConstantController extends Controller
     public function store(Request $request)
     {
 
-         $constant = new Constant();
+        $constant = new Constant();
 
-         $constant->tcgn_plein = $request->tcgn_plein ;
-         $constant->tcgn_reduit = $request->tcgn_reduit;
-         $constant->cspe = $request->cspe;
+        $constant->tcgn_plein = $request->tcgn_plein;
+        $constant->tcgn_reduit = $request->tcgn_reduit;
+        $constant->cspe = $request->cspe;
 
-         $constant->save(); 
+        $constant->save();
 
 
-        return response( view("pages.Configurations.Constants.show" , compact('constant'))->with('status',"constant a été ajoutée avec succès."));
-  
+        return response(view("pages.Configurations.Constants.show", compact('constant'))->with('status', "constant a été ajoutée avec succès."));
     }
 
     /**
@@ -60,7 +59,7 @@ class ConstantController extends Controller
     public function show($id)
     {
         $constant = Constant::findORfail($id);
-        return response( view("pages.Configurations.Constants.show" , compact('constant'))->with('status',"constant a été retoruvé avec succès."));
+        return response(view("pages.Configurations.Constants.show", compact('constant'))->with('status', "constant a été retoruvé avec succès."));
     }
 
     /**
@@ -72,7 +71,7 @@ class ConstantController extends Controller
     public function edit($id)
     {
         $constant = Constant::findORfail($id);
-        return response( view("pages.Configurations.Constants.edit" , compact('constant'))->with('status',"constant est prête à être modifié."));
+        return response(view("pages.Configurations.Constants.edit", compact('constant'))->with('status', "constant est prête à être modifié."));
     }
 
     /**
@@ -86,13 +85,13 @@ class ConstantController extends Controller
     {
         $constant = Constant::findORfail($id);
 
-        $constant->tcgn_plein = $request->tcgn_plein ;
-         $constant->tcgn_reduit = $request->tcgn_reduit;
-         $constant->cspe = $request->cspe;
+        $constant->tcgn_plein = $request->tcgn_plein;
+        $constant->tcgn_reduit = $request->tcgn_reduit;
+        $constant->cspe = $request->cspe;
 
-         $constant->save(); 
+        $constant->save();
 
-        return response( view("pages.Configurations.Constants.show" , compact('constant'))->with('status',"constant a été modifié avec succès."));
+        return response(view("pages.Configurations.Constants.show", compact('constant'))->with('status', "constant a été modifié avec succès."));
     }
 
     /**
@@ -103,10 +102,10 @@ class ConstantController extends Controller
      */
     public function destroy($id)
     {
-         $constant = Constant::findORfail($id);
+        $constant = Constant::findORfail($id);
 
-         $constant->delete();
+        $constant->delete();
 
-         return response( view("pages.Configurations.Constants.index" , compact('constant'))->with('status',"constant a été supprimé avec succès."));
+        return redirect()->route("constants")->with('status', "constant a été supprimé avec succès.");
     }
 }

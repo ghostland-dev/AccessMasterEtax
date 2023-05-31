@@ -23,6 +23,7 @@ class Supplier extends Model
        'country',
        'zip_code',
        'siret',
+       'energie',
 
     ];
 }

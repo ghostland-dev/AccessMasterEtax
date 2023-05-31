@@ -27,15 +27,16 @@
 
 <body>
     <!-- banner -->
-    <div class="jumbotron jumbotron-fluid" id="banner" style="background-image: url(img/banner-bk.jpg);">
-        <div class="container text-center text-md-left">
+    <div class="jumbotron jumbotron-fluid h-full" id="banner"
+        style="background-image: url(img/banner-bk.jpg); height: 100vh;">
+        <div class="container flex justify-center text-center text-md-left">
             <header>
                 <div class="row justify-content-between">
                     <div class="col-2">
                         <img src="{{ asset('img/logo.svg') }}" alt="logo" class="logo">
                     </div>
                     <div class="col-6 align-self-center text-right">
-                        <a href="{{ route('etape1') }}" class="text-white lead">Je veux faire des éconmies </a>
+                        <a href="{{ __('/login') }}" class="text-white lead">se connecter </a>
                     </div>
                 </div>
             </header>

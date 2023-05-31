@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('responsibles', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('civilite', ['Madame', 'Montieur'])->nullable();
+            $table->string('civilite')->nullable();
             $table->string('nom_famille');
             $table->string('prenom');
             $table->string('fonction');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('code_postal');
             $table->string('ville');
             $table->string('pays');
-            $table->string('date_naissance');
+            $table->string('date_naissance')->nullable();
             $table->timestamps();
 
             $table->foreignId('company_id')

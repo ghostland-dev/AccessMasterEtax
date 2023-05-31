@@ -4,7 +4,7 @@
 
 
 
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"> + Nouveau
+        <button class="btn btn-success" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"> + Nouveau
             Utilisateur</button>
         <!--end col-->
 
@@ -14,20 +14,29 @@
 
             <!--- //FIXME:  fix the flow  -->
             <div class="row">
-                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
-                        aria-selected="true">Clients</button>
-                    <button class="nav-link border-success" id="v-pills-profile-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
-                        aria-selected="false">Visiteurs</button>
+                <div class="  grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 my-4  " id="v-pills-tab" role="tablist"
+                    aria-orientation="vertical">
+                    <button
+                        class=" bg-slate-500 font-semibold text-emerald-400  active  rounded-md m-2 p-3 active:bg-emerald-400 active:text-white
+                     "
+                        id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true">Clients</button>
+                    <button
+                        class=" bg-slate-500 font-semibold text-emerald-400    rounded-md m-2 p-3 active:bg-emerald-400 active:text-white
+                    "
+                        id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button"
+                        role="tab" aria-controls="v-pills-profile" aria-selected="false">Visiteurs</button>
 
-                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
-                        aria-selected="false">Commerciaux</button>
-                    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
-                        aria-selected="false">Adminisrateur</button>
+                    <button
+                        class="bg-slate-500 font-semibold text-emerald-400    rounded-md m-2 p-3 active:bg-emerald-400 active:text-white
+                    "
+                        id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button"
+                        role="tab" aria-controls="v-pills-messages" aria-selected="false">Commerciaux</button>
+                    <button
+                        class="bg-slate-500 font-semibold text-emerald-400    rounded-md m-2 p-3 active:bg-emerald-400 active:text-white
+                    "
+                        id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button"
+                        role="tab" aria-controls="v-pills-settings" aria-selected="false">Adminisrateur</button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
@@ -93,7 +102,8 @@
                                                     aria-labelledby="actionsDropdown{{ $client->id }}">
                                                     <li><a class="dropdown-item"
                                                             href="{{ route('utilisateur.show', $client->id) }}"
-                                                            target="_blank" rel="noopener noreferrer"><i
+                                                            target="_blank"
+                                                            rel=" bg-slate-800 text-emerald-400 p-2 rounded-smoopener noreferrer"><i
                                                                 class="fa fa-eye"></i>
                                                             Détails</a></li>
                                                     <li><a class="dropdown-item"

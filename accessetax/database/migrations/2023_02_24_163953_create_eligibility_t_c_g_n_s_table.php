@@ -15,17 +15,34 @@ return new class extends Migration
     {
         Schema::create('eligibility_t_c_g_n_s', function (Blueprint $table) {
             $table->id();
-            $table->float('valuer_ajoutee')->nullable()->default(1);
-            $table->float('car_gaz')->nullable()->default(1);
-            $table->float('car_elec')->nullable()->default(1);
-            $table->float('car_autre')->nullable()->default(1);
-            $table->float('valeur_production')->nullable()->default(1);
-            $table->float('achat_prod_gaz')->nullable()->default(1);
-            $table->float('achat_prod_petrol')->nullable()->default(1);
-            $table->float('achat_chatleur')->nullable()->default(1);
-            $table->float('achat_autres_prod')->nullable()->default(1);
-            $table->boolean('eligibilite')->nullable()->default(false);
+            $table->boolean('Validation03')->nullable();
+            $table->boolean('Validation02')->nullable();
+            $table->boolean('Validation01')->nullable();
+            $table->boolean('fullvalidation')->nullable();
+            $table->float('esitmationEconomie')->nullable();
+            $table->float('SommeTotalTaxElecPlein')->nullable();
+            $table->float('SommeTotalTaxGazPlein')->nullable();
+            $table->float('SommeTotalTaxTCGNReduit')->nullable();
+            $table->float('chiffreAffaireBrut_AE')->nullable();
+            $table->float('chiffreAffaireNet_AE')->nullable();
+            $table->float('consumAnGazKwh')->nullable();
+            $table->float('consumAnElecKwh')->nullable();
+            $table->float('valeurProduction')->nullable();
+            $table->float('valeurAjouterEuro')->nullable();
+            $table->float('achatGaz')->nullable();
+            $table->float('achatPetroliers')->nullable();
+            $table->float( 'achatChaleur')->nullable();
+            $table->float('autres')->nullable();
+            $table->float('consumAnAutreKwh')->nullable();
+            $table->float('pourcentageConsuPorcessus')->nullable();
+            $table->float( 'NaceCode')->nullable();
+            $table->float( 'combustionProcessus')->nullable();
             $table->timestamps();
+
+            $table->foreignId('study_id')
+            ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

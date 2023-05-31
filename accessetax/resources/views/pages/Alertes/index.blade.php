@@ -21,34 +21,34 @@
                                 <div class="card">
                                     <div class="card-body">
                                         @if (session('status'))
-                                            <div class="alert bg-light-success text-success text-center" role="alert">
+                                            <div class="alert bg-light-gray text-success text-center" role="alert">
                                                 <i class="fa fa-trash"></i> {{ session('status') }}
                                             </div>
                                         @endif
                                         <div class="row">
                                             @foreach ($modelData as $alerte)
-                                                <div class="card p-3  " role="alert  " aria-live="assertive"
+                                                <div class="col-md-3 card p-3  " role="alert" aria-live="assertive"
                                                     aria-atomic="true">
-                                                    <div class="container">
-
-                                                        <i class="ti ti-bell-ringing"></i>
-                                                        <div class="toast-header  ">
-
-
+                                                    <div class="container-fluid">
+                                                        <i class="btn btn-light-success ti ti-bell-ringing"></i>
+                                                        <div class="bg-light-gray p-2 my-2 rounded-2">
+                                                            <div class="toast-header  ">{{ $alerte->nom_alerte }} </div>
+                                                            <div class="toast-body">
+                                                                {{ $alerte->description_alerte }}
+                                                                <span class=" "> {{ $alerte->type_alerte }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="toast-body">
-                                                            {{ $alerte->description_alerte }}
-                                                        </div>
+                                                        <form action="{{ route('alerte.destroy', $alerte->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit"
+                                                                class="btn btn-danger my-2 float-end rounded-9"><i
+                                                                    class="fa fa-close"></i></button>
+
+                                                        </form>
                                                     </div>
-                                                    <form action="{{ route('alerte.destroy', $alerte->id) }}"
-                                                        method="POST">
 
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-success my-2"><i
-                                                                class="fa fa-close"></i></button>
-
-                                                    </form>
                                                 </div>
 
                                                 {{-- @if ($alerte->id == 5)

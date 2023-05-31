@@ -1,8 +1,12 @@
-/* @import '~mdb-ui-kit/css/mdb.min.css'; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.logo-navbar{
-    height:16px
+/* .logo-navbar {
+    height: 16px
 }
+
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #6081ab !important;
+} */

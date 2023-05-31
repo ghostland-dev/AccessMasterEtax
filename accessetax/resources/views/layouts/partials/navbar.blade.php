@@ -6,17 +6,19 @@
                      <i class="ti ti-menu-2"></i>
                  </a>
              </li>
-             {{-- <li class="nav-item">
-                 <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                     <i class="ti ti-bell-ringing"></i>
-                     <div class="notification bg-success rounded-circle"></div>
+             <li class="nav-item">
+                 <a class="nav-link nav-icon-hover bg-success  " href="{{ route('alertes') }}">
+                     <i class="ti ti-bell-ringing text-dark "></i>
+
                  </a>
-             </li> --}}
+             </li>
          </ul>
          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
              <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                 <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
-                     class="btn btn-success">Télécharger E-Tax Desktop <i class="fa-"></i></a>
+                 <a href="{{ route('etape1') }}" target="_blank" class="btn btn-success">Nouveau client <i
+                         class="fa-"></i></a>
+                 <button type="button" class="btn btn-dark mx-3" data-toggle="collapse" data-target="#sidebar"><i
+                         class="fa fa-dashboard  "></i> Menu</button>
                  <li class="nav-item dropdown">
                      <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                          data-bs-toggle="dropdown" aria-expanded="false">

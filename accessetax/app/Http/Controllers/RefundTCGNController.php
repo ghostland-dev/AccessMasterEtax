@@ -17,7 +17,7 @@ class RefundTCGNController extends Controller
     {
         $remboursementTCGNs = RefundTCGN::all();
 
-        return response(view('pages.Remboursements.TICGN.index')->with('status', "voici la liste des remboursements TICGN pour ce client"));
+        return response(view('pages.Remboursements.TICGN.index', compact('remboursementTCGNs'))->with('status', "voici la liste des remboursements TICGN pour ce client"));
     }
 
     /**

@@ -17,7 +17,7 @@ class ResponsibleFactory extends Factory
     public function definition()
     {
         return [
-            'civilite' => null,
+            'civilite' => $this->faker->randomElement(['Monsieur', 'Madame', 'Autre']),
             'nom_famille' => $this->faker->word,
             'prenom' => $this->faker->firstName,
             'fonction' => $this->faker->lastName,
@@ -30,7 +30,7 @@ class ResponsibleFactory extends Factory
             'pays' => $this->faker->country,
             'date_naissance' => $this->faker->date,
             'company_id' => $this->faker->randomDigitNotNull,
-            
+
         ];
     }
 }

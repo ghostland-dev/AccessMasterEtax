@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class EligibilityTCGN extends Model
@@ -11,15 +12,39 @@ class EligibilityTCGN extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'valuer_ajoutee' ,
-        'car_gaz' ,
-        'car_elec' ,
-        'car_autre' ,
-        'valeur_production' ,
-        'achat_prod_gaz' ,
-        'achat_prod_petrol' ,
-        'achat_chatleur' ,
-        'achat_autres_prod' ,
-        'eligibilite'  ,
+        'fullvalidation',
+        'Validation03',
+        'Validation02',
+        'Validation01',
+        'fullvalidation',
+        'esitmationEconomie',
+        'SommeTotalTaxElecPlein',
+        'SommeTotalTaxGazPlein',
+        'SommeTotalTaxTCGNReduit',
+        'chiffreAffaireBrut_AE',
+        'chiffreAffaireNet_AE',
+        'study_id',
+        'valeurAjouterEuro',
+        'consumAnGazKwh',
+        'consumAnElecKwh',
+        'valeurProduction',
+        'achatGaz',
+        'achatPetroliers',
+        'achatChaleur',
+        'autres',
+        'consumAnAutreKwh',
+        'pourcentageConsuPorcessus',
+        'NaceCode',
+        'combustionProcessus'
     ];
+
+    /**
+     * Get the Study that owns the EligibilityCSPE
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function study(): BelongsTo
+    {
+        return $this->belongsTo(Study::class, 'study_id');
+    }
 }

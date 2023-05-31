@@ -16,7 +16,7 @@ class CodeNafController extends Controller
     {
         $codenafs = CodeNaf::all();
 
-        return response()->json($codenafs);
+        return response(view('pages.CodeNafs.index', compact('codenafs')));
     }
 
 
@@ -29,7 +29,7 @@ class CodeNafController extends Controller
     {
         $codenafs = CodeNaf::all();
 
-        return response( view("pages.CodeNafs.index" ,compact('codenafs'))->with('status',"liste des codes NAFs."));
+        return response(view("pages.CodeNafs.index", compact('codenafs'))->with('status', "liste des codes NAFs."));
     }
 
     /**
@@ -39,7 +39,7 @@ class CodeNafController extends Controller
      */
     public function create()
     {
-         return response( view("pages.CodeNafs.create")->with('status', "liste des codes NAFs."));
+        return response(view("pages.CodeNafs.create")->with('status', "liste des codes NAFs."));
     }
 
     /**
@@ -55,7 +55,7 @@ class CodeNafController extends Controller
         $codenaf->libelle_naf =   $request->libelle_naf;
         $codenaf->eligible =   $request->eligible;
         $codenaf->save();
-         return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"liste des codes NAFs."));
+        return response(view("pages.CodeNafs.show", compact('codenaf'))->with('status', "liste des codes NAFs."));
     }
 
     /**
@@ -66,8 +66,8 @@ class CodeNafController extends Controller
      */
     public function show($id)
     {
-          $codenaf = CodeNaf::findOrFail($id);
-          return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"liste des codes NAFs."));
+        $codenaf = CodeNaf::findOrFail($id);
+        return response(view("pages.CodeNafs.show", compact('codenaf'))->with('status', "liste des codes NAFs."));
     }
 
     /**
@@ -78,8 +78,8 @@ class CodeNafController extends Controller
      */
     public function edit($id)
     {
-         $codenaf = CodeNaf::findOrFail($id);
-          return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"Codes NAF est prêt à être modifié."));
+        $codenaf = CodeNaf::findOrFail($id);
+        return response(view("pages.CodeNafs.edit", compact('codenaf'))->with('status', "Codes NAF est prêt à être modifié."));
     }
 
     /**
@@ -96,7 +96,7 @@ class CodeNafController extends Controller
         $codenaf->libelle_naf =   $request->libelle_naf;
         $codenaf->eligible =   $request->eligible;
         $codenaf->save();
-         return response( view("pages.CodeNafs.show" ,compact('codenaf'))->with('status',"liste des codes NAFs."));
+        return response(view("pages.CodeNafs.show", compact('codenaf'))->with('status', "liste des codes NAFs."));
     }
 
     /**
@@ -109,6 +109,5 @@ class CodeNafController extends Controller
     {
         $codenaf = CodeNaf::findOrFail($id);
         $codenaf->delete();
-          return response( view("pages.CodeNafs.index" ,compact('codenaf'))->with('status',"Codes NAF a été supprimé avec succès ."));
-    }
+        return redirect()->route('codesNafs')->with('status', "code NAF a été supprimé avec succès.");    }
 }

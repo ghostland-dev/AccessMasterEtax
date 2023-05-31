@@ -74,7 +74,7 @@ class UtilisateurController extends Controller {
         $Utilisateur->role      = $request->role;
         $Utilisateur->siren     = $request->siren;
         if ( isset( $request->profile ) ) {
-            $Utilisateur->profile   = $request->profile->store( 'avatars', 'public' );
+            $Utilisateur->profile   = url('storage/' . $request->profile->store( 'avatars', 'public' ));
         }
         $Utilisateur->email     = $request->email;
         $Utilisateur->password  = $request->password;
@@ -137,7 +137,7 @@ class UtilisateurController extends Controller {
         $Utilisateur->role      = $request->role;
         $Utilisateur->siren     = $request->siren;
         if ( isset( $request->profile ) ) {
-            $Utilisateur->profile   = $request->profile->store( 'avatars', 'public' );
+            $Utilisateur->profile   = url('storage/' . $request->profile->store( 'avatars', 'public' ));
         }
         $Utilisateur->email     = $request->email;
         $Utilisateur->password  = Hash::make( $request->password );

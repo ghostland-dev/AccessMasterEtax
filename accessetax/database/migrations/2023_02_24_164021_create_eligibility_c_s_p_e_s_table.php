@@ -15,17 +15,25 @@ return new class extends Migration
     {
         Schema::create('eligibility_c_s_p_e_s', function (Blueprint $table) {
             $table->id();
-            $table->string('annee');
-            $table->string('entreprise');
-            $table->string('siren');
-            $table->string('code_naf');
-            $table->float('veleur_ajoutee')->nullable()->default(123.45);
-            $table->float('car')->nullable()->default(123.45);
-            $table->string('unite', 10)->nullable()->default('kw/€');
-            $table->date('date_verification')->nullable()->default(null);
-            $table->boolean('elegibilite_activite')->nullable()->default(false);
-            $table->boolean('eliegibilite_elec_intense')->nullable()->default(false);
+            $table->string('CodeNafmessage')->nullable();
+            $table->float('MotnantCSPETauxReduit')->nullable();
+            $table->float('CAR')->nullable();
+            $table->float('valeurAjouter')->nullable();
+            $table->string('codeNaf')->nullable();
+            $table->float('CSPEtauxPlein')->nullable();
+            $table->boolean('EligibiliteReduit')->nullable();
+            $table->float('RatioElectroIntense')->nullable();
+            $table->boolean('SoumisRisqueFuitCO2')->nullable();
+            $table->float('NouveaTauxReduit')->nullable();
+            $table->float('RemboursementClient')->nullable();
+            $table->float('chiffreAffaireBrut_AE')->nullable();
+            $table->float('chiffreAffaireNet_AE')->nullable();
             $table->timestamps();
+
+            $table->foreignId('study_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

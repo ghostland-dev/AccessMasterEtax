@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
-class ElecContract extends Model {
+class ElecContract extends Model
+{
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -21,17 +22,13 @@ class ElecContract extends Model {
         'elec_meter_id',
     ];
 
-    public function elecBills(): HasMany {
-        return $this->hasMany( ElecBill::class );
+    public function Bills(): HasMany
+    {
+        return $this->hasMany(ElecBill::class);
     }
 
-    /**
-    * Get the contract that owns the ElecContract
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    */
-
-    public function elecMeter(): BelongsTo {
-        return $this->belongsTo( ElecMeter::class, 'elec_meter_id' );
+    public function elecMeter(): BelongsTo
+    {
+        return $this->belongsTo(ElecMeter::class, 'elec_meter_id');
     }
 }
