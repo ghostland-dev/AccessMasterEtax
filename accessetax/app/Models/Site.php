@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Site extends Model {
+class Site extends Model
+{
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -25,7 +27,13 @@ class Site extends Model {
         'company_id',
     ];
 
-    public function etudes() {
-        return $this->hasMany( Study::class );
+    public function etudes()
+    {
+        return $this->hasMany(Study::class);
+    }
+
+    public function company():BelongsTo
+    {
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

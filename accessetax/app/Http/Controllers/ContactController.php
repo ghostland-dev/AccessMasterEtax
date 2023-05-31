@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -13,7 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $Contacts = Contact::all();
+        return response(view('pages.Contacts.index', compact('Contacts'))->with('status', "liste des contacts."));
     }
 
     /**
@@ -23,7 +25,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('pages.Contacts.create')->with('status', "vous pouvez ajouter un nouveau contact."));
     }
 
     /**
@@ -34,7 +36,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Contact = Contact::create($request->all());
+        return response(view('pages.Contacts.show', compact('Contact'))->with('status', "un nouveau contact a été ajouté avce succès"));
     }
 
     /**
@@ -45,7 +48,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $Contact = Contact::findOrFail($id);
+        return response(view('pages.Contacts.show', compact('Contact'))->with('status', "Voici les détails de ce contact."));
     }
 
     /**
@@ -56,7 +60,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Contact = Contact::findOrFail($id);
+        return response(view('pages.Contacts.edit', compact('Contact'))->with('status', "vous pouvez commencer à modifier ce contact."));
     }
 
     /**
@@ -68,7 +73,23 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Contact = Contact::findOrFail($id);
+
+        $Contact->nom = $request->nom;
+        $Contact->prenom = $request->prenom;
+        $Contact->email = $request->email;
+        $Contact->mobile = $request->mobile;
+        $Contact->fix = $request->fix;
+        $Contact->type = $request->type;
+        $Contact->ville = $request->ville;
+        $Contact->adresse = $request->adresse;
+        $Contact->pays = $request->pays;
+        $Contact->code_postal = $request->code_postal;
+        $Contact->fonction = $request->fonction;
+        $Contact->company_id = $request->company_id;
+
+        $Contact->save();
+        return response(view('pages.Contacts.show', compact('Contact'))->with('status', "vous pouvez commencer à modifier ce contact."));
     }
 
     /**
@@ -79,6 +100,7 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Contact = Contact::findOrFail($id);
+        return response(view('pages.Contacts.index')->with('status', "contact a été supprimé avec succès."));
     }
 }

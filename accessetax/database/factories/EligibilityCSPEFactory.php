@@ -17,16 +17,22 @@ class EligibilityCSPEFactory extends Factory
     public function definition()
     {
         return [
-            'valuer_ajoutee' => $this->faker->randomDigitNotNull,
-            'car_gaz' => $this->faker->randomDigitNotNull,
-            'car_elec' => $this->faker->randomDigitNotNull,
-            'car_autre' => $this->faker->randomDigitNotNull,
-            'valeur_production' => $this->faker->randomDigitNotNull,
-            'achat_prod_gaz' => $this->faker->randomDigitNotNull,
-            'achat_prod_petrol' => $this->faker->randomDigitNotNull,
-            'achat_chatleur' => $this->faker->randomDigitNotNull,
-            'achat_autres_prod' => $this->faker->randomDigitNotNull,
-            'eligibilite' => $this->faker->randomDigitNotNull,
+            'codeNaf' => $this->faker->randomDigitNotNull(),
+            'valeurAjouter' => $this->faker->randomDigitNotNull(),
+            'CAR' => $this->faker->randomDigitNotNull(),
+            'CodeNafmessage' => "dede",
+            'MotnantCSPETauxReduit' => $this->faker->randomDigitNotNull(),
+            'CSPEtauxPlein' => $this->faker->randomDigitNotNull(),
+            'EligibiliteReduit' => true,
+            'RatioElectroIntense' => $this->faker->randomDigitNotNull(),
+            'SoumisRisqueFuitCO2' => true,
+            'NouveaTauxReduit' => $this->faker->randomDigitNotNull(),
+            'RemboursementClient' => $this->faker->randomDigitNotNull(),
+            'chiffreAffaireBrut_AE' => $this->faker->randomDigitNotNull(),
+            'chiffreAffaireNet_AE' => $this->faker->randomDigitNotNull(),
+            'study_id' => $this->faker->randomDigitNotNull(),
+
+
         ];
     }
 }

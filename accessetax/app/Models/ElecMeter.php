@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class ElecMeter extends Model {
@@ -24,7 +25,12 @@ class ElecMeter extends Model {
         'site_id',
     ];
 
-    public function elecContracts() {
+    public function Contracts() {
         return $this->hasMany( ElecContract::class );
+    }
+
+    public function Site(): BelongsTo
+    {
+        return $this->belongsTo(Site::class, 'site_id' );
     }
 }

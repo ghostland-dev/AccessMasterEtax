@@ -29,6 +29,8 @@ class SupplierFactory extends Factory
             'country' => $this->faker->country(),
             'zip_code' => $this->faker->postCode(),
             'siret' => $this->faker->randomDigitNotNull(),
+            'energie' => $this->faker->numberBetween(1, 3),
+
         ];
     }
 }

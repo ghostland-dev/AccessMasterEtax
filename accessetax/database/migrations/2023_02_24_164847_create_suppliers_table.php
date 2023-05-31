@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('country')->nullable()->default(null);
             $table->string('zip_code')->nullable()->default(null);
             $table->string('siret')->nullable()->default(null);
+            $table->integer('energie')->nullable()->default(1);
             $table->timestamps();
         });
     }

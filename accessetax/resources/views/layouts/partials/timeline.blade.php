@@ -1,125 +1,136 @@
-<div class="container-fluid bg-white ">                      
-   
+<div class="container-fluid bg-white ">
+
 
     <div class="row">
         <div class="col p-4">
             <div class="timeline-steps aos-init aos-animate" data-aos="fade-up">
-                @if( $step >= 1)
-                <div class="timeline-step">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2003">
-                         <div class="inner-circle"></div> 
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2">Eligibilité</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 01 </p>
+                @if ($step >= 1)
+                    <div class="timeline-step">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2003">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2">Eligibilité</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 01 </p>
+                        </div>
                     </div>
-                </div>
-                 @endif
-                @if( $step >= 2)
-                <div class="timeline-step">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2004">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Signature de contrat</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 02</p>
+                @endif
+                @if ($step >= 2)
+                    <div class="timeline-step">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2004">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Signature de contrat</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 02</p>
+                        </div>
                     </div>
-                </div>
-                 @endif
-                @if( $step >= 3)
-                <div class="timeline-step">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2005">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Renvoi documents</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 03</p>
+                @endif
+                @if ($step >= 3)
+                    <div class="timeline-step">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2005">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Renvoi documents</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 03</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
-                @if( $step >= 4)
-                <div class="timeline-step">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2010">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Montage de dossier</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 04</p>
+                @endif
+                @if ($step >= 4)
+                    <div class="timeline-step">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2010">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Montage de dossier</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 04</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
-                @if( $step >= 5)
-                <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">2020</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 05</p>
+                @endif
+                @if ($step >= 5)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Montage confirmé</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 05</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
-                @if( $step >= 6)
-
-                <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Transmession de dossier</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 07</p>
+                @endif
+                @if ($step >= 6)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Transmession de dossier</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 07</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
-                @if( $step >= 7)
-
-                <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Accusès de reception</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 08</p>
+                @endif
+                @if ($step >= 7)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Accusès de reception</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 08</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
-                @if( $step >= 8)
-
-                <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Remboursement Client</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 09</p>
+                @endif
+                @if ($step >= 8)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Remboursement Client</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 09</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
-                @if( $step >= 9)
-
-                 <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Facturation</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 10/p>
+                @endif
+                @if ($step >= 9)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            title="" data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Facturation</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 10/p>
+                        </div>
                     </div>
-                </div>
-                 @endif
+                @endif
 
-                @if( $step >= 10)
-
-                 <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Changement de taux réduit</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 11</p>
+                @if ($step >= 10)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover"
+                            data-placement="top" title=""
+                            data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Changement de taux réduit</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 11</p>
+                        </div>
                     </div>
-                </div>
-                 @endif
+                @endif
 
-                 @if( $step >= 11)
-
-                 <div class="timeline-step mb-0">
-                    <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                        <div class="inner-circle"></div>
-                        <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Finalisation</p>
-                        <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 12</p>
+                @if ($step >= 11)
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-content" data-toggle="popover" data-trigger="hover"
+                            data-placement="top" title=""
+                            data-content="And here's some amazing content. It's very engaging. Right?"
+                            data-original-title="2020">
+                            <div class="inner-circle"></div>
+                            <p class="h6 mt-3 mb-1 text-success bg-light p-2 rounded-2 ">Finalisation</p>
+                            <p class="h6 text-muted bg-success p-2 text-white rounded-2">Etape 12</p>
+                        </div>
                     </div>
-                </div>
-
-                 @endif
+                @endif
             </div>
         </div>
     </div>
- 
+
 </div>

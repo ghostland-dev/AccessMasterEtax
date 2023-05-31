@@ -1,61 +1,43 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.signed')
 
-<form>
-    <!-- 2 column grid layout with text inputs for the first and last names -->
-    <div class="row mb-4">
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form6Example1" class="form-control" />
-          <label class="form-label" for="form6Example1">First name</label>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form6Example2" class="form-control" />
-          <label class="form-label" for="form6Example2">Last name</label>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input type="text" id="form6Example3" class="form-control" />
-      <label class="form-label" for="form6Example3">Company name</label>
-    </div>
-  
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input type="text" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Address</label>
-    </div>
-  
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input type="email" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">Email</label>
-    </div>
-  
-    <!-- Number input -->
-    <div class="form-outline mb-4">
-      <input type="number" id="form6Example6" class="form-control" />
-      <label class="form-label" for="form6Example6">Phone</label>
-    </div>
-  
-    <!-- Message input -->
-    <div class="form-outline mb-4">
-      <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-      <label class="form-label" for="form6Example7">Additional information</label>
-    </div>
-  
-    <!-- Checkbox -->
-    <div class="form-check d-flex justify-content-center mb-4">
-      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-      <label class="form-check-label" for="form6Example8"> Create an account? </label>
-    </div>
-  
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
-  </form>
+@section('main')
+    <form class="container" action="{{ route('codesNaf.update', $codenaf->id) }}" method="POST">
+        @csrf
+        @method('POST')
+        <h4 class="my-3 text-base w-fit mx-auto  text-slate-400 text-center bg-slate-50 p-3 rounded-md"> Modifier le
+            code NAF </h4>
+        <div class=" grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-3">
+            <!-- Text input -->
+            <div class="group-form  mb-4">
+                <label class="form-label" for="code_naf">CODE NAF</label>
+                <input type="text" id="code_naf" name="code_naf" class="form-control" value="{{ $codenaf->code_naf }}" />
 
+            </div>
+
+            <!-- Text input -->
+            <div class="group-form  mb-4">
+                <label class="form-label" for="libelle_naf">Description NAF</label>
+                <input type="text" id="libelle_naf" name="libelle_naf" class="form-control"
+                    value="{{ $codenaf->libelle_naf }}" />
+
+            </div>
+
+            <!-- Text input -->
+            <div class="group-form  mb-4">
+                <label class="form-label" for="code_nace">Eligible</label>
+                <select class="form-select" name="eligible">
+                    <option {{ $codenaf->libelle_naf == '' ? 'selected' : '' }} value="">Selectionner l'éligibilité
+                    </option>
+                    <option {{ $codenaf->libelle_naf ? 'selected' : '' }} value="1">Oui, ce code est éligible.</option>
+                    <option {{ $codenaf->libelle_naf ? 'selected' : '' }} value="0">Non, ce code n'est pas éligible.
+                    </option>
+                </select>
+            </div>
+
+
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-success btn-block mb-4">Mettre à jour </button>
+    </form>
 @endsection

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\GazBill;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class GazBillController extends Controller
+class GazBillsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,8 @@ class GazBillController extends Controller
     public function index()
     {
 
-        $FacturesGazs = GazBill::all();
-        return response(view('pages.Factures.Gaz.index', compact('FacturesGazs'))->with('status', "liste des factures de de gaz a été retouvé."));
+        $FactureGazs = GazBill::all();
+        return response(view('pages.Factures.Gaz.index', compact('FactureGazs'))->with('status', "liste des factures de de gaz a été retouvé."));
     }
 
     /**
@@ -28,8 +30,8 @@ class GazBillController extends Controller
 
     public function create()
     {
-
-        return response(view('pages.Factures.Gaz.create')->with('status', "vous pouvez ajouter une nouvelle facture."));
+        $fournisseurs = Supplier::query()->where('fournisseur_electrcite', true)->get();
+        return response(view('pages.Factures.Gaz.create', compact('fournisseurs'))->with('status', "vous pouvez ajouter une nouvelle facture."));
     }
 
     /**
@@ -41,10 +43,10 @@ class GazBillController extends Controller
 
     public function store(Request $request)
     {
-        $FacturesGaz = GazBill::create([
+        $FactureGaz = GazBill::create([
             "nom_facture" => $request->nom_facture,
             "fournisseur" => $request->fournisseur,
-            "fichier" =>     $request->fichier->store('factureGazs', 'public'),
+            "fichier" =>    url('storage/' .  $request->fichier->store('factureGazs', 'public')),
             "type" => $request->type,
             "date_debut" => $request->date_debut,
             "date_fin" => $request->date_fin,
@@ -58,7 +60,7 @@ class GazBillController extends Controller
             "annee" => $request->annee,
             "gaz_contract_id" => $request->gaz_contract_id
         ]);
-        return response(view('pages.Factures.Gaz.show', compact('FacturesGaz'))->with('status', "la facture de gaz a été ajouter avec succès."));
+        return response(view('pages.Factures.Gaz.show', compact('FactureGaz'))->with('status', "la facture de gaz a été ajouter avec succès."));
     }
 
     /**
@@ -68,10 +70,10 @@ class GazBillController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(GazBill $gazBill)
+    public function show($id)
     {
-        $FacturesGaz = GazBill::findOrFail($gazBill);
-        return response(view('pages.Factures.Gaz.show', compact('FacturesGaz'))->with('status', "visualiser les détails de cette facture."));
+        $FactureGaz = GazBill::findOrFail($id);
+        return response(view('pages.Factures.Gaz.show', compact('FactureGaz'))->with('status', "visualiser les détails de cette facture."));
     }
 
     /**
@@ -81,10 +83,10 @@ class GazBillController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(GazBill $gazBill)
+    public function edit($id)
     {
-        $FacturesGaz = GazBill::findOrFail($gazBill);
-        return response(view('pages.Factures.Gaz.edit', compact('FacturesGaz'))->with('status', "la facture est prête pour les modifications."));
+        $FactureGaz = GazBill::findOrFail($id);
+        return response(view('pages.Factures.Gaz.edit', compact('FactureGaz'))->with('status', "la facture est prête pour les modifications."));
     }
 
     /**
@@ -95,29 +97,29 @@ class GazBillController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, GazBill $gazBill)
+    public function update(Request $request, $id)
     {
-        $FacturesGaz = GazBill::findOrFail($gazBill);
+        $FactureGaz = GazBill::findOrFail($id);
 
-        $FacturesGaz->annee = $request->annee;
-        $FacturesGaz->consommation = $request->consommation;
-        $FacturesGaz->date_debut = $request->date_debut;
-        $FacturesGaz->date_fin = $request->date_fin;
-        $FacturesGaz->fichier = $request->fichier->store('factureGazs', 'public');
-        $FacturesGaz->fournisseur = $request->fournisseur;
-        $FacturesGaz->gaz_contract_id = $request->gaz_contract_id;
-        $FacturesGaz->nom_facture = $request->nom_facture;
-        $FacturesGaz->numero_client = $request->numero_client;
-        $FacturesGaz->numero_compteur = $request->numero_compteur;
-        $FacturesGaz->numero_contrat = $request->numero_contrat;
-        $FacturesGaz->numero_etude = $request->numero_etude;
-        $FacturesGaz->numero_facture = $request->numero_facture;
-        $FacturesGaz->numero_site = $request->numero_site;
-        $FacturesGaz->type = $request->type;
+        $FactureGaz->annee = $request->annee;
+        $FactureGaz->consommation = $request->consommation;
+        $FactureGaz->date_debut = $request->date_debut;
+        $FactureGaz->date_fin = $request->date_fin;
+        $FactureGaz->fichier = url('storage/' . $request->fichier->store('factureGazs', 'public'));
+        $FactureGaz->fournisseur = $request->fournisseur;
+        $FactureGaz->gaz_contract_id = $request->gaz_contract_id;
+        $FactureGaz->nom_facture = $request->nom_facture;
+        $FactureGaz->numero_client = $request->numero_client;
+        $FactureGaz->numero_compteur = $request->numero_compteur;
+        $FactureGaz->numero_contrat = $request->numero_contrat;
+        $FactureGaz->numero_etude = $request->numero_etude;
+        $FactureGaz->numero_facture = $request->numero_facture;
+        $FactureGaz->numero_site = $request->numero_site;
+        $FactureGaz->type = $request->type;
 
-        $FacturesGaz->save();
+        $FactureGaz->save();
 
-        return response(view('pages.Factures.Gaz.show', compact('FacturesGaz'))->with('status', "les modifications ont été executer avec succès."));
+        return response(view('pages.Factures.Gaz.show', compact('FactureGaz'))->with('status', "les modifications ont été executer avec succès."));
     }
 
     /**
@@ -127,12 +129,16 @@ class GazBillController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(GazBill $gazBill)
+    public function destroy($id)
     {
-        $FacturesGaz = GazBill::findOrFail($gazBill);
 
-        $FacturesGaz->delete();
+        $FactureGaz = GazBill::findOrFail($id);
+        if (GazBill::exists($FactureGaz->fichier)) {
+            Storage::delete($FactureGaz->fichier);
+        }
 
-        return response(view('pages.Factures.Gaz.index')->with('status', "la facture a été supprimé avec succès."));
+        $FactureGaz->delete();
+
+        return redirect()->route('billGazs')->with('status', "la facture a été supprimé avec succès.");
     }
 }

@@ -23,19 +23,19 @@ function imageData(url) {
     };
 }
 
-function showLoading() {
-    document.querySelector('#loading').classList.add('loading');
-    document.querySelector('#loading-content').classList.add('loading-content');
-}
+// function showLoading() {
+//     document.querySelector('#loading').classList.add('loading');
+//     document.querySelector('#loading-content').classList.add('loading-content');
+// }
 
 
 
-function hideLoading() {
-    document.querySelector('#loading').classList.remove('loading');
-    document.querySelector('#loading-content').classList.remove('loading-content');
-}
+// function hideLoading() {
+//     document.querySelector('#loading').classList.remove('loading');
+//     document.querySelector('#loading-content').classList.remove('loading-content');
+// }
 
-showLoading()
+// showLoading()
 
 
 $(document).ready(function () {

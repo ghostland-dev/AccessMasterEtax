@@ -1,61 +1,93 @@
 @extends('layouts.app')
+
 @section('content')
+    <div class="container-fluid">
+        <div class="row justify-content-center">
 
-<form>
-    <!-- 2 column grid layout with text inputs for the first and last names -->
-    <div class="row mb-4">
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form6Example1" class="form-control" />
-          <label class="form-label" for="form6Example1">First name</label>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form6Example2" class="form-control" />
-          <label class="form-label" for="form6Example2">Last name</label>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input type="text" id="form6Example3" class="form-control" />
-      <label class="form-label" for="form6Example3">Company name</label>
-    </div>
-  
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input type="text" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Address</label>
-    </div>
-  
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input type="email" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">Email</label>
-    </div>
-  
-    <!-- Number input -->
-    <div class="form-outline mb-4">
-      <input type="number" id="form6Example6" class="form-control" />
-      <label class="form-label" for="form6Example6">Phone</label>
-    </div>
-  
-    <!-- Message input -->
-    <div class="form-outline mb-4">
-      <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-      <label class="form-label" for="form6Example7">Additional information</label>
-    </div>
-  
-    <!-- Checkbox -->
-    <div class="form-check d-flex justify-content-center mb-4">
-      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-      <label class="form-check-label" for="form6Example8"> Create an account? </label>
-    </div>
-  
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
-  </form>
+            <div class="col-md-12">
+                <div class="card">
+                    <!--  Body Wrapper -->
+                    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6"
+                        data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
 
-@endsection
+                        @include('layouts.partials.sidebar')
+                        <!--  Main wrapper -->
+                        <div class="body-wrapper">
+                            <!--  Header Start -->
+                            @include('layouts.partials.navbar')
+
+                            <!--  Header End -->
+                            <div class="container-fluid">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if (session('status'))
+                                            <div class="alert bg-light-success text-success text-center" role="alert">
+                                                <i class="fa fa-trash"></i> {{ session('status') }}
+                                            </div>
+                                        @endif
+
+                                        <form action="{{ route('activityCode.update', $codeActivite->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+
+
+                                                <h4 class="text-gray-300 text-center my-3 bg-slate-50 p-3 rounded-md w-full   "> mettre à jour le code d'activité </h4>
+
+                                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                                            <div class="row mb-4">
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text"
+                                                            id="code_naf"value="{{ $codeActivite->code_naf }}"
+                                                            name="code_naf" class="form-control" />
+                                                        <label class="form-label" for="code_naf">Code NAF</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text"
+                                                            id="libelle_naf"value="{{ $codeActivite->libelle_naf }}"
+                                                            name="libelle_naf" class="form-control" />
+                                                        <label class="form-label" for="libelle_naf">Description NAF</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-4">
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="code_nace"
+                                                            value="{{ $codeActivite->code_nace }}" name="code_nace"
+                                                            class="form-control" />
+                                                        <label class="form-label" for="code_nace">Code Nace</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-outline">
+                                                        <input type="text"
+                                                            id="libelle_nace"value="{{ $codeActivite->libelle_nace }}"
+                                                            name="libelle_nace" class="form-control" />
+                                                        <label class="form-label" for="libelle_nace">Description
+                                                            NACE</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <!-- Submit button -->
+                                            <button type="submit" class="btn btn-dark btn-block mb-4">Mettre à
+                                                jour</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection

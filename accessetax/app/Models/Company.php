@@ -10,7 +10,8 @@ use App\Models\User;
 use App\Models\Contact;
 use App\Models\Responsible;
 
-class Company extends Model {
+class Company extends Model
+{
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -38,19 +39,23 @@ class Company extends Model {
         'user_id',
     ];
 
-    public function sites() {
-        return $this->hasMany( Site::class );
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
     }
 
-    public function responsibles() {
-        return $this->hasMany( Responsible::class );
+    public function responsibles()
+    {
+        return $this->hasMany(Responsible::class);
     }
 
-    public function contacts() {
-        return $this->hasMany( Contact::class );
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
     }
 
-    public function user() {
-        return $this->belongsTo( User::class, 'user_id' );
+    public function utilisateur()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

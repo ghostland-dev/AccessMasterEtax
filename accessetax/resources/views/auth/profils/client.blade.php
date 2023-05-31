@@ -1,23 +1,7 @@
-@extends('layouts.connected')
+@extends('layouts.signed')
 
-@section('subcontent')
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">{{ __('Tableau de bord de client') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-
-
-                        <div class="container">
+@section('main')
+   <div class="container">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                                 <div class="col">
                                     <div class="card radius-10 border-start border-0 border-3 border-info">
@@ -89,9 +73,4 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

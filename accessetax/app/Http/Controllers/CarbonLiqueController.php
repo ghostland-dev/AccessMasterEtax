@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CarbonLique;
-use App\Http\Requests\StoreCarbonLiqueRequest;
-use App\Http\Requests\UpdateCarbonLiqueRequest;
+use Illuminate\Http\Request;
 
 class CarbonLiqueController extends Controller
 {
@@ -17,7 +16,7 @@ class CarbonLiqueController extends Controller
     {
         $fuitesCarbons = CarbonLique::all();
 
-        return response( view('pages.FuitesCarbons.index', compact('fuitesCarbons'))->with('status',"liste des fuites carbons."));
+        return response(view('pages.FuitesCarbons.index', compact('fuitesCarbons'))->with('status', "liste des fuites carbons."));
     }
 
     /**
@@ -27,7 +26,7 @@ class CarbonLiqueController extends Controller
      */
     public function create()
     {
-        return response( view('pages.FuitesCarbons.create')->with('status',"ajouter une valeur de fuites carbons."));
+        return response(view('pages.FuitesCarbons.create')->with('status', "ajouter une valeur de fuites carbons."));
     }
 
     /**
@@ -36,18 +35,18 @@ class CarbonLiqueController extends Controller
      * @param  \App\Http\Requests\StoreCarbonLiqueRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCarbonLiqueRequest $request)
+    public function store(Request $request)
     {
-          $fuitesCarbon = new CarbonLique();
-          
-          $fuitesCarbon->nom = $request->nom;
-          $fuitesCarbon->code = $request->code;
-          $fuitesCarbon->eligible = $request->eligible;
- 
-          $fuitesCarbon->save();
+        $fuiteCarbon = new CarbonLique();
+
+        $fuiteCarbon->nom = $request->nom;
+        $fuiteCarbon->code = $request->code;
+        $fuiteCarbon->eligible = $request->eligible;
+
+        $fuiteCarbon->save();
 
 
-        return response( view('pages.FuitesCarbons.show', compact('fuitesCarbon'))->with('status',"les fuites carbons ont été ajouté avec succès."));
+        return response(view('pages.FuitesCarbons.show', compact('fuiteCarbon'))->with('status', "les fuites carbons ont été ajouté avec succès."));
     }
 
     /**
@@ -56,10 +55,13 @@ class CarbonLiqueController extends Controller
      * @param  \App\Models\CarbonLique  $carbonLique
      * @return \Illuminate\Http\Response
      */
-    public function show(CarbonLique $carbonLique)
+    public function show($id)
     {
-        $fuitesCarbon =   CarbonLique::findOrFail($carbonLique);
-        return response( view('pages.FuitesCarbons.show', compact('fuitesCarbon'))->with('status',"les fuites carbons ont été ajouté avec succès."));
+
+
+
+        $fuiteCarbon =   CarbonLique::findOrFail($id);
+        return response(view('pages.FuitesCarbons.show', compact('fuiteCarbon'))->with('status', "les fuites carbons ont été ajouté avec succès."));
     }
 
     /**
@@ -68,10 +70,11 @@ class CarbonLiqueController extends Controller
      * @param  \App\Models\CarbonLique  $carbonLique
      * @return \Illuminate\Http\Response
      */
-    public function edit(CarbonLique $carbonLique)
+    public function edit($id)
     {
-        $fuitesCarbon =   CarbonLique::findOrFail($carbonLique);
-        return response( view('pages.FuitesCarbons.edit', compact('fuitesCarbon'))->with('status',"Valeur est prêt à être modifié."));
+
+        $fuiteCarbon =   CarbonLique::findOrFail($id);
+        return response(view('pages.FuitesCarbons.edit', compact('fuiteCarbon'))->with('status', "Valeur est prêt à être modifié."));
     }
 
     /**
@@ -81,18 +84,19 @@ class CarbonLiqueController extends Controller
      * @param  \App\Models\CarbonLique  $carbonLique
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCarbonLiqueRequest $request, CarbonLique $carbonLique)
+    public function update(Request $request, $id)
     {
-          $fuitesCarbon =  CarbonLique::findOrFail($carbonLique);
-          
-          $fuitesCarbon->nom = $request->nom;
-          $fuitesCarbon->code = $request->code;
-          $fuitesCarbon->eligible = $request->eligible;
- 
-          $fuitesCarbon->save();
+
+        $fuiteCarbon =  CarbonLique::findOrFail($id);
+
+        $fuiteCarbon->nom = $request->nom;
+        $fuiteCarbon->code = $request->code;
+        $fuiteCarbon->eligible = $request->eligible;
+
+        $fuiteCarbon->save();
 
 
-        return response( view('pages.FuitesCarbons.show', compact('fuitesCarbon'))->with('status',"la fuite carbon a été modifié avec succès."));
+        return response(view('pages.FuitesCarbons.show', compact('fuiteCarbon'))->with('status', "la fuite carbon a été modifié avec succès."));
     }
 
     /**
@@ -101,8 +105,10 @@ class CarbonLiqueController extends Controller
      * @param  \App\Models\CarbonLique  $carbonLique
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CarbonLique $carbonLique)
+    public function destroy($id)
     {
-        return response( view('pages.FuitesCarbons.index')->with('status',"la fuite carbon a été supprimé avec succès."));
+        $fuite = CarbonLique::findOrFail($id);
+        $fuite->delete();
+        return   redirect()->route('fuitcarbons')->with('status', "la fuite carbon a été supprimé avec succès.");
     }
 }

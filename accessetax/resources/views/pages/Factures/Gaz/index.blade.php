@@ -25,8 +25,8 @@
                                             </div>
                                         @endif
                                         <table class="table align-middle   mb-0 bg-white">
-                                            <a type="button" class="btn btn-success m-3 ">
-                                                + Nouveau FactureGaz
+                                            <a href="{{ route('billGaz.create') }}" class="btn btn-success m-3 ">
+                                                + Nouvelle facture d'éléctrcité
                                             </a>
                                             <thead class="bg-light   ">
                                                 <tr class="text-align-center">
@@ -45,7 +45,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($FacturesGaz as $FactureGaz)
+                                                @foreach ($FactureGazs as $FactureGaz)
                                                     <tr>
                                                         <th scope="row">
                                                             <div class="form-check">
@@ -54,7 +54,7 @@
                                                             </div>
                                                         </th>
                                                         <td>
-                                                            <div class="d-flex align-items-center">
+                                                            <div class="d-flex align-items-start">
 
                                                                 <div class="ms-3">
                                                                     <p class="fw-bold mb-1">
@@ -64,46 +64,79 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div class="d-flex align-items-center">
+                                                            <div class="d-flex align-items-start">
                                                                 <div class="ms-3">
                                                                     <p class="fw-bold mb-1">
-                                                                        <span class="">
+                                                                        <span class=" ">
                                                                             {{ $FactureGaz->fournisseur }} </span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
+
                                                         <td>
-                                                            <div class="d-flex align-items-center">
+                                                            <div class="d-flex align-items-start">
                                                                 <div class="ms-3">
-                                                                    <p class="fw-bold mb-1">
-                                                                        <span class="btn btn-dark disabled">
+                                                                    <p class="fw-bold  my-2">
+                                                                        <span
+                                                                            class="bg-light  px-3 py-2 text-bold  rounded-2 text-success">
                                                                             {{ $FactureGaz->consommation }} €/kw</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
 
-                                                        <td class="bg-light text-center">
+                                                        <td class="   text-center">
                                                             <p class="text-muted mb-0">
-                                                                <span class="text-success">
-                                                                    {{ $FactureGaz->date_debut }}</span>
+                                                                <span class="text-light ">
+                                                                    <p class="fw-bold  my-2">
+                                                                        <span
+                                                                            class="text-danger bg-light  my-2  px-3 py-2 text-bold  rounded-2">
+                                                                            {{ $FactureGaz->date_debut }} </span> <i
+                                                                            class="fa fa-arrow-right"></i>
+                                                                        <span
+                                                                            class="text-success bg-light  my-2 px-3 py-2 text-bold  rounded-2">
+                                                                            {{ $FactureGaz->date_fin }}</span>
+                                                                    </p>
+                                                                </span>
                                                             </p>
-                                                            <p class="text-muted mb-0">
-                                                                <span class="text-danger">
-                                                                    {{ $FactureGaz->date_fin }}</span>
-                                                            </p>
+
                                                         </td>
 
                                                         <td>{{ $FactureGaz->annee }}</td>
                                                         <td>
-                                                            <a href="{{ $FactureGaz->fichier }}"
-                                                                class="btn btn-dark btn-sm btn-rounded" download> <i
-                                                                    class="fas fa-download"></i> </a>
-                                                            <a href="#" class="btn btn-primary btn-sm btn-rounded"> <i
-                                                                    class="fas fa-pen"></i> </a>
-                                                            <a href="#" class="btn btn-danger btn-sm btn-rounded"> <i
-                                                                    class="fas fa-trash"></i> </a>
+                                                            <a class="btn btn-dark" href="{{ $FactureGaz->fichier }}"><i
+                                                                    class="fa fa-download text-white"></i></a>
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-success dropdown-toggle"
+                                                                    type="button" id="actionsDropdown{{ $FactureGaz->id }}"
+                                                                    data-bs-toggle="dropdown" aria-expanded="true">
+                                                                    <i class="fa fa-cog"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu"
+                                                                    aria-labelledby="actionsDropdown{{ $FactureGaz->id }}">
+                                                                    <li><a class="dropdown-item"
+                                                                            href="{{ route('billGaz.show', $FactureGaz->id) }}"
+                                                                            rel="noopener noreferrer"><i
+                                                                                class="fa fa-eye"></i>
+                                                                            Détails</a></li>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="{{ route('billGaz.edit', $FactureGaz->id) }}"
+                                                                            rel="noopener noreferrer"><i
+                                                                                class="fa fa-pen"></i>
+                                                                            Modifier</a></li>
+                                                                    <li>
+                                                                        <form method="POST"
+                                                                            action="{{ route('billGaz.destroy', $FactureGaz->id) }}">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="dropdown-item"><i
+                                                                                    class="fa fa-trash"></i>
+                                                                                Supprimer</button>
+                                                                        </form>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
 
                                                         </td>
                                                     </tr>

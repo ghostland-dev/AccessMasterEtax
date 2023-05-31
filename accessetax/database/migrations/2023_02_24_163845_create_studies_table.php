@@ -20,8 +20,12 @@ return new class extends Migration
             $table->string('nom_contact');
             $table->string('nom_responsable');
             $table->dateTime('date_debut')->nullable()->default(null);
-            $table->dateTime('date_fin')->nullable()->default(null); 
+            $table->dateTime('date_fin')->nullable()->default(null);
             $table->timestamps();
+            $table->foreignId('site_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

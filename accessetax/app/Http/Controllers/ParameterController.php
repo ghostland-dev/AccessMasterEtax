@@ -17,7 +17,7 @@ class ParameterController extends Controller
     {
         $paramatres = Parameter::all();
 
-        return response(view('pages.Configurations.Parametres.index', compact('parametres'))->with('status', "liste des parametres de l'application."));
+        return response(view('pages.Configurations.Parametres.index', compact('paramatres'))->with('status', "liste des parametres de l'application."));
     }
 
     /**
@@ -27,7 +27,7 @@ class ParameterController extends Controller
      */
     public function create()
     {
-        return response(view('pages.Configurations.Parametres.create', compact('parametres'))->with('status', "vous pouvez créer désormais un nouvea paramtres."));
+        return response(view('pages.Configurations.Parametres.create')->with('status', "vous pouvez créer désormais un nouvea paramtres."));
     }
 
     /**

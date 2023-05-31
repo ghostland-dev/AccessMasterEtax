@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string('numero_etude');
             $table->string('numero_contrat');
             $table->string('fournisseur');
-            $table->enum('profile', ['C1','C2','C3','C4','C5'])->nullable();
+            $table->enum('profile', ['C1', 'C2', 'C3', 'C4', 'C5'])->nullable();
             $table->string('consommation');
             $table->string('annee');
 
-             $table->foreignId('site_id')
+            $table->foreignId('site_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
