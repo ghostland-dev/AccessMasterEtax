@@ -95,6 +95,6 @@ class ParameterController extends Controller
         $parametre = Parameter::findOrFail($id);
         $parametre->delete();
 
-        return response(view('pages.Configurations.Parametres.index')->with('status', "le pramatre a été supprimé avec succès."));
+        return redirect()->route("parameters")->with('status', "le parametre a été supprimé avec succès..");
     }
 }

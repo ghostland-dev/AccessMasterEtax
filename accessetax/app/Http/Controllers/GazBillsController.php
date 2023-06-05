@@ -7,6 +7,8 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
+
 class GazBillsController extends Controller
 {
     /**
@@ -43,10 +45,26 @@ class GazBillsController extends Controller
 
     public function store(Request $request)
     {
+
+
+        // Chemin vers le fichier PDF
+
+        // $file = $request->fichier;
+
+
+
+        // $pdfParser = new Parser();
+        // $pdf = $pdfParser->parseFile($file->path());
+        // $content = json_encode(explode('\n', $pdf->getText()));
+
+        // dd($content);
+
+
+
         $FactureGaz = GazBill::create([
             "nom_facture" => $request->nom_facture,
             "fournisseur" => $request->fournisseur,
-            "fichier" =>    url('storage/' .  $request->fichier->store('factureGazs', 'public')),
+            "fichier" =>    url('storage/' .  $request->fichier->store('facturegazs', 'public')),
             "type" => $request->type,
             "date_debut" => $request->date_debut,
             "date_fin" => $request->date_fin,
@@ -101,11 +119,22 @@ class GazBillsController extends Controller
     {
         $FactureGaz = GazBill::findOrFail($id);
 
+
+        if ($request->hasFile('fichier')) {
+            // Delete the old file if it exists
+            if ($FactureGaz->fichier && Storage::exists($FactureGaz->fichier)) {
+                Storage::delete($FactureGaz->fichier);
+            }
+
+            // Update the model with the new file path
+            $FactureGaz->fichier = url('storage/'. $request->fichier->store('facturegazs', 'public'));
+        }
+
+
         $FactureGaz->annee = $request->annee;
         $FactureGaz->consommation = $request->consommation;
         $FactureGaz->date_debut = $request->date_debut;
         $FactureGaz->date_fin = $request->date_fin;
-        $FactureGaz->fichier = url('storage/' . $request->fichier->store('factureGazs', 'public'));
         $FactureGaz->fournisseur = $request->fournisseur;
         $FactureGaz->gaz_contract_id = $request->gaz_contract_id;
         $FactureGaz->nom_facture = $request->nom_facture;
@@ -133,7 +162,7 @@ class GazBillsController extends Controller
     {
 
         $FactureGaz = GazBill::findOrFail($id);
-        if (GazBill::exists($FactureGaz->fichier)) {
+        if ($FactureGaz->fichier) {
             Storage::delete($FactureGaz->fichier);
         }
 

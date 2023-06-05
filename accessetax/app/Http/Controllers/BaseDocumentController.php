@@ -39,24 +39,24 @@ class BaseDocumentController extends Controller
 
     public function store(Request $request)
     {
-        $DocsBase = new BaseDocument();
+        $BaseDoc = new BaseDocument();
 
-        $DocsBase->cgv_access_anergies = url('storage/' . $request->cgv_access_anergies->store('cgv_access_anergies', 'public'));
-        $DocsBase->rib_entreprise  = url('storage/' . $request->rib_entreprise->store('rib_entreprises', 'public'));
-        $DocsBase->kabis  = url('storage/' . $request->kabis->store('kabis', 'public'));
-        $DocsBase->bilan_comptable_1  = url('storage/' . $request->bilan_comptable_1->store('bilan_comptables', 'public'));
-        $DocsBase->bilan_comptable_2  = url('storage/' . $request->bilan_comptable_2->store('bilan_comptables', 'public'));
-        $DocsBase->annexe_1  = url('storage/' . $request->annexe_1->store('annexes', 'public'));
-        $DocsBase->annexe_2  = url('storage/' . $request->annexe_2->store('annexes', 'public'));
-        $DocsBase->courrier_type  = url('storage/' . $request->courrier_type->store('courrier_types', 'public'));
-        $DocsBase->confirmation_douanaire = url('storage/' . $request->confirmation_douanaire->store('confirmation_douanaires', 'public'));
-        $DocsBase->fichier_entreprise  = url('storage/' . $request->fichier_entreprise->store('fichier_entreprises', 'public'));
-        $DocsBase->valeur_ajoutee   = url('storage/' . $request->valeur_ajoutee->store('valeur_ajoutees', 'public'));
-        $DocsBase->base_folder_id  =  $request->base_folder_id->base_folder_id;
+        $BaseDoc->cgv_access_anergies = url('storage/' . $request->cgv_access_anergies->store('cgv_access_anergies', 'public'));
+        $BaseDoc->rib_entreprise  = url('storage/' . $request->rib_entreprise->store('rib_entreprises', 'public'));
+        $BaseDoc->kabis  = url('storage/' . $request->kabis->store('kabis', 'public'));
+        $BaseDoc->bilan_comptable_1  = url('storage/' . $request->bilan_comptable_1->store('bilan_comptables', 'public'));
+        $BaseDoc->bilan_comptable_2  = url('storage/' . $request->bilan_comptable_2->store('bilan_comptables', 'public'));
+        $BaseDoc->annexe_1  = url('storage/' . $request->annexe_1->store('annexes', 'public'));
+        $BaseDoc->annexe_2  = url('storage/' . $request->annexe_2->store('annexes', 'public'));
+        $BaseDoc->courrier_type  = url('storage/' . $request->courrier_type->store('courrier_types', 'public'));
+        $BaseDoc->confirmation_douanaire = url('storage/' . $request->confirmation_douanaire->store('confirmation_douanaires', 'public'));
+        $BaseDoc->fichier_entreprise  = url('storage/' . $request->fichier_entreprise->store('fichier_entreprises', 'public'));
+        $BaseDoc->valeur_ajoutee   = url('storage/' . $request->valeur_ajoutee->store('valeur_ajoutees', 'public'));
+        $BaseDoc->base_folder_id  =  $request->base_folder_id->base_folder_id;
 
-        $DocsBase->save();
+        $BaseDoc->save();
 
-        return response(view('pages.Dossier.Docs.show', compact('DocsBase'))->with('status', 'les documents de base ont été crées avec succès.'));
+        return response(view('pages.Dossier.Docs.show', compact('BaseDoc'))->with('status', 'les documents de base ont été crées avec succès.'));
     }
 
     /**
@@ -66,10 +66,10 @@ class BaseDocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(BaseDocument $baseDocument)
+    public function show($id)
     {
-        $DocsBase = BaseDocument::findORfail($baseDocument);
-        return response(view('pages.Dossier.Docs.show', compact('DocsBase'))->with('status', 'la liste des documents a été trouvé.'));
+        $BaseDoc = BaseDocument::findORfail($id);
+        return response(view('pages.Dossier.Docs.show', compact('BaseDoc'))->with('status', 'la liste des documents a été trouvé.'));
     }
 
     /**
@@ -79,11 +79,11 @@ class BaseDocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(BaseDocument $baseDocument)
+    public function edit($id)
     {
-        $DocsBase = BaseDocument::findORfail($baseDocument);
+        $BaseDoc = BaseDocument::findORfail($id);
 
-        return response(view('pages.Dossier.Docs.edit', compact('DocsBase'))->with('status', 'la liste des documents a été trouvé.'));
+        return response(view('pages.Dossier.Docs.edit', compact('BaseDoc'))->with('status', 'la liste des documents a été trouvé.'));
     }
 
     /**
@@ -94,26 +94,26 @@ class BaseDocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, BaseDocument $baseDocument)
+    public function update(Request $request, $id)
     {
-        $DocsBase = BaseDocument::findORfail($baseDocument);
+        $BaseDoc = BaseDocument::findORfail($id);
 
-        $DocsBase->cgv_access_anergies = url('storage/' . $request->cgv_access_anergies->store('cgv_access_anergies', 'public'));
-        $DocsBase->rib_entreprise  = url('storage/' . $request->rib_entreprise->store('rib_entreprises', 'public'));
-        $DocsBase->kabis  = url('storage/' . $request->kabis->store('kabis', 'public'));
-        $DocsBase->bilan_comptable_1  = url('storage/' . $request->bilan_comptable_1->store('bilan_comptables', 'public'));
-        $DocsBase->bilan_comptable_2  = url('storage/' . $request->bilan_comptable_2->store('bilan_comptables', 'public'));
-        $DocsBase->annexe_1  = url('storage/' . $request->annexe_1->store('annexes', 'public'));
-        $DocsBase->annexe_2  = url('storage/' . $request->annexe_2->store('annexes', 'public'));
-        $DocsBase->courrier_type  = url('storage/' . $request->courrier_type->store('courrier_types', 'public'));
-        $DocsBase->confirmation_douanaire = url('storage/' . $request->confirmation_douanaire->store('confirmation_douanaires', 'public'));
-        $DocsBase->fichier_entreprise  = url('storage/' . $request->fichier_entreprise->store('fichier_entreprises', 'public'));
-        $DocsBase->valeur_ajoutee   = url('storage/' . $request->valeur_ajoutee->store('valeur_ajoutees', 'public'));
-        $DocsBase->base_folder_id  =  $request->base_folder_id->base_folder_id;
+        $BaseDoc->cgv_access_anergies = url('storage/' . $request->cgv_access_anergies->store('cgv_access_anergies', 'public'));
+        $BaseDoc->rib_entreprise  = url('storage/' . $request->rib_entreprise->store('rib_entreprises', 'public'));
+        $BaseDoc->kabis  = url('storage/' . $request->kabis->store('kabis', 'public'));
+        $BaseDoc->bilan_comptable_1  = url('storage/' . $request->bilan_comptable_1->store('bilan_comptables', 'public'));
+        $BaseDoc->bilan_comptable_2  = url('storage/' . $request->bilan_comptable_2->store('bilan_comptables', 'public'));
+        $BaseDoc->annexe_1  = url('storage/' . $request->annexe_1->store('annexes', 'public'));
+        $BaseDoc->annexe_2  = url('storage/' . $request->annexe_2->store('annexes', 'public'));
+        $BaseDoc->courrier_type  = url('storage/' . $request->courrier_type->store('courrier_types', 'public'));
+        $BaseDoc->confirmation_douanaire = url('storage/' . $request->confirmation_douanaire->store('confirmation_douanaires', 'public'));
+        $BaseDoc->fichier_entreprise  = url('storage/' . $request->fichier_entreprise->store('fichier_entreprises', 'public'));
+        $BaseDoc->valeur_ajoutee   = url('storage/' . $request->valeur_ajoutee->store('valeur_ajoutees', 'public'));
+        $BaseDoc->base_folder_id  =  $request->base_folder_id->base_folder_id;
 
-        $DocsBase->save();
+        $BaseDoc->save();
 
-        return response(view('pages.Dossier.Docs.edit', compact('DocsBase'))->with('status', 'la liste des documents a été modifié avec succès.'));
+        return response(view('pages.Dossier.Docs.edit', compact('BaseDoc'))->with('status', 'la liste des documents a été modifié avec succès.'));
     }
 
     /**
@@ -123,11 +123,11 @@ class BaseDocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(BaseDocument $baseDocument)
+    public function destroy($id)
     {
-        $DocsBase = BaseDocument::findORfail($baseDocument);
+        $BaseDoc = BaseDocument::findORfail($id);
 
-        $DocsBase->delete();
+        $BaseDoc->delete();
         return response(view('pages.Dossier.Docs.index')->with('status', 'liste des documents a été supprimé .'));
     }
 }

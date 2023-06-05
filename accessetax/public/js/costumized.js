@@ -50,7 +50,7 @@ $(document).ready(function () {
             };
             let entreprise_name = $.trim($("#SIREN").val());
 
-            fetch(`http://127.0.0.1:8000/app/v1/data/pappers/${entreprise_name}`, requestOptions).then(function (response) {
+            fetch(`http://localhost:8000/app/v1/data/pappers/${entreprise_name}`, requestOptions).then(function (response) {
 
                 return response.json();
             }).then(function (data) {

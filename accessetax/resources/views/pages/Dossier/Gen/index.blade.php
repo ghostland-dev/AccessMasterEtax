@@ -1,57 +1,167 @@
+@extends('layouts.signed')
+@section('main')
+    <div class="container ">
 
-@extends('layouts.app')
-@section('content')
+        <!--end col-->
+
+        <div class="   my-4 mt-sm-0  ">
+            <a href="{{ route('genFold.create') }}" class="btn btn-success  ">
+                + Nouveau dossier de générés
+            </a>
+        </div>
+        <!--end col-->
+
+        <!--end row-->
+
+        <div class="row">
+            <div class=" grid gap-3 grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
+                @foreach ($DossierGens as $DossierGen)
+                    <div class=" card    rounded-md shadow-md">
+                        <div class="card-body p-4">
+                            <div class=" flex justify-between px-3 p-2 rounded-md bg-slate-50  align-middle">
+
+                                <h5 class="text-emerald-400 pt-1 capitalize"> liste des fichiers générés </h5>
+
+                                @if ($DossierGen->statut_dossier == 'en attente')
+                                    <span class=" p-2  bg-red-50 py-1 px-2 rounded-lg text-center  text-red-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'en cours')
+                                    <span class=" p-2  bg-yellow-50 py-1 px-2 rounded-lg text-center  text-yellow-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'prêt à envoyé')
+                                    <span class=" p-2  bg-indigo-50 py-1 px-2 rounded-lg text-center  text-indigo-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'envoyé')
+                                    <span class=" p-2  bg-orange-50 py-1 px-2 rounded-lg text-center  text-orange-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'confirmé')
+                                    <span class=" p-2  bg-blue-50 py-1 px-2 rounded-lg text-center  text-blue-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'finalisé')
+                                    <span class=" p-2  bg-emerald-50 py-1 px-2 rounded-lg text-center  text-emerald-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'réglé')
+                                    <span class=" p-2  bg-emerald-50 py-1 px-2 rounded-lg text-center  text-emerald-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == 'traité')
+                                    <span class=" p-2  bg-emerald-50 py-1 px-2 rounded-lg text-center  text-emerald-400">
+                                        {{ $DossierGen->statut_dossier }}</span>
+                                @elseif($DossierGen->statut_dossier == null)
+                                    <span class=" p-2  bg-gray-100 py-1 px-2 rounded-lg text-center  text-gray-400">
+                                        Inconnu</span>
+                                @endif
 
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<div class="container mt-5 pt-4">
-    <div class="row align-items-end mb-4 pb-2">
-        <div class="col-md-8">
-            <div class="section-title text-center text-md-start">
-                <h4 class="title mb-4">Liste des dossiers de base</h4>
-                <p class="text-muted mb-0 para-desc">Start work with Leaping. Build responsive, mobile-first projects on the web with the world's most popular front-end component library.</p>
-            </div>
-       
+                            </div>
+                            <div class="grid gap-2 grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 p-2 my-2">
 
-<!-- {"id":1,"numero_dossier":"aut","statut_dossier":"en attente","nom_dossier":"aut","nom_client":"animi","study_id":8,"created_at":"2023-03-09T14:53:01.000000Z","updated_at":"2023-03-09T14:53:01.000000Z"} -->
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>
+                                        Attest. non
+                                        rembouresment </p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>Pouvoir
+                                        JDMP </p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>Contrat
+                                        de
+                                        préstation </p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>Demande
+                                        de
+                                        rembouresment </p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>Courrier
+                                        Cerfa
+                                    </p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>JDMP
+                                        Cerfa
+                                        14317-07</p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>JDMP
+                                        Cerfa
+                                        14318-08</p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i
+                                            class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>JDMP
+                                        Cerfa
+                                        14700-03 </p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>
+                                        JDMP
+                                        Pouvoir
+                                        Access Energies</p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
+                                <span class=" shadow-sm  text-muted flex justify-between">
+                                    <p class="capitalize text-xs"><i class="text-gray-400 mx-2 fa fa-file-pdf fa-2xl"></i>
+                                        Proposition de
+                                        service</p>
+                                    <a href="{{ $DossierGen->attestation_non_rembourse }}"><i
+                                            class="fa fa-download bg-emerald-400 p-2 rounded-full text-white"></i></a>
+                                </span>
 
-        </div><!--end col-->
+                            </div>
+                        </div>
+                        <p class="bg-slate-50 text-gray-400 p-2 rounded-md text-center flex align-middle justify-center">
+                            <i class="text-emerald-400 mx-2 fa fa-calendar" aria-hidden="true"></i>
+                            {{ $DossierGen->created_at }}
+                        <div class="flex justify-center text-center bg-slate-50 p-2">
 
-        <div class="col-md-4 mt-4 mt-sm-0 d-none d-md-block">
-            <div class="text-center text-md-end">
-                <a href="page-jobs.html" class="text-primary">View more Jobs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-        </div><!--end col-->
-    </div><!--end row-->
+                            <a href="{{ route('genFold.show', $DossierGen->id) }}"
+                                class=" p-2 rounded-full mx-2 bg-emerald-50 text-emerald-400"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('genFold.edit', $DossierGen->id) }}"
+                                class=" p-2 rounded-full mx-2 bg-yellow-50 text-yellow-400"><i class="fa fa-pen"></i></a>
+                            <form method="POST" action="{{ route('genFold.destroy', $DossierGen->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class=" p-2 rounded-full mx-2 bg-red-50 text-red-400"><i
+                                        class="fa fa-trash"></i>
+                                </button>
+                            </form>
 
-    <div class="row">
+                        </div>
+                        </p>
 
-    @foreach( $DossierBases as $DossierBase)
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card border-0 bg-light rounded shadow">
-                <div class="card-body p-4">
-                    <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"> {{ $DossierBase->statut_dossier }}</span>
-                    <h5>{{ $DossierBase->nom_dossier }}</h5>
-                    <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
-                        <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $DossierBase->numero_dossier }}</span>
                     </div>
-                    
-                    <div class="mt-3">
-                        <a href="#" class="btn btn-primary">Documents Genérés</a>
-                         <a href="#" class="btn btn-primary">Documents de base</a>
-                    </div>
-                   
-                </div>
+                @endforeach
             </div>
-        </div><!--end col-->
-    @endforeach
 
 
-        <div class="col-12 mt-4 pt-2 d-block d-md-none text-center">
-            <a href="#" class="btn btn-primary">View more Jobs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-        </div><!--end col-->
-    </div><!--end row-->
-</div>
-
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
 @endsection

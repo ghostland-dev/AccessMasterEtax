@@ -37,8 +37,8 @@ class ReducedTaxBoardController extends Controller
      */
     public function store(Request $request)
     {
-        $TauxReduit = ReducedTaxBoard::create($request->all());
-        return response(view('pages.TauxReduits.show', compact('TauxReduit'))->with('status', "la nouvelle valeur a été ajouté avec succès."));
+        ReducedTaxBoard::create($request->all());
+        return redirect()->route("taxReds")->with('status', "les valeurs a été supprimé avec succès..");
     }
 
     /**
@@ -47,9 +47,9 @@ class ReducedTaxBoardController extends Controller
      * @param  \App\Models\ReducedTaxBoard  $reducedTaxBoard
      * @return \Illuminate\Http\Response
      */
-    public function show(ReducedTaxBoard $reducedTaxBoard)
+    public function show($id)
     {
-        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+        $TauxReduit = ReducedTaxBoard::findOrFail($id);
         return response(view('pages.TauxReduits.show', compact('TauxReduit'))->with('status', "vous pouvez désormais visialiser les détails de ce tableau."));
     }
 
@@ -59,9 +59,9 @@ class ReducedTaxBoardController extends Controller
      * @param  \App\Models\ReducedTaxBoard  $reducedTaxBoard
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReducedTaxBoard $reducedTaxBoard)
+    public function edit($id)
     {
-        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+        $TauxReduit = ReducedTaxBoard::findOrFail($id);
         return response(view('pages.TauxReduits.edit', compact('TauxReduit'))->with('status', "vous pouvez commencer l'edition de ce tableau."));
     }
 
@@ -72,9 +72,9 @@ class ReducedTaxBoardController extends Controller
      * @param  \App\Models\ReducedTaxBoard  $reducedTaxBoard
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReducedTaxBoard $reducedTaxBoard)
+    public function update(Request $request, $id)
     {
-        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+        $TauxReduit = ReducedTaxBoard::findOrFail($id);
 
         $TauxReduit->consommation_mkw = $request->consommation_mkw;
         $TauxReduit->remuneration = $request->remuneration;
@@ -90,11 +90,12 @@ class ReducedTaxBoardController extends Controller
      * @param  \App\Models\ReducedTaxBoard  $reducedTaxBoard
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReducedTaxBoard $reducedTaxBoard)
+    public function destroy($id)
     {
-        $TauxReduit = ReducedTaxBoard::findOrFail($reducedTaxBoard);
+        $TauxReduit = ReducedTaxBoard::findOrFail($id);
 
         $TauxReduit->delete();
-        return response(view('pages.TauxReduits.index', compact('TauxReduit'))->with('status', "ce tableau a été supprimé avec succès."));
+
+        return redirect()->route("taxReds")->with('status', "les valeurs a été supprimé avec succès..");
     }
 }

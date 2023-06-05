@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class GazMeter extends Model
@@ -24,16 +25,17 @@ class GazMeter extends Model
         'consommation_mentsauelle',
         'consommation_annuelle',
         'site_id',
+        'study_id',
 
     ];
 
-    public function Contracts()
+    public function Contracts(): HasMany
     {
         return $this->hasMany(GazContract::class);
     }
 
-    public function Site(): BelongsTo
+    public function Study(): BelongsTo
     {
-        return $this->belongsTo(Site::class, 'site_id');
+        return $this->belongsTo(Study::class, 'study_id');
     }
 }

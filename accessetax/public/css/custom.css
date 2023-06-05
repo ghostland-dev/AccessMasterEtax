@@ -5,6 +5,10 @@
     font-family: comfortaa;
 }
 
+input[type="file"] {
+    padding: 0 !important;
+}
+
 h2 {
     font-size: 2.8rem !important;
     font-weight: 700;

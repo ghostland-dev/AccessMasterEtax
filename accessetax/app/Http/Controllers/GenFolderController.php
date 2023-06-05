@@ -17,7 +17,7 @@ class GenFolderController extends Controller
     {
 
         $DossierGens = GenFolder::all();
-        return  view('pages.DossierGens.index', compact('DossierGens'))->with('status', 'liste des dossiers générés.');
+        return  view('pages.Dossier.Gen.index', compact('DossierGens'))->with('status', 'liste des dossiers générés.');
     }
 
     /**

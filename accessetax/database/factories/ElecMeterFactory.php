@@ -28,7 +28,7 @@ class ElecMeterFactory extends Factory
             'profile' => 1,
             'consommation' => $this->faker->randomDigitNotNull,
             'annee' => $this->faker->randomDigitNotNull,
-            'site_id' => $this->faker->randomDigitNotNull,
+            'study_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

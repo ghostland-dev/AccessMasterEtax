@@ -18,7 +18,7 @@ class BaseFolderFactory extends Factory
     {
         return [
             'numero_dossier' => $this->faker->word,
-            'statut_dossier' => 1,
+            'statut_dossier' => $this->faker->randomElement(['en attente', 'en cours', 'traité', 'prêt à envoyé', 'envoyé', 'confirmé', 'rélgé', 'finalisé']),
             'nom_dossier' => $this->faker->word,
             'nom_client' => $this->faker->word,
             'study_id' => $this->faker->randomDigitNotNull,

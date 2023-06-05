@@ -12,12 +12,16 @@
         "doctrine/dbal": "^3.6",
         "dompdf/dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
+        "intervention/image": "^2.7",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
         "nesbot/carbon": "^2.66",
-        "rackbeat/laravel-ui-avatars": "^1.1"
+        "phpoffice/phpspreadsheet": "^1.28",
+        "phpoffice/phpword": "^1.1",
+        "rackbeat/laravel-ui-avatars": "^1.1",
+        "smalot/pdfparser": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

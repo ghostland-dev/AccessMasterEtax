@@ -37,6 +37,8 @@ use App\Http\Controllers\Docs\GenPDFController;
 use App\Http\Controllers\pipeline\StepsController;
 use App\Http\Controllers\CarbonLiqueController;
 use App\Http\Controllers\ElecBillsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Zipper\ZipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,30 +64,31 @@ Route::get('/app/v1/data/pappers/{siren?}', [PappersController::class, 'getPappe
 Route::get('/app/v1/data/generate/{siren?}', [GenPDFController::class, "generatePDFcontract"])->name('contract');
 Route::get('/app/v1/data/pouvoir/{siren?}', [GenPDFController::class, "generatePDFpouvoir"])->name('pouvoir');
 Route::get('/app/v1/data/courrier',         [GenPDFController::class, "courrierType"])->name('courrier');
+Route::get('/zip/create', [ZipController::class, 'create'])->name('zip.create');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 // Users routes
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/utilisateurs',            [UtilisateurController::class, 'index'])->name('utilisateurs');
-    Route::get('/app/v1/data/utilisateurs/creer',     [UtilisateurController::class, 'create'])->name('utilisateur.create');
-    Route::post('/app/v1/data/utilisateurs/creer',           [UtilisateurController::class, 'store'])->name('utilisateur.store');
-    Route::get('/app/v1/data/utilisateurs/{utilisateur}/details',     [UtilisateurController::class, 'show'])->name('utilisateur.show');
-    Route::get('/app/v1/data/utilisateurs/{utilisateur}/editer', [UtilisateurController::class, 'edit'])->name('utilisateur.edit');
-    Route::put('/app/v1/data/utilisateurs/{utilisateur}/modifier',     [UtilisateurController::class, 'update'])->name('utilisateur.update');
-    Route::delete('/app/v1/data/utilisateurs/{utilisateur}/delete',  [UtilisateurController::class, 'destroy'])->name('utilisateur.destroy');
+    Route::get('/app/v1/data/utilisateur/creer',     [UtilisateurController::class, 'create'])->name('utilisateur.create');
+    Route::post('/app/v1/data/utilisateur/enregistrer',           [UtilisateurController::class, 'store'])->name('utilisateur.store');
+    Route::get('/app/v1/data/utilisateur/{utilisateur}/details',     [UtilisateurController::class, 'show'])->name('utilisateur.show');
+    Route::get('/app/v1/data/utilisateur/{utilisateur}/editer', [UtilisateurController::class, 'edit'])->name('utilisateur.edit');
+    Route::put('/app/v1/data/utilisateur/{utilisateur}/modifier',     [UtilisateurController::class, 'update'])->name('utilisateur.update');
+    Route::delete('/app/v1/data/utilisateur/{utilisateur}/supprimer',  [UtilisateurController::class, 'destroy'])->name('utilisateur.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/clients',            [ClientController::class, 'index'])->name('clients');
-    Route::get('/app/v1/data/clients/creer',     [ClientController::class, 'create'])->name('client.create');
-    Route::post('/app/v1/data/clients',           [ClientController::class, 'store'])->name('client.store');
-    Route::get('/app/v1/data/clients/{user}',     [ClientController::class, 'show'])->name('client.show');
-    Route::get('/app/v1/data/clients/{user}/editer', [ClientController::class, 'edit'])->name('client.edit');
-    Route::put('/app/v1/data/clients/{user}',     [ClientController::class, 'update'])->name('client.update');
-    Route::delete('/app/v1/data/clients/{user}',  [ClientController::class, 'destroy'])->name('client.destroy');
+    Route::get('/app/v1/data/client/creer',     [ClientController::class, 'create'])->name('client.create');
+    Route::post('/app/v1/data/client/enregistrer',           [ClientController::class, 'store'])->name('client.store');
+    Route::get('/app/v1/data/client/{user}/details',     [ClientController::class, 'show'])->name('client.show');
+    Route::get('/app/v1/data/client/{user}/editer', [ClientController::class, 'edit'])->name('client.edit');
+    Route::put('/app/v1/data/client/{user}/modifier',     [ClientController::class, 'update'])->name('client.update');
+    Route::delete('/app/v1/data/client/{user}/supprimer',  [ClientController::class, 'destroy'])->name('client.destroy');
 });
 
 
@@ -156,11 +159,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/alertes',            [AlerteController::class, 'index'])->name('alertes');
     Route::get('/app/v1/data/alertes/creer',     [AlerteController::class, 'create'])->name('alerte.create');
-    Route::post('/app/v1/data/alertes',           [AlerteController::class, 'store'])->name('alerte.store');
+    Route::post('/app/v1/data/alertes/enregistrer',           [AlerteController::class, 'store'])->name('alerte.store');
     Route::get('/app/v1/data/alertes/{id}/details',     [AlerteController::class, 'show'])->name('alerte.show');
     Route::get('/app/v1/data/alertes/{id}/editer', [AlerteController::class, 'edit'])->name('alerte.edit');
-    Route::put('/app/v1/data/alertes/{id}/update',     [AlerteController::class, 'update'])->name('alerte.update');
-    Route::delete('/app/v1/data/alertes/{id}/delete',  [AlerteController::class, 'destroy'])->name('alerte.destroy');
+    Route::put('/app/v1/data/alertes/{id}/modifier',     [AlerteController::class, 'update'])->name('alerte.update');
+    Route::delete('/app/v1/data/alertes/{id}/supprimer',  [AlerteController::class, 'destroy'])->name('alerte.destroy');
 });
 
 // Base Documents  routes
@@ -176,13 +179,13 @@ Route::middleware(['auth'])->group(function () {
 
 // Base Folder routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app/v1/data/folder-bases',            [BaseFolderController::class, 'index'])->name('baseFolers');
-    Route::get('/app/v1/data/folder-base/creer',     [BaseFolderController::class, 'create'])->name('baseFoler.create');
-    Route::post('/app/v1/data/folder-base/enregistrer',           [BaseFolderController::class, 'store'])->name('baseFoler.store');
-    Route::get('/app/v1/data/folder-base/{folder}',     [BaseFolderController::class, 'show'])->name('baseFoler.show');
-    Route::get('/app/v1/data/folder-base/{folder}/editer', [BaseFolderController::class, 'edit'])->name('baseFoler.edit');
-    Route::put('/app/v1/data/folder-base/{folder}/modifier',     [BaseFolderController::class, 'update'])->name('baseFoler.update');
-    Route::delete('/app/v1/data/folder-base/{folder}/supprimer',  [BaseFolderController::class, 'destroy'])->name('baseFoler.destroy');
+    Route::get('/app/v1/data/folderBases',            [BaseFolderController::class, 'index'])->name('baseFolers');
+    Route::get('/app/v1/data/folderBase/creer',     [BaseFolderController::class, 'create'])->name('baseFoler.create');
+    Route::post('/app/v1/data/folderBase/enregistrer',           [BaseFolderController::class, 'store'])->name('baseFoler.store');
+    Route::get('/app/v1/data/folderBase/{id}/details',     [BaseFolderController::class, 'show'])->name('baseFoler.show');
+    Route::get('/app/v1/data/folderBase/{id}/editer', [BaseFolderController::class, 'edit'])->name('baseFoler.edit');
+    Route::put('/app/v1/data/folderBase/{id}/modifier',     [BaseFolderController::class, 'update'])->name('baseFoler.update');
+    Route::delete('/app/v1/data/folderBase/{id}/supprimer',  [BaseFolderController::class, 'destroy'])->name('baseFoler.destroy');
 });
 
 
@@ -190,22 +193,22 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/codes-nafs',            [CodeNafController::class, 'index'])->name('codesNafs');
     Route::get('/app/v1/data/codes-naf/creer',     [CodeNafController::class, 'create'])->name('codesNaf.create');
-    Route::post('/app/v1/data/codes-naf',           [CodeNafController::class, 'store'])->name('codesNaf.store');
-    Route::get('/app/v1/data/codes-naf/{naf}',     [CodeNafController::class, 'show'])->name('codesNaf.show');
+    Route::post('/app/v1/data/codes-naf/enregistrer',           [CodeNafController::class, 'store'])->name('codesNaf.store');
+    Route::get('/app/v1/data/codes-naf/{naf}/details',     [CodeNafController::class, 'show'])->name('codesNaf.show');
     Route::get('/app/v1/data/codes-naf/{naf}/editer', [CodeNafController::class, 'edit'])->name('codesNaf.edit');
-    Route::put('/app/v1/data/codes-naf/{naf}',     [CodeNafController::class, 'update'])->name('codesNaf.update');
-    Route::delete('/app/v1/data/codes-naf/{naf}',  [CodeNafController::class, 'destroy'])->name('codesNaf.destroy');
+    Route::put('/app/v1/data/codes-naf/{naf}/modifier',     [CodeNafController::class, 'update'])->name('codesNaf.update');
+    Route::delete('/app/v1/data/codes-naf/{naf}/supprimer',  [CodeNafController::class, 'destroy'])->name('codesNaf.destroy');
 });
 
 //  Companies routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/societes',            [CompanyController::class, 'index'])->name('companies');
     Route::get('/app/v1/data/societe/creer',     [CompanyController::class, 'create'])->name('companie.create');
-    Route::post('/app/v1/data/societe',           [CompanyController::class, 'store'])->name('companie.store');
-    Route::get('/app/v1/data/societe/{societe}', [CompanyController::class, 'show'])->name('companie.show');
+    Route::post('/app/v1/data/societe/sauvgarder',           [CompanyController::class, 'store'])->name('companie.store');
+    Route::get('/app/v1/data/societe/{societe}/details', [CompanyController::class, 'show'])->name('companie.show');
     Route::get('/app/v1/data/societe/{societe}/editer', [CompanyController::class, 'edit'])->name('companie.edit');
-    Route::put('/app/v1/data/societe/{societe}',     [CompanyController::class, 'update'])->name('companie.update');
-    Route::delete('/app/v1/data/societe/{societe}',  [CompanyController::class, 'destroy'])->name('companie.destroy');
+    Route::put('/app/v1/data/societe/{societe}/modifier',     [CompanyController::class, 'update'])->name('companie.update');
+    Route::delete('/app/v1/data/societe/{societe}/supprimer',  [CompanyController::class, 'destroy'])->name('companie.destroy');
 });
 
 //  Constants routes
@@ -216,18 +219,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/constant/{constant}/details', [ConstantController::class, 'show'])->name('constant.show');
     Route::get('/app/v1/data/constant/{constant}/editer', [ConstantController::class, 'edit'])->name('constant.edit');
     Route::put('/app/v1/data/constant/{constant}/modifier',     [ConstantController::class, 'update'])->name('constant.update');
-    Route::delete('/app/v1/data/constant/{constant}',  [ConstantController::class, 'destroy'])->name('constant.destroy');
+    Route::delete('/app/v1/data/constant/{constant}/supprimer',  [ConstantController::class, 'destroy'])->name('constant.destroy');
 });
 
 //  Contacts routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/contacts',            [ContactController::class, 'index'])->name('contacts');
     Route::get('/app/v1/data/contact/creer',     [ContactController::class, 'create'])->name('contact.create');
-    Route::post('/app/v1/data/contact',           [ContactController::class, 'store'])->name('contact.store');
-    Route::get('/app/v1/data/contact/{contact}', [ContactController::class, 'show'])->name('contact.show');
+    Route::post('/app/v1/data/contact/enregistrer',           [ContactController::class, 'store'])->name('contact.store');
+    Route::get('/app/v1/data/contact/{contact}/details', [ContactController::class, 'show'])->name('contact.show');
     Route::get('/app/v1/data/contact/{contact}/editer', [ContactController::class, 'edit'])->name('contact.edit');
-    Route::put('/app/v1/data/contact/{contact}',     [ContactController::class, 'update'])->name('contact.update');
-    Route::delete('/app/v1/data/contact/{contact}',  [ContactController::class, 'destroy'])->name('contact.destroy');
+    Route::put('/app/v1/data/contact/{contact}/modifier',     [ContactController::class, 'update'])->name('contact.update');
+    Route::delete('/app/v1/data/contact/{contact}/supprimer',  [ContactController::class, 'destroy'])->name('contact.destroy');
 });
 
 //  Douanes routes
@@ -247,11 +250,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/compteur-elecs',            [ElecMeterController::class, 'index'])->name('elecMeters');
     Route::get('/app/v1/data/compteur-elec/creer',     [ElecMeterController::class, 'create'])->name('elecMeter.create');
-    Route::post('/app/v1/data/compteur-elec',           [ElecMeterController::class, 'store'])->name('elecMeter.store');
-    Route::get('/app/v1/data/compteur-elec/{compteurElec}', [ElecMeterController::class, 'show'])->name('elecMeter.show');
+    Route::post('/app/v1/data/compteur-elec/enregistrer',           [ElecMeterController::class, 'store'])->name('elecMeter.store');
+    Route::get('/app/v1/data/compteur-elec/{compteurElec}/details', [ElecMeterController::class, 'show'])->name('elecMeter.show');
     Route::get('/app/v1/data/compteur-elec/{compteurElec}/editer', [ElecMeterController::class, 'edit'])->name('elecMeter.edit');
-    Route::put('/app/v1/data/compteur-elec/{compteurElec}',     [ElecMeterController::class, 'update'])->name('elecMeter.update');
-    Route::delete('/app/v1/data/compteur-elec/{compteurElec}',  [ElecMeterController::class, 'destroy'])->name('elecMeter.destroy');
+    Route::put('/app/v1/data/compteur-elec/{compteurElec}/modifier',     [ElecMeterController::class, 'update'])->name('elecMeter.update');
+    Route::delete('/app/v1/data/compteur-elec/{compteurElec}/supprimer',  [ElecMeterController::class, 'destroy'])->name('elecMeter.destroy');
 });
 
 
@@ -260,11 +263,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/contrat-elecs',            [ElecContractController::class, 'index'])->name('contractElecs');
     Route::get('/app/v1/data/contrat-elec/creer',     [ElecContractController::class, 'create'])->name('contractElec.create');
-    Route::post('/app/v1/data/contrat-elec',           [ElecContractController::class, 'store'])->name('contractElec.store');
-    Route::get('/app/v1/data/contrat-elec/{contratElec}', [ElecContractController::class, 'show'])->name('contractElec.show');
+    Route::post('/app/v1/data/contrat-elec/enregistrer',           [ElecContractController::class, 'store'])->name('contractElec.store');
+    Route::get('/app/v1/data/contrat-elec/{contratElec}/details', [ElecContractController::class, 'show'])->name('contractElec.show');
     Route::get('/app/v1/data/contrat-elec/{contratElec}/editer', [ElecContractController::class, 'edit'])->name('contractElec.edit');
-    Route::put('/app/v1/data/contrat-elec/{contratElec}',     [ElecContractController::class, 'update'])->name('contractElec.update');
-    Route::delete('/app/v1/data/contrat-elec/{contratElec}',  [ElecContractController::class, 'destroy'])->name('contractElec.destroy');
+    Route::put('/app/v1/data/contrat-elec/{contratElec}/modifier',     [ElecContractController::class, 'update'])->name('contractElec.update');
+    Route::delete('/app/v1/data/contrat-elec/{contratElec}/supprimer',  [ElecContractController::class, 'destroy'])->name('contractElec.destroy');
 });
 
 
@@ -285,11 +288,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/compteur-gazs',            [GazMeterController::class, 'index'])->name('gazMeters');
     Route::get('/app/v1/data/compteur-gaz/creer',     [GazMeterController::class, 'create'])->name('gazMeter.create');
-    Route::post('/app/v1/data/compteur-gaz',           [GazMeterController::class, 'store'])->name('gazMeter.store');
-    Route::get('/app/v1/data/compteur-gaz/{compteur}', [GazMeterController::class, 'show'])->name('gazMeter.show');
+    Route::post('/app/v1/data/compteur-gaz/enregistrer',           [GazMeterController::class, 'store'])->name('gazMeter.store');
+    Route::get('/app/v1/data/compteur-gaz/{compteur}/details', [GazMeterController::class, 'show'])->name('gazMeter.show');
     Route::get('/app/v1/data/compteur-gaz/{compteur}/editer', [GazMeterController::class, 'edit'])->name('gazMeter.edit');
-    Route::put('/app/v1/data/compteur-gaz/{compteur}',     [GazMeterController::class, 'update'])->name('gazMeter.update');
-    Route::delete('/app/v1/data/compteur-gaz/{compteur}',  [GazMeterController::class, 'destroy'])->name('gazMeter.destroy');
+    Route::put('/app/v1/data/compteur-gaz/{compteur}/modifier',     [GazMeterController::class, 'update'])->name('gazMeter.update');
+    Route::delete('/app/v1/data/compteur-gaz/{compteur}/supprimer',  [GazMeterController::class, 'destroy'])->name('gazMeter.destroy');
 });
 
 
@@ -298,11 +301,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/contrat-gazs',            [GazContractController::class, 'index'])->name('contractGazs');
     Route::get('/app/v1/data/contrat-gaz/creer',     [GazContractController::class, 'create'])->name('contractGaz.create');
-    Route::post('/app/v1/data/contrat-gaz',           [GazContractController::class, 'store'])->name('contractGaz.store');
-    Route::get('/app/v1/data/contrat-gaz/{contratGaz}', [GazContractController::class, 'show'])->name('contractGaz.show');
+    Route::post('/app/v1/data/contrat-gaz/enregistrer',           [GazContractController::class, 'store'])->name('contractGaz.store');
+    Route::get('/app/v1/data/contrat-gaz/{contratGaz}/details', [GazContractController::class, 'show'])->name('contractGaz.show');
     Route::get('/app/v1/data/contrat-gaz/{contratGaz}/editer', [GazContractController::class, 'edit'])->name('contractGaz.edit');
-    Route::put('/app/v1/data/contrat-gaz/{contratGaz}',     [GazContractController::class, 'update'])->name('contractGaz.update');
-    Route::delete('/app/v1/data/contrat-gaz/{contratGaz}',  [GazContractController::class, 'destroy'])->name('contractGaz.destroy');
+    Route::put('/app/v1/data/contrat-gaz/{contratGaz}/modifier',     [GazContractController::class, 'update'])->name('contractGaz.update');
+    Route::delete('/app/v1/data/contrat-gaz/{contratGaz}/supprimer',  [GazContractController::class, 'destroy'])->name('contractGaz.destroy');
 });
 
 
@@ -325,7 +328,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/eligibilite-cspee/{cspeElig}/details', [EligibilityCSPEController::class, 'show'])->name('cspeElig.show');
     Route::get('/app/v1/data/eligibilite-cspee/{cspeElig}/editer', [EligibilityCSPEController::class, 'edit'])->name('cspeElig.edit');
     Route::put('/app/v1/data/eligibilite-cspee/{cspeElig}/modifier',     [EligibilityCSPEController::class, 'update'])->name('cspeElig.update');
-    Route::delete('/app/v1/data/eligibilite-cspee/{cspeElig}',  [EligibilityCSPEController::class, 'destroy'])->name('cspeElig.destroy');
+    Route::delete('/app/v1/data/eligibilite-cspee/{cspeElig}/supprimer',  [EligibilityCSPEController::class, 'destroy'])->name('cspeElig.destroy');
 });
 
 //  Eligibility TCGNE routes
@@ -344,11 +347,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/dossier-generes',            [GenFolderController::class, 'index'])->name('genFolds');
     Route::get('/app/v1/data/dossier-genere/creer',     [GenFolderController::class, 'create'])->name('genFold.create');
-    Route::post('/app/v1/data/dossier-genere',           [GenFolderController::class, 'store'])->name('genFold.store');
-    Route::get('/app/v1/data/dossier-genere/{genFold}', [GenFolderController::class, 'show'])->name('genFold.show');
+    Route::post('/app/v1/data/dossier-genere/enregistrer',           [GenFolderController::class, 'store'])->name('genFold.store');
+    Route::get('/app/v1/data/dossier-genere/{genFold}/details', [GenFolderController::class, 'show'])->name('genFold.show');
     Route::get('/app/v1/data/dossier-genere/{genFold}/editer', [GenFolderController::class, 'edit'])->name('genFold.edit');
-    Route::put('/app/v1/data/dossier-genere/{genFold}',     [GenFolderController::class, 'update'])->name('genFold.update');
-    Route::delete('/app/v1/data/dossier-genere/{genFold}',  [GenFolderController::class, 'destroy'])->name('genFold.destroy');
+    Route::put('/app/v1/data/dossier-genere/{genFold}/modifier',     [GenFolderController::class, 'update'])->name('genFold.update');
+    Route::delete('/app/v1/data/dossier-genere/{genFold}/supprimer',  [GenFolderController::class, 'destroy'])->name('genFold.destroy');
 });
 
 
@@ -381,11 +384,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/messages',            [MessageController::class, 'index'])->name('messages');
     Route::get('/app/v1/data/message/creer',     [MessageController::class, 'create'])->name('message.create');
-    Route::post('/app/v1/data/message',           [MessageController::class, 'store'])->name('message.store');
-    Route::get('/app/v1/data/message/{message}', [MessageController::class, 'show'])->name('message.show');
+    Route::post('/app/v1/data/message/enregistrer',           [MessageController::class, 'store'])->name('message.store');
+    Route::get('/app/v1/data/message/{message}/details', [MessageController::class, 'show'])->name('message.show');
     Route::get('/app/v1/data/message/{message}/editer', [MessageController::class, 'edit'])->name('message.edit');
-    Route::put('/app/v1/data/message/{message}',     [MessageController::class, 'update'])->name('message.update');
-    Route::delete('/app/v1/data/message/{message}',  [MessageController::class, 'destroy'])->name('message.destroy');
+    Route::put('/app/v1/data/message/{message}/modifier',     [MessageController::class, 'update'])->name('message.update');
+    Route::delete('/app/v1/data/message/{message}/supprimer',  [MessageController::class, 'destroy'])->name('message.destroy');
 });
 
 
@@ -394,11 +397,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/taux-reduits',            [ReducedTaxBoardController::class, 'index'])->name('taxReds');
     Route::get('/app/v1/data/taux-reduit/creer',     [ReducedTaxBoardController::class, 'create'])->name('taxRed.create');
-    Route::post('/app/v1/data/taux-reduit',           [ReducedTaxBoardController::class, 'store'])->name('taxRed.store');
-    Route::get('/app/v1/data/taux-reduit/{taxRed}', [ReducedTaxBoardController::class, 'show'])->name('taxRed.show');
+    Route::post('/app/v1/data/taux-reduit/sauvgarder',           [ReducedTaxBoardController::class, 'store'])->name('taxRed.store');
+    Route::get('/app/v1/data/taux-reduit/{taxRed}/details', [ReducedTaxBoardController::class, 'show'])->name('taxRed.show');
     Route::get('/app/v1/data/taux-reduit/{taxRed}/editer', [ReducedTaxBoardController::class, 'edit'])->name('taxRed.edit');
-    Route::put('/app/v1/data/taux-reduit/{taxRed}',     [ReducedTaxBoardController::class, 'update'])->name('taxRed.update');
-    Route::delete('/app/v1/data/taux-reduit/{taxRed}',  [ReducedTaxBoardController::class, 'destroy'])->name('taxRed.destroy');
+    Route::put('/app/v1/data/taux-reduit/{taxRed}/modifier',     [ReducedTaxBoardController::class, 'update'])->name('taxRed.update');
+    Route::delete('/app/v1/data/taux-reduit/{taxRed}/supprimer',  [ReducedTaxBoardController::class, 'destroy'])->name('taxRed.destroy');
 });
 
 
@@ -407,11 +410,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/tableau-remboursements',            [ReducedTaxBoardController::class, 'index'])->name('refundBoards');
     Route::get('/app/v1/data/tableau-remboursement/creer',     [ReducedTaxBoardController::class, 'create'])->name('refundBoard.create');
-    Route::post('/app/v1/data/tableau-remboursement',           [ReducedTaxBoardController::class, 'store'])->name('refundBoard.store');
-    Route::get('/app/v1/data/tableau-remboursement/{refundBoard}', [ReducedTaxBoardController::class, 'show'])->name('refundBoard.show');
+    Route::post('/app/v1/data/tableau-remboursement/enregistrer',           [ReducedTaxBoardController::class, 'store'])->name('refundBoard.store');
+    Route::get('/app/v1/data/tableau-remboursement/{refundBoard}/details', [ReducedTaxBoardController::class, 'show'])->name('refundBoard.show');
     Route::get('/app/v1/data/tableau-remboursement/{refundBoard}/editer', [ReducedTaxBoardController::class, 'edit'])->name('refundBoard.edit');
-    Route::put('/app/v1/data/tableau-remboursement/{refundBoard}',     [ReducedTaxBoardController::class, 'update'])->name('refundBoard.update');
-    Route::delete('/app/v1/data/tableau-remboursement/{refundBoard}',  [ReducedTaxBoardController::class, 'destroy'])->name('refundBoard.destroy');
+    Route::put('/app/v1/data/tableau-remboursement/{refundBoard}/modifier',     [ReducedTaxBoardController::class, 'update'])->name('refundBoard.update');
+    Route::delete('/app/v1/data/tableau-remboursement/{refundBoard}/supprimer',  [ReducedTaxBoardController::class, 'destroy'])->name('refundBoard.destroy');
 });
 
 
@@ -419,22 +422,22 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/remboursement-cspes',            [RefundCSPEController::class, 'index'])->name('refundCspes');
     Route::get('/app/v1/data/remboursement-cspe/creer',     [RefundCSPEController::class, 'create'])->name('refundCspe.create');
-    Route::post('/app/v1/data/remboursement-cspe',           [RefundCSPEController::class, 'store'])->name('refundCspe.store');
-    Route::get('/app/v1/data/remboursement-cspe/{refundCspe}', [RefundCSPEController::class, 'show'])->name('refundCspe.show');
+    Route::post('/app/v1/data/remboursement-cspe/enregistrer',           [RefundCSPEController::class, 'store'])->name('refundCspe.store');
+    Route::get('/app/v1/data/remboursement-cspe/{refundCspe}/details', [RefundCSPEController::class, 'show'])->name('refundCspe.show');
     Route::get('/app/v1/data/remboursement-cspe/{refundCspe}/editer', [RefundCSPEController::class, 'edit'])->name('refundCspe.edit');
-    Route::put('/app/v1/data/remboursement-cspe/{refundCspe}',     [RefundCSPEController::class, 'update'])->name('refundCspe.update');
-    Route::delete('/app/v1/data/remboursement-cspe/{refundCspe}',  [RefundCSPEController::class, 'destroy'])->name('refundCspe.destroy');
+    Route::put('/app/v1/data/remboursement-cspe/{refundCspe}/modifier',     [RefundCSPEController::class, 'update'])->name('refundCspe.update');
+    Route::delete('/app/v1/data/remboursement-cspe/{refundCspe}/supprimer',  [RefundCSPEController::class, 'destroy'])->name('refundCspe.destroy');
 });
 
 //  Refund TCGN routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/remboursement-tcgns',            [RefundTCGNController::class, 'index'])->name('refundTcgns');
     Route::get('/app/v1/data/remboursement-tcgn/creer',     [RefundTCGNController::class, 'create'])->name('refundTcgn.create');
-    Route::post('/app/v1/data/remboursement-tcgn',           [RefundTCGNController::class, 'store'])->name('refundTcgn.store');
-    Route::get('/app/v1/data/remboursement-tcgn/{refundTcgn}', [RefundTCGNController::class, 'show'])->name('refundTcgn.show');
+    Route::post('/app/v1/data/remboursement-tcgn/enregistrer',           [RefundTCGNController::class, 'store'])->name('refundTcgn.store');
+    Route::get('/app/v1/data/remboursement-tcgn/{refundTcgn}/details', [RefundTCGNController::class, 'show'])->name('refundTcgn.show');
     Route::get('/app/v1/data/remboursement-tcgn/{refundTcgn}/editer', [RefundTCGNController::class, 'edit'])->name('refundTcgn.edit');
-    Route::put('/app/v1/data/remboursement-tcgn/{refundTcgn}',     [RefundTCGNController::class, 'update'])->name('refundTcgn.update');
-    Route::delete('/app/v1/data/remboursement-tcgn/{refundTcgn}',  [RefundTCGNController::class, 'destroy'])->name('refundTcgn.destroy');
+    Route::put('/app/v1/data/remboursement-tcgn/{refundTcgn}/modifier',     [RefundTCGNController::class, 'update'])->name('refundTcgn.update');
+    Route::delete('/app/v1/data/remboursement-tcgn/{refundTcgn}/supprimer',  [RefundTCGNController::class, 'destroy'])->name('refundTcgn.destroy');
 });
 
 
@@ -442,11 +445,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/sites',            [SiteController::class, 'index'])->name('sites');
     Route::get('/app/v1/data/site/creer',     [SiteController::class, 'create'])->name('site.create');
-    Route::post('/app/v1/data/site',           [SiteController::class, 'store'])->name('site.store');
-    Route::get('/app/v1/data/site/{site}', [SiteController::class, 'show'])->name('site.show');
+    Route::post('/app/v1/data/site/enregistrer',           [SiteController::class, 'store'])->name('site.store');
+    Route::get('/app/v1/data/site/{site}/details', [SiteController::class, 'show'])->name('site.show');
     Route::get('/app/v1/data/site/{site}/editer', [SiteController::class, 'edit'])->name('site.edit');
-    Route::put('/app/v1/data/site/{site}',     [SiteController::class, 'update'])->name('site.update');
-    Route::delete('/app/v1/data/site/{site}',  [SiteController::class, 'destroy'])->name('message.destroy');
+    Route::put('/app/v1/data/site/{site}/modifier',     [SiteController::class, 'update'])->name('site.update');
+    Route::delete('/app/v1/data/site/{site}/supprimer',  [SiteController::class, 'destroy'])->name('message.destroy');
 });
 
 

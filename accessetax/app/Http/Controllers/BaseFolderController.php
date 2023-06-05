@@ -18,7 +18,7 @@ class BaseFolderController extends Controller
     public function index()
     {
         $DossierBases = BaseFolder::all();
-        return response(view('pages.Dossier.Base.index', compact('DossierBases'))->with('status', 'le dossier est prêt a être modifié.'));
+        return view('pages.Dossier.Base.index', compact('DossierBases'))->with('status', 'le dossier est prêt a être modifié.');
     }
 
     /**
@@ -29,7 +29,7 @@ class BaseFolderController extends Controller
 
     public function create()
     {
-        return response(view('pages.DossierBases.create'))->with('status', 'vous pouvez commencer la création de dossier de base..');
+        return  response(view('pages.Dossier.Base.create')->with('status', 'vous pouvez commencer la création de dossier de base..'));
     }
 
     /**
@@ -51,7 +51,7 @@ class BaseFolderController extends Controller
 
         $DossierBase->save();
 
-        return response(view('pages.DossierBases.show', compact('DossierBase')))->with('status', 'vous pouvez commencer la création de dossier de base..');
+        return  view('pages.Dossier.Base.show', compact('DossierBase'))->with('status', 'vous pouvez commencer la création de dossier de base..');
     }
 
     /**
@@ -61,12 +61,12 @@ class BaseFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(BaseFolder $baseFolder)
+    public function show($id)
     {
 
-        $DossierBase = BaseFolder::findOrFail($baseFolder);
+        $DossierBase = BaseFolder::findOrFail($id);
 
-        return response(view('pages.DossierBases.show', compact('DossierBase')))->with('status', 'vous pouvez consulter le dossier de base..');
+        view('pages.Dossier.Base.show', compact('DossierBase'))->with('status', 'vous pouvez consulter le dossier de base..');
     }
 
     /**
@@ -76,11 +76,12 @@ class BaseFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(BaseFolder $baseFolder)
+    public function edit($id)
     {
 
-        $DossierBase = BaseFolder::findOrFail($baseFolder);
-        return response(view('pages.DossierBases.edit', compact('DossierBase')))->with('status', 'vous pouvez commencer à modifier le dossier de base..');
+        $DossierBase = BaseFolder::findOrFail($id);
+
+        view('pages.Dossier.Base.edit', compact('DossierBase'))->with('status', 'vous pouvez commencer à modifier le dossier de base..');
     }
 
     /**
@@ -91,10 +92,10 @@ class BaseFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, BaseFolder $baseFolder)
+    public function update(Request $request, $id)
     {
 
-        $DossierBase = BaseFolder::findOrFail($baseFolder);
+        $DossierBase = BaseFolder::findOrFail($id);
 
         $DossierBase->numero_dossier = $request->numero_dossier;
         $DossierBase->statut_dossier = $request->statut_dossier;
@@ -104,7 +105,7 @@ class BaseFolderController extends Controller
 
         $DossierBase->save();
 
-        return response(view('pages.DossierBases.show', compact('DossierBase')))->with('status', 'vous pouvez consulter le dossier de base..');
+        return  view('pages.Dossier.Base.show', compact('DossierBase'))->with('status', 'vous pouvez consulter le dossier de base..');
     }
 
     /**
@@ -114,12 +115,13 @@ class BaseFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(BaseFolder $baseFolder)
+    public function destroy($id)
     {
 
-        $DossierBase = BaseFolder::findOrFail($baseFolder);
+        $DossierBase = BaseFolder::findOrFail($id);
         $DossierBase->delete();
 
-        return response(view('pages.DossierBases.index'))->with('status', 'Ce dossier de base a été supprimé avec succès ');
+
+        return redirect()->route('baseFolers')->with('status', " dossier de base a été supprimé avec succès.");
     }
 }

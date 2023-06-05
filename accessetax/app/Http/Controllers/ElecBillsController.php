@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ElecBill;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ElecBillsController extends Controller
 {
@@ -16,7 +17,7 @@ class ElecBillsController extends Controller
 
     public function index()
     {
-        $FacturesElec = ElecBill::all();
+        $FacturesElec = ElecBill::paginate(10);
         return  view('pages.Factures.Elec.index', compact('FacturesElec'))->with('status', "liste des factures d'electrcité.");
     }
 
@@ -43,10 +44,10 @@ class ElecBillsController extends Controller
     public function store(Request $request)
     {
 
-        $FacturesElec = ElecBill::create([
+        $FactureElec = ElecBill::create([
             "nom_facture" => $request->nom_facture,
             "fournisseur" => $request->fournisseur,
-            "fichier" =>  url('storage/'. $request->fichier->store('factureGazs', 'public')),
+            "fichier" =>  url('storage/'. $request->fichier->store('factureelecs', 'public')),
             "type" => $request->type,
             "date_debut" => $request->date_debut,
             "date_fin" => $request->date_fin,
@@ -62,7 +63,7 @@ class ElecBillsController extends Controller
         ]);
 
 
-        return response(view('pages.Factures.Elec.show', compact('FacturesElec'))->with('status', "la facture d'electrcité a été créé avec succès."));
+        return view('pages.Factures.Elec.show', compact('FactureElec'))->with('status', "la facture d'electrcité a été créé avec succès.");
     }
 
     /**
@@ -75,7 +76,7 @@ class ElecBillsController extends Controller
     public function show($id)
     {
         $FactureElec = ElecBill::findOrFail($id);
-        return response(view('pages.Factures.Elec.show', compact('FactureElec'))->with('status', "Détails de la facture d'éléctrcité."));
+        return   view('pages.Factures.Elec.show', compact('FactureElec'))->with('status', "Détails de la facture d'éléctrcité.");
     }
 
     /**
@@ -88,7 +89,7 @@ class ElecBillsController extends Controller
     public function edit($id)
     {
         $FactureElec = ElecBill::findOrFail($id);
-        return response(view('pages.Factures.Elec.edit', compact('FactureElec'))->with('status', "Facture d'éléctrcité prête à être modifié."));
+        return  view('pages.Factures.Elec.edit', compact('FactureElec'))->with('status', "Facture d'éléctrcité prête à être modifié.");
     }
 
     /**
@@ -101,26 +102,37 @@ class ElecBillsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $FacturesElec = ElecBill::findOrFail($id);
+        $FactureElec = ElecBill::findOrFail($id);
 
-        $FacturesElec->annee = $request->annee;
-        $FacturesElec->consommation = $request->consommation;
-        $FacturesElec->date_debut = $request->date_debut;
-        $FacturesElec->date_fin = $request->date_fin;
-        $FacturesElec->fichier = url('storage/' . $request->fichier->store('factureElecs', 'public'));
-        $FacturesElec->fournisseur = $request->fournisseur;
-        $FacturesElec->Elec_contract_id = $request->Elec_contract_id;
-        $FacturesElec->nom_facture = $request->nom_facture;
-        $FacturesElec->numero_client = $request->numero_client;
-        $FacturesElec->numero_compteur = $request->numero_compteur;
-        $FacturesElec->numero_contrat = $request->numero_contrat;
-        $FacturesElec->numero_etude = $request->numero_etude;
-        $FacturesElec->numero_facture = $request->numero_facture;
-        $FacturesElec->numero_site = $request->numero_site;
-        $FacturesElec->type = $request->type;
+        if ($request->hasFile('fichier')) {
+            // Delete the old file if it exists
+            if ($FactureElec->fichier && Storage::exists($FactureElec->fichier)) {
+                Storage::delete($FactureElec->fichier);
+            }
 
-        $FacturesElec->save();
-        return response(view('pages.Factures.Elec.show', compact('FacturesElec'))->with('status', "."));
+            // Update the model with the new file path
+            $FactureElec->fichier = url('storage/' . $request->fichier->store('factureelecs', 'public'));
+        }
+
+
+        $FactureElec->annee = $request->annee;
+        $FactureElec->consommation = $request->consommation;
+        $FactureElec->date_debut = $request->date_debut;
+        $FactureElec->date_fin = $request->date_fin;
+        $FactureElec->fournisseur = $request->fournisseur;
+        $FactureElec->Elec_contract_id = $request->Elec_contract_id;
+        $FactureElec->nom_facture = $request->nom_facture;
+        $FactureElec->numero_client = $request->numero_client;
+        $FactureElec->numero_compteur = $request->numero_compteur;
+        $FactureElec->numero_contrat = $request->numero_contrat;
+        $FactureElec->numero_etude = $request->numero_etude;
+        $FactureElec->numero_facture = $request->numero_facture;
+        $FactureElec->numero_site = $request->numero_site;
+        $FactureElec->type = $request->type;
+        $FactureElec->elec_contract_id = $request->elec_contract_id;
+
+        $FactureElec->save();
+        return response(view('pages.Factures.Elec.show', compact('FactureElec'))->with('status', "."));
     }
 
     /**
@@ -132,7 +144,14 @@ class ElecBillsController extends Controller
 
     public function destroy($id)
     {
-        $FacturesElec = ElecBill::findOrFail($id);
-        return response(view('pages.Factures.Elec.index')->with('status', "."));
+
+        $FactureElec = ElecBill::findOrFail($id);
+
+        if (ElecBill::exists($FactureElec->fichier)) {
+            Storage::delete($FactureElec->fichier);
+        }
+        $FactureElec->delete();
+
+        return   redirect()->route('billsElecs')->with('status', "la facture a été supprimé avec succès.");
     }
 }

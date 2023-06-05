@@ -57,7 +57,7 @@ class ResponsibleController extends Controller
 
     public function show($id)
     {
-        $responsible = Responsible::findOrFail($id);
+        $responsable = Responsible::findOrFail($id);
 
         return response(view('pages.Responsables.show', compact('responsable',))->with('status', 'le dirigeant a été trouvé dans les enregistrements.'));
     }
