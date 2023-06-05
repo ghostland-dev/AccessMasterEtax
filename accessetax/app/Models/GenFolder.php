@@ -33,7 +33,8 @@ class GenFolder extends Model {
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
 
-    public function baseFolder(): BelongsTo {
-        return $this->belongsTo( BaseFolder::class, 'base_folder_id' );
+    public function baseFolder(): BelongsTo
+    {
+        return $this->belongsTo(BaseFolder::class, 'base_folder_id');
     }
 }

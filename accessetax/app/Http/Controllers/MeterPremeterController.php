@@ -98,6 +98,7 @@ class MeterPremeterController extends Controller
         $Piremetrecompteur = MeterPremeter::findOrFail($id);
         $Piremetrecompteur->delete();
 
-        return response(view('pages.Perimetres.index')->with('status', "le piremetre a été supprimé avec succès."));
+
+        return redirect()->route("premMeters")->with('status', "le piremetre a été supprimé avec succès..");
     }
 }

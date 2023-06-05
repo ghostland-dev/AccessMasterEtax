@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 
-class BaseDocument extends Model {
+class BaseDocument extends Model
+{
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -24,4 +26,9 @@ class BaseDocument extends Model {
         'valeur_ajoutee',
         'base_folder_id',
     ];
+
+    public function baseFolder(): BelongsTo
+    {
+        return $this->belongsTo(BaseFolder::class, 'base_folder_id');
+    }
 }

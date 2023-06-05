@@ -25,35 +25,34 @@
                                                 <i class="fa fa-trash"></i> {{ session('status') }}
                                             </div>
                                         @endif
-                                        <div class="row">
+                                        <div class="grid gap-3 grid-cols-3 lg:grid-cols-3 md:grid-cols-3  sm:grid-cols-1">
                                             @foreach ($modelData as $alerte)
-                                                <div class="col-md-3 card p-3  " role="alert" aria-live="assertive"
+                                                <div class="  card p-3  " role="alert" aria-live="assertive"
                                                     aria-atomic="true">
                                                     <div class="container-fluid">
-                                                        <i class="btn btn-light-success ti ti-bell-ringing"></i>
-                                                        <div class="bg-light-gray p-2 my-2 rounded-2">
+                                                        <div class="flex justify-between w-ful">
+                                                            <i class="btn btn-light-success ti ti-bell-ringing"></i>
+                                                            <form action="{{ route('alerte.destroy', $alerte->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit"
+                                                                    class="p-1   bg-red-50 text-red-600 rounded-full"><i
+                                                                        class="fa fa-close"></i></button>
+
+                                                            </form>
+                                                        </div>
+                                                        <div class="bg-slate-50   min-h-[6em] p-2 my-2 rounded-2">
                                                             <div class="toast-header  ">{{ $alerte->nom_alerte }} </div>
                                                             <div class="toast-body">
                                                                 {{ $alerte->description_alerte }}
                                                                 <span class=" "> {{ $alerte->type_alerte }}</span>
                                                             </div>
                                                         </div>
-                                                        <form action="{{ route('alerte.destroy', $alerte->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <button type="submit"
-                                                                class="btn btn-danger my-2 float-end rounded-9"><i
-                                                                    class="fa fa-close"></i></button>
 
-                                                        </form>
                                                     </div>
 
                                                 </div>
-
-                                                {{-- @if ($alerte->id == 5)
-                                    @break --}}
-                                                {{-- @endif --}}
                                             @endforeach
                                         </div>
 

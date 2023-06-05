@@ -28,7 +28,7 @@ class GazMeterFactory extends Factory
             'tarif' => 1,
             'consommation_mentsauelle' => $this->faker->randomDigitNotNull,
             'consommation_annuelle' => $this->faker->randomDigitNotNull,
-            'site_id' => $this->faker->randomDigitNotNull,
+            'study_id' => $this->faker->randomDigitNotNull,
         ];
     }
 }

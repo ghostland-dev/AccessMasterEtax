@@ -27,7 +27,10 @@ return new class extends Migration
             $table->string('consommation');
             $table->string('annee');
 
-            $table->foreignId('site_id')
+
+
+
+            $table->foreignId('study_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

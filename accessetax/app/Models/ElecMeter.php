@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
-class ElecMeter extends Model {
+class ElecMeter extends Model
+{
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -23,14 +25,17 @@ class ElecMeter extends Model {
         'consommation',
         'annee',
         'site_id',
+        'study_id',
     ];
 
-    public function Contracts() {
-        return $this->hasMany( ElecContract::class );
+    public function Contracts(): HasMany
+    {
+        return $this->hasMany(ElecContract::class);
     }
 
-    public function Site(): BelongsTo
+
+    public function Study(): BelongsTo
     {
-        return $this->belongsTo(Site::class, 'site_id' );
+        return $this->belongsTo(Study::class, 'study_id');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SupplierController extends Controller
 {
@@ -46,13 +47,16 @@ class SupplierController extends Controller
 
 
         $fournisseur = new Supplier();
+
+        // Update the model with the new file path
         $fournisseur->logo = url('storage/' . $request->logo->store('fournisseurLogos', 'public'));
         $fournisseur->nom_fournisseur = $request->nom_fournisseur;
         $fournisseur->contact = $request->contact;
+        $fournisseur->tel = $request->tel;
         $fournisseur->email = $request->email;
         $fournisseur->address = $request->address;
-        $fournisseur->fournisseur_electrcite = $request->fournisseur_electrcite;
-        $fournisseur->fournisseur_gaz = $request->fournisseur_gaz;
+        $fournisseur->fournisseur_electrcite = $request->fournisseur_electrcite == 'on' ? true : false;
+        $fournisseur->fournisseur_gaz = $request->fournisseur_gaz == 'on' ? true : false;
         $fournisseur->country = $request->country;
         $fournisseur->city = $request->city;
         $fournisseur->zip_code = $request->zip_code;
@@ -62,7 +66,7 @@ class SupplierController extends Controller
 
         $fournisseur->save();
 
-        return response(view('pages.Fournisseurs.index')->with('status', ' Fournisseur a été ajouté avec succès.'));
+        return  view('pages.Fournisseurs.show', compact('fournisseur'))->with('status', ' Fournisseur a été ajouté avec succès.');
     }
 
     /**
@@ -72,12 +76,12 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Supplier $supplier)
+    public function show($id)
     {
 
-        $fournisseur = Supplier::findOrFail($supplier);
+        $fournisseur = Supplier::findOrFail($id);
 
-        return response(view('pages.Fournisseurs.show', compact('fournisseur'))->with('status', 'Ce fournisseur a été trouvé dans nos enregistrements'));
+        return  view('pages.Fournisseurs.show', compact('fournisseur'))->with('status', 'Ce fournisseur a été trouvé dans nos enregistrements');
     }
 
     /**
@@ -87,11 +91,11 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Supplier $supplier)
+    public function edit($id)
     {
-        $fournisseur = Supplier::findOrFail($supplier);
+        $fournisseur = Supplier::findOrFail($id);
 
-        return response(view('pages.Fournisseurs.edit', compact('fournisseur'))->with('status', 'Ce fournisseur est prêt à être modfifié.'));
+        return view('pages.Fournisseurs.edit', compact('fournisseur'))->with('status', 'Ce fournisseur est prêt à être modfifié.');
     }
 
     /**
@@ -102,16 +106,27 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, $id)
     {
-        $fournisseur = Supplier::findOrFail($supplier);
-        $fournisseur->logo = url('storage/' . $request->logo->store('fournisseurLogos', 'public'));
+        $fournisseur = Supplier::findOrFail($id);
+
+        if ($request->hasFile('logo')) {
+            // Delete the old file if it exists
+            if ($fournisseur->logo && Storage::exists($fournisseur->logo)) {
+                Storage::delete($fournisseur->logo);
+            }
+
+            // Update the model with the new file path
+            $fournisseur->logo = url('storage/' . $request->logo->store('fournisseurLogos', 'public'));
+        }
+
         $fournisseur->nom_fournisseur = $request->nom_fournisseur;
         $fournisseur->contact = $request->contact;
+        $fournisseur->tel = $request->tel;
         $fournisseur->email = $request->email;
         $fournisseur->address = $request->address;
-        $fournisseur->fournisseur_electrcite = $request->fournisseur_electrcite;
-        $fournisseur->fournisseur_gaz = $request->fournisseur_gaz;
+        $fournisseur->fournisseur_electrcite = $request->fournisseur_electrcite == 'on' ? true : false;
+        $fournisseur->fournisseur_gaz = $request->fournisseur_gaz == 'on' ? true : false;
         $fournisseur->country = $request->country;
         $fournisseur->city = $request->city;
         $fournisseur->zip_code = $request->zip_code;
@@ -122,7 +137,7 @@ class SupplierController extends Controller
         $fournisseur->save();
 
 
-        return response(view('pages.Fournisseurs.index', compact('fournisseur')))->with('status', 'Ce fournisseur a été trouvé dans nos enregistrements');
+        return  view('pages.Fournisseurs.show', compact('fournisseur'))->with('status', 'Ce fournisseur a été trouvé dans nos enregistrements');
     }
 
     /**
@@ -138,6 +153,6 @@ class SupplierController extends Controller
         $fournisseur = Supplier::findOrFail($supplier);
         $fournisseur->delete();
 
-        return response(view(''))->with('status', 'Fournisseur a été supprimé avec succès');
+        return redirect()->route("suppliers")->with('status', "le Fournisseur a été supprimé avec succès..");
     }
 }

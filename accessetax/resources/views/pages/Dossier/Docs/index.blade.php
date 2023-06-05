@@ -1,25 +1,23 @@
 @extends('layouts.signed')
 @section('main')
-    <div class="d-flex justify-content-between flex-wrap">
-        @foreach ($baseDocuments as $baseDocument)
-            <div class="col-md-6">
-                <div class="card m-b-30">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-md-12">
-                                <h5 class="card-title mb-0">Important Files</h5>
+    <div>
+        <a href="{{ route('baseDoc.create') }}" class="btn btn-success m-3 ">
+            + Nouveau documents de base
+        </a>
+
+        <div class=" grid gap-2 grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
+            @foreach ($baseDocuments as $baseDocument)
+                <div class="card  ">
+                    <div class="card-header w-full">
+                        <div class=" grid gap-2 grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+                            <div class=" ">
+                                <h5 class="card-title mb-0"> Document de base ()</h5>
                             </div>
-                            <div class="col-4">
-                                <ul class="list-inline-group text-right mb-1 pl-0">
-                                    <li class="list-inline-item mr-0 font-12"><i
-                                            class="feather icon-more-vertical- font-20 text-primary"></i>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="product-file-type">
+                        <div class=" ">
                             <ul class="list-unstyled">
                                 <li class="media mb-3">
 
@@ -28,28 +26,34 @@
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>CGV Voltaria</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        CGV Access
+                                                        Energies</span>
                                                     <a href="{{ $baseDocument->cgv_access_anergies }}"
                                                         class="btn btn-success" download><i class="fa fa-download"></i></a>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>RIB d'entreprise</span>
+                                                    <span><i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>RIB
+                                                        d'entreprise</span>
                                                     <a href="{{ $baseDocument->rib_entreprise }}" class="btn btn-success"
                                                         download><i class="fa fa-download"></i></a>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>KIBIS</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        KIBIS</span>
                                                     <a href="{{ $baseDocument->kabis }}" class="btn btn-success" download><i
                                                             class="fa fa-download"></i></a>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>Billans Comptables</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        Billans
+                                                        Comptables</span>
                                                     <div>
                                                         <a href="{{ $baseDocument->bilan_comptable_1 }}"
                                                             class="btn btn-success" download><i
@@ -62,7 +66,8 @@
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>Annexes</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        Annexes</span>
                                                     <div>
                                                         <a href="{{ $baseDocument->annexe_1 }}" class="btn btn-success"
                                                             download><i class="fa fa-download"></i></a>
@@ -73,21 +78,27 @@
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>Courrier manuscrit</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        Courrier
+                                                        manuscrit</span>
                                                     <a href="{{ $baseDocument->confirmation_douanaire }}"
                                                         class="btn btn-success" download><i class="fa fa-download"></i></a>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>Fiche d'entreprise</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        Fiche
+                                                        d'entreprise</span>
                                                     <a href="{{ $baseDocument->fichier_entreprise }}"
                                                         class="btn btn-success" download><i class="fa fa-download"></i></a>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span>Fiche d'entreprise</span>
+                                                    <span> <i class="fa fa-file-pdf fa-2x  text-slate-400 mx-2"></i>
+                                                        Fiche
+                                                        d'entreprise</span>
                                                     <a href="{{ $baseDocument->valeur_ajoutee }}" class="btn btn-success"
                                                         download><i class="fa fa-download"></i></a>
                                                 </div>
@@ -101,9 +112,26 @@
 
                             </ul>
                         </div>
+                        <div class="w-full float-right  ">
+                            <a class="text-muted dropdown-toggle font-size-16 bg-dark text-white p-2 rounded-4 mx-2"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i
+                                    class="fa fa-cog"></i>Actions </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="{{ route('baseDoc.show', $baseDocument->id) }}">Détails</a>
+                                <a class="dropdown-item" href="{{ route('baseDoc.edit', $baseDocument->id) }}">Editer</a>
+
+                                <form method="POST" action="{{ route('baseDoc.destroy', $baseDocument->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="dropdown-item"><i class="fa fa-trash"></i>
+                                        Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
+
     </div>
 @endsection
