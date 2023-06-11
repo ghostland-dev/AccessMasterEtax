@@ -1,12 +1,6 @@
 @extends('layouts.signed')
 
 @section('main')
-    @if (session('status'))
-        <div class="alert bg-light-success text-success text-center" role="alert">
-            <i class="fa fa-trash"></i> {{ session('status') }}
-        </div>
-    @endif
-
     <a class="btn btn-success my-3  " href="{{ route('cspeElig.create') }}"> + Nouveau Test d'Eligibilité CSPE</a>
     <table class="table align-middle  bg-white">
         <thead class="bg-light">
@@ -17,19 +11,12 @@
                     </div>
                 </th>
 
-                <th>Taux Reduit (CSPE)</th>
-                <th>Taux Plain (CSPE)</th>
-                <th>Nouveau Taux (CSPE)</th>
+                <th>Client</th>
                 <th>Eligible (Reduit)</th>
-                <th>Electro-intensité</th>
                 <th>Risque Fuite(CO²)</th>
                 <th>Gagne Client</th>
                 <th>C.A Access (Brût)</th>
                 <th>C.A Access (Net)</th>
-
-                <th>Date création</th>
-
-
                 <th>Actions</th>
             </tr>
         </thead>
@@ -45,34 +32,20 @@
                     <td>
                         <div class="d-flex align-items-center">
 
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $EligibilityCSPE->MotnantCSPETauxReduit }}</p>
+                            <div class=" ">
+                                <p class=" font-bold "> <i class="fa fa-home mx-2 text-emerald-400"></i>
+                                    {{ $EligibilityCSPE->study->site->company->denomination }}</p>
+                                <p class=" font-bold "><i class="fa fa-clipboard mx-2 text-emerald-400"></i>
+                                    {{ $EligibilityCSPE->study->site->company->siret }}</p>
+
                             </div>
                         </div>
                     </td>
+
                     <td>
                         <div class="d-flex align-items-center">
 
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $EligibilityCSPE->CSPEtauxPlein }}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $EligibilityCSPE->NouveaTauxReduit }}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-
-                            <div class="ms-3">
+                            <div class=" ">
                                 <p
                                     class="btn  {{ $EligibilityCSPE->EligibiliteReduit ? 'text-success btn-light-success' : 'text-danger btn-light-danger' }}">
                                     {{ $EligibilityCSPE->EligibiliteReduit ? 'Oui' : 'Non' }}
@@ -80,19 +53,11 @@
                             </div>
                         </div>
                     </td>
+
                     <td>
                         <div class="d-flex align-items-center">
 
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $EligibilityCSPE->RatioElectroIntense }}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-
-                            <div class="ms-3">
+                            <div class=" ">
                                 <p
                                     class="  btn   {{ $EligibilityCSPE->SoumisRisqueFuitCO2 ? 'text-success btn-light-success' : 'text-danger btn-light-danger' }}">
                                     {{ $EligibilityCSPE->SoumisRisqueFuitCO2 ? 'Oui' : 'Non' }}
@@ -103,17 +68,17 @@
                     <td>
                         <div class="d-flex align-items-center">
 
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $EligibilityCSPE->RemboursementClient }}</p>
+                            <div class=" ">
+                                <p class="  px-3  py-2 rounded-md bg-slate-50 text-success">
+                                    {{ $EligibilityCSPE->RemboursementClient }} €</p>
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
 
-                            <div class="ms-3">
-                                <p class=" btn btn-light-primary text-primary">
+                            <div class=" ">
+                                <p class=" px-3  py-2 rounded-md bg-slate-50 text-success">
                                     {{ $EligibilityCSPE->chiffreAffaireBrut_AE }} €</p>
                             </div>
                         </div>
@@ -121,23 +86,12 @@
                     <td>
                         <div class="d-flex align-items-center">
 
-                            <div class="ms-3">
-                                <p class="btn btn-light-primary text-primary">
+                            <div class=" ">
+                                <p class="px-3  py-2 rounded-md bg-slate-50 text-success">
                                     {{ $EligibilityCSPE->chiffreAffaireNet_AE }} €</p>
                             </div>
                         </div>
                     </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $EligibilityCSPE->created_at }}</p>
-                            </div>
-                        </div>
-                    </td>
-
-
 
                     <td>
                         <div class="dropdown">

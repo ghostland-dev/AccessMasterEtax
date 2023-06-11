@@ -16,7 +16,7 @@ class StudyController extends Controller
 
     public function index()
     {
-        $etudes = Study::all();
+        $etudes = Study::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.Etudes.index', compact('etudes'))->with('status', 'liste des etudes'));
     }

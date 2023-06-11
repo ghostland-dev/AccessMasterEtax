@@ -27,6 +27,14 @@
 
                     </div>
 
+                    <div class="grid  grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-2">
+                        <li
+                            class="p-3 my-2 rounded-md {{ $EligibiliteTICGN->fullvalidation ? 'bg-success text-white   ' : 'bg-light-warning text-warning   ' }}">
+                            <p class="text-slate-500 font-semibold">Validation (complet):</p> <span id="Validation03">
+                                {{ $EligibiliteTICGN->fullvalidation ? 'Super ! bien réussi les trois testes .' : ' Désolé, Vous n\'avez pas réussi les 3 tests de validation. ' }}</span>
+                        </li>
+                    </div>
+
                     <li class="grid  grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-2">
                         <div class="shadow-md p-3 bg-gray-50 text-gray">
                             <p>Somme total des taux gaz plein </p>

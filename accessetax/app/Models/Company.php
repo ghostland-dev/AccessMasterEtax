@@ -15,7 +15,7 @@ class Company extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'denomenation',
+        'denomination',
         'siren',
         'siret',
         'forme_juridique',
@@ -34,8 +34,6 @@ class Company extends Model
         'nic_siege',
         'date_creation',
         'date_radiation',
-        'date_immatriculation',
-        'date_immatriculation_rcs',
         'user_id',
     ];
 

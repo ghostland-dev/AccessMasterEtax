@@ -56,6 +56,11 @@
                                             @endforeach
                                         </div>
 
+
+                                        <div class="mt-4">
+                                            {{ $modelData->links('vendor.pagination.tailwind') }}
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

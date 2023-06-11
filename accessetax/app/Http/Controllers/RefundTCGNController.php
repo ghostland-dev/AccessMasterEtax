@@ -15,7 +15,7 @@ class RefundTCGNController extends Controller
      */
     public function index()
     {
-        $remboursementTCGNs = RefundTCGN::all();
+        $remboursementTCGNs = RefundTCGN::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.Remboursements.TICGN.index', compact('remboursementTCGNs'))->with('status', "voici la liste des remboursements TICGN pour ce client"));
     }

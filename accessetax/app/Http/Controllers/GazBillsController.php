@@ -20,7 +20,7 @@ class GazBillsController extends Controller
     public function index()
     {
 
-        $FactureGazs = GazBill::all();
+        $FactureGazs = GazBill::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Factures.Gaz.index', compact('FactureGazs'))->with('status', "liste des factures de de gaz a été retouvé."));
     }
 
@@ -127,7 +127,7 @@ class GazBillsController extends Controller
             }
 
             // Update the model with the new file path
-            $FactureGaz->fichier = url('storage/'. $request->fichier->store('facturegazs', 'public'));
+            $FactureGaz->fichier = url('storage/' . $request->fichier->store('facturegazs', 'public'));
         }
 
 

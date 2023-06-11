@@ -14,7 +14,7 @@ class CodeNafController extends Controller
      */
     public function index()
     {
-        $codenafs = CodeNaf::all();
+        $codenafs = CodeNaf::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.CodeNafs.index', compact('codenafs')));
     }

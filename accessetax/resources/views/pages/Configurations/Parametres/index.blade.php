@@ -117,6 +117,11 @@
                                             </tbody>
                                         </table>
 
+
+                                        <div class=" ">
+                                            {{ $paramatres->links('vendor.pagination.tailwind') }}
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

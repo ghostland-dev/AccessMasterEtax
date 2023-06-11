@@ -16,18 +16,18 @@ return new class extends Migration
         Schema::create('eligibility_c_s_p_e_s', function (Blueprint $table) {
             $table->id();
             $table->string('CodeNafmessage')->nullable();
-            $table->float('MotnantCSPETauxReduit')->nullable();
-            $table->float('CAR')->nullable();
-            $table->float('valeurAjouter')->nullable();
-            $table->string('codeNaf')->nullable();
-            $table->float('CSPEtauxPlein')->nullable();
-            $table->boolean('EligibiliteReduit')->nullable();
-            $table->float('RatioElectroIntense')->nullable();
             $table->boolean('SoumisRisqueFuitCO2')->nullable();
-            $table->float('NouveaTauxReduit')->nullable();
-            $table->float('RemboursementClient')->nullable();
-            $table->float('chiffreAffaireBrut_AE')->nullable();
-            $table->float('chiffreAffaireNet_AE')->nullable();
+            $table->boolean('EligibiliteReduit')->nullable();
+            $table->string('codeNaf')->nullable();
+            $table->decimal('MotnantCSPETauxReduit', 12, 2, false)->nullable();
+            $table->decimal('CAR', 12, 2, false)->nullable();
+            $table->decimal('valeurAjouter', 12, 2, false)->nullable();
+            $table->decimal('CSPEtauxPlein', 12, 2, false)->nullable();
+            $table->decimal('RatioElectroIntense', 12, 2, false)->nullable();
+            $table->decimal('NouveaTauxReduit', 12, 2, false)->nullable();
+            $table->decimal('RemboursementClient', 12, 2, false)->nullable();
+            $table->decimal('chiffreAffaireBrut_AE', 12, 2, false)->nullable();
+            $table->decimal('chiffreAffaireNet_AE', 12, 2, false)->nullable();
             $table->timestamps();
 
             $table->foreignId('study_id')

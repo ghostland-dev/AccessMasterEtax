@@ -15,7 +15,7 @@ class BaseDocumentController extends Controller
 
     public function index()
     {
-        $baseDocuments = BaseDocument::all();
+        $baseDocuments = BaseDocument::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Dossier.Docs.index', compact('baseDocuments'))->with('status', 'liste des dossiers de base'));
     }
 

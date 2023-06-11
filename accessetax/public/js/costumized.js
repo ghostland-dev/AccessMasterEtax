@@ -23,21 +23,6 @@ function imageData(url) {
     };
 }
 
-// function showLoading() {
-//     document.querySelector('#loading').classList.add('loading');
-//     document.querySelector('#loading-content').classList.add('loading-content');
-// }
-
-
-
-// function hideLoading() {
-//     document.querySelector('#loading').classList.remove('loading');
-//     document.querySelector('#loading-content').classList.remove('loading-content');
-// }
-
-// showLoading()
-
-
 $(document).ready(function () {
 
     $("#nafGen").on('click', function () {
@@ -50,7 +35,7 @@ $(document).ready(function () {
             };
             let entreprise_name = $.trim($("#SIREN").val());
 
-            fetch(`http://localhost:8000/app/v1/data/pappers/${entreprise_name}`, requestOptions).then(function (response) {
+            fetch(`http://localhost:8000/app/v1/data/pappers?siren=${entreprise_name}`, requestOptions).then(function (response) {
 
                 return response.json();
             }).then(function (data) {

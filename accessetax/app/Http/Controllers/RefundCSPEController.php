@@ -14,7 +14,7 @@ class RefundCSPEController extends Controller
      */
     public function index()
     {
-        $remboursementCSPEs = RefundCSPE::all();
+        $remboursementCSPEs = RefundCSPE::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.Remboursements.CSPE.index', compact('remboursementCSPEs'))->with("status", "Listes des tableau de remboursement CSPE."));
     }

@@ -93,4 +93,10 @@
             @endforeach
         </tbody>
     </table>
+
+
+             <div class="mt-4">
+                                            {{ $compteursGazs->links('vendor.pagination.tailwind') }}
+                                        </div>
+
 @endsection

@@ -14,7 +14,7 @@ class CouncilOfficeController extends Controller
      */
     public function index()
     {
-        $Douanes = CouncilOffice::all();
+        $Douanes = CouncilOffice::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Douanes.index', compact('Douanes'))->with('status', "liste des bureaux douanaires."));
     }
 

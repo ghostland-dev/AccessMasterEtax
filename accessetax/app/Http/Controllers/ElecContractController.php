@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ElecContract;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ElecContractController extends Controller
 {
@@ -14,7 +16,7 @@ class ElecContractController extends Controller
      */
     public function index()
     {
-        $contratElecs =  ElecContract::all();
+        $contratElecs =  ElecContract::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Contrats.Elec.index', compact('contratElecs')));
     }
 
@@ -25,8 +27,9 @@ class ElecContractController extends Controller
      */
     public function create()
     {
+        $fournisseurs = Supplier::all();
 
-        return response(view('pages.Contrats.Elec.create')->with('status', ""));
+        return response(view('pages.Contrats.Elec.create', compact('fournisseurs'))->with('status', ""));
     }
 
     /**
@@ -37,8 +40,19 @@ class ElecContractController extends Controller
      */
     public function store(Request $request)
     {
-        $contatElec = ElecContract::create($request->all());
-        return response(view('pages.Contrats.Elec.show', compact('contatElec'))->with('status', "contrat éléctricité a été crée avec succès"));
+        $contratElec =  new ElecContract;
+
+        $contratElec->date_debut = $request->date_debut;
+        $contratElec->date_fin = $request->date_fin;
+        $contratElec->date_signature = $request->date_signature;
+        $contratElec->fichier = url('storage/' . $request->fichier->store('contractelecs', 'public'));
+        $contratElec->fournisseur = $request->fournisseur;
+        $contratElec->elec_meter_id = $request->elec_meter_id;
+        $contratElec->nom_contrat = $request->nom_contrat;
+
+        $contratElec->save();
+
+        return response(view('pages.Contrats.Elec.show', compact('contratElec'))->with('status', "contrat éléctricité a été crée avec succès"));
     }
 
     /**
@@ -47,10 +61,10 @@ class ElecContractController extends Controller
      * @param  \App\Models\ElecContract  $elecContract
      * @return \Illuminate\Http\Response
      */
-    public function show(ElecContract $elecContract)
+    public function show($id)
     {
-        $contatElec = ElecContract::findOrFail($elecContract);
-        return response(view('pages.Contrats.Elec.show', compact('contatElec'))->with('status', "Détails de ce contrat d'éléctricité."));
+        $contratElec = ElecContract::findOrFail($id);
+        return response(view('pages.Contrats.Elec.show', compact('contratElec'))->with('status', "Détails de ce contrat d'éléctricité."));
     }
 
     /**
@@ -59,10 +73,11 @@ class ElecContractController extends Controller
      * @param  \App\Models\ElecContract  $elecContract
      * @return \Illuminate\Http\Response
      */
-    public function edit(ElecContract $elecContract)
+    public function edit($id)
     {
-        $contatElec = ElecContract::findOrFail($elecContract);
-        return response(view('pages.Contrats.Elec.show', compact('contatElec'))->with('status', "contrat d'éléctricité est prêt à être modifié."));
+        $fournisseurs = Supplier::all();
+        $contatElec = ElecContract::findOrFail($id);
+        return response(view('pages.Contrats.Elec.edit', compact('contatElec', 'fournisseurs'))->with('status', "contrat d'éléctricité est prêt à être modifié."));
     }
 
     /**
@@ -72,15 +87,24 @@ class ElecContractController extends Controller
      * @param  \App\Models\ElecContract  $elecContract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ElecContract $elecContract)
+    public function update(Request $request, $id)
     {
-        $contatElec = ElecContract::findOrFail($elecContract);
+        $contatElec = ElecContract::findOrFail($id);
+
+        if ($request->hasFile('fichier')) {
+            // Delete the old file if it exists
+            if ($contatElec->fichier && Storage::exists($contatElec->fichier)) {
+                Storage::delete($contatElec->fichier);
+            }
+
+            // Update the model with the new file path
+            $contatElec->fichier = url('storage/' . $request->fichier->store('contractelecs', 'public'));
+        }
 
         $contatElec->date_debut = $request->date_debut;
         $contatElec->date_fin = $request->date_fin;
         $contatElec->date_signature = $request->date_signature;
         $contatElec->elec_meter_id = $request->elec_meter_id;
-        $contatElec->fichier = $request->fichier->store('ContratGazs', 'public');
         $contatElec->fournisseur = $request->fournisseur;
         $contatElec->nom_contrat = $request->nom_contrat;
 
@@ -94,9 +118,16 @@ class ElecContractController extends Controller
      * @param  \App\Models\ElecContract  $elecContract
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ElecContract $elecContract)
+    public function destroy($id)
     {
-        $contatElec = ElecContract::findOrFail($elecContract);
-        return response(view('pages.Contrats.Elec.index')->with('status', "contrat d'éléctricité  a été supprimé avec succès."));
+
+        $contatElec = ElecContract::findOrFail($id);
+
+        if (ElecContract::exists($contatElec->fichier)) {
+            Storage::delete($contatElec->fichier);
+        }
+        $contatElec->delete();
+
+        return   redirect()->route('contractElecs')->with('status', "contrat d'éléctricité a été supprimé avec succès.");
     }
 }

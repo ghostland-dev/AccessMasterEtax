@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $Contacts = Contact::all();
+        $Contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Contacts.index', compact('Contacts'))->with('status', "liste des contacts."));
     }
 

@@ -1,8 +1,8 @@
 @extends('layouts.pipeline')
 @section('pipeline')
-    <div class=" background jumbotron jumbotron-fluid  back-image" id="banner  ">
+    <div class=" background jumbotron jumbotron-fluid  h-screen back-image" id="banner  ">
 
-         
+
         <div class="container text-center text-md-center">
 
             <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"

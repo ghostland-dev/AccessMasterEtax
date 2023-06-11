@@ -14,7 +14,7 @@ class GazMeterController extends Controller
      */
     public function index()
     {
-        $compteursGazs = GazMeter::all();
+        $compteursGazs = GazMeter::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Compteurs.Gaz.index', compact('compteursGazs'))->with('status', "liste des compteurs de gaz."));
     }
 

@@ -14,7 +14,7 @@ class ReducedTaxBoardController extends Controller
      */
     public function index()
     {
-        $TauxReduits = ReducedTaxBoard::all();
+        $TauxReduits = ReducedTaxBoard::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.TauxReduits.index', compact('TauxReduits'))->with('status', "tableau des taux réduits a été retrouvé."));
     }

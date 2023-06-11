@@ -18,24 +18,19 @@
                                 </div>
                             </th>
 
-                            <th>Validation (01)</th>
-                            <th>Validation (02)</th>
-                            <th>Validation (03)</th>
+                            <th>Client</th>
+
                             <th>Validité (complet)</th>
                             <th>Economie (€)</th>
-                            <th>Taxe Elec Plain</th>
-                            <th>Taxe Gaz Plain</th>
-                            <th>Taxe TICGN</th>
                             <th>C.A Access (Brut)</th>
                             <th>C.A Access (Net)</th>
-                            <th>Date création</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($EligibiliteTICGNs as $EligibiliteTICGN)
                             <tr>
-                                <th >
+                                <th>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value=""
                                             id="flexCheckDefault" />
@@ -43,38 +38,19 @@
                                 </th>
 
                                 <td>
-                                    <div class=" ">
+                                    <div class="d-flex align-items-center">
 
                                         <div class=" ">
-                                            <p
-                                                class="btn  {{ $EligibiliteTICGN->Validation01 ? 'text-success btn-light-success' : 'text-danger btn-light-danger' }}">
-                                                {{ $EligibiliteTICGN->Validation01 ? 'Oui' : 'Non' }}
-                                            </p>
+                                            <p class=" font-bold "> <i class="fa fa-home mx-2 text-emerald-400"></i>
+                                                {{ $EligibiliteTICGN->study->site->company->denomination }}</p>
+                                            <p class=" font-bold "><i class="fa fa-clipboard mx-2 text-emerald-400"></i>
+                                                {{ $EligibiliteTICGN->study->site->company->siret }}</p>
+
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class=" ">
 
-                                        <div class=" ">
-                                            <p
-                                                class="btn  {{ $EligibiliteTICGN->Validation02 ? 'text-success btn-light-success' : 'text-danger btn-light-danger' }}">
-                                                {{ $EligibiliteTICGN->Validation02 ? 'Oui' : 'Non' }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class=" ">
 
-                                        <div class=" ">
-                                            <p
-                                                class="btn  {{ $EligibiliteTICGN->Validation03 ? 'text-success btn-light-success' : 'text-danger btn-light-danger' }}">
-                                                {{ $EligibiliteTICGN->Validation03 ? 'Oui' : 'Non' }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
                                 <td>
                                     <div class=" ">
 
@@ -90,46 +66,19 @@
                                     <div class=" ">
 
                                         <div class=" ">
-                                            <p class="text-muted mb-0">
-                                                {{ $EligibiliteTICGN->esitmationEconomie }}</p>
+                                            <p class="px-3  py-2 rounded-md bg-slate-50 text-success">
+                                                {{ $EligibiliteTICGN->esitmationEconomie }} €</p>
                                         </div>
                                     </div>
                                 </td>
+
+
 
                                 <td>
                                     <div class=" ">
 
                                         <div class=" ">
-                                            <p class="text-muted mb-0">
-                                                {{ $EligibiliteTICGN->SommeTotalTaxElecPlein }}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class=" ">
-
-                                        <div class=" ">
-                                            <p class="text-muted mb-0">
-                                                {{ $EligibiliteTICGN->SommeTotalTaxGazPlein }}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class=" ">
-
-                                        <div class=" ">
-                                            <p class="text-muted mb-0">
-                                                {{ $EligibiliteTICGN->SommeTotalTaxTCGNReduit }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class=" ">
-
-                                        <div class=" ">
-                                            <p class=" btn btn-light-primary text-primary">
+                                            <p class=" px-3  py-2 rounded-md bg-slate-50 text-success">
                                                 {{ $EligibiliteTICGN->chiffreAffaireBrut_AE }} €
                                             </p>
                                         </div>
@@ -139,17 +88,8 @@
                                     <div class=" ">
 
                                         <div class=" ">
-                                            <p class="btn btn-light-primary text-primary">
+                                            <p class="px-3  py-2 rounded-md bg-slate-50 text-success">
                                                 {{ $EligibiliteTICGN->chiffreAffaireNet_AE }} €</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class=" ">
-
-                                        <div class=" ">
-                                            <p class="text-muted mb-0">
-                                                {{ $EligibiliteTICGN->created_at }}</p>
                                         </div>
                                     </div>
                                 </td>

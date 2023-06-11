@@ -16,7 +16,7 @@ class AlerteController extends Controller
     public function index()
     {
 
-        $alertes = Alerte::all();
+        $alertes = Alerte::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Alertes.index', compact('alertes'))->with('status', 'listes des alerte disponibles'));
     }
 

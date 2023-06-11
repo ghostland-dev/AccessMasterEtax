@@ -9,7 +9,7 @@
                 <!-- Categories -->
                 <div class="row mt-6  ">
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700 ">
                         <a href="{{ route('genFolds') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -22,7 +22,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('genFolds') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -35,7 +35,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('contacts') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -48,7 +48,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('genFolds') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -61,7 +61,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('companies') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -74,7 +74,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('studies') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -87,7 +87,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('genFolds') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">
@@ -100,7 +100,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110  ">
+                    <div class="col-md-3 mb-4 transition-all transform hover:scale-110 duration-700  ">
                         <a href="{{ route('genFolds') }}"
                             class="card align-items-center text-decoration-none border-0 hover-lift-light py-4 hover:bg-slate-600 hover:text-white">
                             <span class="icon-circle icon-circle-lg bg-pastel-success text-success">

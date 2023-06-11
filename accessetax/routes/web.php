@@ -60,7 +60,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/app/v1/data/pappers/{siren?}', [PappersController::class, 'getPappersData'])->name('pappers');
+Route::get('/app/v1/data/pappers', [PappersController::class, 'getPappersData'])->name('pappers');
 Route::get('/app/v1/data/generate/{siren?}', [GenPDFController::class, "generatePDFcontract"])->name('contract');
 Route::get('/app/v1/data/pouvoir/{siren?}', [GenPDFController::class, "generatePDFpouvoir"])->name('pouvoir');
 Route::get('/app/v1/data/courrier',         [GenPDFController::class, "courrierType"])->name('courrier');
@@ -449,7 +449,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/app/v1/data/site/{site}/details', [SiteController::class, 'show'])->name('site.show');
     Route::get('/app/v1/data/site/{site}/editer', [SiteController::class, 'edit'])->name('site.edit');
     Route::put('/app/v1/data/site/{site}/modifier',     [SiteController::class, 'update'])->name('site.update');
-    Route::delete('/app/v1/data/site/{site}/supprimer',  [SiteController::class, 'destroy'])->name('message.destroy');
+    Route::delete('/app/v1/data/site/{site}/supprimer',  [SiteController::class, 'destroy'])->name('site.destroy');
 });
 
 

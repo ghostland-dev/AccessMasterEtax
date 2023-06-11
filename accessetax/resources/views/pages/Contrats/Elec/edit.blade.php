@@ -1,238 +1,107 @@
-@extends('layouts.conntected')
-@section('subcontent')
-    <form class="d-flex flex-wrap justify-content-center" method="POST"
-        action="{{ route('utilisateur.update', $Utilisateur->id) }}" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+@extends('layouts.signed')
+@section('main')
+    <div class="w-3/4 mx-auto   ">
+        <form action="{{ route('contractElec.update', $contatElec->id) }}" method="POST" enctype="multipart/form-data"
+            class="d-flex justify-content-around flex-wrap card" id="ContratBillForm">
+            @csrf
+            @method('PUT')
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <div class="input-register  col-md-10">
-            <label for="profile" class="form-label">{{ __('Profile') }}</label>
-
-            <div class="col-md-12">
-                <img class="img-fluid rounded-circle m-2" src="{{ $Utilisateur->profile }}" alt="" srcset=""
-                    style="height:150px; width:150px;">
-                <input id="profile" type="file" class="form-control ti ti-file @error('profile') is-invalid @enderror"
-                    name="profile" value="{{ $Utilisateur->profile }}" autocomplete="profile" autofocus>
-
-
-                @error('profile')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="input-register  col-md-5">
-            <label for="userName" class="form-label">{{ __('Nom utilisateur') }}</label>
-
-            <div class="col-md-12">
-                <input id="userName" type="text" class="form-control @error('userName') is-invalid @enderror"
-                    name="userName" value="{{ $Utilisateur->userName }}" required autocomplete="userName" autofocus>
-
-                @error('userName')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        @if (Auth::user()->role == 'adminisrateur')
-            <div class="input-register  col-md-5">
-                <label for="role" class="form-label">{{ __('Role') }}</label>
-                <div class="col-md-12">
-
-
-                    <select id="role" class="form-control @error('role') is-invalid @enderror" name="role"
-                        value="{{ old('role') }}" required autocomplete="role" autofocus>
-
-                        <option>
-                            Selectionnez un role
-                        </option>
-
-                        <option value="adminisrateur" {{ $Utilisateur->role == 'adminisrateur' ? 'selected' : '' }}>
-                            Adminisrateur </option>
-                        <option value="client" {{ $Utilisateur->role == 'client' ? 'selected' : '' }}> Client </option>
-                        <option value="commercial" {{ $Utilisateur->role == 'commercial' ? 'selected' : '' }}> Agent
-                            commercial
-                        </option>
-                        <option value="visiteur" {{ $Utilisateur->role == 'visiteur' ? 'selected' : '' }}> Visieteur
-                        </option>
-
-
-                    </select>
-
-                    @error('role')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
-        @endif
+            @endif
+
+            <div class="container   ">
+                <div class="grid gap-3 grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 p-4">
+                    <label for="dropzone-file"
+                        class="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-row items-center justify-center pt-5 pb-6">
+                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400 mx-3" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                </path>
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold"> Téléverser
+                                    la
+                                    facture</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" value="{{ $contatElec->fichier }}"
+                            name="fichier" />
+                    </label>
+                </div>
+
+                <div class="grid gap-3 grid-cols-2 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 p-4">
+                    <div class="  p-2 rounded-md">
+                        <label class="label">Nom de contrat</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nom_contrat" value="{{ $contatElec->nom_contrat }}"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="  p-2 rounded-md">
+                        <label class="label">Fournisseur</label>
+                        <div class="select w-100   ">
+                            <select class="w-100 " name="fournisseur" id="fournisseur">
+                                @foreach ($fournisseurs as $fournisseur)
+                                    <option class=" p-3"
+                                        {{ $contatElec->fournisseur == $fournisseur->nom_fournisseur ? 'selected' : '' }}
+                                        value="{{ $fournisseur->nom_fournisseur }}">
+                                        {{ $fournisseur->nom_fournisseur }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="  p-2 rounded-md">
+                        <label class="label">Date Début</label>
+                        <div class="control">
+                            <input class="input" type="date" value="{{ $contatElec->date_debut }}" name="date_debut"
+                                required>
+                        </div>
+                    </div>
+                    <div class="  p-2 rounded-md">
+                        <label class="label">Date Fin</label>
+                        <div class="control">
+                            <input class="input" type="date" value="{{ $contatElec->date_fin }}" name="date_fin"
+                                required>
+                        </div>
+                    </div>
+                    <div class="  p-2 rounded-md">
+                        <label class="label">Date de signature</label>
+                        <div class="control">
+                            <input class="input" type="date" value="{{ $contatElec->date_signature }}"
+                                name="date_signature" required>
+                        </div>
+                    </div>
 
 
+                    <div class="  p-2 rounded-md">
+                        <label class="label"> Compteur d'éléctrcité ID</label>
+                        <div class="control">
+                            <input class="input" type="number" value="{{ $contatElec->elec_meter_id }}"
+                                name="elec_meter_id" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="field col-md-12 is-grouped m-4">
+                    <div class="control">
+                        <button class="btn btn-success" type="submit">Mettre à jour</button>
+                    </div>
+                    <div class="control">
+                        <button class="btn btn-dark" type="reset">Annuler</button>
+                    </div>
+                </div>
 
 
-        <div class="input-register  col-md-5">
-            <label for="firstName" class="form-label">{{ __('Prénom') }}</label>
-
-            <div class="col-md-12">
-                <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror"
-                    name="firstName" value="{{ $Utilisateur->firstName }}" required autocomplete="firstName" autofocus>
-
-                @error('firstName')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="input-register  col-md-5">
-            <label for="lastName" class="form-label">{{ __('Nom') }}</label>
-
-            <div class="col-md-12">
-                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror"
-                    name="lastName" value="{{ $Utilisateur->lastName }}" required autocomplete="lastName" autofocus>
-
-                @error('lastName')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="input-register  col-md-5">
-            <label for="tel" class="form-label">{{ __('Mobile') }}</label>
-
-            <div class="col-md-12">
-                <input id="tel" type="text" class="form-control @error('tel') is-invalid @enderror" name="tel"
-                    value="{{ $Utilisateur->tel }}" required autocomplete="tel" autofocus placeholder="+336-000-000-000">
-
-                @error('lastName')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="input-register  col-md-5">
-            <label for="fix" class="form-label">{{ __('Fix') }}</label>
-
-            <div class="col-md-12">
-                <input id="fix" type="text" class="form-control @error('fix') is-invalid @enderror" name="fix"
-                    value="{{ $Utilisateur->fix }}" required autocomplete="fix" autofocus placeholder="+332-000-000-000">
-
-                @error('fix')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-
-        <div class="input-register  col-md-5">
-            <label for="job" class="form-label">{{ __('Fonction') }}</label>
-
-            <div class="col-md-12">
-                <input id="job" type="text" class="form-control @error('') is-invalid @enderror" name="job"
-                    value="{{ $Utilisateur->job }}" required autocomplete="job" autofocus
-                    placeholder="Responsable financier">
-
-                @error('job')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="input-register  col-md-5">
-            <label for="siren" class="form-label">{{ __('siren') }}</label>
-
-            <div class="col-md-12">
-                <input id="siren" type="text" class="form-control @error('siren') is-invalid @enderror"
-                    name="siren" value="{{ $Utilisateur->siren }}" required autocomplete="siren" autofocus>
-
-                @error('siren')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="input-register  col-md-5">
-            <label for="email" class="form-label">{{ __('Adresse E-mail') }}</label>
-
-            <div class="col-md-12">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                    name="email" value="{{ $Utilisateur->email }}" required autocomplete="email">
-
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        {{--
-        <div class="input-register  col-md-5">
-            <label for="password" class="form-label">{{ __('Mot de passe') }}</label>
-
-            <div class="col-md-12">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                    name="password" required autocomplete="new-password">
-
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-
-        <div class="input-register  col-md-5">
-            <label for="password-confirm" class="form-label">{{ __('Confirmer le mot de passe') }}</label>
-
-            <div class="col-md-12">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
-                    autocomplete="new-password">
-            </div>
-
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div> --}}
-
-        <div class="input-register col-md-10  mt-2 ">
-            <div class="col-md-12 d-flex  justify-content-center">
-
-                <button type="submit" class="w-50  mx-4 btn btn-success">
-                    {{ __('Ajouter') }}
-                </button>
-
-            </div>
-        </div>
-
-    </form>
+        </form>
+    </div>
 @endsection

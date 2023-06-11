@@ -14,7 +14,7 @@ class ElecMeterController extends Controller
      */
     public function index()
     {
-        $compteursElecs = ElecMeter::all();
+        $compteursElecs = ElecMeter::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.Compteurs.Elec.index', compact('compteursElecs'))->with('status', "liste des compteurs d'éléctrcité"));
     }

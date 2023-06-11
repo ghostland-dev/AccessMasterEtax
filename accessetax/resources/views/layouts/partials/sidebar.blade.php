@@ -30,8 +30,8 @@
                  </div>
              </div>
              <ul id="sidebarnav">
-                 <li class="nav-small-cap">
-                     <i class="text-success fa fa-dots nav-small-cap-icon fs-4"></i>
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu text-success">Accueil</span>
                  </li>
                  <li class="sidebar-item bg-light rounded-4">
@@ -43,8 +43,8 @@
                          <span class="hide-menu">Tableau de bord</span>
                      </a>
                  </li>
-                 <li class="nav-small-cap">
-                     <i class="text-success fa fa-dots nav-small-cap-icon fs-4"></i>
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu text-success">Gestion</span>
                  </li>
 
@@ -59,6 +59,260 @@
                      </a>
                  </li>
 
+
+
+
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
+                     <span class="hide-menu text-success">Simulateurs</span>
+                 </li>
+
+                 {{-- ---------------------- Route des Eligibilité de CSPE------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('cspeEligs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-house"></i>
+                         </span>
+                         <span class="hide-menu">Eligibilité CSPE</span>
+                     </a>
+                 </li>
+
+                 {{-- ---------------------- Route des eLIGIBILIT2 DE TICGN ------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('tcgnEligs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-house"></i>
+                         </span>
+                         <span class="hide-menu">Eligibilité TICGN</span>
+                     </a>
+                 </li>
+
+                 {{-- ---------------------- Route des parameters ------------------------------- --}}
+
+
+                 {{-- ---------------------- Route des tableau de remboursement -------------------------------- --}}
+
+
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
+                     <span class="hide-menu text-success">Societes</span>
+                 </li>
+
+                 {{-- ---------------------- Route des entreprises -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('companies') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Entreprises</span>
+                     </a>
+                 </li>
+
+                 {{-- ---------------------- Route des responsables------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('responsibles') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-house"></i>
+                         </span>
+                         <span class="hide-menu"> Des dirigéants</span>
+                     </a>
+                 </li>
+
+
+
+                 {{-- ---------------------- Route des sites -------------------------------- --}}
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('sites') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Sites</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des Remboursement CSPE -------------------------------- --}}
+
+
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
+                     <span class="hide-menu text-success">Génération</span>
+                 </li>
+
+                 {{-- ---------------------- Route des Dossiers générés  -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('genFolds') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Dossier Générés</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des dossier de base -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('baseFolers') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Dossier Bases</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des documents de base -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('baseDocs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Documents de Bases</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des etudes -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('studies') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Etudes</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('refundCspes') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Remboursements CSPES</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des remboursement TICGN -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('refundTcgns') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Remboursements TCGIN</span>
+                     </a>
+                 </li>
+
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('refundBoards') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Tableau de remboursement</span>
+                     </a>
+                 </li>
+
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
+                     <span class="hide-menu text-success">Compteurs</span>
+                 </li>
+                 {{-- ---------------------- Route des Compteurs Electrctriques -------------------------------- --}}
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('elecMeters') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Compteur Electrcité</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des compteurs Gaz -------------------------------- --}}
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('gazMeters') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Compteurs Gaz</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des contrats gaz -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('contractGazs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Contacts Gaz</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des Contrat Elecs -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('contractElecs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Contacts Electrcité</span>
+                     </a>
+                 </li>
+
+
+                 {{-- ---------------------- Route des factures de gaz -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('billGazs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Factures Gaz</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des factures d'éléctrcité -------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('billsElecs') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-file"></i>
+                         </span>
+                         <span class="hide-menu">Factures Electrcité</span>
+                     </a>
+                 </li>
+
+
+                 <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                     <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
+                     <span class="hide-menu text-success">Configuration</span>
+                 </li>
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('parameters') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-house"></i>
+                         </span>
+                         <span class="hide-menu">Paramètres</span>
+                     </a>
+                 </li>
+                 {{-- ---------------------- Route des  Primitres des compteurs ------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('premMeters') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-house"></i>
+                         </span>
+                         <span class="hide-menu">Primitres des compteurs</span>
+                     </a>
+                 </li>
+
+
+
+                 {{-- ---------------------- Route des Fournisseurs ------------------------------- --}}
+
+                 <li class="sidebar-item bg-light rounded-4">
+                     <a class="sidebar-link" href="{{ route('suppliers') }}" aria-expanded="true">
+                         <span>
+                             <i class="text-success fa fa-house"></i>
+                         </span>
+                         <span class="hide-menu"> Fournisseurs</span>
+                     </a>
+                 </li>
 
                  {{-- ---------------------- Route des Codes d'activités-------------------------------- --}}
 
@@ -116,69 +370,6 @@
                      </a>
                  </li>
 
-                 {{-- ---------------------- Route des Eligibilité de CSPE------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('cspeEligs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-house"></i>
-                         </span>
-                         <span class="hide-menu">Eligibilité CSPE</span>
-                     </a>
-                 </li>
-
-                 {{-- ---------------------- Route des eLIGIBILIT2 DE TICGN ------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('tcgnEligs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-house"></i>
-                         </span>
-                         <span class="hide-menu">Eligibilité TICGN</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des parameters ------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('parameters') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-house"></i>
-                         </span>
-                         <span class="hide-menu">Paramètres</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des  Primitres des compteurs ------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('premMeters') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-house"></i>
-                         </span>
-                         <span class="hide-menu">Primitres des compteurs</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des responsables------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('responsibles') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-house"></i>
-                         </span>
-                         <span class="hide-menu"> Des dirigéants</span>
-                     </a>
-                 </li>
-
-                 {{-- ---------------------- Route des Fournisseurs ------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('suppliers') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-house"></i>
-                         </span>
-                         <span class="hide-menu"> Fournisseurs</span>
-                     </a>
-                 </li>
-
                  {{-- ---------------------- Route des taux réduits -------------------------------- --}}
 
                  <li class="sidebar-item bg-light rounded-4">
@@ -187,154 +378,6 @@
                              <i class="text-success fa fa-file"></i>
                          </span>
                          <span class="hide-menu">Taux Réduits</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des tableau de remboursement -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('refundBoards') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Tableau de remboursement</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des entreprises -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('companies') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Entreprises</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des sites -------------------------------- --}}
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('sites') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Sites</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des Remboursement CSPE -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('refundCspes') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Remboursements CSPES</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des remboursement TICGN -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('refundTcgns') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Remboursements TCGIN</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des Compteurs Electrctriques -------------------------------- --}}
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('elecMeters') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Compteur Electrcité</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des compteurs Gaz -------------------------------- --}}
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('gazMeters') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Compteurs Gaz</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des contrats gaz -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('contractGazs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Contacts Gaz</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des Contrat Elecs -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('contractElecs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Contacts Electrcité</span>
-                     </a>
-                 </li>
-
-                 {{-- ---------------------- Route des Dossiers générés  -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('genFolds') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Dossier Générées</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des dossier de base -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('baseFolers') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Dossier Bases</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des documents de base -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('baseDocs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Documents de Bases</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des etudes -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('studies') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Etudes</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des factures de gaz -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('billGazs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Factures Gaz</span>
-                     </a>
-                 </li>
-                 {{-- ---------------------- Route des factures d'éléctrcité -------------------------------- --}}
-
-                 <li class="sidebar-item bg-light rounded-4">
-                     <a class="sidebar-link" href="{{ route('billsElecs') }}" aria-expanded="true">
-                         <span>
-                             <i class="text-success fa fa-file"></i>
-                         </span>
-                         <span class="hide-menu">Factures Electrcité</span>
                      </a>
                  </li>
 

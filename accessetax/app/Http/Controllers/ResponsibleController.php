@@ -16,7 +16,7 @@ class ResponsibleController extends Controller
 
     public function index()
     {
-        $responsables = Responsible::all();
+        $responsables = Responsible::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.Responsables.index', compact('responsables'))->with('status', 'voici la listes des dérigients des societés.'));
     }

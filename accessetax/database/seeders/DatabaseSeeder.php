@@ -46,35 +46,35 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        User::factory(10)->create();
-        CarbonLique::factory(10)->create();
-        Constant::factory(10)->create();
-        Parameter::factory(10)->create();
-        CouncilOffice::factory(10)->create();
-        CodeNaf::factory(10)->create();
-        ActivityCode::factory(10)->create();
-        Company::factory(10)->create();
-        MeterPremeter::factory(10)->create();
-        Responsible::factory(10)->create();
-        Contact::factory(10)->create();
-        Site::factory(10)->create();
-        Study::factory(10)->create();
-        RefundTCGN::factory(10)->create();
-        RefundCSPE::factory(10)->create();
-        GazMeter::factory(10)->create();
-        GazContract::factory(10)->create();
-        GazBill::factory(10)->create();
-        ElecMeter::factory(10)->create();
-        ElecContract::factory(10)->create();
-        ElecBill::factory(10)->create();
-        BaseFolder::factory(10)->create();
-        BaseDocument::factory(10)->create();
-        GenFolder::factory(10)->create();
-        Supplier::factory(10)->create();
-        Alerte::factory(10)->create();
-        RefundBoard::factory(10)->create();
-        ReducedTaxBoard::factory(10)->create();
-        EligibilityCSPE::factory(10)->create();
-        EligibilityTCGN::factory(10)->create();
+        User::factory(20)->create();
+        CarbonLique::factory(20)->create();
+        Constant::factory(20)->create();
+        Parameter::factory(20)->create();
+        CouncilOffice::factory(20)->create();
+        CodeNaf::factory(20)->create();
+        ActivityCode::factory(20)->create();
+        Company::factory(20)->create();
+        MeterPremeter::factory(20)->create();
+        Responsible::factory(20)->create();
+        Contact::factory(20)->create();
+        Site::factory(20)->create();
+        Study::factory(20)->create();
+        RefundTCGN::factory(20)->create();
+        RefundCSPE::factory(20)->create();
+        GazMeter::factory(20)->create();
+        GazContract::factory(20)->create();
+        GazBill::factory(20)->create();
+        ElecMeter::factory(20)->create();
+        ElecContract::factory(20)->create();
+        ElecBill::factory(20)->create();
+        BaseFolder::factory(20)->create();
+        BaseDocument::factory(20)->create();
+        GenFolder::factory(20)->create();
+        Supplier::factory(20)->create();
+        Alerte::factory(20)->create();
+        RefundBoard::factory(20)->create();
+        ReducedTaxBoard::factory(20)->create();
+        EligibilityCSPE::factory(20)->create();
+        EligibilityTCGN::factory(20)->create();
     }
 }

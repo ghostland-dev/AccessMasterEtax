@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('denomenation');
+            $table->string('denomination');
             $table->string('siren');
             $table->string('siret');
             $table->string('forme_juridique');
@@ -34,10 +34,9 @@ return new class extends Migration
             $table->string('nic_siege');
             $table->string('date_creation');
             $table->string('date_radiation');
-            $table->string('date_immatriculation');
-            $table->string('date_immatriculation_rcs');
+
             $table->timestamps();
- 
+
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')

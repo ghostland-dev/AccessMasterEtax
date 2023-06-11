@@ -21,8 +21,7 @@
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
                                     400x400px)</p>
                             </div>
-                            <input id="dropzone-file" type="file" name="logo" class="hidden"
-                                />
+                            <input id="dropzone-file" type="file" name="logo" class="hidden" />
                         </label>
                     </div>
 
