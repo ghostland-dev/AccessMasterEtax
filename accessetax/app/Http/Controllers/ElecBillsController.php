@@ -17,7 +17,7 @@ class ElecBillsController extends Controller
 
     public function index()
     {
-        $FacturesElec = ElecBill::paginate(10);
+        $FacturesElec = ElecBill::orderBy('created_at', 'desc')->paginate(10);
         return  view('pages.Factures.Elec.index', compact('FacturesElec'))->with('status', "liste des factures d'electrcité.");
     }
 
@@ -76,6 +76,7 @@ class ElecBillsController extends Controller
     public function show($id)
     {
         $FactureElec = ElecBill::findOrFail($id);
+
         return   view('pages.Factures.Elec.show', compact('FactureElec'))->with('status', "Détails de la facture d'éléctrcité.");
     }
 

@@ -11,7 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title></title>
+    <title>Access E-Tax</title>
+
     <meta name="description" content="">
     <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
     <!-- custom.css -->
@@ -36,7 +37,9 @@
                         <img src="{{ asset('img/logo.svg') }}" alt="logo" class="logo">
                     </div>
                     <div class="col-6 align-self-center text-right">
-                        <a href="{{ __('/login') }}" class="text-white lead">se connecter </a>
+                        <a href="{{ __('/login') }}"
+                            class=" text-xs lead btn btn-outline-success rounded-md hover:text-dark ">Se
+                            connecter </a>
                     </div>
                 </div>
             </header>

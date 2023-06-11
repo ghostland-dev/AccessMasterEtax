@@ -19,28 +19,28 @@ return new class extends Migration
             $table->boolean('Validation02')->nullable();
             $table->boolean('Validation01')->nullable();
             $table->boolean('fullvalidation')->nullable();
-            $table->float('esitmationEconomie')->nullable();
-            $table->float('SommeTotalTaxElecPlein')->nullable();
-            $table->float('SommeTotalTaxGazPlein')->nullable();
-            $table->float('SommeTotalTaxTCGNReduit')->nullable();
-            $table->float('chiffreAffaireBrut_AE')->nullable();
-            $table->float('chiffreAffaireNet_AE')->nullable();
-            $table->float('consumAnGazKwh')->nullable();
-            $table->float('consumAnElecKwh')->nullable();
-            $table->float('valeurProduction')->nullable();
-            $table->float('valeurAjouterEuro')->nullable();
-            $table->float('achatGaz')->nullable();
-            $table->float('achatPetroliers')->nullable();
-            $table->float( 'achatChaleur')->nullable();
-            $table->float('autres')->nullable();
-            $table->float('consumAnAutreKwh')->nullable();
-            $table->float('pourcentageConsuPorcessus')->nullable();
-            $table->float( 'NaceCode')->nullable();
-            $table->float( 'combustionProcessus')->nullable();
+            $table->decimal('esitmationEconomie', 12, 2, false)->nullable();
+            $table->decimal('SommeTotalTaxElecPlein', 12, 2, false)->nullable();
+            $table->decimal('SommeTotalTaxGazPlein', 12, 2, false)->nullable();
+            $table->decimal('SommeTotalTaxTCGNReduit', 12, 2, false)->nullable();
+            $table->decimal('chiffreAffaireBrut_AE', 12, 2, false)->nullable();
+            $table->decimal('chiffreAffaireNet_AE', 12, 2, false)->nullable();
+            $table->decimal('consumAnGazKwh', 12, 2, false)->nullable();
+            $table->decimal('consumAnElecKwh', 12, 2, false)->nullable();
+            $table->decimal('valeurProduction', 12, 2, false)->nullable();
+            $table->decimal('valeurAjouterEuro', 12, 2, false)->nullable();
+            $table->decimal('achatGaz', 12, 2, false)->nullable();
+            $table->decimal('achatPetroliers', 12, 2, false)->nullable();
+            $table->decimal('achatChaleur', 12, 2, false)->nullable();
+            $table->decimal('autres', 12, 2, false)->nullable();
+            $table->decimal('consumAnAutreKwh', 12, 2, false)->nullable();
+            $table->decimal('pourcentageConsuPorcessus', 12, 2, false)->nullable();
+            $table->decimal('NaceCode', 12, 2, false)->nullable();
+            $table->decimal('combustionProcessus', 12, 2, false)->nullable();
             $table->timestamps();
 
             $table->foreignId('study_id')
-            ->constrained()
+                ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

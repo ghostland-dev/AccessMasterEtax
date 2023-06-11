@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('date_debut')->nullable()->default(null);
             $table->date('date_fin')->nullable()->default(null);
             $table->date('date_signature')->nullable()->default(null);
-           
+
             $table->foreignId('elec_meter_id')
                 ->constrained()
                 ->onUpdate('cascade')

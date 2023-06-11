@@ -13,7 +13,7 @@ class SiteController extends Controller {
     */
 
     public function index() {
-        $sites = Site::all();
+        $sites = Site::orderBy('created_at', 'desc')->paginate(10);
         return  response( view( 'pages.Sites.index', compact( 'sites' )  )->with( 'status', 'liste des site disponibles.' ));
     }
 
@@ -105,7 +105,7 @@ class SiteController extends Controller {
         $site = Site::findOrFail( $site );
         $site->delete();
 
-        return  response( view( 'pages.Sites.index' )->with( 'status', 'le site a été supprimé avec succès.' ) );
+        return redirect()->route("sites")->with('status', "Site a été supprimé avec succès.");
 
     }
 }

@@ -64,4 +64,9 @@
             @endforeach
         </tbody>
     </table>
+
+
+      <div class="mt-4">
+                    {{ $clients->links('vendor.pagination.tailwind') }}
+                </div>
 @endsection

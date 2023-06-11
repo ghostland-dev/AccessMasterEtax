@@ -17,7 +17,7 @@ class BaseFolderController extends Controller
 
     public function index()
     {
-        $DossierBases = BaseFolder::all();
+        $DossierBases = BaseFolder::orderBy('created_at', 'desc')->paginate(10);
         return view('pages.Dossier.Base.index', compact('DossierBases'))->with('status', 'le dossier est prêt a être modifié.');
     }
 

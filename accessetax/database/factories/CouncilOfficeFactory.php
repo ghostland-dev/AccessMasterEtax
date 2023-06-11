@@ -17,9 +17,9 @@ class CouncilOfficeFactory extends Factory
     public function definition()
     {
         return [
-            'council_office_name'=> $this->faker->word,
-            'council_office_address' => $this->faker->company,
-            'nic_code' => $this->faker->word,
+            'council_office_name' => $this->faker->company(),
+            'council_office_address' => $this->faker->address(),
+            'nic_code' => $this->faker->randomDigitNotNull(),
         ];
     }
 }

@@ -15,7 +15,7 @@ class ParameterController extends Controller
      */
     public function index()
     {
-        $paramatres = Parameter::all();
+        $paramatres = Parameter::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.Configurations.Parametres.index', compact('paramatres'))->with('status', "liste des parametres de l'application."));
     }

@@ -20,7 +20,9 @@ class ProfileController extends Controller
     {
         // if(Auth::user()->role == 'visiteur'){
         // retdirect to admin page
-        return view('auth.profils.visiteur');
+
+        $user = Auth::user();
+        return view('auth.profils.visiteur', compact('user'));
 
         //    }elseif(Auth::user()->role == null){
         //         // retdirect to admin page
@@ -66,9 +68,11 @@ class ProfileController extends Controller
      */
     public function seller()
     {
+
+        $user = Auth::user();
         // if(Auth::user()->role == 'commercial'){
         // retdirect to admin page
-        return view('auth.profils.commercial');
+        return view('auth.profils.commercial', compact('user'));
 
         //    }else{
         //         // retdirect to admin page
@@ -87,7 +91,9 @@ class ProfileController extends Controller
     {
         // if(Auth::user()->role == 'client'){
         // retdirect to admin page
-        return view('auth.profils.client');
+
+        $user = Auth::user();
+        return view('auth.profils.client', compact('user'));
 
         //    }else{
         //         // retdirect to admin page

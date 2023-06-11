@@ -15,7 +15,7 @@ class ConstantController extends Controller
     public function index()
     {
 
-        $constants = Constant::all();
+        $constants = Constant::orderBy('created_at', 'desc')->paginate(10);
         return response(view("pages.Configurations.Constants.index", compact('constants'))->with('status', "liste des constants."));
     }
 

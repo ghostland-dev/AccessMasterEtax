@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\GazContract;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GazContractController extends Controller
 {
@@ -14,7 +16,7 @@ class GazContractController extends Controller
      */
     public function index()
     {
-        $contratGazs =  GazContract::all();
+        $contratGazs =  GazContract::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Contrats.Gaz.index', compact('contratGazs'))->with('status', "liste des contrat de gaz."));
     }
 
@@ -25,8 +27,9 @@ class GazContractController extends Controller
      */
     public function create()
     {
+        $fournisseurs = Supplier::all();
 
-        return response(view('pages.Contrats.Gaz.create')->with('status', "vous pouvez ajouter un contrat de gaz."));
+        return response(view('pages.Contrats.Gaz.create', compact('fournisseurs'))->with('status', "vous pouvez ajouter un contrat de gaz."));
     }
 
     /**
@@ -37,7 +40,17 @@ class GazContractController extends Controller
      */
     public function store(Request $request)
     {
-        $contratGaz =  GazContract::create($request->all());
+        $contratGaz =  new GazContract;
+
+        $contratGaz->date_debut = $request->date_debut;
+        $contratGaz->date_fin = $request->date_fin;
+        $contratGaz->date_signature = $request->date_signature;
+        $contratGaz->fichier = url('storage/' . $request->fichier->store('contractgazs', 'public'));
+        $contratGaz->fournisseur = $request->fournisseur;
+        $contratGaz->gaz_meter_id = $request->gaz_meter_id;
+        $contratGaz->nom_contrat = $request->nom_contrat;
+
+        $contratGaz->save();
         return response(view('pages.Contrats.Gaz.show', compact('contratGaz'))->with('status', "le contrat de gaz a été créé avec succès."));
     }
 
@@ -47,9 +60,9 @@ class GazContractController extends Controller
      * @param  \App\Models\GazContract  $gazContract
      * @return \Illuminate\Http\Response
      */
-    public function show(GazContract $gazContract)
+    public function show($id)
     {
-        $contratGaz =  GazContract::findOrFail($gazContract);
+        $contratGaz =  GazContract::findOrFail($id);
         return response(view('pages.Contrats.Gaz.show', compact('contratGaz'))->with('status', "le contrat de gaz a été retoruvé."));
     }
 
@@ -59,10 +72,11 @@ class GazContractController extends Controller
      * @param  \App\Models\GazContract  $gazContract
      * @return \Illuminate\Http\Response
      */
-    public function edit(GazContract $gazContract)
+    public function edit($id)
     {
-        $contratGaz =  GazContract::findOrFail($gazContract);
-        return response(view('pages.Contrats.Gaz.edit', compact('contratGaz'))->with('status', "le contrat de gaz est prêt à être modifié."));
+        $fournisseurs = Supplier::all();
+        $contratGaz =  GazContract::findOrFail($id);
+        return response(view('pages.Contrats.Gaz.edit', compact('contratGaz', 'fournisseurs'))->with('status', "le contrat de gaz est prêt à être modifié."));
     }
 
     /**
@@ -72,14 +86,24 @@ class GazContractController extends Controller
      * @param  \App\Models\GazContract  $gazContract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GazContract $gazContract)
+    public function update(Request $request, $id)
     {
-        $contratGaz =  GazContract::findOrFail($gazContract);
+        $contratGaz =  GazContract::findOrFail($id);
+
+
+        if ($request->hasFile('fichier')) {
+            // Delete the old file if it exists
+            if ($contratGaz->fichier && Storage::exists($contratGaz->fichier)) {
+                Storage::delete($contratGaz->fichier);
+            }
+
+            // Update the model with the new file path
+            $contratGaz->fichier = url('storage/' . $request->fichier->store('contractgazs', 'public'));
+        }
 
         $contratGaz->date_debut = $request->date_debut;
         $contratGaz->date_fin = $request->date_fin;
         $contratGaz->date_signature = $request->date_signature;
-        $contratGaz->fichier = $request->fichier;
         $contratGaz->fournisseur = $request->fournisseur;
         $contratGaz->gaz_meter_id = $request->gaz_meter_id;
         $contratGaz->nom_contrat = $request->nom_contrat;
@@ -94,12 +118,15 @@ class GazContractController extends Controller
      * @param  \App\Models\GazContract  $gazContract
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GazContract $gazContract)
+    public function destroy($id)
     {
-        $contratGaz =  GazContract::findOrFail($gazContract);
+        $contatGaz = GazContract::findOrFail($id);
 
-        $contratGaz->delete();
+        if (GazContract::exists($contatGaz->fichier)) {
+            Storage::delete($contatGaz->fichier);
+        }
+        $contatGaz->delete();
 
-        return response(view('pages.Contrats.Gaz.index')->with('status', "le contrat de gaz a été modifié avec succès."));
+        return   redirect()->route('contractGazs')->with('status', "contrat de gaz a été supprimé avec succès.");
     }
 }

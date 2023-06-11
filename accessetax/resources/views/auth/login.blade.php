@@ -4,10 +4,10 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
-            class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            class="position-relative overflow-hidden bg-gradient-to-r from-slate-500 to-green-500 min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
-                    <div class="col-md-8 col-lg-6 col-xxl-4">
+                    <div class="col-md-8 col-lg-6 col-xxl-4 transition-all duration-1000 transform hover:scale-105  ">
                         <div class="card p-3">
                             <div class="card-body">
 
@@ -15,9 +15,11 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Nom d'utilisateur</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        <input type="email"
+                                            class="form-control text-center @error('email') is-invalid @enderror"
                                             id="email" name="email" value="{{ old('email') }}"
-                                            aria-describedby="emailHelp" required autofocus>
+                                            placeholder="exemple@example.com" aria-describedby="emailHelp" required
+                                            autofocus>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -27,8 +29,10 @@
 
                                     <div class="mb-4">
                                         <label for="password" class="form-label">Mot de passe</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            id="password" name="password" value="{{ old('password') }}">
+                                        <input type="password"
+                                            class="form-control text-center @error('password') is-invalid @enderror"
+                                            id="password" name="password" value="{{ old('password') }}"
+                                            placeholder="*********************">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

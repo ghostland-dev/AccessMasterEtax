@@ -10,7 +10,7 @@
                 @endif
                 <table class="table align-middle   mb-0 bg-white">
                     <a href="{{ route('billGaz.create') }}" class="btn btn-success m-3 ">
-                        + Nouvelle facture d'éléctrcité
+                        + Nouvelle facture de gaz
                     </a>
                     <thead class="bg-light   ">
                         <tr class="text-align-center">

@@ -16,7 +16,7 @@ class GenFolderController extends Controller
     public function index()
     {
 
-        $DossierGens = GenFolder::all();
+        $DossierGens = GenFolder::orderBy('created_at', 'desc')->paginate(10);
         return  view('pages.Dossier.Gen.index', compact('DossierGens'))->with('status', 'liste des dossiers générés.');
     }
 
@@ -28,7 +28,7 @@ class GenFolderController extends Controller
 
     public function create()
     {
-        return response(view('pages.DossierGens.create'))->with('status', 'vous pouvez générer votre dossier.');
+        return  view('pages.DossierGens.create')->with('status', 'vous pouvez générer votre dossier.');
     }
 
     /**

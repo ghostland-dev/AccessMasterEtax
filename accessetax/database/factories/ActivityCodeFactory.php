@@ -17,10 +17,10 @@ class ActivityCodeFactory extends Factory
     public function definition()
     {
         return [
-            'code_naf' => $this->faker->word,
-            'code_nace' => $this->faker->word,
-            'libelle_naf' => $this->faker->word,
-            'libelle_nace' => $this->faker->word,
+            'code_naf' => $this->faker->randomNumber(4),
+            'code_nace' => $this->faker->randomNumber(4),
+            'libelle_naf' => $this->faker->slug(4),
+            'libelle_nace' => $this->faker->slug(4),
 
 
         ];

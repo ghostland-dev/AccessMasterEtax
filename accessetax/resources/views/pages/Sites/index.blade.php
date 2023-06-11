@@ -25,7 +25,7 @@
                                             </div>
                                         @endif
                                         <table class="table align-middle mb-0 bg-white">
-                                            <a type="button" class="btn btn-success m-3 ">
+                                            <a href="{{ route('site.create') }}" class="btn btn-success m-3 ">
                                                 + Nouveau site
                                             </a>
                                             <thead class="bg-light">
@@ -65,7 +65,8 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="ms-3">
-                                                                    <p class="fw-bold mb-1"> <i class="fas fa-map"></i>
+                                                                    <p class="fw-bold mb-1"> <i
+                                                                            class="mx-2 fas fa-marker text-emerald-400"></i>
                                                                         {{ $site->adresse }}</p>
                                                                     <p class="text-muted mb-0">
                                                                         {{ $site->ville . ' | ' . $site->code_postal . ' | ' . $site->pays }}
@@ -74,22 +75,54 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <p class="text-muted mb-0">{{ $site->telephone }}</p>
-                                                            <p class="text-muted mb-0">{{ $site->email }}</p>
+                                                            <p class="text-muted mb-0"><i
+                                                                    class="mx-2 fas fa-mobile text-emerald-400"></i>{{ $site->telephone }}
+                                                            </p>
+                                                            <p class="text-muted mb-0"><i
+                                                                    class="mx-2 fas fa-mail text-emerald-400"></i>{{ $site->email }}
+                                                            </p>
                                                         </td>
                                                         <td>
-                                                            <p class="text-muted mb-0"><i class="fas fa-plug"></i>
-                                                                {{ $site->consommation_electrcite }}</p>
-                                                            <p class="text-muted mb-0"><i class="fas fa-fire"></i>
-                                                                {{ $site->consommation_gaz }}</p>
+                                                            <p class="text-muted mb-0"><i
+                                                                    class="mx-2 fas fa-plug text-emerald-400"></i>
+                                                                {{ $site->consommation_electrcite }} Mkw/€</p>
+                                                            <p class="text-muted mb-0"><i
+                                                                    class="mx-2 fas fa-fire text-emerald-400"></i>
+                                                                {{ $site->consommation_gaz }} Mkw/€</p>
                                                         </td>
 
                                                         <td>{{ $site->created_at }}</td>
                                                         <td>
-                                                            <a href="button" class="btn btn-primary btn-sm btn-rounded"> <i
-                                                                    class="fas fa-pen"></i> </a>
-                                                            <a href="button" class="btn btn-danger btn-sm btn-rounded"> <i
-                                                                    class="fas fa-trash"></i> </a>
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-success dropdown-toggle"
+                                                                    type="button" id="actionsDropdown{{ $site->id }}"
+                                                                    data-bs-toggle="dropdown" aria-expanded="true">
+                                                                    <i class="fa fa-cog"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu"
+                                                                    aria-labelledby="actionsDropdown{{ $site->id }}">
+                                                                    <li><a class="dropdown-item"
+                                                                            href="{{ route('site.show', $site->id) }}"
+                                                                            target="_blank" rel="noopener noreferrer"><i
+                                                                                class="fa fa-eye"></i>
+                                                                            Détails</a></li>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="{{ route('site.edit', $site->id) }}"
+                                                                            target="_blank" rel="noopener noreferrer"><i
+                                                                                class="fa fa-pen"></i>
+                                                                            Modifier</a></li>
+                                                                    <li>
+                                                                        <form method="POST"
+                                                                            action="{{ route('site.destroy', $site->id) }}">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="dropdown-item"><i
+                                                                                    class="fa fa-trash"></i>
+                                                                                Supprimer</button>
+                                                                        </form>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
 
                                                         </td>
                                                     </tr>
@@ -97,8 +130,7 @@
                                             </tbody>
                                         </table>
 
-                                        <h5 class="card-title fw-semibold mb-4">une page simple</h5>
-                                        <p class="mb-0">Cesi est une page simple </p>
+
                                     </div>
                                 </div>
                             </div>

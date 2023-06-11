@@ -1,5 +1,5 @@
-@extends('layouts.conntected')
-@section('subcontent')
+@extends('layouts.signed')
+@section('main')
     <div class="container p-2">
 
 
@@ -443,15 +443,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
 
-                            <div class="row justify-content-center w-100">
+                            <div class="row justify-content-center w-100  ">
                                 <div class="row">
-                                    <div class="card   ">
+                                    <div class="card">
 
-                                        <h1 class="modal-title    bg-light-success text-center p-2 m-2 rounded-2 text-success"
-                                            id="exampleModalToggleLabel"> Nouveau utilisateur</h1>
+                                        <h5 class="modal-title    bg-light text-center p-3 rounded-md m-2 rounded-2 text-success"
+                                            id="exampleModalToggleLabel"> Nouveau utilisateur</h5>
 
-                                        <form class="d-flex flex-wrap justify-content-center gap-2" method="POST"
-                                            action="{{ route('utilisateur.store') }}" enctype="multipart/form-data">
+                                        <form class=" grid gap-3 grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 "
+                                            method="POST" action="{{ route('utilisateur.store') }}"
+                                            enctype="multipart/form-data">
                                             @csrf
 
                                             @if ($errors->any())
@@ -465,98 +466,31 @@
                                                 </div>
                                             @endif
 
-                                            <div class="input-registers  col-md-12">
+                                            <div class="  "> 
 
-                                                <!-- If you wish to reference an existing file (i.e. from your database), pass the url into imageData() -->
-                                                <div x-data="imageData()" class="file-input d-flex items-center">
+                                                <div class="flex items-center justify-center  h-20 w-full">
+                                                    <label for="dropzone-file"
+                                                        class="flex flex-col items-center  justify-center w-full   border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                                        <div class="flex flex-col items-center justify-center p-2     ">
 
-                                                    <!-- Preview Image -->
-                                                    <div class=" rounded-circle overflow-hidden bg-gray-100">
-                                                        <!-- Placeholder image -->
-                                                        <div x-show="!previewPhoto">
-                                                            <svg class="w-30 text-gray-300" fill="currentColor"
-                                                                viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                            </svg>
+                                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                                                téléverser le profil</p>
+
                                                         </div>
-                                                        <!-- Show a preview of the photo -->
-                                                        <div x-show="previewPhoto">
-                                                            <img :src="previewPhoto" alt="" width=150
-                                                                class="image-fluid">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <!-- File Input -->
-                                                        <div class="ml-5 rounded-md shadow-sm">
-                                                            <!-- Replace the file input styles with our own via the label -->
-                                                            <input @change="updatePreview($refs)" x-ref="input"
-                                                                type="file" accept="image/*,capture=camera"
-                                                                name="profile" id="profile" class="custom">
-                                                            <label for="profile"
-                                                                class="py-2 px-3 border text-center border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-indigo-500 hover:border-indigo-300 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-gray-50 active:text-indigo-800 transition duration-150 ease-in-out">
-                                                                Téléverser l'image
-                                                            </label>
-                                                        </div>
-                                                        <div class="flex items-center text-sm text-gray-500 mx-2">
-                                                            <!-- Display the file name when available -->
-                                                            <span x-text="fileName || emptyText"></span>
-                                                            <!-- Removes the selected file -->
-                                                            <button x-show="fileName" @click="clearPreview($refs)"
-                                                                type="button" aria-label="Remove image"
-                                                                class="mx-1 mt-1">
-                                                                <svg viewBox="0 0 20 20" fill="currentColor"
-                                                                    class="x-circle w-4 h-4" aria-hidden="true"
-                                                                    focusable="false">
-                                                                    <path fill-rule="evenodd"
-                                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293
-  1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                                                        clip-rule="evenodd"></path>
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                        @error('profile')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-
-                                                    </div>
-
+                                                        <input id="dropzone-file" name="profile" id="profile"
+                                                            type="file" class="hidden" />
+                                                    </label>
                                                 </div>
+
                                             </div>
 
-
-
-                                            {{-- <div class="input-registers  col-md-10 ">
-                                                <div class="file w-80 is-primary is-boxed">
-                                                    <label class="file-label w-100">
-                                                        <input class="file-input @error('profile') is-invalid @enderror"
-                                                            type="file" name="profile">
-                                                        <span class="file-cta">
-                                                            <span class="file-icon">
-                                                                <i class="fas fa-cloud-upload-alt"></i>
-                                                            </span>
-                                                            <span class="file-label ">
-                                                                Profile de l'utilisateur
-                                                            </span>
-                                                        </span>
-                                                    </label>
-                                                    @error('profile')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div> --}}
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="userName"
                                                     class="form-label">{{ __('Nom utilisateur') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="userName" type="text"
-                                                        class="form-control @error('userName') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('userName') is-invalid @enderror"
                                                         name="userName" value="{{ old('userName') }}" required
                                                         autocomplete="userName" autofocus>
 
@@ -569,13 +503,13 @@
                                             </div>
 
                                             @if (Auth::user()->role == 'adminisrateur')
-                                                <div class="input-registers  col-md-5">
+                                                <div class="">
                                                     <label for="role" class="form-label">{{ __('Role') }}</label>
-                                                    <div class="col-md-12">
+                                                    <div class="">
 
 
                                                         <select id="role"
-                                                            class="form-control @error('role') is-invalid @enderror"
+                                                            class="border border-gray-400 p-2 w-full rounded-md @error('role') is-invalid @enderror"
                                                             name="role" value="{{ old('role') }}" required
                                                             autocomplete="role" autofocus>
 
@@ -602,12 +536,12 @@
 
 
 
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="firstName" class="form-label">{{ __('Prénom') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="firstName" type="text"
-                                                        class="form-control @error('firstName') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('firstName') is-invalid @enderror"
                                                         name="firstName" value="{{ old('firstName') }}" required
                                                         autocomplete="firstName" autofocus>
 
@@ -619,12 +553,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="lastName" class="form-label">{{ __('Nom') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="lastName" type="text"
-                                                        class="form-control @error('lastName') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('lastName') is-invalid @enderror"
                                                         name="lastName" value="{{ old('lastName') }}" required
                                                         autocomplete="lastName" autofocus>
 
@@ -636,12 +570,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="tel" class="form-label">{{ __('Mobile') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="tel" type="text"
-                                                        class="form-control @error('tel') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('tel') is-invalid @enderror"
                                                         name="tel" value="{{ old('tel') }}" required
                                                         autocomplete="tel" autofocus placeholder="+336-000-000-000">
 
@@ -653,12 +587,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="fix" class="form-label">{{ __('Fix') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="fix" type="text"
-                                                        class="form-control @error('fix') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('fix') is-invalid @enderror"
                                                         name="fix" value="{{ old('fix') }}" required
                                                         autocomplete="fix" autofocus placeholder="+332-000-000-000">
 
@@ -671,12 +605,12 @@
                                             </div>
 
 
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="job" class="form-label">{{ __('Fonction') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="job" type="text"
-                                                        class="form-control @error('') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('') is-invalid @enderror"
                                                         name="job" value="{{ old('job') }}" required
                                                         autocomplete="job" autofocus placeholder="Responsable financier">
 
@@ -688,12 +622,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="input-registers  col-md-5">
+                                            <div class="">
                                                 <label for="siren" class="form-label">{{ __('siren') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="siren" type="text"
-                                                        class="form-control @error('siren') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('siren') is-invalid @enderror"
                                                         name="siren" value="{{ old('siren') }}" required
                                                         autocomplete="siren" autofocus>
 
@@ -705,13 +639,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="input-registers  col-md-3">
+                                            <div class=" ">
                                                 <label for="email"
                                                     class="form-label">{{ __('Adresse E-mail') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="email" type="email"
-                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('email') is-invalid @enderror"
                                                         name="email" value="{{ old('email') }}" required
                                                         autocomplete="email">
 
@@ -723,12 +657,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="input-registers  col-md-3">
+                                            <div class=" ">
                                                 <label for="password" class="form-label">{{ __('Mot de passe') }}</label>
 
-                                                <div class="col-md-12">
+                                                <div class="">
                                                     <input id="password" type="password"
-                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        class="border border-gray-400 p-2 w-full rounded-md @error('password') is-invalid @enderror"
                                                         name="password" required autocomplete="new-password">
 
                                                     @error('password')
@@ -740,12 +674,13 @@
                                             </div>
 
 
-                                            <div class="input-registers  col-md-3">
+                                            <div class=" ">
                                                 <label for="password-confirm"
                                                     class="form-label">{{ __('Confirmer le mot de passe') }}</label>
 
-                                                <div class="col-md-12">
-                                                    <input id="password-confirm" type="password" class="form-control"
+                                                <div class="">
+                                                    <input class="border border-gray-400 p-2 w-full rounded-md"
+                                                        id="password-confirm" type="password" class=""
                                                         name="password_confirmation" required autocomplete="new-password">
                                                 </div>
 
@@ -756,8 +691,8 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="input-registers col-md-10  mt-2 ">
-                                                <div class="col-md-12 d-flex  justify-content-center">
+                                            <div class=" col-md-10  mt-2 ">
+                                                <div class=" d-flex  justify-content-center">
 
                                                     <button type="submit" class="w-50  mx-4 btn btn-success">
                                                         {{ __('Soumettre') }}

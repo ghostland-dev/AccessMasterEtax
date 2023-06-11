@@ -18,7 +18,7 @@ class CodeNafFactory extends Factory
     {
         return [
             'code_naf' => str($this->faker->randomNumber(5, true)),
-            'libelle_naf' =>  $this->faker->sentence(),
+            'libelle_naf' =>  $this->faker->sentence(5),
             'eligible' => true,
         ];
     }

@@ -6,7 +6,7 @@
         <form action="{{ route('tcgnElig.update', $EligibiliteTICGN->id) }}" method="POST" class="form-group">
             @csrf
             @method('PUT')
-            <div class="grid grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-3 shadow p-3 rounded-md ">
+            <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-3 shadow p-3 rounded-md ">
 
                 <div class=" space-y-2    ">
                     <label for="valeurAjouterEuro">Valeur Ajoutée</label>
@@ -84,7 +84,7 @@
                 <div class=" space-y-2 ">
                     <label for="study_id">Assigné à l'étude</label>
                     <select name="study_id" id="study_id" class="form-select" required>
- 
+
                         @foreach($etudes as $etude)
                             <option {{ $etude->id == $EligibiliteTICGN->study_id ? 'selected' : '' }}
                                 value="{{ $etude->id }}">

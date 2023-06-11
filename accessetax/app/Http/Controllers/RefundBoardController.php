@@ -14,7 +14,7 @@ class RefundBoardController extends Controller
      */
     public function index()
     {
-        $tableauRemboursements = RefundBoard::all();
+        $tableauRemboursements = RefundBoard::orderBy('created_at', 'desc')->paginate(10);
 
         response(view('pages.Remboursements.tableau.index', compact('tableauRemboursements'))->with('status', "liste des tableaux de remboursement a été retoruvé."));
     }

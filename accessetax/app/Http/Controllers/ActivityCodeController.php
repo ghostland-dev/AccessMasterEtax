@@ -15,7 +15,7 @@ class ActivityCodeController extends Controller
 
     public function index()
     {
-        $codeActivites = ActivityCode::all();
+        $codeActivites = ActivityCode::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.CodeActivites.index', compact('codeActivites'))->with('status', "liste des codes d'activités"));
     }

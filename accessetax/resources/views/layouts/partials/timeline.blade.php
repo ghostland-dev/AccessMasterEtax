@@ -1,8 +1,8 @@
-<div class="container-fluid bg-white ">
+<div class="container-fluid bg-slate-600 ">
 
 
     <div class="row">
-        <div class="col p-4">
+        <div class="col p-4 ">
             <div class="timeline-steps aos-init aos-animate" data-aos="fade-up">
                 @if ($step >= 1)
                     <div class="timeline-step">

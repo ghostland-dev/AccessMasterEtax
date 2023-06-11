@@ -14,7 +14,7 @@ class CarbonLiqueController extends Controller
      */
     public function index()
     {
-        $fuitesCarbons = CarbonLique::all();
+        $fuitesCarbons = CarbonLique::orderBy('created_at', 'desc')->paginate(10);
 
         return response(view('pages.FuitesCarbons.index', compact('fuitesCarbons'))->with('status', "liste des fuites carbons."));
     }

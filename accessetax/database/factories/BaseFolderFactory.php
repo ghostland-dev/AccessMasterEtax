@@ -17,10 +17,10 @@ class BaseFolderFactory extends Factory
     public function definition()
     {
         return [
-            'numero_dossier' => $this->faker->word,
+            'numero_dossier' => $this->faker->postcode(),
             'statut_dossier' => $this->faker->randomElement(['en attente', 'en cours', 'traité', 'prêt à envoyé', 'envoyé', 'confirmé', 'rélgé', 'finalisé']),
-            'nom_dossier' => $this->faker->word,
-            'nom_client' => $this->faker->word,
+            'nom_dossier' => $this->faker->postcode(),
+            'nom_client' => $this->faker->company(),
             'study_id' => $this->faker->randomDigitNotNull,
         ];
     }

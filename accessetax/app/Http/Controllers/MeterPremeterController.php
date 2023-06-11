@@ -14,7 +14,7 @@ class MeterPremeterController extends Controller
      */
     public function index()
     {
-        $Piremetrecompteurs = MeterPremeter::all();
+        $Piremetrecompteurs = MeterPremeter::orderBy('created_at', 'desc')->paginate(10);
         return response(view('pages.Perimetres.index', compact('Piremetrecompteurs'))->with('status', "liste des perimetres."));
     }
 
