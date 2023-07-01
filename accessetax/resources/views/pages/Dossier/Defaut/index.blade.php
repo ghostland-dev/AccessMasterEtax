@@ -11,7 +11,7 @@
                 <h4 class="title mb-4">Liste des dossiers de base</h4>
                 <p class="text-muted mb-0 para-desc">Start work with Leaping. Build responsive, mobile-first projects on the web with the world's most popular front-end component library.</p>
             </div>
-       
+
 
 <!-- {"id":1,"numero_dossier":"aut","statut_dossier":"en attente","nom_dossier":"aut","nom_client":"animi","study_id":8,"created_at":"2023-03-09T14:53:01.000000Z","updated_at":"2023-03-09T14:53:01.000000Z"} -->
 
@@ -36,12 +36,12 @@
                         <span class="text-muted d-block"><i class="fa fa-home" aria-hidden="true"></i> <a href="#" target="_blank" class="text-muted">Bootdey.com LLC.</a></span>
                         <span class="text-muted d-block"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $DossierBase->numero_dossier }}</span>
                     </div>
-                    
+
                     <div class="mt-3">
                         <a href="#" class="btn btn-primary">Documents Genérés</a>
                          <a href="#" class="btn btn-primary">Documents de base</a>
                     </div>
-                   
+
                 </div>
             </div>
         </div><!--end col-->

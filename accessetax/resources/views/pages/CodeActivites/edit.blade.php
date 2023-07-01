@@ -30,8 +30,19 @@
                                             @csrf
                                             @method('PUT')
 
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
 
-                                                <h4 class="text-gray-300 text-center my-3 bg-slate-50 p-3 rounded-md w-full   "> mettre à jour le code d'activité </h4>
+
+                                            <h4 class="text-gray-300 text-center my-3 bg-slate-50 p-3 rounded-md w-full   ">
+                                                mettre à jour le code d'activité </h4>
 
                                             <!-- 2 column grid layout with text inputs for the first and last names -->
                                             <div class="row mb-4">

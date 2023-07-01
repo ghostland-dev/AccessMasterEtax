@@ -6,6 +6,16 @@
         <form action="{{ route('responsible.update', $responsable->id) }}" method="POST" class="form-group">
             @csrf
             @method('PUT')
+
+              @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="grid grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-3 shadow p-3 rounded-md ">
 
 

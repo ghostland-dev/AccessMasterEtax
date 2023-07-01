@@ -1,9 +1,19 @@
 @extends('layouts.signed')
 
 @section('main')
-    <form class="container" action="{{ route('activityCode.store') }}" method="POST">
+    <form class="container" action="{{ route('elecMeter.store') }}" method="POST">
         @csrf
-        @method('POST')
+        @method('PUT')
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="row">
             <!-- Text input -->

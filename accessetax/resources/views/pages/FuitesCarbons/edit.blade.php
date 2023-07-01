@@ -8,6 +8,17 @@
         <h4 class="my-3 text-base w-fit mx-auto  text-slate-400 text-center bg-slate-50 p-3 rounded-md"> Modifier le code de
             fuite carbon </h4>
 
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
         <div class="row">
             <!-- Text input -->
             <div class="group-form col-md-4 mb-4">
