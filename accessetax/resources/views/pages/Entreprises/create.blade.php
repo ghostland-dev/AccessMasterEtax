@@ -27,6 +27,15 @@
             @method('POST')
 
 
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-3 shadow-md p-3 rounded-md mb-3">
                 <div class="mb-4">
                     <label for="denomination" class="block text-gray-700 text-sm font-bold mb-2">Dénomination:</label>

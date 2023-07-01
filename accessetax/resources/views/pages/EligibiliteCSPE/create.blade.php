@@ -7,6 +7,17 @@
         <form method="POST" action="{{ route('cspeElig.store') }}" class=" ">
             @csrf
             @method('POST')
+
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div id="formsContainer">
                 <div class="shadow-md  p-2 grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 py-4 my-3">
                     <div class="  p-2  ">
@@ -69,7 +80,7 @@
 
     </div>
 
- 
+
     <script>
         $(document).ready(function() {
             let formIndex = 1;

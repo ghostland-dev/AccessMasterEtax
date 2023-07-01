@@ -5,6 +5,17 @@
         @csrf
         @method('POST')
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
         <div class="text-center my-3 bg-slate-50 p-3 rounded-md w-full ">
             <h4 class="text-gray-400   "> Ajouter un nouveau code d'activité </h4>
         </div>

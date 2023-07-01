@@ -10,6 +10,17 @@
                 <form action="{{ route('premMeter.store') }}" method="POST">
                     @csrf
                     @method('POST')
+
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="grid gap-3 grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1">
 

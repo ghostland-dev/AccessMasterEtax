@@ -4,9 +4,9 @@
 
     <div class="row">
         <div class="col p-4 ">
-            <div class="timeline-steps aos-init aos-animate" data-aos="fade-up">
+            <div class="timeline-steps  " data-aos="fade-up">
                 @if ($step >= 1)
-                    <div class="timeline-step btn-shock">
+                    <div class="timeline-step ">
                         <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top"
                             title="" data-content="And here's some amazing content. It's very engaging. Right?"
                             data-original-title="2003">

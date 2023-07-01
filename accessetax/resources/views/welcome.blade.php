@@ -34,28 +34,29 @@
             <header>
                 <div class="row justify-content-between">
                     <div class="col-2">
-                        <img src="{{ asset('img/logo.svg') }}" alt="logo" class="logo">
+                        <img data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true"
+                            src="{{ asset('img/logo.svg') }}" alt="logo" class="logo">
                     </div>
                     <div class="col-6 align-self-center text-right">
-                        <a href="{{ __('/login') }}"
+                        <a href="{{ route('login') }}"
                             class=" text-xs lead btn btn-outline-success rounded-md hover:text-dark ">Se
                             connecter </a>
                     </div>
                 </div>
             </header>
-            <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
+            <h1 data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true"
                 class="display-3 text-white font-weight-bold my-5">
                 Solution digitale<br>
                 Faitez la Différence
 
             </h1>
-            <p data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
+            <p data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true"
                 class="lead text-white my-4">
                 Access E-Tax est une solution digital qui vous permet de monter vos dossier
                 <br> pour vous faire rembourser des taux énérgitiques, nous vous evitons les procedures pénibles <br> et
                 lentes, et vous avez un suivi direct de votre dossier.
             </p>
-            <a href="{{ route('etape1') }}" data-aos="fade" data-aos-easing="linear" data-aos-duration="1000"
+            <a href="{{ route('etape1') }}" data-aos="fade-top" data-aos-delay="200" data-aos-duration="1000"
                 data-aos-once="true" class="btn my-4 font-weight-bold atlas-cta cta-green">Commencer</a>
         </div>
     </div>

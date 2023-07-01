@@ -8,6 +8,17 @@
             <h4 class="my-3 text-xl w-full  mx-auto  text-emerald-400 text-center bg-slate-50 p-3 rounded-md"> Ajouter un
                 nouveau fournisseur </h4>
 
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             <div class=" grid grid-cols-1 ">
                 <div class="form-outline">
 

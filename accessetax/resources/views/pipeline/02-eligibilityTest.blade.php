@@ -14,6 +14,17 @@
 
                             <form id="multistep-form" method="POST" action="{{ route('resultsCSPETICGN') }}">
                                 @csrf
+
+                                      @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
                                 <div class="form-step shadow " id="step1">
                                     <h5 class="card-header bg-success text-center text-white">
                                         Test d'éligibilité CSPE
@@ -113,6 +124,17 @@
                                     <h5 class="card-header bg-success text-center text-white my-2">
                                         {{ __('Test d\'Eligibilité TICGN') }}
                                     </h5>
+
+                                          @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
                                     <div class="row">
                                         <div class=" col-md-4 form-group ">
                                             <label for="GAZvaleurAjouterEuro">Valeur Ajoutée</label>

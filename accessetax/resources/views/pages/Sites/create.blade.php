@@ -21,10 +21,22 @@
         <form method="POST" action="{{ route('companie.store') }}" class="shadow-md p-3">
             @csrf
             @method('POST')
+
+
             <h4 class="my-3 text-base mx-auto w-full text-slate-400 text-center bg-slate-50 p-3 rounded-md"> Ajouter
                 une
                 nouvelle
                 entreprise </h4>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="grid gap-2 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                 <div class="mb-4">

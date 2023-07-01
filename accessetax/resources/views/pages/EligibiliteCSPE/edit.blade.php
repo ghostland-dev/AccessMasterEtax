@@ -7,6 +7,17 @@
         <form method="POST" action="{{ route('cspeElig.update', $EligibiliteCSPE->id) }}" class=" ">
             @csrf
             @method('PUT')
+
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="shadow  p-2 grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 py-4">
                 <div class="  p-2  ">
                     <label for="codeNaf" class="  col-form-label text-md-right">{{ __('Code NAF') }}</label>
