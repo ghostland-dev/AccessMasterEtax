@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('eligibility_c_s_p_e_s', function (Blueprint $table) {
             $table->id();
+            $table->string('siren')->nullable();
             $table->string('CodeNafmessage')->nullable();
             $table->boolean('SoumisRisqueFuitCO2')->nullable();
             $table->boolean('EligibiliteReduit')->nullable();

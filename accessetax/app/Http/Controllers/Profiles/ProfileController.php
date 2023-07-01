@@ -22,6 +22,10 @@ class ProfileController extends Controller
         // retdirect to admin page
 
         $user = Auth::user();
+        // $testeTICGN = EligibilityTCGN::where('siren', '=', $user->siren);
+        // $testeCSPE = EligibilityCSPE::where('siren', '=', $user->siren);
+
+        // dd($testeTICGN, $testeCSPE);
         return view('auth.profils.visiteur', compact('user'));
 
         //    }elseif(Auth::user()->role == null){
@@ -93,6 +97,11 @@ class ProfileController extends Controller
         // retdirect to admin page
 
         $user = Auth::user();
+
+        // $testeTICGN = EligibilityTCGN::where('siren', '=', $user->siren)->get();
+        // $testeCSPE = EligibilityCSPE::where('siren', '=', $user->siren)->get();
+
+        // dd($testeTICGN, $testeCSPE);
         return view('auth.profils.client', compact('user'));
 
         //    }else{

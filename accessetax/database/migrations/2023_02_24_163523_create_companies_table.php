@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('denomination');
             $table->string('siren');
             $table->string('siret');
+            $table->string('tel');
+            $table->string('fix');
+            $table->string('email');
             $table->string('forme_juridique');
             $table->string('forme_juridique_code');
             $table->string('capital');

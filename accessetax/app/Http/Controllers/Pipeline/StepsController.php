@@ -8,7 +8,7 @@ use App\Models\ActivityCode;
 use App\Models\EligibilityCSPE;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Supplier;
 
 class StepsController extends Controller
 {
@@ -249,7 +249,7 @@ class StepsController extends Controller
 
     public function bienvenue()
     {
-        return view('pipeline.bienvenue');
+        return view('pipeline.01-bienvenue');
     }
 
     /**
@@ -260,7 +260,7 @@ class StepsController extends Controller
 
     public function eligibilityTest()
     {
-        return view('pipeline.eligibilityTest');
+        return view('pipeline.02-eligibilityTest');
     }
 
     /**
@@ -271,7 +271,7 @@ class StepsController extends Controller
 
     public function eligibilityClient()
     {
-        return view('pipeline.eligibilityTest');
+        return view('pipeline.02-eligibilityTest');
     }
 
     /**
@@ -282,7 +282,7 @@ class StepsController extends Controller
 
     public function contractSend()
     {
-        return view('pipeline.contractSend');
+        return view('pipeline.04-contractSend');
     }
 
     /**
@@ -293,7 +293,7 @@ class StepsController extends Controller
 
     public function contractAccepted()
     {
-        return view('pipeline.contractAccepted');
+        return view('pipeline.05-contractAccepted');
     }
 
     /**
@@ -304,7 +304,7 @@ class StepsController extends Controller
 
     public function folderIncompleted()
     {
-        return view('pipeline.folderIncompleted');
+        return view('pipeline.incomplet-folderIncompleted');
     }
 
     /**
@@ -315,7 +315,8 @@ class StepsController extends Controller
 
     public function folderBuilding()
     {
-        return view('pipeline.folderBuilding');
+        $fournisseurs = Supplier::all();
+        return view('pipeline.07-folderBuilding', compact('fournisseurs'));
     }
 
     /**
@@ -326,7 +327,7 @@ class StepsController extends Controller
 
     public function folderSentCouncil()
     {
-        return view('pipeline.folderSentCouncil');
+        return view('pipeline.08-folderSentCouncil');
     }
 
     /**
@@ -337,7 +338,7 @@ class StepsController extends Controller
 
     public function CouncilConfirmation()
     {
-        return view('pipeline.confirmationReception');
+        return view('pipeline.06-confirmationReception');
     }
 
     /**
@@ -348,7 +349,7 @@ class StepsController extends Controller
 
     public function CustomerRefund()
     {
-        return view('pipeline.CustomerRefund');
+        return view('pipeline.09-CustomerRefund');
     }
 
     /**
@@ -359,7 +360,7 @@ class StepsController extends Controller
 
     public function ServiceInvoice()
     {
-        return view('pipeline.serviceInvoice');
+        return view('pipeline.10-serviceInvoice');
     }
 
     /**
@@ -370,7 +371,7 @@ class StepsController extends Controller
 
     public function folderStatus()
     {
-        return view('pipeline.folderStatus');
+        return view('pipeline.status-folderStatus');
     }
 
     /**
@@ -381,7 +382,7 @@ class StepsController extends Controller
 
     public function reducedTaxReqSupp()
     {
-        return view('pipeline.reducedTaxReqSupp');
+        return view('pipeline.11-reducedTaxReqSupp');
     }
 
     /**
@@ -551,7 +552,7 @@ class StepsController extends Controller
         // esitmationEconomie, $SommeTotalTaxElecPlein, $SommeTotalTaxGazPlein, $SommeTotalTaxTCGNReduit, $fullvalidation, $Validation03, $Validation02, $Validation01, $fullvalidation, $CodeNafmessage, $ MotnantCSPETauxReduit, $CSPEtauxPlein, $EligibiliteReduit, $RatioElectroIntense, $SoumisRisqueFuitCO2, $NouveaTauxReduit, $RemboursementClient
 
 
-        return view('pipeline.ResultsCSPETICGN', compact('esitmationEconomie', 'SommeTotalTaxElecPlein', 'SommeTotalTaxGazPlein', 'SommeTotalTaxTCGNReduit', 'fullvalidation', 'Validation03', 'Validation02', 'Validation01', 'fullvalidation', 'CodeNafmessage', 'MotnantCSPETauxReduit', 'CSPEtauxPlein', 'EligibiliteReduit', 'RatioElectroIntense', 'SoumisRisqueFuitCO2', 'NouveaTauxReduit', 'RemboursementClient'));
+        return view('pipeline.03-ResultsCSPETICGN', compact('esitmationEconomie', 'SommeTotalTaxElecPlein', 'SommeTotalTaxGazPlein', 'SommeTotalTaxTCGNReduit', 'fullvalidation', 'Validation03', 'Validation02', 'Validation01', 'fullvalidation', 'CodeNafmessage', 'MotnantCSPETauxReduit', 'CSPEtauxPlein', 'EligibiliteReduit', 'RatioElectroIntense', 'SoumisRisqueFuitCO2', 'NouveaTauxReduit', 'RemboursementClient'));
     }
 
 

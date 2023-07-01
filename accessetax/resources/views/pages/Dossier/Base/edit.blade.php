@@ -23,11 +23,21 @@
                     <input type="text" name="nom_client" id="nom_client" class="form-control"
                         placeholder="N° de etude ... " required>
                 </div>
+
                 <div class=" space-y-2    ">
-                    <label for="study_id">Identifiant d'étude</label>
-                    <input type="number" name="study_id" id="study_id" class="form-control" placeholder="N° de etude ... "
-                        required>
+                    <label for="study_id">Dossier de base</label>
+                    <select name="study_id" id="study_id" class="form-control" placeholder="l'etude ... " required>
+                        <option>Selectionnez l'etude'</option>
+                        @foreach ($etudes as $etude)
+                            <option {{ $etude->id == $DossierBase->study_id ? 'checked' : '' }} value="id">
+                                {{ $etude->nom_etude }} </option>
+                        @endforeach
+
+
+                    </select>
                 </div>
+
+
                 <div class=" space-y-2    ">
                     <label for="statut_dossier">Statut de dossier</label>
                     <select name="statut_dossier" id="statut_dossier" class="form-control" placeholder="N° de etude ... "

@@ -1,7 +1,7 @@
 @extends('layouts.signed')
 @section('main')
     <form action="{{ route('baseDoc.store') }}" method="POST" enctype="multipart/form-data"
-        class="d-flex justify-content-around flex-wrap" id="ElecBillForm">
+        class="d-flex justify-content-around flex-wrap" id="DossierDeBase">
         @csrf
         @method('POST')
 
@@ -172,14 +172,22 @@
                     </label>
                 </div>
 
-                <!-- Text input -->
-                <div class="file bg-slate-600 rounded-md is-boxed w-100">
-                    {{-- <label class="form-label" for="base_folder_id">Doosier de base</label> --}}
-                    <input type="text" id="base_folder_id" name="base_folder_id"
-                        class="text-emerald-400 bg-slate-600 w-full rounded-md  " value="{{ $BaseDoc->base_folder_id }}"
-                        class="form-control" />
 
+
+                <div class=" space-y-2    ">
+                    <label for="base_folder_id">Dossier de base</label>
+                    <select name="base_folder_id" id="base_folder_id" class="form-control"
+                        placeholder="statut de dossier ... " required>
+                        <option>Selectionnez le dossier de base</option>
+                        @foreach ($DossiersBase as $dossier)
+                            <option {{ $dossier->id == $BaseDoc->base_folder_id ? 'checked' : '' }} value="id">
+                                {{ $dossier->nom_dossier }} </option>
+                        @endforeach
+
+
+                    </select>
                 </div>
+
 
 
 

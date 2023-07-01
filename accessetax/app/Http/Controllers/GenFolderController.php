@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BaseFolder;
 use App\Models\GenFolder;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class GenFolderController extends Controller
 
     public function create()
     {
-        return  view('pages.DossierGens.create')->with('status', 'vous pouvez générer votre dossier.');
+        $DossiersBase = BaseFolder::all();
+        return  view('pages.Dossier.Gen.create', compact('DossiersBase'))->with('status', 'vous pouvez générer votre dossier.');
     }
 
     /**
@@ -41,7 +43,7 @@ class GenFolderController extends Controller
     public function store(Request $request)
     {
 
-        return response(view('pages.DossierGens.index'))->with('status', 'Dossier générer avec succès.');
+        return view('pages.Dossier.Gen.index')->with('status', 'Dossier générer avec succès.');
     }
 
     /**
@@ -51,11 +53,12 @@ class GenFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(GenFolder $genFolder)
+    public function show($id)
     {
-        $DossierGen = GenFolder::findOrFail($genFolder);
+        $DossierGen = GenFolder::findOrFail($id);
 
-        return response(view('pages.DossierGens.show', compact('DossierGen')))->with('status', 'le dossier a été retrouvé dans nos enregistrements.');
+
+        return  view('pages.Dossier.Docs.show', compact('DossierGen'))->with('status', 'le dossier a été retrouvé dans nos enregistrements.');
     }
 
     /**
@@ -65,11 +68,13 @@ class GenFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(GenFolder $genFolder)
+    public function edit($id)
     {
 
-        $DossierGen = GenFolder::findOrFail($genFolder);
-        return response(view('pages.DossierGens.edit', compact('DossierGen')))->with('status', 'le dossier est prêt a être modifié.');
+        $DossierGen = GenFolder::findOrFail($id);
+
+        $DossiersBase = BaseFolder::all();
+        return  view('pages.Dossier.Gen.edit', compact('DossierGen', 'DossiersBase'))->with('status', 'le dossier est prêt a être modifié.');
     }
 
     /**
@@ -80,10 +85,10 @@ class GenFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, GenFolder $genFolder)
+    public function update(Request $request, $id)
     {
 
-        $DossierGen = GenFolder::findOrFail($genFolder);
+        $DossierGen = GenFolder::findOrFail($id);
 
         $DossierGen->attestation_non_rembourse = $request->attestation_non_rembourse->store('dossierGeneres', 'public');
         $DossierGen->contrat_de_prestation = $request->contrat_de_prestation->store('dossierGeneres', 'public');
@@ -99,7 +104,7 @@ class GenFolderController extends Controller
         $DossierGen->base_folder_id = $request->base_folder_id;
 
         $DossierGen->save();
-        return response(view('pages.DossierGens.show', compact('DossierGen')))->with('status', 'le dossier est prêt a être modifié.');
+        return response(view('pages.Dossier.Gen.show', compact('DossierGen')))->with('status', 'le dossier est prêt a être modifié.');
     }
 
     /**
@@ -109,9 +114,9 @@ class GenFolderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(GenFolder $genFolder)
+    public function destroy($id)
     {
-        $DossierGen = GenFolder::findOrFail($genFolder);
+        $DossierGen = GenFolder::findOrFail($id);
         $DossierGen->delete();
 
         return response(view('pages.DossierGens.index'))->with('status', 'le dossier a été supprimé avec succès.');

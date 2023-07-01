@@ -21,8 +21,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         @if (session('status'))
-                                            <div class="alert bg-light-success text-success text-center" role="alert">
-                                                <i class="fa fa-trash"></i> {{ session('status') }}
+                                            <div class="alert bg-light-success text-success text-center animate-pulse"
+                                                role="alert">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+                                        @if (session('error'))
+                                            <div class="alert bg-light-danger text-danger text-center animate-pulse"
+                                                role="alert">
+                                                {{ session('error') }}
                                             </div>
                                         @endif
 

@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        @if (Auth::user()->role == 'adminisrateur')
+        @if (Auth::user()->role == 'administrateur')
             <div class="input-register  col-md-5">
                 <label for="role" class="form-label">{{ __('Role') }}</label>
                 <div class="col-md-12">
@@ -62,8 +62,8 @@
                             Selectionnez un role
                         </option>
 
-                        <option value="adminisrateur" {{ $Utilisateur->role == 'adminisrateur' ? 'selected' : '' }}>
-                            Adminisrateur </option>
+                        <option value="administrateur" {{ $Utilisateur->role == 'administrateur' ? 'selected' : '' }}>
+                            Administrateur </option>
                         <option value="client" {{ $Utilisateur->role == 'client' ? 'selected' : '' }}> Client </option>
                         <option value="commercial" {{ $Utilisateur->role == 'commercial' ? 'selected' : '' }}> Agent
                             commercial

@@ -51,8 +51,14 @@ class CompanyController extends Controller
         $entreprise->denomination = $request->denomination;
         $entreprise->siren = $request->siren;
         $entreprise->siret = $request->siret;
+        $entreprise->tel = $request->tel;
+        $entreprise->fix = $request->fix;
+        $entreprise->ville = $request->ville;
+        $entreprise->email = $request->email;
         $entreprise->code_naf = $request->code_naf;
-        $entreprise->nic = $request->nic;
+        $entreprise->site_internet = $request->site_internet;
+        $entreprise->code_nace = $request->code_nace;
+        $entreprise->code_naf = $request->code_naf;
         $entreprise->forme_juridique = $request->forme_juridique;
         $entreprise->forme_juridique_code = $request->forme_juridique_code;
         $entreprise->capital = $request->capital;
@@ -60,7 +66,8 @@ class CompanyController extends Controller
         $entreprise->nb_dirigents = $request->nb_dirigents;
         $entreprise->categorie_juridique = $request->categorie_juridique;
         $entreprise->adresse = $request->adresse;
-        $entreprise->date_radiation = $request->date_radiation ? date('Y-m-d') : '';
+        $entreprise->date_radiation = $request->date_radiation == true ? date('Y-m-d') : '';
+        $entreprise->date_creation = $request->date_creation;
         $entreprise->user_id = $id;
 
 
@@ -137,8 +144,14 @@ class CompanyController extends Controller
         $entreprise->denomination = $request->denomination;
         $entreprise->siren = $request->siren;
         $entreprise->siret = $request->siret;
+        $entreprise->tel = $request->tel;
+        $entreprise->fix = $request->fix;
+        $entreprise->ville = $request->ville;
+        $entreprise->email = $request->email;
         $entreprise->code_naf = $request->code_naf;
-        $entreprise->nic = $request->nic;
+        $entreprise->site_internet = $request->site_internet;
+        $entreprise->code_nace = $request->code_nace;
+        $entreprise->code_naf = $request->code_naf;
         $entreprise->forme_juridique = $request->forme_juridique;
         $entreprise->forme_juridique_code = $request->forme_juridique_code;
         $entreprise->capital = $request->capital;
@@ -146,7 +159,8 @@ class CompanyController extends Controller
         $entreprise->nb_dirigents = $request->nb_dirigents;
         $entreprise->categorie_juridique = $request->categorie_juridique;
         $entreprise->adresse = $request->adresse;
-        $entreprise->date_radiation = $request->date_radiation ? date('Y-m-d') : '';
+        $entreprise->date_radiation = $request->date_radiation == true ? date('Y-m-d') : '';
+        $entreprise->date_creation = $request->date_creation;
         $entreprise->user_id = $id;
 
 

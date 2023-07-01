@@ -18,6 +18,7 @@ class EligibilityCSPEFactory extends Factory
     {
         return [
             'codeNaf' => $this->faker->randomDigitNotNull(),
+            'siren' => $this->faker->randomDigitNotNull(),
             'valeurAjouter' => $this->faker->randomDigitNotNull(),
             'CAR' => $this->faker->randomDigitNotNull(),
             'CodeNafmessage' => "dede",

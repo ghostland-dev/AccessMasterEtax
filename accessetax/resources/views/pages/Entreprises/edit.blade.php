@@ -1,16 +1,18 @@
 @extends('layouts.signed')
 @section('main')
-    <div class="w-3/4 mx-auto  bg-light p-2 rounded-md shadow">
+    <div class="w-3/4 mx-auto  bg-white p-2 rounded-md shadow">
 
 
-        <div class="flex justify-between gap-2">
+        <h5 class=" shadow-md bg-slate-50 rounded-md p-4 text-center  text-success">Mettre à jour l'entreprise </h5>
+
+        <div class="flex justify-between gap-2 mx-3">
 
             <input type="number" id="searchInput"
-                class="shadow p-3 form-control border-0 bg-success my-4 text-emerald-400 w-4/3 rounded-md"
-                placeholder="SIREN de l'entreprise ici">
+                class="shadow-md w-2/3 p-3   border-0 bg-slate-50 my-2 text-slate-300   rounded-md"
+                placeholder="SIREN de l'entreprise ici ...." value="{{ $entreprise->siren }}">
 
-            <button id="getData" class="w-1/4 shadow p-3 form-control border-0 bg-dark my-4 text-white ">
-                <i class="fa fa-cogs mx-2 "></i> Autocompleter
+            <button id="getData" class="w-1/4 shadow p-3 rounded-md  border-0 bg-success my-2 text-white ">
+                <i class="fa fa-rocket mx-2 transform scale-110 "></i> Autocompleter
             </button>
 
 
@@ -20,129 +22,139 @@
         <form method="POST" action="{{ route('companie.update', $entreprise->id) }}" class="shadow-md p-3">
             @csrf
             @method('PUT')
-            <h4 class="my-3 text-base mx-auto w-full text-slate-400 text-center bg-white p-3 rounded-md"> Modifier les
-                données de l'entreprise </h4>
 
-            <div class="grid gap-2 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-3 shadow-md p-3 rounded-md mb-3">
                 <div class="mb-4">
                     <label for="denomination" class="block text-gray-700 text-sm font-bold mb-2">Dénomination:</label>
                     <input type="text" name="denomination" id="denomination" value="{{ $entreprise->denomination }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="ex: Entreprise X ..." required>
                 </div>
 
                 <div class="mb-4">
                     <label for="siren" class="block text-gray-700 text-sm font-bold mb-2">Siren:</label>
                     <input type="text" name="siren" id="siren" value="{{ $entreprise->siren }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="0784512445..." required>
                 </div>
 
                 <div class="mb-4">
                     <label for="siret" class="block text-gray-700 text-sm font-bold mb-2">Siret:</label>
                     <input type="text" name="siret" id="siret" value="{{ $entreprise->siret }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="155164611551..." required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="tel" class="block text-gray-700 text-sm font-bold mb-2">Téléphone:</label>
+                    <input type="tel" name="tel" id="tel" value="{{ $entreprise->tel }}" class="form-control"
+                        placeholder="07 00 00 00" required>
+                </div>
+                <div class="mb-4">
+                    <label for="fix" class="block text-gray-700 text-sm font-bold mb-2">Fix:</label>
+                    <input type="tel" name="fix" id="fix" value="{{ $entreprise->fix }}" class="form-control"
+                        placeholder="02 00 00 00" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">email:</label>
+                    <input type="email" name="email" id="email" value="{{ $entreprise->email }}"
+                        class="form-control" placeholder="emxemple@domaine.fr" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="forme_juridique" class="block text-gray-700 text-sm font-bold mb-2">Forme juridique:</label>
                     <input type="text" name="forme_juridique" id="forme_juridique"
-                        value="{{ $entreprise->forme_juridique }}" class="border border-collapse rounded-md p-2 w-full"
-                        required>
+                        value="{{ $entreprise->forme_juridique }}" class="form-control" placeholder="SARL..." required>
                 </div>
 
                 <div class="mb-4">
                     <label for="forme_juridique_code" class="block text-gray-700 text-sm font-bold mb-2">Forme juridique
                         code:</label>
                     <input type="text" name="forme_juridique_code" id="forme_juridique_code"
-                        value="{{ $entreprise->forme_juridique_code }}" class="border border-collapse rounded-md p-2 w-full"
-                        required>
+                        value="{{ $entreprise->forme_juridique_code }}" class="form-control" placeholder="1518..." required>
                 </div>
 
                 <div class="mb-4">
                     <label for="capital" class="block text-gray-700 text-sm font-bold mb-2">Capital:</label>
-                    <input type="number" name="capital" id="capital" class="border border-collapse rounded-md p-2 w-full"
-                        value="{{ $entreprise->capital }}" required>
+                    <input type="text" name="capital" id="capital" value="{{ $entreprise->capital }}"
+                        class="form-control" placeholder="0.00" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="effectif" class="block text-gray-700 text-sm font-bold mb-2">Effectif:</label>
                     <input type="text" name="effectif" id="effectif" value="{{ $entreprise->effectif }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="00" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="nb_dirigents" class="block text-gray-700 text-sm font-bold mb-2">Nombre de
                         dirigeants:</label>
                     <input type="number" name="nb_dirigents" id="nb_dirigents" value="{{ $entreprise->nb_dirigents }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="00" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="categorie_juridique" class="block text-gray-700 text-sm font-bold mb-2">Catégorie
                         juridique:</label>
                     <input type="text" name="categorie_juridique" id="categorie_juridique"
-                        value="{{ $entreprise->categorie_juridique }}" class="border border-collapse rounded-md p-2 w-full"
-                        required>
+                        value="{{ $entreprise->categorie_juridique }}" class="form-control"
+                        placeholder="Entreprise en activité des produits devers" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="code_postal" class="block text-gray-700 text-sm font-bold mb-2">Code postal:</label>
-                    <input type="text" name="code_postal" id="code_postal"
-                        class="border border-collapse rounded-md p-2 w-full" value="{{ $entreprise->code_postal }}"
-                        required>
+                    <input type="text" name="code_postal" id="code_postal" value="{{ $entreprise->code_postal }}"
+                        class="form-control" placeholder="0000" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="ville" class="block text-gray-700 text-sm font-bold mb-2">Ville:</label>
-                    <input type="text" name="ville" id="ville"
-                        class="border border-collapse rounded-md p-2 w-full" value="{{ $entreprise->ville }}" required>
+                    <input type="text" name="ville" id="ville" value="{{ $entreprise->ville }}"
+                        class="form-control" placeholder="Paris" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="code_naf" class="block text-gray-700 text-sm font-bold mb-2">Code NAF:</label>
-                    <input type="text" name="code_naf" id="code_naf"
-                        class="border border-collapse rounded-md p-2 w-full" value="{{ $entreprise->code_naf }}"
-                        required>
+                    <input type="text" name="code_naf" id="code_naf" value="{{ $entreprise->code_naf }}"
+                        class="form-control" placeholder="21.12C" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="code_nace" class="block text-gray-700 text-sm font-bold mb-2">Code NACE:</label>
                     <input type="text" name="code_nace" id="code_nace" value="{{ $entreprise->code_nace }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="1245" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="site_internet" class="block text-gray-700 text-sm font-bold mb-2">Site internet:</label>
                     <input type="url" name="site_internet" id="site_internet"
-                        value="{{ $entreprise->site_internet }}" class="border border-collapse rounded-md p-2 w-full"
-                        code_naf required>
+                        value="{{ $entreprise->site_internet }}" class="form-control" placeholder="www.entreprise.fr"
+                        required>
                 </div>
 
                 <div class="mb-4">
                     <label for="nic" class="block text-gray-700 text-sm font-bold mb-2">NIC:</label>
                     <input type="text" name="nic" id="nic" value="{{ $entreprise->nic }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                        class="form-control" placeholder="15542" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="nic_siege" class="block text-gray-700 text-sm font-bold mb-2">NIC siège:</label>
-                    <input type="text" name="nic_siege" id="nic_siege" value="{{ $entreprise->nic }}"
-                        class="border border-collapse rounded-md p-2 w-full" required>
+                    <input type="text" name="nic_siege" id="nic_siege" value="{{ $entreprise->nic_siege }}"
+                        class="form-control" placeholder="5616" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="date_creation" class="block text-gray-700 text-sm font-bold mb-2">Date de
                         création:</label>
                     <input type="date" name="date_creation" id="date_creation"
-                        class="border border-collapse rounded-md p-2 w-full" value="{{ $entreprise->date_creation }}"
-                        required>
+                        value="{{ $entreprise->date_creation }}" class="form-control" placeholder="00-00-0000" required>
                 </div>
 
 
 
                 <div class="my-4 ">
                     <label class="relative inline-flex items-center mb-4 cursor-pointer">
-                        <input type="checkbox" {{ $entreprise->date_creation ? 'checked' : '' }} name="date_radiation"
-                            id="date_radiation" class="sr-only peer">
+                        <input type="checkbox" {{ $entreprise->date_radiation != null ? 'checked' : '' }}
+                            name="date_radiation" id="date_radiation" class="sr-only peer">
                         <div
                             class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-400 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600">
                         </div>
@@ -151,18 +163,17 @@
                     </label>
                 </div>
 
-
-
-
-
             </div>
 
             <div class="grid gap-2 grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1">
+
+
                 <div class="mb-4 w-full">
                     <label for="adresse" class="block text-gray-700 text-sm font-bold mb-2">Adresse:</label>
-                    <textarea name="adresse" id="adresse" class="border border-collapse rounded-md p-2 w-full" rows="3"
+                    <textarea name="adresse" id="adresse" class="form-control" rows="3" placeholder="11, rue des boulvard"
                         required>{{ $entreprise->adresse }}</textarea>
                 </div>
+
             </div>
             <div class="w-100">
                 <button type="submit" class="my-3   mx-auto btn btn-dark p-2 px-4"> Mettre à jour
@@ -208,8 +219,7 @@
             document.getElementById('siret').value = company.siege.siret;
             document.getElementById('forme_juridique').value = company.forme_juridique;
             document.getElementById('forme_juridique_code').value = company.categorie_juridique;
-
-            document.getElementById('capital').value = company.capital;
+            document.getElementById('capital').value = company.chiffre_affaires;
             document.getElementById('effectif').value = company.effectif;
             document.getElementById('nb_dirigents').value = company.nb_dirigeants_total;
             document.getElementById('categorie_juridique').value = company.categorie_juridique;

@@ -5,74 +5,81 @@ namespace App\Http\Controllers;
 use App\Models\Site;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller {
+class SiteController extends Controller
+{
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function index() {
+    public function index()
+    {
         $sites = Site::orderBy('created_at', 'desc')->paginate(10);
-        return  response( view( 'pages.Sites.index', compact( 'sites' )  )->with( 'status', 'liste des site disponibles.' ));
+        return  response(view('pages.Sites.index', compact('sites'))->with('status', 'liste des site disponibles.'));
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function create() {
-        return  response( view( 'pages.Sites.create', compact( 'sites' )   )->with( 'status', 'liste des site disponibles.' ));
+    public function create()
+    {
+        return  response(view('pages.Sites.create', compact('sites'))->with('status', 'liste des site disponibles.'));
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
-    public function store( Request $request ) {
-        $site = Site::create( $request->all() );
-        return  response( view( 'pages.Sites.index', compact( 'sites' )  )->with( 'status', 'site a été ajouté avec succès.' ));
+    public function store(Request $request)
+    {
+        $site = Site::create($request->all());
+        return  response(view('pages.Sites.index', compact('sites'))->with('status', 'site a été ajouté avec succès.'));
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\Models\Site  $site
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Site  $site
+     * @return \Illuminate\Http\Response
+     */
 
-    public function show( Site $site ) {
-        $site = Site::findOrFail( $site );
-        return  response( view( 'pages.Sites.show', compact( 'site' ) )->with( 'status', 'ce site a été retrouvé dans nos enregistrements.' ) );
+    public function show($id)
+    {
+        $site = Site::findOrFail($id);
+        return  response(view('pages.Sites.show', compact('site'))->with('status', 'ce site a été retrouvé dans nos enregistrements.'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Models\Site  $site
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Site  $site
+     * @return \Illuminate\Http\Response
+     */
 
-    public function edit( Site $site ) {
-        $site = Site::findOrFail( $site );
-        return  response( view( 'pages.Sites.edit', compact( 'site' ) )->with( 'status', 'Vous pouvez commencer les modifications.' ) );
+    public function edit($id)
+    {
+        $site = Site::findOrFail($id);
+        return  response(view('pages.Sites.edit', compact('site'))->with('status', 'Vous pouvez commencer les modifications.'));
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Models\Site  $site
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Site  $site
+     * @return \Illuminate\Http\Response
+     */
 
-    public function update( Request $request, Site $site ) {
-        $site = Site::findOrFail( $site );
+    public function update(Request $request, $id)
+    {
+        $site = Site::findOrFail($id);
 
         $site->siret = $request->siret;
         $site->email = $request->email;
@@ -91,21 +98,21 @@ class SiteController extends Controller {
 
         $site->save();
 
-        return  response( view( 'pages.Sites.show', compact( 'site' ) )->with( 'status', 'ce site a été retrouvé dans nos enregistrements.' ) );
+        return  response(view('pages.Sites.show', compact('site'))->with('status', 'ce site a été retrouvé dans nos enregistrements.'));
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\Models\Site  $site
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Site  $site
+     * @return \Illuminate\Http\Response
+     */
 
-    public function destroy( Site $site ) {
-        $site = Site::findOrFail( $site );
+    public function destroy($id)
+    {
+        $site = Site::findOrFail($id);
         $site->delete();
 
         return redirect()->route("sites")->with('status', "Site a été supprimé avec succès.");
-
     }
 }

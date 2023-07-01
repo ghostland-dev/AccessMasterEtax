@@ -39,6 +39,7 @@ class EligibilityTCGNFactory extends Factory
             'pourcentageConsuPorcessus' => 12,
             'NaceCode' => 12,
             'combustionProcessus' => false,
+            'siren' => $this->faker->randomDigitNotNull(),
             'study_id' => $this->faker->randomDigitNotNull(),
         ];
     }

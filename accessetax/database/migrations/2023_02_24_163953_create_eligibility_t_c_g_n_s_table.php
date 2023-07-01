@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('eligibility_t_c_g_n_s', function (Blueprint $table) {
             $table->id();
+            $table->string('siren')->nullable();
             $table->boolean('Validation03')->nullable();
             $table->boolean('Validation02')->nullable();
             $table->boolean('Validation01')->nullable();

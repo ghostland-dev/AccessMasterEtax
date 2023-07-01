@@ -17,12 +17,12 @@ use App\Http\Controllers\CodeNafController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware(['auth:sanctum','verified'])->get('/user', function (Request $request) {
     return $request->user();
 });
 // Route::get('/v1/data/code_naf', [CodeNafController::class, 'index']) ;
 Route::get('/v1/data/code_naf', [CodeNafController::class, 'codenafs']) ;
- 
+
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/v1/data/utilisateurs',            [UtilisateurApiController::class, 'index'])->name('users');
 //     Route::post('/v1/data/utilisateurs',           [UtilisateurApiController::class, 'store'])->name('users.store');

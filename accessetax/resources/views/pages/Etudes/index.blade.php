@@ -26,7 +26,7 @@
                             <span class="bg-light-gray rounded-2 p-2 my-2 ">Responsable : {{ $etude->nom_responsable }}
                             </span>
 
-                            <h6 class="text-success bg-slate-300 p-3 mt-3 rounded-2">Site proprietaire</h6>
+                            <h6 class="text-success bg-slate-500 p-3 mt-3 rounded-2">Site proprietaire</h6>
                             <div class="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-1 ">
                                 <p
                                     class="text-muted flex justify-between px-3 mb-0 bg-slate-50 text-slate-600 p-2 rounded-md ">

@@ -8,53 +8,60 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Company;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable {
+
+class User extends Authenticatable implements MustVerifyEmail
+{
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array<int, string>
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'userName'  ,
-        'firstName'  ,
-        'lastName' ,
-        'tel' ,
-        'fix'  ,
-        'job'  ,
+        'userName',
+        'firstName',
+        'lastName',
+        'tel',
+        'fix',
+        'job',
+        'etape',
         'role',
-        'siren'  ,
+        'siren',
         'profile',
         'email',
         'password',
+        'owner_id'
     ];
 
     /**
-    * The attributes that should be hidden for serialization.
-    *
-    * @var array<int, string>
-    */
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
     /**
-    * The attributes that should be cast.
-    *
-    * @var array<string, string>
-    */
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasRole( $role ) {
+    public function hasRole($role)
+    {
         return $this->role === $role;
     }
 
-    public function companies() {
-        return $this->hasMany( Company::class );
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
     }
 }

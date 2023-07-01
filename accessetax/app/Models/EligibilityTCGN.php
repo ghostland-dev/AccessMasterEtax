@@ -13,6 +13,7 @@ class EligibilityTCGN extends Model
 
     protected $fillable = [
         'fullvalidation',
+        'siren',
         'Validation03',
         'Validation02',
         'Validation01',

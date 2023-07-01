@@ -3,7 +3,6 @@
     <div class="container p-2">
 
 
-
         <button class="btn btn-success" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"> + Nouveau
             Utilisateur</button>
         <!--end col-->
@@ -36,7 +35,7 @@
                         class="bg-slate-500 font-semibold text-emerald-400    rounded-md m-2 p-3 active:bg-emerald-400 active:text-white
                     "
                         id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button"
-                        role="tab" aria-controls="v-pills-settings" aria-selected="false">Adminisrateur</button>
+                        role="tab" aria-controls="v-pills-settings" aria-selected="false">Administrateur</button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
@@ -466,7 +465,7 @@
                                                 </div>
                                             @endif
 
-                                            <div class="  "> 
+                                            <div class="  ">
 
                                                 <div class="flex items-center justify-center  h-20 w-full">
                                                     <label for="dropzone-file"
@@ -502,7 +501,7 @@
                                                 </div>
                                             </div>
 
-                                            @if (Auth::user()->role == 'adminisrateur')
+                                            @if (Auth::user()->role == 'administrateur')
                                                 <div class="">
                                                     <label for="role" class="form-label">{{ __('Role') }}</label>
                                                     <div class="">

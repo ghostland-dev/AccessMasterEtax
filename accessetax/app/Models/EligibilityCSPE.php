@@ -14,6 +14,7 @@ class EligibilityCSPE extends Model
     protected $fillable = [
         'CAR',
         'codeNaf',
+        'siren',
         'valeurAjouter',
         'CodeNafmessage',
         'MotnantCSPETauxReduit',
