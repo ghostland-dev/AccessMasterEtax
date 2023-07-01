@@ -1,8 +1,8 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.pipeline')
+@section('pipeline')
 
 
- 
+
 
 <section class="timeline_area  pt-3 section_padding_130">
     <div class="container">

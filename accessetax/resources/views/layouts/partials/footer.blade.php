@@ -12,6 +12,9 @@
 
     <script src="{{ asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/costumized.js') }}"></script>
+        <script src="{{ asset('scripts.js') }}"></script>
+
+
 
     {{-- <script src="{{ asset('js/aos.js') }}"></script>
     <script>

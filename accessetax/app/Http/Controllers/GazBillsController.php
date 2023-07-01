@@ -6,8 +6,8 @@ use App\Models\GazBill;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
-
+use Smalot\PdfParser\Parser;
+use Spatie\PdfToText\Pdf;
 
 class GazBillsController extends Controller
 {
@@ -47,19 +47,17 @@ class GazBillsController extends Controller
     {
 
 
-        // Chemin vers le fichier PDF
+        //  Chemin vers le fichier PDF
 
         // $file = $request->fichier;
-
-
-
         // $pdfParser = new Parser();
         // $pdf = $pdfParser->parseFile($file->path());
         // $content = json_encode(explode('\n', $pdf->getText()));
+        // $imagePath = "https://1.bp.blogspot.com/-n4CCrbeiPko/Wz_ewDj1tJI/AAAAAAAAAnI/tSuTwvQt6wg62YvWpGnRgyUatJQN6YgOACLcBGAs/s1600/texttophotoheader.jpg";
 
-        // dd($content);
+        // $text = Pdf::getText($imagePath);
 
-
+        // dd($text);
 
         $FactureGaz = GazBill::create([
             "nom_facture" => $request->nom_facture,

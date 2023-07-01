@@ -37,9 +37,10 @@
                                                         </div>
                                                     </th>
                                                     <th>entreprise</th>
-                                                    <th>Adresse</th>
+                                                    <th>contact</th>
+                                                    <th>Statut</th>
                                                     <th>NAF/NACE</th>
-                                                    <th>Consommation</th>
+                                                    <th>Capital</th>
                                                     <th>Date Inscription </th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -57,9 +58,14 @@
                                                             <div class="d-flex align-items-center">
 
                                                                 <div class="ms-3">
-                                                                    <p class="fw-bold mb-1">{{ $entreprise->denomination }}
+                                                                    <p class="fw-bold mb-1">
+                                                                        <i class="mx-2 fas fa-home text-emerald-400"></i>
+                                                                        {{ $entreprise->denomination }}
                                                                     </p>
-                                                                    <p class="text-muted mb-0">{{ $entreprise->siren }}</p>
+                                                                    <p class="text-emerald-400  mb-0">
+                                                                        <i class="mx-2 fas fa-code text-emerald-400"></i>
+                                                                        {{ $entreprise->siren }}
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -67,10 +73,28 @@
                                                             <div class="d-flex align-items-center">
                                                                 <div class="ms-3">
                                                                     <p class="fw-bold mb-1"> <i
-                                                                            class="mx-2 fas fa-marker text-emerald-400"></i>
-                                                                        {{ $entreprise->adresse }}</p>
-                                                                    {{ $entreprise->ville . ' , ' . $entreprise->code_postal }}
+                                                                            class="mx-2 fas fa-phone text-emerald-400"></i>
+                                                                        {{ $entreprise->tel }}
+
                                                                     </p>
+                                                                    <p class="fw-bold mb-1"> <i
+                                                                            class="mx-2 fas fa-envelope text-emerald-400"></i>
+                                                                        {{ $entreprise->email }}
+
+                                                                    </p>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="ms-3">
+                                                                    <p
+                                                                        class="fw-bold mb-1 rounded-md p-2  {{ $entreprise->date_radiation == null ? 'bg-emerald-50 text-emerald-400' : 'bg-red-50 text-red-400' }}">
+                                                                        {{ $entreprise->date_radiation == null ? 'En activité' : 'Radiée' }}
+
+                                                                    </p>
+
 
                                                                 </div>
                                                             </div>
@@ -83,9 +107,8 @@
                                                         </td>
                                                         <td>
                                                             <p class="text-muted mb-0">
-                                                                {{ $entreprise->consommation_electrcite }} Mkw/€</p>
-                                                            <p class="text-muted mb-0">
-                                                                {{ $entreprise->consommation_gaz }} Mkw/€</p>
+                                                                {{ $entreprise->capital }} €</p>
+
                                                         </td>
 
                                                         <td>{{ $entreprise->created_at }}</td>

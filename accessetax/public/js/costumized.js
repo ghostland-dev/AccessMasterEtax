@@ -1,3 +1,52 @@
+$(document).ready(function () {
+    $("#closeAlert").on('click', function () {
+
+        $('#alerte').removeClass('flex');
+        $('#alerte').addClass('hidden');
+
+    })
+
+    $("#getnafGen").on('click', function () {
+        var sirenValue = $('#SIREN').val().trim();
+        if (sirenValue.length >= 7 && sirenValue.length <= 10) {
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+
+            fetch(`/app/v1/data/pappers?siren=${sirenValue}`, requestOptions)
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Network response was not OK.');
+                    }
+                })
+                .then(function (data) {
+                    console.log(data);
+
+                    if (data.resultats && data.resultats.length > 0) {
+                        var codeNafValue = data.resultats[0].code_naf;
+                        $("#codeNaf").val(codeNafValue);
+                        if (codeNafValue.length > 3) {
+                            $(".codeNaf").show();
+                        }
+                    } else {
+                        throw new Error('No data found for the provided SIREN.');
+                    }
+                })
+                .catch(function (error) {
+                    $('#alerte').removeClass('hidden').addClass('flex');
+                    $('#messageAlerte').text(error.message);
+                });
+        } else {
+            $('#alerte').removeClass('hidden').addClass('flex');
+            $('#messageAlerte').text('SIREN should be between 7 and 10 characters.');
+        }
+    });
+
+});
+
 
 function imageData(url) {
     const originalUrl = url || '';
@@ -23,148 +72,38 @@ function imageData(url) {
     };
 }
 
-$(document).ready(function () {
-
-    $("#nafGen").on('click', function () {
 
 
-        if ($('#SIREN').val().length >= 7 && $('#SIREN').val().length <= 10) {
-            let requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-            };
-            let entreprise_name = $.trim($("#SIREN").val());
 
-            fetch(`http://localhost:8000/app/v1/data/pappers?siren=${entreprise_name}`, requestOptions).then(function (response) {
-
-                return response.json();
-            }).then(function (data) {
-                console.log(data)
-
-                $("#codeNaf").val(data.resultats[0].code_naf);
-                if ($("#codeNaf").val().length > 3) {
-                    $(".codeNaf").show()
-                }
-                return true
-            }).catch(function (error) {
-                alert('Désolé, le numéro SIREN que vous avez fourni est inccorect ou invalide, veuillez réessayez avec un siren valide !')
-            });
-        } else {
-            alert('SIREN est composé de 8 chiffres minmum')
-        }
-
-    });
-});
-
-
-// Get all file input elements and progress bar elements
-var fileInputs = document.querySelectorAll(".file-input");
-var progressBars = document.querySelectorAll(".progress");
-
-// Loop through each file input element and add event listener for file selection
-for (var i = 0; i < fileInputs.length; i++) {
-    fileInputs[i].addEventListener("change", function (event) {
-        // Get the selected file from the input
-        var file = event.target.files[0];
-        // Get the progress bar element associated with this file input
-        var progressBar = this.parentElement.nextElementSibling;
-        // Get the progress bar element inside the progress bar container
-        var progress = progressBar.querySelector(".progress");
-
-        // Check if a file was selected
-        if (file) {
-            // Create a new FileReader object to read the file
-            var reader = new FileReader();
-
-            // When loading of the file starts, set the progress bar to 0% and show it
-            reader.onloadstart = function () {
-                progress.style.width = "0%";
-                progressBar.style.display = "block";
-            }
-
-            // While the file is being loaded, update the progress bar with the percentage of the file loaded
-            reader.onprogress = function (event) {
-                if (event.lengthComputable) {
-                    var percent = Math.round((event.loaded / event.total) * 100);
-                    progress.style.width = percent + "%";
-                }
-            }
-
-            // When the file has finished loading, set the progress bar to 100% and hide it
-            reader.onload = function () {
-                progress.style.width = "100%";
-                progressBar.style.display = "none";
-            }
-
-            // Read the file as a data URL
-            reader.readAsDataURL(file);
-        }
-    });
-}
-
-// const input = document.querySelector('#codeNaf') ?? null;
-// // const url = 'http://127.0.0.1:8000/api/v1/data/code_naf';
-// // const url = '/api/v1/data/code_naf';
-
-// if (input) {
-//     input.addEventListener('input', function () {
-
-//         const value = input.value.trim();
-//         if (value.length > 4) {
-
-//             const xhr = new XMLHttpRequest();
-//             xhr.open('GET', `${url}?q=${value}`);
-//             xhr.onload = function () {
-//                 if (xhr.status === 200) {
-
-//                     const data = JSON.parse(xhr.responseText);
-
-//                     if (data[0].length > 0) {
-
-//                         showOtherFields();
-
-//                     } else {
-//                         hideOtherFields();
-
-//                     }
-//                     updateOptions(data);
-
-//                 } else {
-//                     console.error(`Request failed. Returned status of ${xhr.status}`);
-//                 }
-//             };
-//             xhr.send();
-//         } else {
-//             hideOtherFields();
-//             clearOptions();
-//         }
-//     });
 
 
 const input = document.querySelector('#codeNaf') ?? null;
 
 
-// const url = 'http://127.0.0.1:8000/api/v1/data/code_naf';
-// const url = '/api/v1/data/code_naf';
-
 if (input) {
-    input.addEventListener('change', function () {
+    input.addEventListener('input', function () {
 
-        const value = parseInt(input.value.trim().split(".")[0]);
-        const lengths = input.value.trim().length;
 
-        console.log(parseInt(value))
 
-        if ((value > 4) && (value < 40) && (lengths === 6)) {
+        try {
+            const value = parseInt(input.value.trim().split(".")[0]);
+            const lengths = input.value.trim().length;
 
-            showOtherFields();
+            if ((value > 4) && (value < 40) && (lengths === 6)) {
 
-        } else {
-            hideOtherFields();
+                showOtherFields();
 
-            alert('Désolé vous n\'est pas eligible')
+            } else {
+                hideOtherFields();
 
+            }
+
+        } catch (error) {
+            $('#alerte').removeClass('hidden').addClass('flex');
+            $('#messageAlerte').text(error.message);
         }
+
+
 
     });
 

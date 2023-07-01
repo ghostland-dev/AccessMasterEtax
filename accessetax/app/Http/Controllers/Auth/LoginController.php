@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+
 // use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class LoginController extends Controller
@@ -21,10 +23,10 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    // use ThrottlesLogins;
+    use ThrottlesLogins;
 
-    // protected $maxAttempts = 3;
-    // protected $decayMinutes = 2;
+    protected $maxAttempts = 3;
+    protected $decayMinutes = 2;
 
     /**
      * Where to redirect users after login.
@@ -32,6 +34,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
 
     /**
      * Create a new controller instance.

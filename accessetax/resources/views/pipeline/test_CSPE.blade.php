@@ -1,65 +1,73 @@
 @extends('layouts.app')
-
 @section('content')
     <div class=" fullheight centred ">
         <div class="container px-6 pt-3 card ">
+            <h5 class="card-header bg-success text-center text-white">{{ __('Test d\'Eligibilité CSPE') }}</h5>
+
             <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card mt-3">
-                        <h5 class="card-header bg-success text-center text-white">{{ __('Test d\'Eligibilité CSPE') }}</h5>
 
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('ValidationCSPE') }}">
-                                @csrf
 
-                                <div class="form-group my-2 row">
+                <div class="col-md-6  ">
+                    <form method="POST" action="{{ route('ValidationCSPE') }}" class=" ">
+                        @csrf
+                        @method('POST')
+                        <div id="formsContainer">
+                            <div class="shadow-md  p-2 grid lg:grid-cols-3  md:grid-cols-2 sm:grid-cols-1 py-4 my-3">
+                                <div class="  p-2  ">
                                     <label for="codeNaf"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Code NAF') }}</label>
+                                        class="  col-form-label text-md-right">{{ __('Code NAF') }}</label>
 
-                                    <div class="col-md-6">
+                                    <div class=" ">
                                         <input id="codeNaf" type="text" class="form-control" name="codeNaf"
-                                            value="{{ old('codeNaf') }}" required autocomplete="codeNaf" autofocus>
+                                            value="{{ old('codeNaf') }}" placeholder="0.00" required autocomplete="codeNaf"
+                                            autofocus>
                                     </div>
                                 </div>
 
-                                <div class="form-group my-2 row">
+                                <div class="  p-2   ">
                                     <label for="valeurAjouter"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Valeur Ajouter') }}</label>
+                                        class="  col-form-label text-md-right">{{ __('Valeur Ajouter') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="valeurAjouter" type="text" class="form-control" name="valeurAjouter"
-                                            value="{{ old('valeurAjouter') }}" required autocomplete="valeurAjouter">
+                                    <div class=" ">
+                                        <input id="valeurAjouter" type="number" class="form-control" name="valeurAjouter"
+                                            value="{{ old('valeurAjouter') }}" placeholder="0.00" required
+                                            autocomplete="valeurAjouter">
                                     </div>
                                 </div>
 
-                                <div class="form-group my-2 row">
-                                    <label for="CAR"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('CAR') }}</label>
+                                <div class="  p-2   ">
+                                    <label for="CAR" class="  col-form-label text-md-right">{{ __('CAR') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="CAR" type="text" class="form-control" name="CAR"
-                                            value="{{ old('CAR') }}" required autocomplete="CAR">
+                                    <div class=" ">
+                                        <input id="CAR" type="number" class="form-control" placeholder="0.00"
+                                            name="CAR" value="{{ old('CAR') }}" required autocomplete="CAR">
                                     </div>
                                 </div>
 
-                                <div class="form-group my-2 row ">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
-                                            {{ __('lancez le teste d\'éligibilité ') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
 
-                            <div class="results mt-5 card bg-light-indigo text-primary p-2 text-center">
-                                @if (isset($CodeNafmessage))
-                                    {!! $CodeNafmessage !!}
-                                @endif
                             </div>
 
                         </div>
-                    </div>
+
+                        <div class=" max-auto my-3   ">
+                            <div class=" ">
+                                <button type="submit" class="btn btn-success m-2">
+                                    {{ __('lancez le teste d\'éligibilité') }} <i class="fa fa-arrow-right  "
+                                        aria-hidden="true"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
                 </div>
+
+
+
+
                 <div class="col-md-6">
                     <h4 class="bg-success text-center p-2 rounded-2  text-bg-muted m-3 wow">Tester d'éligibilité aux taux
                         CSPE

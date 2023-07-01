@@ -1,7 +1,7 @@
 @extends('layouts.signed')
 @section('main')
     <form action="{{ route('genFold.store') }}" method="POST" enctype="multipart/form-data"
-        class="d-flex justify-content-around flex-wrap" id="ElecBillForm">
+        class="d-flex justify-content-around flex-wrap" id="DossierDeBase">
         @csrf
         @method('POST')
 
@@ -11,22 +11,22 @@
             <div class="grid gap-3 grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  ">
 
 
-                 <div class=" space-y-2    ">
+                <div class=" space-y-2    ">
                     <label for="numero_dossier">N° de dossier</label>
                     <input type="text" name="numero_dossier" id="numero_dossier" class="form-control"
                         placeholder="N° de dossier ... " required>
                 </div>
 
-                 <div class=" space-y-2    ">
-                    <label for="nom_dossier">N° de dossier</label>
+                <div class=" space-y-2    ">
+                    <label for="nom_dossier">Nom de dossier</label>
                     <input type="text" name="nom_dossier" id="nom_dossier" class="form-control"
                         placeholder="N° de dossier ... " required>
                 </div>
 
-                  <div class=" space-y-2    ">
+                <div class=" space-y-2    ">
                     <label for="statut_dossier">Statut de dossier</label>
-                    <select name="statut_dossier" id="statut_dossier" class="form-control" placeholder="N° de etude ... "
-                        required>
+                    <select name="statut_dossier" id="statut_dossier" class="form-control"
+                        placeholder="statut de dossier ... " required>
                         <option>Selectionnez le statut de dossier </option>
                         <option value="en attente">En Attente </option>
                         <option value="en cours">En cours </option>
@@ -38,12 +38,20 @@
                         <option value="réglé">Réglé </option>
                     </select>
                 </div>
+                <div class=" space-y-2    ">
+                    <label for="base_folder_id">Dossier de base</label>
+                    <select name="base_folder_id" id="base_folder_id" class="form-control"
+                        placeholder="statut de dossier ... " required>
+                        <option>Selectionnez le statut de dossier </option>
+                        @foreach ($DossiersBase as $dossier)
+                            <option value="id">{{ $dossier->nom_dossier }} </option>
+                        @endforeach
 
-                 <div class=" space-y-2    ">
-                    <label for="base_folder_id">Dossier de Base</label>
-                    <input type="number" name="base_folder_id" id="base_folder_id" class="form-control"
-                        placeholder="N° de dossier de base ... " required>
+
+                    </select>
                 </div>
+
+
 
                 <div class="file btn btn-success is-boxed w-100">
                     <label class="file-label w-100">
@@ -167,7 +175,7 @@
                                 <i class="fas fa-cloud-upload-alt fa-2x mx-auto"></i>
                             </span>
                             <span class="file-label  ">
-                                  JDMP Pouvoir Access Energies
+                                JDMP Pouvoir Access Energies
                             </span>
                         </span>
                     </label>
@@ -201,12 +209,7 @@
                     </label>
                 </div>
 
-                <!-- Text input -->
-                <div class="group-form  mb-4">
-                    <label class="form-label" for="base_folder_id">Doosier de base</label>
-                    <input type="number" id="base_folder_id" name="base_folder_id" class="form-control" />
 
-                </div>
 
 
 

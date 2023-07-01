@@ -18,8 +18,11 @@ class CompanyFactory extends Factory
     {
         return [
             'denomination' => $this->faker->company(),
-            'siren' => $this->faker->randomDigitNotNull(),
-            'siret' => $this->faker->randomDigitNotNull(),
+            'siren' => $this->faker->randomFloat(0, 1000, 999999),
+            'siret' =>  $this->faker->randomFloat(0, 1000, 999999),
+            'tel' =>  $this->faker->phoneNumber(),
+            'fix' =>  $this->faker->phoneNumber(),
+            'email' =>  $this->faker->safeEmail(),
             'forme_juridique' => $this->faker->sentence(4),
             'forme_juridique_code' => $this->faker->randomDigitNotNull(),
             'capital' => $this->faker->randomDigitNotNull(),
