@@ -15,11 +15,9 @@ class AlerteController extends Controller
 
     public function index()
     {
-
-        $alertes = Alerte::orderBy('created_at', 'desc')->paginate(10);
-        return response(view('pages.Alertes.index', compact('alertes'))->with('status', 'listes des alerte disponibles'));
+        $alertes = Alerte::all();
+        return view('pages.Alertes.index', compact('alertes'))->with('status', 'Liste des alertes disponibles');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -109,9 +107,9 @@ class AlerteController extends Controller
 
         $notif->delete();
         // Redirect to the users.index view and display message
-        return  response(view('pages.Alertes.index')->with(
+        return  redirect(route('alertes'))->with(
             'status',
             'Alerte a été supprimé avec succès.'
-        ));
+        );
     }
 }

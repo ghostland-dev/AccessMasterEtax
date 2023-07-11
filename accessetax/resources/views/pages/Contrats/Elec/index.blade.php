@@ -88,4 +88,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-4">
+        {{ $contratElecs->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

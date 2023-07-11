@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alerte;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -15,11 +17,24 @@ class ClientController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
 
-        $clients =  User::where('role', 'client')->orderBy('created_at', 'desc')->paginate(10);
+        if ($user->role === 'administrateur') {
+            $clients = User::where('role', 'client')->get();
+            $visiteurs = User::where('role', 'visiteur')->get();
+        } else {
 
-        return response(view('pages.Clients.index', compact('clients'))->with('status', 'listes des clients.'));
+            $clients = User::where('owner_id', $user->id)->where('role', 'client')->get();
+            $visiteurs = User::where('owner_id', $user->id)->where('role', 'visiteur')->get();
+        }
+
+        $roles = ['visiteur', 'client'];
+
+
+        return view('pages.Clients.index', compact('clients', 'visiteurs', 'roles'))->with('status', 'Liste des clients.');
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -84,6 +99,42 @@ class ClientController extends Controller
     {
         $client = User::findOrFail($id);
         return response(view('pages.Clients.edit', compact('client'))->with('status', 'vous pouvez commencer à modifié. '));
+    }
+    public function upgrade($id)
+    {
+        $user  = Auth::user();
+        $client = User::findOrFail($id);
+        $client->role = 'client';
+        $client->save();
+
+        $message = new Alerte();
+        $message->nom_alerte = "Qualification de prospect $client->userName ";
+        $message->description_alerte = " le prospect porteur du numéro SIREN $client->userName a été qualifié par l'agent $user->nom $user->prenom. ";
+        $message->type_alerte = "information";
+        $message->statut_alerte = "nouveau";
+        $message->study_id = 1;
+        $message->save();
+
+
+        return redirect()->route('clients')->with('status', 'le prospect a été qualifié avec succès. ');
+    }
+    public function downgrade($id)
+    {
+        $user  = Auth::user();
+        $client = User::findOrFail($id);
+        $client->role = 'visiteur';
+        $client->save();
+
+        $message = new Alerte();
+        $message->nom_alerte = "Dsiqualification de prospect $client->userName ";
+        $message->description_alerte = " le prospect porteur du numéro SIREN $client->userName a été disqualifié par l'agent $user->nom $user->prenom. ";
+        $message->type_alerte = "important";
+        $message->statut_alerte = "nouveau";
+        $message->study_id = 1;
+        $message->save();
+
+
+        return redirect()->route('clients')->with('status', 'le prospect a été disqualifié avec succès. ');
     }
 
     /**

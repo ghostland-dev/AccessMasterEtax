@@ -4,10 +4,10 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
-            class="position-relative overflow-hidden bg-gradient-to-r from-slate-500 to-green-500 min-vh-100 d-flex align-items-center justify-content-center">
+            class="position-relative overflow-hidden bg-gradient-to-t from-slate-500 to-green-300 min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
-                    <div class="col-md-8 col-lg-6 col-xxl-4 transition-all duration-1000 transform hover:scale-105  ">
+                    <div class="col-md-8 col-lg-6 col-xxl-4  ">
                         <div class="card p-3">
                             <div class="card-body">
 

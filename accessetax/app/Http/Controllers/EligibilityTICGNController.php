@@ -69,8 +69,9 @@ class EligibilityTICGNController extends Controller
      */
     public function index()
     {
-        $EligibiliteTICGNs = EligibilityTCGN::orderBy('created_at', 'desc')->paginate(10);
 
+        $EligibiliteTICGNs = EligibilityTCGN::orderBy('created_at', 'desc')->paginate(10);
+      
         return view('pages.EligibiliteTICGN.index', compact('EligibiliteTICGNs'));
     }
 

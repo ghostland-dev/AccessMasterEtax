@@ -76,6 +76,10 @@
                     </div>
                 </div>
             @endforeach
+
+            <div class="mt-4">
+                {{ $etudes->links('vendor.pagination.tailwind') }}
+            </div>
         </div>
     </div>
 @endsection

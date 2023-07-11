@@ -1,6 +1,5 @@
  <!-- Sidebar Start -->
- <aside id="sidebar" class="
-  left-sidebar h-screen">
+ <aside id="sidebar" class=" left-sidebar h-screen ">
      <!-- Sidebar scroll-->
      <div>
          <div class="brand-logo d-flex align-items-center justify-content-center">
@@ -12,7 +11,7 @@
              </div>
          </div>
          <!-- Sidebar navigation-->
-         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+         <nav class="sidebar-nav scroll-sidebar bg-light h-screen" data-simplebar="">
 
              <div class="unlimited-access hide-menu bg-light position-relative mb-7 mt-1 rounded">
                  <div class=" ">
@@ -21,7 +20,7 @@
                          <div>
                              <p class="fw-semibold fs-4 mb-4 text-success w-85"> Pochette </p>
                              <a href="#" target="_blank" class="btn btn-success fs-3 fw-bolder   w-100 ">
-                                 {{ '3526.0' }} €</a>
+                                 {{ '3526.0' }} <i class="fa fa-euro text-dark" aria-hidden="true"></i></a>
 
                          </div>
 
@@ -43,6 +42,21 @@
                          <span class="hide-menu">Tableau de bord</span>
                      </a>
                  </li>
+                 @if (Auth::user()->role == 'administrateur' || Auth::user()->role === 'commercial')
+                     <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
+                         <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
+                         <span class="hide-menu text-success">Utilisateurs</span>
+                     </li>
+
+                     <li class="sidebar-item bg-light rounded-4">
+                         <a class="sidebar-link" href="{{ route('clients') }}" aria-expanded="true">
+                             <span>
+                                 <i class="text-success fa fa-file"></i>
+                             </span>
+                             <span class="hide-menu">Clients</span>
+                         </a>
+                     </li>
+                 @endif
                  @if (Auth::user()->role == 'administrateur')
                      <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
                          <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
@@ -209,7 +223,7 @@
                      </li>
                  @endif
 
-                 @if (Auth::user()->role == 'administrateur' && Auth::user()->role == 'client' && Auth::user()->role == 'commercial')
+                 @if (Auth::user()->role === 'administrateur' || Auth::user()->role === 'client' || Auth::user()->role === 'commercial')
                      <li class="nav-small-cap bg-slate-600 p-2 rounded-md my-2">
                          <i class="text-success fa fa-congs nav-small-cap-icon fs-4"></i>
                          <span class="hide-menu text-success">Compteurs</span>
@@ -385,8 +399,14 @@
 
              </ul>
 
+
          </nav>
          <!-- End Sidebar navigation -->
+         <a href="{{ route('logout') }}"
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+             class=" btn btn-danger mx-3 mt-2 d-block">
+             Déconnexion</a>
+
      </div>
      <!-- End Sidebar scroll-->
  </aside>

@@ -408,7 +408,7 @@ button {
 }
 
 .back-image {
-    background-image: url(http://127.0.1:8000/img/banner-bk.jpg);
+    background-image: url(http://127.0.1:8000/img/contact-bk.jpg);
     height: 100vh;
     background-repeat: no-repeat;
     display: flex;

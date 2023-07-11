@@ -3,7 +3,7 @@
 @section('main')
     <form class="container" action="{{ route('codesNaf.update', $codenaf->id) }}" method="POST">
         @csrf
-        @method('POST')
+        @method('PUT')
         <h4 class="my-3 text-base w-fit mx-auto  text-slate-400 text-center bg-slate-50 p-3 rounded-md"> Modifier le
             code NAF </h4>
 

@@ -1,14 +1,15 @@
 const emailInput = document.getElementById('email');
-emailInput.addEventListener('input', function () {
-    validateEmail(emailInput.value);
-});
+emailInput ? emailInput.addEventListener('input', function () { validateEmail(emailInput.value); }) : console.log("tel not found.");
+
+
+
 
 async function validateEmail(email) {
     // Regular expression for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (emailRegex.test(email)) {
-            return true;
+        return true;
     } else {
         console.log('Invalid email format');
         return false;
@@ -19,7 +20,7 @@ async function validateEmail(email) {
 
 // Phone number validation
 var phoneInput = document.getElementById('tel');
-phoneInput.addEventListener('input', validatePhoneNumber);
+phoneInput ? phoneInput.addEventListener('input', validatePhoneNumber) : console.log("tel not found.");
 
 function validatePhoneNumber() {
     var phoneNumber = phoneInput.value;

@@ -112,7 +112,9 @@
                 @endforeach
             </div>
 
-
+            <div class="mt-4">
+                {{ $DossierBases->links('vendor.pagination.tailwind') }}
+            </div>
             <!--end col-->
         </div>
         <!--end row-->

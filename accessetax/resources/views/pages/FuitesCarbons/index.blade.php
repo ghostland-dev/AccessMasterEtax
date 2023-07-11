@@ -72,7 +72,7 @@
                                                         </td>
                                                         <td>
                                                             <p
-                                                                class="text-center p-2 
+                                                                class="text-center p-2
                                                                 {{ $fuitCarbon->eligible ? 'bg-emerald-50 text-emerald-400  rounded-md' : 'bg-red-50 text-red-400  rounded-md' }}">
                                                                 {{ $fuitCarbon->eligible ? 'Oui' : 'Non' }}</p>
                                                         </td>
@@ -122,7 +122,9 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-
+                                        <div class="mt-4">
+                                            {{ $fuitesCarbons->links('vendor.pagination.tailwind') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

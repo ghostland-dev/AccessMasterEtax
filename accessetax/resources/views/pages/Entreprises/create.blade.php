@@ -27,14 +27,14 @@
             @method('POST')
 
 
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-3 shadow-md p-3 rounded-md mb-3">
                 <div class="mb-4">
@@ -203,13 +203,13 @@
         function fetchCompanies(query) {
 
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/app/v1/data/pappers?q=' + encodeURIComponent(query), true);
+            xhr.open('GET', '/app/v1/data/pappers?siren=' + encodeURIComponent(query), true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         var response = JSON.parse(xhr.responseText);
 
-                        populateFields(response.resultats[0]);
+                        populateFields(response.resultats_siren[0]);
                     } else {
                         console.error('Error:', xhr.status);
                     }

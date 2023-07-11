@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'Access E-Tax') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     @vite(['resources/css/app.css'])
@@ -35,11 +35,14 @@
 
     <div id="particle-container"></div>
 
-    <div id="spinner" class="d-none ">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
+    <!-- Loader -->
+    <div id="loader"
+        class="hidden fixed max-h-screen w-screen z-50 inset-0 items-center justify-center bg-gray-900 bg-opacity-75">
+        <div class="loader"></div>
     </div>
+
+
+
 
     @guest()
         @include('layouts.partials.header')
@@ -55,7 +58,17 @@
     @include('layouts.partials.footer')
     {{--  <script src="{{ asset('js/celebration-particles.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.10.1/tsparticles.confetti.bundle.min.js"></script>  --}}
+    <script>
+        // Show loader while the page is loading
+        $(window).on('load', function() {
+            $('#loader').addClass('hidden');
+        });
 
+        // Show loader when the search form is submitted
+        $('#search-form').on('submit', function() {
+            $('#loader').removeClass('hidden');
+        });
+    </script>
 </body>
 
 </html>

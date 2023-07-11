@@ -122,4 +122,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-4">
+        {{ $elegibiliteCSPEs->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

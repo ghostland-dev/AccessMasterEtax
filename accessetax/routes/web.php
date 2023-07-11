@@ -39,6 +39,8 @@ use App\Http\Controllers\CarbonLiqueController;
 use App\Http\Controllers\ElecBillsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Zipper\ZipController;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,19 +53,22 @@ use App\Http\Controllers\Zipper\ZipController;
 |
 */
 
-
-Auth::routes();
-
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+ 
 Route::get('/remerciement', function () {
     return view('default.remerciement');
 })->name('remerciement');
 
 Route::get('/app/v1/data/pappers', [PappersController::class, 'getPappersData'])->name('pappers');
+Route::get('/app/v1/data/pappers/existence', [PappersController::class, 'checkSirenExistence'])->name('pappers.exist');
+
+
 Route::get('/app/v1/data/generate/{siren?}', [GenPDFController::class, "generatePDFcontract"])->name('contract');
 Route::get('/app/v1/data/pouvoir/{siren?}', [GenPDFController::class, "generatePDFpouvoir"])->name('pouvoir');
 Route::get('/app/v1/data/courrier',         [GenPDFController::class, "courrierType"])->name('courrier');
@@ -74,22 +79,22 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 // Pipeline
 Route::get('/app/v1/pipline/etape/bienvenue',                   [StepsController::class, 'bienvenue'])->name('etape1');
 Route::get('/app/v1/pipline/etape/elegibilite-client',          [StepsController::class, 'eligibilityClient'])->name('etape2');
-Route::middleware(['auth', 'role:administrateur'])->group(function () {
+Route::middleware(['auth', 'role:administrateur,visiteur,client,commercial'])->group(function () {
 
-    Route::get('/app/v1/pipline/etape/envoie-contrat',              [StepsController::class, 'contractSend'])->name('etape3');
-    Route::get('/app/v1/pipline/etape/confirmation-contrat',        [StepsController::class, 'contractAccepted'])->name('etape4');
-    Route::get('/app/v1/pipline/etape/montage-dossier',             [StepsController::class, 'folderBuilding'])->name('etape5');
-    Route::get('/app/v1/pipline/etape/envoie-aux-authorites',       [StepsController::class, 'folderSentCouncil'])->name('etape6');
-    Route::get('/app/v1/pipline/etape/confirmation-authoritess',     [StepsController::class, 'CouncilConfirmation'])->name('etape7');
-    Route::get('/app/v1/pipline/etape/confirmation-authorites',     [StepsController::class, 'CustomerRefund'])->name('etape8');
-    Route::get('/app/v1/pipline/etape/facturation-de-client',       [StepsController::class, 'ServiceInvoice'])->name('etape9');
-    Route::get('/app/v1/pipline/etape/changement-taux-reduit',      [StepsController::class, 'folderStatus'])->name('etape10');
+    Route::get('/app/v1/pipline/etape/1',              [StepsController::class, 'contractSend'])->name('etape3');
+    Route::get('/app/v1/pipline/etape/2',        [StepsController::class, 'contractAccepted'])->name('etape4');
+    Route::get('/app/v1/pipline/etape/3',             [StepsController::class, 'folderBuilding'])->name('etape5');
+    Route::get('/app/v1/pipline/etape/4',       [StepsController::class, 'folderSentCouncil'])->name('etape6');
+    Route::get('/app/v1/pipline/etape/5',     [StepsController::class, 'CouncilConfirmation'])->name('etape7');
+    Route::get('/app/v1/pipline/etape/6',     [StepsController::class, 'CustomerRefund'])->name('etape8');
+    Route::get('/app/v1/pipline/etape/7',       [StepsController::class, 'ServiceInvoice'])->name('etape9');
+    Route::get('/app/v1/pipline/etape/8',      [StepsController::class, 'folderStatus'])->name('etape10');
 });
 
 
 // Users routes
 
-Route::middleware(['auth', 'role:administrateur,commercial'])->group(function () {
+Route::middleware(['auth', 'role:administrateur'])->group(function () {
     Route::get('/app/v1/data/utilisateurs',            [UtilisateurController::class, 'index'])->name('utilisateurs');
     Route::get('/app/v1/data/utilisateur/creer',     [UtilisateurController::class, 'create'])->name('utilisateur.create');
     Route::post('/app/v1/data/utilisateur/enregistrer',           [UtilisateurController::class, 'store'])->name('utilisateur.store');
@@ -99,9 +104,11 @@ Route::middleware(['auth', 'role:administrateur,commercial'])->group(function ()
     Route::delete('/app/v1/data/utilisateur/{utilisateur}/supprimer',  [UtilisateurController::class, 'destroy'])->name('utilisateur.destroy');
 });
 
-Route::middleware(['auth', 'role:administrateur'])->group(function () {
+Route::middleware(['auth', 'role:administrateur,commercial'])->group(function () {
     Route::get('/app/v1/data/clients',            [ClientController::class, 'index'])->name('clients');
     Route::get('/app/v1/data/client/creer',     [ClientController::class, 'create'])->name('client.create');
+    Route::get('/app/v1/data/client/{user}/qualifier',     [ClientController::class, 'upgrade'])->name('client.upgrade');
+    Route::get('/app/v1/data/client/{user}/disqualifier',     [ClientController::class, 'downgrade'])->name('client.downgrade');
     Route::post('/app/v1/data/client/enregistrer',           [ClientController::class, 'store'])->name('client.store');
     Route::get('/app/v1/data/client/{user}/details',     [ClientController::class, 'show'])->name('client.show');
     Route::get('/app/v1/data/client/{user}/editer', [ClientController::class, 'edit'])->name('client.edit');
@@ -122,11 +129,11 @@ Route::middleware(['auth', 'role:administrateur'])->group(function () {
 
 
 // Profils
-Route::middleware(['auth', 'role:administrateur'])->group(function () {
-    Route::get('/app/v1/profil/visiteur', [ProfileController::class, 'visitor'])->name('profile.visitor');
-    Route::get('/app/v1/profil/administrateur', [ProfileController::class, 'admin'])->name('profile.admin');
-    Route::get('/app/v1/profil/commercial', [ProfileController::class, 'seller'])->name('profile.seller');
-    Route::get('/app/v1/profil/client', [ProfileController::class, 'customer'])->name('profile.customer');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/app/v1/profil/visiteur', [ProfileController::class, 'visitor'])->name('profile.visitor')->middleware('role:administrateur,commercial,visiteur');
+    Route::get('/app/v1/profil/administrateur', [ProfileController::class, 'admin'])->name('profile.admin')->middleware('role:administrateur');
+    Route::get('/app/v1/profil/commercial', [ProfileController::class, 'seller'])->name('profile.seller')->middleware('role:administrateur,commercial');
+    Route::get('/app/v1/profil/client', [ProfileController::class, 'customer'])->name('profile.customer')->middleware('role:administrateur,commercial,client');
 });
 
 
@@ -172,7 +179,7 @@ Route::middleware(['auth', 'role:administrateur'])->group(function () {
 });
 
 // Base Documents  routes
-Route::middleware(['auth', 'role:administrateur'])->group(function () {
+Route::middleware(['auth', 'role:administrateur,commercial,visiteur,client'])->group(function () {
     Route::get('/app/v1/data/document-bases',            [BaseDocumentController::class, 'index'])->name('baseDocs');
     Route::get('/app/v1/data/document-base/creer',     [BaseDocumentController::class, 'create'])->name('baseDoc.create');
     Route::post('/app/v1/data/document-base/enregistrer',           [BaseDocumentController::class, 'store'])->name('baseDoc.store');
@@ -207,6 +214,7 @@ Route::middleware(['auth', 'role:administrateur'])->group(function () {
 
 //  Companies routes
 Route::middleware(['auth', 'role:administrateur'])->group(function () {
+    Route::get('/app/v1/data/societe/chercher',            [CompanyController::class, 'search'])->name('company.search');
     Route::get('/app/v1/data/societes',            [CompanyController::class, 'index'])->name('companies');
     Route::get('/app/v1/data/societe/creer',     [CompanyController::class, 'create'])->name('companie.create');
     Route::post('/app/v1/data/societe/sauvgarder',           [CompanyController::class, 'store'])->name('companie.store');
