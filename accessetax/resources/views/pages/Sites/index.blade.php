@@ -130,7 +130,9 @@
                                             </tbody>
                                         </table>
 
-
+                                        <div class="mt-4">
+                                            {{ $sites->links('vendor.pagination.tailwind') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

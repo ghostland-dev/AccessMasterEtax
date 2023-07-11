@@ -92,8 +92,7 @@
         </tbody>
     </table>
 
-             <div class="mt-4">
-                                            {{ $compteursElecs->links('vendor.pagination.tailwind') }}
-                                        </div>
-
+    <div class="mt-4">
+        {{ $compteursElecs->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

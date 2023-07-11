@@ -69,4 +69,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-4">
+        {{ $alertes->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

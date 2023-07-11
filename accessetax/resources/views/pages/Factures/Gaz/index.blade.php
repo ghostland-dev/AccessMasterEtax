@@ -119,6 +119,9 @@
                     </tbody>
                 </table>
 
+                <div class="mt-4">
+                    {{ $FactureGazs->links('vendor.pagination.tailwind') }}
+                </div>
 
             </div>
         </div>

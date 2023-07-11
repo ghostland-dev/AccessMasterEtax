@@ -1,26 +1,36 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.signed')
+@section('main')
+    <div class="p-16">
+        <div class="p-8 bg-white shadow  ">
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                <div class="grid grid-cols-3 text-center order-last md:order-first my-20 md:mt-0">
 
 
-<div class="row">
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="  flex justify-between  md:mt-0 md:justify-center">
+
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+                        <img src="{{ $client->profile }}" alt="" class="w-48 h-48 rounded-full" srcset="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="mt-20 text-center border-b pb-12">
+                <h4 class="text-2xl font-medium text-emerald-400 p-2 bg-indigo-50">
+                    {{ $client->firstName . ' ' . $client->lastName }}
+                    <span class="font-light text-gray-500"> </span>
+                </h4>
+                <p class="font-light text-gray-600 mt-3">{{ $client->siren }}</p>
+                <p class="mt-8 text-gray-500">{{ $client->job }} - {{ $client->siren }}</p>
+                <p class="mt-2 text-gray-500">{{ $client->tel }}</p>
+            </div>
+            <div class="mt-12 flex flex-col justify-center">
+                <button class=" bg-slate-50  text-slate-500 py-2 px-4  font-bold mt-4">
+                    {{ $client->role }}</button>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
 @endsection

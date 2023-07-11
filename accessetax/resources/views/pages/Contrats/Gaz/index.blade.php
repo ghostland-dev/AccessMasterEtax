@@ -90,4 +90,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-4">
+        {{ $contratGazs->links('vendor.pagination.tailwind') }}
+    </div>
 @endsection

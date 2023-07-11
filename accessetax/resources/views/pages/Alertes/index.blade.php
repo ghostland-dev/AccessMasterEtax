@@ -26,7 +26,7 @@
                                             </div>
                                         @endif
                                         <div class="grid gap-3 grid-cols-3 lg:grid-cols-3 md:grid-cols-3  sm:grid-cols-1">
-                                            @foreach ($modelData as $alerte)
+                                            @foreach ($alertes as $alerte)
                                                 <div class="  card p-3  " role="alert" aria-live="assertive"
                                                     aria-atomic="true">
                                                     <div class="container-fluid">
@@ -57,13 +57,12 @@
                                         </div>
 
 
-                                        <div class="mt-4">
-                                            {{ $modelData->links('vendor.pagination.tailwind') }}
-                                        </div>
 
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>

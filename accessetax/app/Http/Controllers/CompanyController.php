@@ -22,6 +22,28 @@ class CompanyController extends Controller
         return response(view('pages.Entreprises.index', compact('entreprises')));
     }
 
+
+    /**
+     * Search for companies based on the provided criteria.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('perPage', 10);
+
+        $entreprises = Company::where('denomination', 'like', '%' . $query . '%')
+            ->orWhere('siren', 'like', '%' . $query . '%')
+            ->orWhere('siret', 'like', '%' . $query . '%')
+            ->orWhere('code_naf', 'like', '%' . $query . '%')
+            ->orWhere('ville', 'like', '%' . $query . '%')
+            ->paginate($perPage);
+
+        return  response(view('pages.Entreprises.index', compact('entreprises'))->with('status', 'voici la liste des resultats qui ressemble à votre demande.'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

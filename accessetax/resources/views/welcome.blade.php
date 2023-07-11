@@ -14,7 +14,7 @@
     <title>Access E-Tax</title>
 
     <meta name="description" content="">
-    <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="favicon.icon" sizes="32x32" type="image/x-icon">
     <!-- custom.css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- bootstrap.min.css -->
@@ -29,7 +29,7 @@
 <body>
     <!-- banner -->
     <div class="jumbotron jumbotron-fluid h-full" id="banner"
-        style="background-image: url(img/banner-bk.jpg); height: 100vh;">
+        style="background-image: url(./img/bg-universe.jpg); height: 100vh;">
         <div class="container flex justify-center text-center text-md-left">
             <header>
                 <div class="row justify-content-between">
@@ -38,8 +38,7 @@
                             src="{{ asset('img/logo.svg') }}" alt="logo" class="logo">
                     </div>
                     <div class="col-6 align-self-center text-right">
-                        <a href="{{ route('login') }}"
-                            class=" text-xs lead btn btn-outline-success rounded-md hover:text-dark ">Se
+                        <a href="{{ route('login') }}" class=" border-1 border-white border-solid text-white ">Se
                             connecter </a>
                     </div>
                 </div>
@@ -148,7 +147,7 @@
 
     <!-- contact -->
     <div class="jumbotron jumbotron-fluid" id="contact"
-        style="background-image: url({{ asset('img/contact-bk.jpg') }});">
+        style="background-image: url({{ asset('img/banner-bk.jpg') }});">
         <div class="container my-5">
             <div class="row justify-content-between">
                 <div class="col-md-6 text-white">

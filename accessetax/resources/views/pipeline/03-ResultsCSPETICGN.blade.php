@@ -8,7 +8,7 @@
         </div>
     @endif
 
-    <div class="container-fluid   bg-gradient-to-t from-slate-500 to-green-500 h-screen ">
+    <div class="container-fluid   back-image h-screen ">
 
         <div class="container px-6 pt-3    ">
             <div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2">

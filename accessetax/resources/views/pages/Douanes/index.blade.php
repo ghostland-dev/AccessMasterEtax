@@ -120,7 +120,9 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-
+                                        <div class="mt-4">
+                                            {{ $Douanes->links('vendor.pagination.tailwind') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

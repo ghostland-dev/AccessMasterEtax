@@ -30,7 +30,6 @@
                     <a class="nav-link" href="{{ route('home') }}">Accueil</a>
                 </li>
 
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -42,28 +41,34 @@
                                     class="fas fa-user"></i>
                                 Bienvenue</a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape2') }}"> <i
-                                    class="fas fa-user"></i> Test
+                                    class="fas fa-user"></i>
+                                Test
                                 d'élégibilité </a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape3') }}"> <i
-                                    class="fas fa-user"></i> Signature
+                                    class="fas fa-user"></i>
+                                Signature
                                 de contrat </a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape4') }}"> <i
-                                    class="fas fa-user"></i> Renvoie
+                                    class="fas fa-user"></i>
+                                Renvoie
                                 des documents signé </a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape5') }}"> <i
                                     class="fas fa-user"></i>
                                 Constitution de dossier</a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape6') }}"> <i
-                                    class="fas fa-user"></i> Dossier
+                                    class="fas fa-user"></i>
+                                Dossier
                                 transmis aux douanes</a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape7') }}"> <i
-                                    class="fas fa-user"></i> Accusé de
+                                    class="fas fa-user"></i>
+                                Accusé de
                                 Reception douanières</a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape8') }}"> <i
                                     class="fas fa-user"></i>
                                 Remboursement de client</a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape9') }}"> <i
-                                    class="fas fa-user"></i> Envoyer
+                                    class="fas fa-user"></i>
+                                Envoyer
                                 de facture Voltaria</a></li>
                         <li class=""><a class="dropdown-item" href="{{ route('etape10') }}"> <i
                                     class="fas fa-user"></i>
@@ -74,76 +79,27 @@
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="   nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Etudes
-                    </a>
-
+                        aria-expanded="false"> Simulateurs </a>
                     <ul class="dropdown-menu p-3">
-                        <li class=""><a class="dropdown-item" href="{{ route('clients') }}"> <i
-                                    class="fas fa-user"></i>
-                                Clients</a></li>
-                        <li class=""><a class="dropdown-item" href="{{ route('baseFolers') }}"><i
-                                    class="fas fa-folder"></i>
-                                Dossiers</a></li>
-                        <li class=""><a class="dropdown-item" href="{{ route('studies') }}"><i
+
+                        <li class=""><a class="dropdown-item" href="{{ route('SimulateurCSPE') }}"><i
                                     class="fas fa-book"></i>
-                                Etudes</a></li>
+                                Tests Eligibilité CSPE </a></li>
+                        <li class=""><a class="dropdown-item" href="{{ route('SimulateurTICGN') }}"><i
+                                    class="fas fa-book"></i>
+                                Tests Eligibilité TCGN </a></li>
+
                     </ul>
 
+
+
                 </li>
 
 
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Sites
-                    </a>
-
-                    <ul class="dropdown-menu p-3">
-
-                        <li class=""><a class="dropdown-item" href="{{ route('sites') }}"><i
-                                    class="fas fa-map"></i> Sites</a>
-                        </li>
-                        <li class=""><a class="dropdown-item" href="{{ route('contractElecs') }}"><i
-                                    class="fas fa-file"></i>
-                                Contrats d'éléctrecité</a></li> Contrats de gaz</a>
-                </li>
-                <li class=""><a class="dropdown-item" href="{{ route('elecMeters') }}"><i
-                            class="fas fa-file"></i> Compteurs
-                        d'éléctrecité</a></li>
-                <li class=""><a class="dropdown-item" href="{{ route('gazMeters') }}"><i
-                            class="fas fa-file"></i> Compteurs
-                        de
-                        gaz</a></li>
-
             </ul>
 
-            </li>
-
-
-            <li class="   nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> Simulateurs </a>
-                <ul class="dropdown-menu p-3">
-
-                    <li class=""><a class="dropdown-item" href="{{ route('SimulateurCSPE') }}"><i
-                                class="fas fa-book"></i>
-                            Tests Eligibilité CSPE </a></li>
-                    <li class=""><a class="dropdown-item" href="{{ route('SimulateurTICGN') }}"><i
-                                class="fas fa-book"></i>
-                            Tests Eligibilité TCGN </a></li>
-
-                </ul>
-
-
-
-            </li>
-
-
-            </ul>
 
             <!-- Left links -->
 
@@ -196,11 +152,11 @@
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                                 id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
                                 aria-expanded="false">
-                                {{-- <img src="{{ Auth::user()->profile? (Storage::url(Auth::user()->profile)):   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU'  }}"
-                            class="rounded-circle logo-navbar " height="25" alt="utilisateur" loading="lazy" /> --}}
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU"
+                                <img src="{{ Auth::user()->profile }}" class="rounded-circle logo-navbar "
+                                    height="25" alt="utilisateur" loading="lazy" />
+                                {{-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd14Txv031zmnOdB79hQpF03Vih_bR3e3ccvgiRQWe-_UUkV1cBMychdcfU1602SpaDe4&usqp=CAU"
                                     class="rounded-circle logo-navbar " height="25" alt="utilisateur"
-                                    loading="lazy" />
+                                    loading="lazy" /> --}}
                             </a>
 
 

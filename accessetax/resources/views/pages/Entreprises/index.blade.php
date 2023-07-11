@@ -24,6 +24,35 @@
                                                 {{ session('status') }}
                                             </div>
                                         @endif
+
+                                        <div class="py-8">
+                                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                                <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+                                                    <div class="p-6 bg-white border-b border-gray-200">
+
+                                                        <h5
+                                                            class="bg-slate-500 text-center p-2 rounded-2  text-white  m-3 wow">
+                                                            <i
+                                                                class="fa fa-search bg-light text-emerald-400 rounded-full p-2 mx-2"></i>
+                                                            Chercher une entreprise
+                                                        </h5>
+                                                        <form action="{{ route('company.search') }}" method="GET">
+                                                            @csrf
+                                                            @method('GET')
+                                                            <div class="flex items-center">
+                                                                <input type="text" name="query"
+                                                                    class="w-full border rounded py-2 px-3 mr-2 text-sm"
+                                                                    placeholder="Chercher une entreprise par SIREN, dénomination, Date de création, code NAF..."
+                                                                    required>
+                                                                <button type="submit"
+                                                                    class="bg-emerald-400 hover:bg-emerald-400 text-white font-bold py-2 px-4 rounded">Chercher</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <table class="table align-middle mb-0 bg-white">
                                             <a href="{{ route('companie.create') }}" class="btn btn-success m-3 ">
                                                 + Nouveau entreprise
@@ -151,7 +180,9 @@
                                             </tbody>
                                         </table>
 
-
+                                        <div class="mt-4">
+                                            {{ $entreprises->links('vendor.pagination.tailwind') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

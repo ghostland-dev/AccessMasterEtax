@@ -18,21 +18,9 @@ class ProfileController extends Controller
      */
     public function visitor()
     {
-        // if(Auth::user()->role == 'visiteur'){
         // retdirect to admin page
-
         $user = Auth::user();
-        // $testeTICGN = EligibilityTCGN::where('siren', '=', $user->siren);
-        // $testeCSPE = EligibilityCSPE::where('siren', '=', $user->siren);
-
-        // dd($testeTICGN, $testeCSPE);
         return view('auth.profils.visiteur', compact('user'));
-
-        //    }elseif(Auth::user()->role == null){
-        //         // retdirect to admin page
-        //    return view('auth.profils.visiteur');
-
-        //    }
     }
 
     /**
@@ -42,8 +30,15 @@ class ProfileController extends Controller
      */
     public function admin()
     {
-        // if(Auth::user()->role == 'administrateur'){
         // retdirect to admin page
+        $EligTICGN = EligibilityTCGN::all();
+        $chiffreAffaireNet_AEArray = collect($EligTICGN)
+            ->pluck('chiffreAffaireNet_AE')
+            ->toArray();
+        $chiffreAffaireNet_dates = collect($EligTICGN)
+            ->pluck('created_at')
+            ->toArray();
+
         $SommeCSPEnet = EligibilityCSPE::sum('chiffreAffaireNet_AE');
         $SommeCSPEbrut = EligibilityCSPE::sum('chiffreAffaireBrut_AE');
         $SommeTICGNnet = EligibilityTCGN::sum('chiffreAffaireNet_AE');
@@ -55,14 +50,7 @@ class ProfileController extends Controller
         $SommeTCGNbrutlist = EligibilityTCGN::pluck('chiffreAffaireBrut_AE')->toArray();
 
         $alertes = Alerte::all();
-        return view('auth.profils.administrateur', compact('SommeTCGNnetlist', 'SommeTCGNbrutlist', 'SommeCSPEnetlist', 'SommeCSPEbrutlist', 'alertes', 'SommeCSPEbrut', 'SommeCSPEnet', 'SommeTICGNnet', 'SommeTICGNbrut'));
-
-        // }else{
-        //      // retdirect to admin page
-        // return view('auth.profils.visiteur');
-
-        // }
-
+        return view('auth.profils.administrateur', compact('chiffreAffaireNet_AEArray', 'chiffreAffaireNet_dates', 'SommeTCGNnetlist', 'SommeTCGNbrutlist', 'SommeCSPEnetlist', 'SommeCSPEbrutlist', 'alertes', 'SommeCSPEbrut', 'SommeCSPEnet', 'SommeTICGNnet', 'SommeTICGNbrut'));
     }
 
     /**
@@ -74,15 +62,8 @@ class ProfileController extends Controller
     {
 
         $user = Auth::user();
-        // if(Auth::user()->role == 'commercial'){
         // retdirect to admin page
         return view('auth.profils.commercial', compact('user'));
-
-        //    }else{
-        //         // retdirect to admin page
-        //    return view('auth.profils.visiteur');
-
-        //    }
     }
 
 
@@ -93,21 +74,12 @@ class ProfileController extends Controller
      */
     public function customer()
     {
-        // if(Auth::user()->role == 'client'){
-        // retdirect to admin page
 
         $user = Auth::user();
 
-        // $testeTICGN = EligibilityTCGN::where('siren', '=', $user->siren)->get();
-        // $testeCSPE = EligibilityCSPE::where('siren', '=', $user->siren)->get();
+        $testeTICGN = EligibilityTCGN::where('siren', '=', $user->siren)->sum('chiffreAffaireNet_AE');
+        $testeCSPE = EligibilityCSPE::where('siren', '=', $user->siren)->sum('chiffreAffaireNet_AE');
 
-        // dd($testeTICGN, $testeCSPE);
         return view('auth.profils.client', compact('user'));
-
-        //    }else{
-        //         // retdirect to admin page
-        //    return view('auth.profils.visiteur');
-
-        //    }
     }
 }

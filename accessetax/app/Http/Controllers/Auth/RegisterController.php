@@ -50,18 +50,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
-        return Validator::make($data, [
-            'userName'  => ['required', 'string', 'max:50','unique:users'],
+       return Validator::make($data, [
+            'profile'   => ['required', 'mimes:jpeg,jpg,bmp,png,svg'],
+            'userName'  => ['required', 'string', 'max:50', 'unique:users'],
             'firstName' => ['required', 'string', 'max:50'],
             'lastName'  => ['required', 'string', 'max:50'],
-            'tel'       => ['required', 'string', 'max:15','unique:users'],
-            'fix'       => ['required', 'string', 'max:15'],
+            'tel'       => ['required', 'string', 'regex:/^(\+|0)\d{9}$/'],
+            'fix'       => ['required', 'string', 'regex:/^(\+|0)\d{9}$/'],
             'job'       => ['required', 'string', 'max:50'],
-            'siren'     => ['required', 'string', 'max:15'],
-            'profile'   => ['required', 'mimes:jpeg,bmp,png,svg'],
-            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'siren'     => ['required', 'string', 'max:8', 'regex:/^\d{2}[-\s]?\d{3}[-\s]?\d{3}[-\s]?\d{3}$/', 'unique:users'],
+            'email'     => ['required', 'string', 'email', 'max:100', 'unique:users', 'regex:/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/'],
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
     }
 
     /**
@@ -72,7 +73,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+         $siren = str_replace(['-', ' '], '', $data['siren']);
+          // Check if SIREN exists using Pappers API
+        $response = Http::get("https://api.pappers.fr/v2/siret/$siren", [
+            'api_token' => '97a405f1664a83329a7d89ebf51dc227b90633c4ba4a2575',
+        ]);
+
+        if ($response->failed() || !$response->json('etablissement')) {
+            // SIREN not found, display error message and clear the field
+            return back()
+                ->withInput($request->except('siren'))
+                ->withErrors(['siren' => 'invalide ou inexistant SIREN']);
+        }
+
         return User::create([
             'userName' => $data['userName'],
             'firstName' => $data['firstName'],
@@ -80,7 +93,7 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'fix' => $data['fix'],
             'job' => $data['job'],
-            'siren' => $data['siren'],
+            'siren' => $siren,
             'email' => $data['email'],
             'profile' => $data['profile']->store('avatars', 'public'),
             'password' => Hash::make($data['password']),

@@ -6,10 +6,9 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
-            class="position-relative overflow-hidden bg-gradient-to-r from-slate-500 to-green-500 min-vh-100 d-flex align-items-center justify-content-center">
+            class="position-relative overflow-hidden  bg-gradient-to-r from-slate-500 to-green-300 min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
-                <div
-                    class="row justify-content-center w-full lg:w-2/4 md:w-3/4 sm:w-full transition-all duration-1000 transform hover:scale-105 ">
+                <div class="row justify-content-center w-full lg:w-2/4 md:w-3/4 sm:w-full    ">
                     <div class="row justify-content-center w-100">
                         <div class="card ">
                             <div class="card-body">
@@ -35,7 +34,7 @@
 
 
                                         <label for="dropzone-file"
-                                            class="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                            class="flex flex-col items-center @error('profile') is-invalide @enderror justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                 <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
                                                     stroke="currentColor" viewBox="0 0 24 24"
@@ -50,7 +49,7 @@
                                                     (MAX. 800x400px)</p>
                                             </div>
                                             <input id="dropzone-file" type="file" name="profile" class="hidden"
-                                                value="{{ old('profile') }}" required autocomplete="profile" autofocus />
+                                                value="{{ old('profile') }}" required autocomplete="profile" />
                                         </label>
 
                                         @error('profile')
@@ -68,7 +67,7 @@
                                                 <input id="userName" type="text"
                                                     class="form-control @error('userName') is-invalid @enderror"
                                                     name="userName" value="{{ old('userName') }}" required
-                                                    autocomplete="userName" autofocus>
+                                                    placeholder="nom d'utilisateur" autocomplete="userName" autofocus>
 
                                                 @error('userName')
                                                     <span class="invalid-feedback" role="alert">
@@ -87,7 +86,7 @@
                                                 <input id="firstName" type="text"
                                                     class="form-control @error('firstName') is-invalid @enderror"
                                                     name="firstName" value="{{ old('firstName') }}" required
-                                                    autocomplete="firstName" autofocus>
+                                                    autocomplete="firstName" placeholder="Prénom" autofocus>
 
                                                 @error('firstName')
                                                     <span class="invalid-feedback" role="alert">
@@ -104,7 +103,7 @@
                                                 <input id="lastName" type="text"
                                                     class="form-control @error('lastName') is-invalid @enderror"
                                                     name="lastName" value="{{ old('lastName') }}" required
-                                                    autocomplete="lastName" autofocus>
+                                                    autocomplete="lastName" placeholder="Nom" autofocus>
 
                                                 @error('lastName')
                                                     <span class="invalid-feedback" role="alert">
@@ -118,10 +117,10 @@
                                             <label for="tel" class="form-label">{{ __('Mobile') }}</label>
 
                                             <div class=" ">
-                                                <input id="tel" type="text"
+                                                <input id="tel" type="tel"
                                                     class="form-control @error('tel') is-invalid @enderror" name="tel"
                                                     value="{{ old('tel') }}" required autocomplete="tel" autofocus
-                                                    placeholder="+336-000-000-000">
+                                                    placeholder="06 00 00 00">
 
                                                 @error('lastName')
                                                     <span class="invalid-feedback" role="alert">
@@ -138,7 +137,7 @@
                                                 <input id="fix" type="text"
                                                     class="form-control @error('fix') is-invalid @enderror" name="fix"
                                                     value="{{ old('fix') }}" required autocomplete="fix" autofocus
-                                                    placeholder="+332-000-000-000">
+                                                    placeholder="02 00 00 00">
 
                                                 @error('fix')
                                                     <span class="invalid-feedback" role="alert">
@@ -154,7 +153,7 @@
 
                                             <div class=" ">
                                                 <input id="job" type="text"
-                                                    class="form-control @error('') is-invalid @enderror" name="job"
+                                                    class="form-control @error('job') is-invalid @enderror" name="job"
                                                     value="{{ old('job') }}" required autocomplete="job" autofocus
                                                     placeholder="Responsable financier">
 
@@ -170,10 +169,10 @@
                                             <label for="siren" class="form-label">{{ __('siren') }}</label>
 
                                             <div class=" ">
-                                                <input id="siren" type="text"
+                                                <input id="siren" type="number"
                                                     class="form-control @error('siren') is-invalid @enderror"
                                                     name="siren" value="{{ old('siren') }}" required
-                                                    autocomplete="siren" autofocus>
+                                                    autocomplete="siren" placeholder="00-00-00-00" autofocus>
 
                                                 @error('siren')
                                                     <span class="invalid-feedback" role="alert">
@@ -189,8 +188,8 @@
                                             <div class=" ">
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    name="email" value="{{ old('email') }}" required
-                                                    autocomplete="email">
+                                                    name="email" value="{{ old('email') }}"
+                                                    placeholder="exemple@domain.fr" required autocomplete="email">
 
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
@@ -206,7 +205,8 @@
                                             <div class=" ">
                                                 <input id="password" type="password"
                                                     class="form-control @error('password') is-invalid @enderror"
-                                                    name="password" required autocomplete="new-password">
+                                                    name="password" placeholder="mot de passe" required
+                                                    autocomplete="new-password">
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -220,11 +220,14 @@
                                         <div class="  ">
                                             <label for="password-confirm"
                                                 class="form-label">{{ __('Confirmer
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    le mot de passe') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    le mot de passe') }}</label>
 
                                             <div class=" ">
-                                                <input id="password-confirm" type="password" class="form-control"
-                                                    name="password_confirmation" required autocomplete="new-password">
+                                                <input id="password-confirm" type="password"
+                                                    class="form-control  @error('password') is-invalide @enderror "
+                                                    name="password_confirmation" required
+                                                    placeholder="confirmation de mot de passe"
+                                                    autocomplete="new-password">
                                             </div>
 
                                             @error('password')
@@ -237,13 +240,13 @@
 
                                     </div>
 
-                                    <div class="    my-4">
+                                    <div class="my-4">
                                         <div class="  d-flex  justify-content-center">
                                             <a href="{{ route('login') }}" class="w-50 mx-4 btn btn-dark ">
-                                                {{ __("J'ai déjà un compte ") }}
+                                                J'ai déjà un compte
                                             </a>
                                             <button type="submit" class="w-50  mx-4 btn btn-success">
-                                                {{ __('S\'inscrire ') }}
+                                                S'inscrire
                                             </button>
 
                                         </div>
@@ -262,9 +265,39 @@
 
 
 
+    <script>
+        $(document).ready(function() {
+            $('#siren').on('input', function() {
+                var siren = $(this).val();
+                var sirenField = $(this);
 
-
-
+                if (siren.length >= 8) {
+                    $.ajax({
+                        url: `/app/v1/data/pappers/existence?siren=${siren}`,
+                        method: 'GET',
+                        success: function(response) {
+                            if (response.exists) {
+                                $('#siren-error').text('Le SIREN existe.');
+                                sirenField.removeClass('is-invalid').addClass('is-valid');
+                            } else {
+                                $('#siren-error').text('Le SIREN n\'existe pas.');
+                                sirenField.removeClass('is-valid').addClass('is-invalid');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            $('#siren-error').text(
+                                'Une erreur s\'est produite lors de la vérification du SIREN.'
+                            );
+                            sirenField.removeClass('is-valid').addClass('is-invalid');
+                        }
+                    });
+                } else {
+                    $('#siren-error').text('');
+                    sirenField.removeClass('is-valid is-invalid');
+                }
+            });
+        });
+    </script>
 
 
 @endsection

@@ -36,8 +36,8 @@ class CouncilOfficeController extends Controller
      */
     public function store(Request $request)
     {
-        $Douanes = CouncilOffice::create($request->all());
-        return response(view('pages.Douanes.show', compact('Douanes'))->with('status', "un nouveau bureaux douanaire a été créé avec succès."));
+        $douane = CouncilOffice::create($request->all());
+        return response(view('pages.Douanes.show', compact('douane'))->with('status', "un nouveau bureaux douanaire a été créé avec succès."));
     }
 
     /**

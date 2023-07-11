@@ -60,7 +60,7 @@ class SupplierFactory extends Factory
             'city' => $this->faker->city,
             'country' => $this->faker->country(),
             'zip_code' => $this->faker->postCode(),
-            'siret' => $this->faker->iban(),
+            'siret' =>  $this->faker->randomFloat(0, 1000, 999999),
             'energie' => $this->faker->numberBetween(1, 3),
 
         ];

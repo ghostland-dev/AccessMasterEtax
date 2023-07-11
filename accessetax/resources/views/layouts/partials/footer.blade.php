@@ -1,8 +1,14 @@
 <footer>
+
+ 
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.6.0/alpine.js"></script>
     @auth
         <script src="{{ asset('js/sidebarmenu.js') }}"></script>
- 
+
 
     @endauth
     <script src="{{ asset('libs/simplebar/dist/simplebar.js') }}"></script>
@@ -12,6 +18,6 @@
 
     <script src="{{ asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/costumized.js') }}"></script>
-        <script src="{{ asset('scripts.js') }}"></script>
+    <script src="{{ asset('scripts.js') }}"></script>
 
 </footer>

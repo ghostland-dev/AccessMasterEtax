@@ -1,6 +1,6 @@
 @extends('layouts.pipeline')
 @section('pipeline')
-      @include('layouts.partials.timeline',['step'=>Auth::user()->etape ?? 4])
+    @include('layouts.partials.timeline', ['step' => Auth::user()->etape ?? 4])
 
 
 
@@ -12,9 +12,28 @@
                         <h5 class="card-header bg-success text-center text-white">{{ __('Documents à fournir') }}</h5>
 
                         <div class="card-body p-4">
-                            <form method="POST" action="{{ route('ValidationCSPE') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('baseDoc.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')
+
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+
+
+
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
 
                                 <div class="form-group">
@@ -24,6 +43,14 @@
 
                                     </label>
                                     <input class="form-control" type="file" name="bilans" accept=".pdf" multiple>
+                                </div>
+                                <div class="form-group">
+                                    <label class="file-label bg-slate-50 rounded-md p-2 my-2"> <i
+                                            class="fa fa-file-pdf fa-2x mx-2"></i>
+                                        Annexes (2 an)
+
+                                    </label>
+                                    <input class="form-control" type="file" name="annexes" accept=".pdf" multiple>
                                 </div>
 
                                 <div class="form-group">
@@ -114,6 +141,14 @@
 
                                 <i class="fa bg-warning text-white rounded-circle px-2 py-1 m-1 fa-times"
                                     aria-hidden="true"></i> <strong>Bilans Comptables (2 an) </strong> <span>
+                                    {{ __(' Billans comptables des 2 dernieres années ') }}
+                                </span>
+
+                            </li>
+                            <li class="bg-light-warning text-warning   p-3 my-2" id="annexes">
+
+                                <i class="fa bg-warning text-white rounded-circle px-2 py-1 m-1 fa-times"
+                                    aria-hidden="true"></i> <strong>Annexes (2 an) </strong> <span>
                                     {{ __(' Billans comptables des 2 dernieres années ') }}
                                 </span>
 

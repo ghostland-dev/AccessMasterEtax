@@ -138,9 +138,10 @@
         <h2 class="center"> POUVOIR </h2>
         <h4 class="center"> MANDATAIRE RECLAMATIONS DE TICFE/CSPE </h4>
         <p>Je soussigné, <br>
-            Marie MARTIN agissant en qualité de : <b>Gérante</b> au nom et pour le compte de l’entreprise (nom et raison
-            sociale) : CLIENT
-            Adresse : 2 rue du Client, 75002 PARIS France Désigne l’entreprise (nom et raison sociale) : VOLTARIA
+             {{  user.lastName .' '. user.firstName }} agissant en qualité de : <b>{{ user.job }}</b> au nom et pour le compte de l’entreprise
+             {{ company['denomenation'] }} : CLIENT
+            Adresse : {{ company['denomenation']->siege->adresse_ligne_1 }}  {{ company['denomenation'] }} France,
+            Désigne l’entreprise   VOLTARIA
         </p>
 
 

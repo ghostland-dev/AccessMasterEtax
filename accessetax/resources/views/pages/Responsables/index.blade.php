@@ -2,7 +2,7 @@
 @section('main')
     <div class="container">
 
-            <a class="btn btn-dark my-3  " href="{{ route('responsible.create') }}"> + Nouveau Responsable</a>
+        <a class="btn btn-dark my-3  " href="{{ route('responsible.create') }}"> + Nouveau Responsable</a>
 
         <div class="row">
 
@@ -73,50 +73,13 @@
                 </div>
             @endforeach
 
-
+            <div class="mt-4">
+                {{ $responsables->links('vendor.pagination.tailwind') }}
+            </div>
 
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     {{--

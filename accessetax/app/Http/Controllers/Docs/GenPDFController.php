@@ -10,9 +10,49 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
+use Exception;
 
 class GenPDFController extends Controller
 {
+
+    private function makePappersRequest($url)
+    {
+        try {
+            $response = Http::withoutVerifying()->get($url);
+
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                return ['error' => 'Échec de la récupération des données depuis l\'API Pappers', 'status' => $response->status()];
+            }
+        } catch (Exception $e) {
+            return ['error' => "Une erreur s\'est produite lors du traitement de la requête: $e", 'status' => 500];
+        }
+    }
+
+    public function getPappersData($siren)
+    {
+
+
+        $url = 'https://suggestions.pappers.fr/v2?q=' . $siren . '&longueur=10&cibles=siren';
+
+        return response()->json($this->makePappersRequest($url));
+    }
+
+    public function checkSirenExistence(Request $request)
+    {
+        $siren = $request->get('siren');
+
+        $url = 'https://suggestions.pappers.fr/v2?q=' . $siren . '&longueur=10&cibles=siren';
+
+        $response = $this->makePappersRequest($url);
+
+        if (!isset($response['error']) && isset($response['resultats_siren']) && count($response['resultats_siren']) > 0) {
+            return response()->json(['exists' => true]);
+        } else {
+            return response()->json(['exists' => false]);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,24 +69,12 @@ class GenPDFController extends Controller
         $date->setLocale(config('app.locale'));
         $dateValue = $date->$dateVariable();
 
-        $url = 'https://api.pappers.fr/v2/recherche';
-        $apiToken = '97a405f1664a83329a7d89ebf51dc227b90633c4ba4a2575';
-
-        $response = Http::withoutVerifying()->get($url, [
-            'precision' => 'standard',
-            'bases' => 'entreprises,dirigeants,beneficiaires,publications,documents',
-            'page' => 1,
-            'par_page' => 2,
-            'siren' => $siren,
-            'api_token' => $apiToken
-        ]);
-
+        $response = $this->getPappersData($siren);
         $compayData = $response->json();
 
-        $user = Auth::user() ?? new User([
-            'firstName' => 'Abbie',
-            'lastName' => 'Konopelski'
-        ]);
+        dd($compayData);
+        $user = Auth::user();
+        $dateValue = Date('Y-m-d ');
         $company = $compayData ?? ['name' => 'ismail'];
 
         $pdf = new Dompdf($options);
@@ -69,42 +97,5 @@ class GenPDFController extends Controller
     public function courrierType()
     {
         $this->generatePDF('emailTemplates.CourrierType', '-courrier-type.pdf', 'format', null);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function destroy($id)
-    {
-        //
     }
 }
