@@ -39,8 +39,7 @@ use App\Http\Controllers\CarbonLiqueController;
 use App\Http\Controllers\ElecBillsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Zipper\ZipController;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Http;
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +59,7 @@ Route::get('/', function () {
 });
 
 
- 
+
 Route::get('/remerciement', function () {
     return view('default.remerciement');
 })->name('remerciement');

@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Docs;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
 use Exception;
 
 class GenPDFController extends Controller
@@ -65,27 +63,41 @@ class GenPDFController extends Controller
         $options->set('isRemoteEnabled', true);
         $options->set('isHtml5ParserEnabled', true);
 
-        $date = new Carbon;
-        $date->setLocale(config('app.locale'));
-        $dateValue = $date->$dateVariable();
+
+        $dateValue = date('Y-m-d');
 
         $response = $this->getPappersData($siren);
-        $compayData = $response->json();
 
-        dd($compayData);
+
+
         $user = Auth::user();
         $dateValue = Date('Y-m-d ');
-        $company = $compayData ?? ['name' => 'ismail'];
 
+        $company = $response->original['resultats_siren'][0];
+       $sites = $user->companies[0]->sites;
+
+        $html = view($view, compact('user', 'company', 'dateValue', 'sites'))->render();
+
+        // Create the PDF
         $pdf = new Dompdf($options);
-        $pdf->loadHtml(view($view, compact('user', 'company', 'dateValue')));
+        $pdf->loadHtml($html);
+
+        // Include Bootstrap CSS and JS in the PDF
+        $bootstrapCSS = '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcwr7x9JvoRxT2MZw1T" crossorigin="anonymous">';
+        $bootstrapJS = '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh2WBu4MK7qrT4sap4rF5s1Jq1RgkPGJ9U0dW" crossorigin="anonymous"></script>';
+        $html = $bootstrapCSS . $html . $bootstrapJS;
+
+        // Set PDF options and render
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
+
+        // Output the PDF
         $pdf->stream(date('Y-m-d ') . $filename, ['Attachment' => false]);
     }
 
     public function generatePDFcontract(Request $request, $siren = '000 000 000')
     {
+
         $this->generatePDF('emailTemplates.contrat', '-contrat_prestation_Voltaria_numero.pdf', 'isoFormat', $siren);
     }
 
@@ -94,8 +106,8 @@ class GenPDFController extends Controller
         $this->generatePDF('emailTemplates.pouvoir', '-pouvoir_Voltaria.pdf', 'isoFormat', $siren);
     }
 
-    public function courrierType()
+    public function courrierType(Request $request, $siren = '000 000 000')
     {
-        $this->generatePDF('emailTemplates.CourrierType', '-courrier-type.pdf', 'format', null);
+        $this->generatePDF('emailTemplates.CourrierType', '-courrier-type.pdf', 'isoFormat', $siren);
     }
 }

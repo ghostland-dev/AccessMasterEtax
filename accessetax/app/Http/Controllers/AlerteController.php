@@ -26,7 +26,7 @@ class AlerteController extends Controller
 
     public function create()
     {
-        return response(view('pages.Alertes.create')->with('status', 'Commencez à créer un alerte.'));
+        return view('pages.Alertes.create')->with('status', 'Commencez à créer un alerte.');
     }
 
     /**
@@ -41,7 +41,7 @@ class AlerteController extends Controller
 
         $alerte = Alerte::create($request->all());
 
-        return response(view('pages.Alertes.create', compact('alerte'))->with('status', 'vous pouvez commencer à créer votre alerte'));
+        return view('pages.Alertes.create', compact('alerte'))->with('status', 'vous pouvez commencer à créer votre alerte');
     }
 
     /**
@@ -55,7 +55,7 @@ class AlerteController extends Controller
     {
 
         $alerte = Alerte::findOrFail($alerte);
-        return response(view('pages.Alertes.show', compact('alerte'))->with('status', 'nous avons trouvé cet alerte dans nos enregistrements.'));
+        return view('pages.Alertes.show', compact('alerte'))->with('status', 'nous avons trouvé cet alerte dans nos enregistrements.');
     }
 
     /**
@@ -68,7 +68,7 @@ class AlerteController extends Controller
     public function edit(Alerte $alerte)
     {
         $alerte = Alerte::findOrFail($alerte);
-        return response(view('pages.Alertes.edit', compact('alerte'))->with('status', "l'alerte est prêt à être modifié."));
+        return view('pages.Alertes.edit', compact('alerte'))->with('status', "l'alerte est prêt à être modifié.");
     }
 
     /**
@@ -90,7 +90,7 @@ class AlerteController extends Controller
 
         $alerte->save();
 
-        return response(view('pages.Alertes.edit', compact('alerte'))->with('status', "l'alerte est prêt à être modifié."));
+        return view('pages.Alertes.edit', compact('alerte'))->with('status', "l'alerte est prêt à être modifié.");
     }
 
     /**

@@ -17,7 +17,7 @@ class ActivityCodeController extends Controller
     {
         $codeActivites = ActivityCode::orderBy('created_at', 'desc')->paginate(10);
 
-        return response(view('pages.CodeActivites.index', compact('codeActivites'))->with('status', "liste des codes d'activités"));
+        return view('pages.CodeActivites.index', compact('codeActivites'))->with('status', "liste des codes d'activités");
     }
 
     /**
@@ -28,7 +28,7 @@ class ActivityCodeController extends Controller
 
     public function create()
     {
-        return response(view('pages.CodeActivites.create')->with('status', "vous pouvez ajouter un nouveau code d'activité."));
+        return view('pages.CodeActivites.create')->with('status', "vous pouvez ajouter un nouveau code d'activité.");
     }
 
     /**
@@ -59,7 +59,7 @@ class ActivityCodeController extends Controller
         $codeActivite = ActivityCode::findOrFail($id);
 
 
-        return response(view('pages.CodeActivites.show', compact('codeActivite'))->with('status', "code d'activité a été créé avec succès."));
+        return view('pages.CodeActivites.show', compact('codeActivite'))->with('status', "code d'activité a été créé avec succès.");
     }
 
     /**
@@ -72,7 +72,7 @@ class ActivityCodeController extends Controller
     public function edit($id)
     {
         $codeActivite = ActivityCode::findOrFail($id);
-        return response(view('pages.CodeActivites.edit', compact('codeActivite'))->with('status', "code d'activité est prêt à être modfié."));
+        return view('pages.CodeActivites.edit', compact('codeActivite'))->with('status', "code d'activité est prêt à être modfié.");
     }
 
     /**
