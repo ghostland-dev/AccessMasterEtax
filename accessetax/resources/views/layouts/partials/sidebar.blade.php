@@ -20,7 +20,7 @@
                          <div>
                              <p class="fw-semibold fs-4 mb-4 text-success w-85"> Pochette </p>
                              <a href="#" target="_blank" class="btn btn-success fs-3 fw-bolder   w-100 ">
-                                 {{ '3526.0' }} <i class="fa fa-euro text-dark" aria-hidden="true"></i></a>
+                                 {{ '3526.0' }} <i class="fa fa-euro" aria-hidden="true"></i></a>
 
                          </div>
 

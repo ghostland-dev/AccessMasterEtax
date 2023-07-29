@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <html>
 
@@ -26,7 +26,6 @@
         height: 0;
         margin: 0;
         padding: 0;
-
 
         width: 100%
     }
@@ -58,6 +57,8 @@
 
     p {
         padding: 0.3em 0;
+
+        font-size: 15px;
 
     }
 
@@ -101,7 +102,7 @@
     th,
     td {
         padding: 8px;
-        text-align: left;
+        text-align: center;
         border-bottom: 1px solid #ddd;
     }
 
@@ -109,17 +110,7 @@
         background-color: #f2f2f2;
     }
 
-    .sign-pad {
 
-        color: gray;
-        height: 3em;
-        width: 25em;
-        background-color: #DEDEDE;
-        font-size: 11px;
-        text-align: left;
-        text-decoration: italic;
-        padding: 1em;
-    }
 
     .logo {
         height: 3em;
@@ -137,14 +128,16 @@
         <br>
         <h2 class="center"> POUVOIR </h2>
         <h4 class="center"> MANDATAIRE RECLAMATIONS DE TICFE/CSPE </h4>
-        <p>Je soussigné, <br>
-             {{  user.lastName .' '. user.firstName }} agissant en qualité de : <b>{{ user.job }}</b> au nom et pour le compte de l’entreprise
-             {{ company['denomenation'] }} : JDMP
-            Adresse : {{ company['denomenation']->siege->adresse_ligne_1 }}  {{ company['denomenation'] }} France,
-            Désigne l’entreprise   ACCESS ENERGIES
+        <p>Je soussigné, {{ Auth::user()->lastName . ' ' . Auth::user()->firstName }} agissant en qualité de :
+            <b>{{ Auth::user()->job }}</b>
+            au nom et pour le compte de l’entreprise :
+            - Nom d'entreprise : {{ $company['nom_entreprise'] }} <br>
+            - Adresse : {{ $company['siege']['adresse_ligne_1'] }}, <br>
+            - {{ $company['siege']['code_postal'] }}, {{ $company['siege']['ville'] }}, France, <br>
+            <b> Désigne </b> l’entreprise ACCESS ENERGIES
         </p>
 
-
+        {{ $company['nom_entreprise'] }}
         <p>Adresse : 240 Chemin de l’ouraille 76940 la maileraye sur seine </p>
         <p>N° d’identification à la TVA : FR 63 851987198 <br>
             En qualité de mandataire pour (rayer les mentions inutiles) :</p>
@@ -168,17 +161,9 @@
         <pre> Fait à la mailleraye sur seine                 le 22 décembre 2021     </pre>
 
 
-        Signature et cachet commercial précédée de la mention <b> « Bon pour pouvoir » </b>
+        <p>Signature et cachet commercial précédée de la mention <b> « Bon pour pouvoir » </b></p>
+     <p>Signature et cachet commercial précédée de la mention <b>« Pouvoir accepté »</b> </p>
 
-
-        <p>Je soussigné,
-
-            <b>M. DIAKITE Hamidou</b>
-            agissant en qualité de : <b>Gérant </b>
-
-        </p>
-
-        <div class="sign-pad"> Signature </div>
 
         <p>au nom et pour le compte de l’entreprise (nom et raison sociale) : <b> ACCESS ENERGIES </b> </p>
 
@@ -186,14 +171,38 @@
             aux
             demandes de
             remboursement de la TICFE/CSPE pour le compte de l’entreprise demandeuse.</p>
+        <table class="mar">
+            <thead>
+                <tr>
+                    <th>Entreprise</th>
+                    <th>Client</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <b>ACCESS ENERGIES SARL JDMP </b>
+                        <p> Représentée par Mr.Hamidou DIAKITE </p>
+                        <p>...................... Le____{{ $dateValue }}_, </p>
+                    </td>
+                    <td>
+                        <b>Sté. {{ $company['nom_entreprise'] }} </b>
+                        <p> Représentée par {{ $user->firstName . ' ' . $user->lastName }} </p>
+                        <p>...................... Le____{{ $dateValue }}_, </p>
 
 
-        <pre> Fait à la mailleraye sur seine                            le 22 décembre 2021</pre>
+                    </td>
 
-        <p>Signature et cachet commercial précédée de la mention <b>« Pouvoir accepté »</b> </p>
+                </tr>
 
-        <p class="b">Pouvoir accepté</p>
-        <div class="sign-pad"> Signature </div>
+
+            </tbody>
+        </table>
+
+
+
 
     </main>
 </body>

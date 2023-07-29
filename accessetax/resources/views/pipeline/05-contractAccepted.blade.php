@@ -42,7 +42,8 @@
                                         Bilans Comptables (2 an)
 
                                     </label>
-                                    <input class="form-control" type="file" name="bilans" accept=".pdf" multiple>
+                                    <input class="form-control" type="file" name="bilans" accept=".pdf" multiple
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="file-label bg-slate-50 rounded-md p-2 my-2"> <i
@@ -50,7 +51,8 @@
                                         Annexes (2 an)
 
                                     </label>
-                                    <input class="form-control" type="file" name="annexes" accept=".pdf" multiple>
+                                    <input class="form-control" type="file" name="annexes" accept=".pdf" multiple
+                                        required>
                                 </div>
 
                                 <div class="form-group">
@@ -59,7 +61,8 @@
                                         CERFA - la valeur ajoutée:
 
                                     </label>
-                                    <input class="form-control" type="file" name="valeur_ajoutee" accept=".pdf">
+                                    <input class="form-control" type="file" name="valeur_ajoutee" accept=".pdf"
+                                        required>
                                 </div>
 
 
@@ -70,7 +73,8 @@
                                         RIB
 
                                     </label>
-                                    <input class="form-control" type="file" name="rib_entreprise" accept=".pdf">
+                                    <input class="form-control" type="file" name="rib_entreprise" accept=".pdf"
+                                        required>
                                 </div>
 
                                 <div class="form-group">
@@ -79,7 +83,7 @@
                                         KBIS
 
                                     </label>
-                                    <input class="form-control" type="file" name="kabis" accept=".pdf">
+                                    <input class="form-control" type="file" name="kabis" accept=".pdf" required>
                                 </div>
 
                                 <div class="form-group">
@@ -88,7 +92,8 @@
                                         Contrat de préstation
 
                                     </label>
-                                    <input class="form-control" type="file" name="contrat_de_prestation" accept=".pdf">
+                                    <input class="form-control" type="file" name="contrat_de_prestation" accept=".pdf"
+                                        required>
                                 </div>
 
                                 <div class="form-group">
@@ -97,7 +102,8 @@
                                         Attestation manuscrite (signée)
 
                                     </label>
-                                    <input class="form-control" type="file" name="courrier_cerfa" accept=".pdf">
+                                    <input class="form-control" type="file" name="courrier_cerfa" accept=".pdf"
+                                        required>
                                 </div>
 
                                 <div class="form-group">
@@ -106,7 +112,7 @@
                                         Mandataire ou Pouvoir
 
                                     </label>
-                                    <input class="form-control" type="file" name="pouvoir_jdmp" accept=".pdf">
+                                    <input class="form-control" type="file" name="pouvoir_jdmp" accept=".pdf" required>
                                 </div>
 
                                 <div class="form-group">
@@ -115,7 +121,8 @@
                                         CGV Access Energies
 
                                     </label>
-                                    <input class="form-control" type="file" name="cgv_access_anergies" accept=".pdf">
+                                    <input class="form-control" type="file" name="cgv_access_anergies" accept=".pdf"
+                                        required>
                                 </div>
 
 

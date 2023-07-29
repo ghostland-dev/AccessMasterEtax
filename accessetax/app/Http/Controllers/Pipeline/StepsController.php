@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Pipeline;
 
 use App\Models\CodeNaf;
+use App\Models\Supplier;
 use App\Models\CarbonLique;
 use App\Models\ActivityCode;
-use App\Models\EligibilityCSPE;
 use Illuminate\Http\Request;
+use App\Models\EligibilityCSPE;
 use App\Http\Controllers\Controller;
-use App\Models\Supplier;
 
 class StepsController extends Controller
 {
@@ -247,10 +247,11 @@ class StepsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function bienvenue()
+    public function eligibilityTest()
     {
-        return view('pipeline.01-bienvenue');
+        return view('pipeline.02-eligibilityTest');
     }
+
 
     /**
      * Display a listing of the resource.
@@ -258,10 +259,11 @@ class StepsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function eligibilityTest()
+    public function bienvenue()
     {
-        return view('pipeline.02-eligibilityTest');
+        return view('pipeline.01-bienvenue');
     }
+
 
     /**
      * Display a listing of the resource.

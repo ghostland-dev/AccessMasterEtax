@@ -17,7 +17,7 @@ class BaseDocumentController extends Controller
     public function index()
     {
         $baseDocuments = BaseDocument::orderBy('created_at', 'desc')->paginate(10);
-        return response(view('pages.Dossier.Docs.index', compact('baseDocuments'))->with('status', 'liste des dossiers de base'));
+        return view('pages.Dossier.Docs.index', compact('baseDocuments'))->with('status', 'liste des dossiers de base');
     }
 
     /**
@@ -28,7 +28,7 @@ class BaseDocumentController extends Controller
 
     public function create()
     {
-        return response(view('pages.Dossier.Docs.create')->with('status', 'un dossier a été crée avec succès.'));
+        return view('pages.Dossier.Docs.create')->with('status', 'un dossier a été crée avec succès.');
     }
 
     /**
@@ -60,7 +60,7 @@ class BaseDocumentController extends Controller
 
         $BaseDoc->save();
 
-        return response(view('pages.Dossier.Docs.show', compact('BaseDoc'))->with('status', 'les documents de base ont été crées avec succès.'));
+        return view('pages.Dossier.Docs.show', compact('BaseDoc'))->with('status', 'les documents de base ont été crées avec succès.');
     }
 
     /**
@@ -73,7 +73,7 @@ class BaseDocumentController extends Controller
     public function show($id)
     {
         $BaseDoc = BaseDocument::findORfail($id);
-        return response(view('pages.Dossier.Docs.show', compact('BaseDoc'))->with('status', 'la liste des documents a été trouvé.'));
+        return view('pages.Dossier.Docs.show', compact('BaseDoc'))->with('status', 'la liste des documents a été trouvé.');
     }
 
     /**
@@ -87,7 +87,7 @@ class BaseDocumentController extends Controller
     {
         $BaseDoc = BaseDocument::findORfail($id);
 
-        return response(view('pages.Dossier.Docs.edit', compact('BaseDoc'))->with('status', 'la liste des documents a été trouvé.'));
+        return view('pages.Dossier.Docs.edit', compact('BaseDoc'))->with('status', 'la liste des documents a été trouvé.');
     }
 
     /**
@@ -117,7 +117,7 @@ class BaseDocumentController extends Controller
 
         $BaseDoc->save();
 
-        return response(view('pages.Dossier.Docs.edit', compact('BaseDoc'))->with('status', 'la liste des documents a été modifié avec succès.'));
+        return view('pages.Dossier.Docs.edit', compact('BaseDoc'))->with('status', 'la liste des documents a été modifié avec succès.');
     }
 
     /**
@@ -151,6 +151,6 @@ class BaseDocumentController extends Controller
         $BaseDoc->delete();
 
         $BaseDoc->delete();
-        return response(view('pages.Dossier.Docs.index')->with('status', 'liste des documents a été supprimé .'));
+        return response()->redirect(route('baseDocs'))->with('status', 'liste des documents a été supprimé .');
     }
 }
