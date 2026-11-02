@@ -1,26 +1,21 @@
+# Access Master E-Tax
 
-![E-Tax-logo](https://user-images.githubusercontent.com/66369128/220680444-602e51b9-bfe8-46f2-a4a4-df048b034735.svg)
+Web app and REST API for producing and tracking energy tax (CSPE/TICGN) files.
 
-# Access Master Acces E-tax (Web App +  REST API )
+## Features
 
-# Prerequests 
+- Laravel web application and REST API
+- Customer, meter and tax-file management
+- Data model documented in the repository
 
-# Installation
+## Tech Stack
 
-# Architecture
+- Laravel (Blade)
+- PHP
 
-# Routing
+## Author
 
-# technologies
+**Ismail.M**, Software Engineer & DevOps
 
-# Plugins
-
-# Resources
-
-# DB Stracture
-
-# Data Modeling 
-
-# User interface (UI) 
-
-# User Experience (UX)
+- GitHub: [@ghostland-dev](https://github.com/ghostland-dev)
+- Website: [ismail-mouyahada.com](https://www.ismail-mouyahada.com)
