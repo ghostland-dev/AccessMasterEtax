@@ -1,4 +1,4 @@
-# Access Master E-Tax
+# Energy Tax Platform
 
 Web app and REST API for producing and tracking energy tax (CSPE/TICGN) files.
 
